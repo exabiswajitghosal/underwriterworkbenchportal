@@ -1,0 +1,26 @@
+.lobs {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  
+  .lob {
+    padding: 20px;
+    background-color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    height: 4px;
+    width: 119px;
+    align-items: center;
+    color: black;
+    font-size: 11px;
+    border: 1px solid gray;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    text-align: center;
+
+  }
+  
+  .lob.active {
+    background-color: #0036d8;
+    color: white;
+  }

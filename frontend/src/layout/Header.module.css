@@ -1,0 +1,93 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-bottom: 1px solid #e1e5ed;
+  height: 60px; /* Adjust height for proper spacing */
+  box-sizing: border-box;
+  width: 100%; /* Ensure it spans full width */
+}
+
+.logo {
+  width: 72px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.complogo {
+  width: 100px;
+  height: 50px;
+  margin-right: 1060px;
+  margin-left: 38px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap; /* Ensures content stays in one line */
+}
+
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.userDetails {
+  font: 13px/1 Inter, sans-serif;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.userName {
+  color: var(--Global-Neutral-Grey-1300, #0a090b);
+  font-weight: 550;
+  white-space: nowrap; /* Ensures it stays on one line */
+  margin-top: 10px;
+}
+
+.userRole {
+  color: var(--Global-Neutral-Grey-1000, #4f4d55);
+  font-weight: 400;
+  white-space: nowrap;
+  
+}
+
+.iconButton {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background: var(--Global-Neutral-Grey-300, #f1f1f1);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.menuButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .header {
+    padding: 10px;
+  }
+
+  .userInfo {
+    flex-wrap: nowrap; /* Prevent wrapping */
+  }
+}
