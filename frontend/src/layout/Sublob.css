@@ -1,26 +1,46 @@
 .lobs {
     display: flex;
-    justify-content: space-around;
-    padding: 20px;
-  }
-  
-  .lob {
-    padding: 20px;
-    background-color: white;
-    border-radius: 50px;
-    cursor: pointer;
-    height: 4px;
-    width: 119px;
+    justify-content: space-around; /* Centers the buttons in the middle */
     align-items: center;
-    color: black;
-    font-size: 11px;
-    border: 1px solid gray;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
-    text-align: center;
-
+    padding: 20px;
+    background-color: #f9f9f9;
+    flex-wrap: nowrap; /* Ensures the buttons are displayed in a single line */
   }
   
-  .lob.active {
-    background-color: #0036d8;
-    color: white;
+  .sublob {
+    display: flex;
+    gap: 20px; /* Adds space between buttons */
   }
+  
+  .sublob-item {
+    padding: 10px 30px;
+    border: 2px solid #dcdcdc;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #000;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap; /* Prevents text from wrapping */
+  }
+  
+  .sublob-item.active {
+    background-color: #0046d5; /* Active state: blue */
+    color: #fff;
+    border-color: transparent;
+    display: flex;
+  }
+  
+  .sublob-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .sublob-item i {
+    margin-right: 8px;
+  }
+  
+  .sublob-item.active:hover {
+    background-color: #003bb3;
+  }
+  
