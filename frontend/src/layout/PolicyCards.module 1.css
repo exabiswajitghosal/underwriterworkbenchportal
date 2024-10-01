@@ -1,0 +1,89 @@
+.policyCards {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+  perspective: 1500px; /* Enhanced depth for child elements */
+  margin-left: 5px;
+  margin-right: 5%;
+  gap: 30px;
+}
+
+.policyCard {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height:52px;
+  width:115px;
+  gap: 22px;
+  padding: 37px 19px;
+  border-radius: 15px;
+  background-color: #fff;
+  border: 1px solid #edecec;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), /* Subtle shadow */
+              0 5px 10px rgba(0, 0, 0, 0.05); /* Layered shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  perspective: 1000px; /* Adds more depth on hover */
+  position: relative; /* To allow for reflection */
+  border-top: 4px solid #0046d5;
+}
+
+.policyCard::before {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  filter: blur(5px);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.policyCard:hover::before {
+  opacity: 0.8;
+}
+
+.policyCard:hover {
+  transform: translateY(-12px) rotateX(7deg); /* More dynamic hover movement */
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.15), 
+              0 12px 12px rgba(0, 0, 0, 0.07); /* Enhanced shadow on hover */
+}
+
+.policyCard.activeCard {
+  box-shadow: 0px 16px 24px -6px rgba(10, 9, 11, 0.08),
+              0px 0px 3px -1px rgba(10, 9, 11, 0.04),
+              0px 0px 0px 1px rgba(10, 9, 11, 0.05);
+}
+
+.policyIcon {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.policyCard:hover .policyIcon {
+  transform: rotateZ(8deg); /* Adds a slight rotation to the icon on hover */
+}
+
+.policyName {
+  color: var(--Global-Neutral-Grey-1300, #0a090b);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.18px;
+  margin: 0;
+}
+
+@media (max-width: 991px) {
+  .policyCards {
+      margin-right: 2px;
+  }
+
+  .policyCard {
+      padding: 20px;
+  }
+}
