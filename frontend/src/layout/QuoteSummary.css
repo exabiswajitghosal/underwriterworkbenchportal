@@ -1,0 +1,25 @@
+.maincontainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    margin: 30px auto;
+    padding: 0 20px; /* Add padding for better spacing on smaller screens */
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+     
+    }
+  
+  
+  
+  .premium-table table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+      overflow: hidden;
+  
+  }
+  
