@@ -1,25 +1,39 @@
 import React from 'react';
-import Sidebar from './layout/Sidebar';
-import Header from './layout/Header';
-import LOBs, { PolicyCards } from './layout/PolicyCards';
-import './App.css'; // Global styles
-import Sublobs from './layout/Sublobs';
-import PolicyForm from './layout/PolicyForm';
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="app">
-      <Sidebar />
-      <div className="main-content">
-        <Header />
-         <PolicyCards/>
-        <Sublobs/>
-        <PolicyForm/>
+import DashboardLayoutDesign from './SidebarComponents/DashboardLayout';
+import AuditTrailLayoutDesign from './SidebarComponents/AuditTrailLayout';
+import AccountLayoutDesign from './SidebarComponents/AccountInfoLayout';
+import LayoutDesign from './components/Layout';
+import SubmissionLayoutDesign from './SidebarComponents/SubmissionLayout';
 
-      </div>
-    </div>
+const App = () => {
+ 
+  return(
+    <Router>
+      <Routes>
+        {/* Set LayoutDesign as the main layout */}
+        <Route
+            exact
+            path="/"
+            element={
+              <>
+                <LayoutDesign/>
+              </>
+            }
+          />
+
+          {/* Define other routes for different screens */}
+          <Route path="dashboard" element={<DashboardLayoutDesign/>} />
+          <Route path="submission" element={<SubmissionLayoutDesign />} />
+          <Route path="audit-trail" element={<AuditTrailLayoutDesign/>} />
+          <Route path="accountinfo" element={<AccountLayoutDesign/>} />
+          
+       
+      </Routes>
+    </Router>
+    
+   
   );
-}
-
+};
 export default App;
-
