@@ -44,6 +44,10 @@
   
 }
 
+.sublob-item:focus{
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2), -5px -5px 12px rgba(255, 255, 255, 0.9);
+}
+
 .sublob-item.active {
   background-color: #0046d5; /* Active state: blue */
   color: #fff;

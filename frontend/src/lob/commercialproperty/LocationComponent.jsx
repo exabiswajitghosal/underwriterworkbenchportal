@@ -6,6 +6,7 @@ import {LocationTable} from './LocationTable';
 import Documents from '../../layout/RightSidebar';
 import {LocationForm} from '../../layout/Location';
 import { Col, Row } from 'antd';
+import LocationTable2 from './LocationTable 2';
 
 export function LocationComponent() {
   return (
@@ -14,7 +15,7 @@ export function LocationComponent() {
     <main className={styles.mainContainer}>
       <LocationHeader />
       <LocationTable />
-      <LocationForm/>
+      {/* <LocationForm/> */}
       
     </main></Col>
     <Col span={4}><Documents/></Col>

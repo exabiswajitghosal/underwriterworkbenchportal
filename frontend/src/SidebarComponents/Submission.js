@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for routing
 import "./Submission.css";
 
 const Submissions = () => {
+  const navigate = useNavigate(); // Initialize navigate for routing
+
   const [submissions, setSubmissions] = useState([
     {
       id: "00123",
@@ -45,32 +48,20 @@ const Submissions = () => {
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
-  const handleAddSubmission = () => {
-    setSubmissions([...submissions, newSubmission]);
-    closeModal();
-    setNewSubmission({
-      id: "",
-      account: "",
-      underwriter: "",
-      createdBy: "",
-      lob: "",
-      submittedOn: "",
-      priority: "High",
-      status: "Submitted",
-    });
-  };
-
-  const handleDeleteLastSubmission = () => {
-    if (submissions.length > 0) {
-      setSubmissions(submissions.slice(0, -1));
-    } else {
-      alert("Cannot delete all rows!");
-    }
-  };
-
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
   };
+
+  // Handle click on "Clearance" to navigate to Clearance component
+  const handleClearanceClick = () => {
+    navigate("/clearancescreen");
+  };
+
+  const handleDocumentClick = () => {
+    navigate("/documentscreen");
+  };
+
+
 
   const filteredSubmissions = submissions.filter((submission) =>
     filter === "all" ? true : submission.status === filter
@@ -78,40 +69,27 @@ const Submissions = () => {
 
   return (
     <div className="content">
-      <h1>Submissions</h1>
+      <h2 style={{textAlign:'center',backgroundColor:'#1d4ed8', color:'white',marginBottom:'30px',borderRadius: '5px'}}>Submissions</h2>
 
-      <div className="container">
-        
-        <div className="card-container" style={{justifyContent:'space-between', width: '100%'}}>
-          <div className="card" onClick={() => setFilter("all")}>
+      <div className="container" style={{width:'100%'}}>
+        <div className="submission-card-container" style={{justifyContent:'space-between', width: '100%'}}>
+          <div className="submissioncard" onClick={() => setFilter("all")}>
             <h4>All Submission</h4>
             <p>({submissions.length})</p>
           </div>
-          <div className="card" onClick={() => setFilter("Submitted")}>
+          <div className="submissioncard" onClick={() => setFilter("Submitted")}>
             <h4>Pending Clearance</h4>
             <p>({submissions.filter((s) => s.status === "Submitted").length})</p>
           </div>
-          <div className="card" onClick={() => setFilter("Draft")}>
+          <div className="submissioncard" onClick={() => setFilter("Draft")}>
             <h4>Rejected</h4>
             <p>({submissions.filter((s) => s.status === "Draft").length})</p>
           </div>
         </div>
       </div>
 
-      {/* Filter and New Submission Button */}
-      <div className="actions">
-        <div>
-          <label htmlFor="filterDropdown">Filter by category:</label>
-          <select id="filterDropdown" onChange={handleFilterChange} value={filter}>
-            <option value="all">All</option>
-            <option value="Submitted">Submitted</option>
-            <option value="Draft">Draft</option>
-          </select>
-        </div>
-      </div>
-
       {/* Submissions Table */}
-      <table id="dataTable">
+      <table id="dataTable" style={{marginTop:'80px'}}>
         <thead>
           <tr>
             <th>Submission ID</th>
@@ -137,8 +115,25 @@ const Submissions = () => {
               <td>{submission.submittedOn}</td>
               <td><div className={`priority-box ${submission.priority.toLowerCase()}`}>{submission.priority}</div></td>
               <td>{submission.status}</td>
-              <td>{submission.clearance}</td>
-              <td>{submission.documents}</td>
+              {/* Make clearance clickable with blue link style */}
+              <td>
+                <span 
+                  className="clearance-link" 
+                  onClick={handleClearanceClick} 
+                  style={{ color: "blue", cursor: "pointer", textDecoration: "underline" }}
+                >
+                  {submission.clearance}
+                </span>
+              </td>
+              <td>
+              <span 
+                  className="document-link" 
+                  onClick={handleDocumentClick} 
+                  style={{ color: "blue", cursor: "pointer", textDecoration: "underline" }}
+                >
+                  {submission.documents}
+                </span>
+                </td>
             </tr>
           ))}
         </tbody>
@@ -153,7 +148,7 @@ const Submissions = () => {
             </span>
             <h2>New Submission</h2>
 
-            <input
+            {/* <input
               type="text"
               placeholder="Submission ID"
               value={newSubmission.id}
@@ -187,7 +182,7 @@ const Submissions = () => {
               type="date"
               value={newSubmission.submittedOn}
               onChange={(e) => setNewSubmission({ ...newSubmission, submittedOn: e.target.value })}
-            />
+            /> */}
             <select
               value={newSubmission.priority}
               onChange={(e) => setNewSubmission({ ...newSubmission, priority: e.target.value })}
@@ -204,9 +199,7 @@ const Submissions = () => {
               <option value="Draft">Draft</option>
             </select>
 
-            <button className="submit-button" onClick={handleAddSubmission}>
-              Submit
-            </button>
+           
           </div>
         </div>
       )}

@@ -123,7 +123,7 @@ const LossInfo = () => {
               <thead>
                 <tr>
                   <th>
-                    <input type="checkbox" />
+                    <input type="checkbox" style={{height:'2px',width:'2px'}} />
                   </th>
                   <th>Policy Year</th>
                   <th>Annual Premium</th>
@@ -137,7 +137,7 @@ const LossInfo = () => {
               <tbody>
                 <tr>
                   <td>
-                    <input type="checkbox" style={{ marginLeft: "5px" }} />
+                    <input type="checkbox" style={{ marginLeft: "5px" ,height:'2px',width:'2px'}} />
                   </td>
                   <td>2024</td>
                   <td>$4</td>

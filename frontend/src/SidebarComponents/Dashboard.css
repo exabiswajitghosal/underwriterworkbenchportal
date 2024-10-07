@@ -3,7 +3,7 @@
   padding: 20px;
  
 }
-.card-container {
+.dashboard-card-container {
   
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -11,30 +11,30 @@
   margin-bottom: 20px;
   width: 50%;
 }
-.card {
-  background-image: url("./bgg2.jpg");
+.dashboardcard {
+  background-image: url("./bggg2.jpg");
   border-radius: 15px;
   padding: 20px;
   text-align: center;
-  border-top: 4px solid #0e25ec;
+  border-top: 2px solid #0e25ec;
   cursor: pointer;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.card:hover {
+.dashboardcard:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
-.card:active {
+.dashboardcard:active {
   transform: translateY(4px);
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }
-.card h3 {
+.dashboardcard h3 {
   margin: 0;
   font-size: 1.5em;
   color: #051df4f8;
 }
-.card p {
+.dashboardcard p {
   font-size: 1.2em;
   color: black;
 }
@@ -72,4 +72,5 @@
   align-items: center;
   justify-content: center;
   margin-left: 20px;
+  border:4 px solid black;
 }

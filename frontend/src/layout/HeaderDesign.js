@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './Header.module.css';
- 
+import DropdownMenu from './ActionMenu'; // Import the DropdownMenu component
+
 export function HeaderDesign() {
   return (
-   
     <header className={styles.header}>
-      <img src="Exavalu_logo.png" alt="Exavalu_logo.png" className={styles.complogo} height= "50%" />
+      <img src="Exavalu_logo.png" alt="Exavalu_logo.png" className={styles.complogo} height="50%" />
+
       {/* Search bar section */}
       <div className={styles.searchContainer}>
         <input
@@ -13,13 +14,11 @@ export function HeaderDesign() {
           className={styles.searchInput}
           placeholder="Search..." // Placeholder text for search bar
         />
-       
       </div>
-      
+
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9cd1f5f56695d5cfe6e6d8593defc492457b35b1ae45c2c865384c9a0e006406?placeholderIfAbsent=true&apiKey=d51d7313bdca4fcf802b81d20b6296aa" alt="Company logo" className={styles.logo} />
-      
+
       <div className={styles.userInfo}>
-     
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c6ccf97ba0270962e77c546c4769ceb9568acdf197d37473c8380510eab3531?placeholderIfAbsent=true&apiKey=d51d7313bdca4fcf802b81d20b6296aa" alt="User avatar" className={styles.userAvatar} />
         <div className={styles.userDetails}>
           <p className={styles.userName}>Haydenson</p>
@@ -32,12 +31,11 @@ export function HeaderDesign() {
           <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a194d0f5da2012e8a9d8497014ba1301a694a942ffc25d047352b15222c8597e?placeholderIfAbsent=true&apiKey=d51d7313bdca4fcf802b81d20b6296aa" alt="" />
         </button>
       </div>
-      <button className={styles.menuButton} aria-label="Menu">
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f31c8c7af05e09519eeb02f4cca2437360998df50aedccd48c7d3c3cef9bf46?placeholderIfAbsent=true&apiKey=d51d7313bdca4fcf802b81d20b6296aa" alt="" />
-      </button>
-     
+
+      {/* Add DropdownMenu here */}
+      <DropdownMenu />
     </header>
   );
 }
- 
+
 export default HeaderDesign;

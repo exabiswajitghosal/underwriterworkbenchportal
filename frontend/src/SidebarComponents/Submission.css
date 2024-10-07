@@ -13,105 +13,49 @@ h1 {
   
     font-weight: 600;
 }
-.card-container {
+.submission-card-container {
   
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     margin-bottom: 20px;
-    width: 50%;
+    
   }
 
-/*.actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    margin-bottom: 20px;
-    margin-top: 100px;
-}
-
-
-
-.actions button {
-    padding: 10px 20px; 
-    background-color: #6200ea; 
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-}
-
-.actions button:hover {
-    background-color: #3700b3; 
-}
-
-
-.card-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap; 
-}
-
-.card {
-    background-color: white;
+.submissioncard{
+    background-image: url("./bggg2.jpg");
+    border-radius: 15px;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); 
-    cursor: pointer;
     text-align: center;
-    width: 250px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.card:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-5px); */
-
-
-
-/* Modal styles */
-.modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Darker background overlay */
-    z-index: 2000;
-}
-
-.modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    width: 50%;
-    max-width: 500px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Enhanced modal shadow */
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover, .close:focus {
-    color: #333;
-    text-decoration: none;
+    border-top: 2px solid #0e25ec;
     cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+
 }
+.submissioncard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  .submissioncard:active {
+    transform: translateY(4px);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  }
+  .submissioncard h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #051df4f8;
+  }
+  .submissioncard p {
+    font-size: 1.2em;
+    color: black;
+  }
+
 
 /* Input and form styles */
 input, select {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin: 10px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -121,23 +65,9 @@ input, select {
 }
 
 input:focus, select:focus {
-    border-color: #6200ea; /* Consistent focus border */
+    border-color: #4698f6; /* Consistent focus border */
 }
 
-.submit-button {
-    background-color: #6200ea; /* Consistent button color */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #3700b3; /* Darker purple on hover */
-}
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -146,7 +76,7 @@ input:focus, select:focus {
         padding: 15px;
     }
 
-    .card-container {
+    .submission-card-container {
         flex-direction: column; /* Stack cards vertically on small screens */
         align-items: center;
     }

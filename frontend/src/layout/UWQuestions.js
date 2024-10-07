@@ -2,6 +2,7 @@ import React from "react";
 import "./UWQuestions.css"; // Importing the CSS
 import { Col, Row } from 'antd';
 import Documents from "./RightSidebar";
+import ModalDesign from "./Modal";
 
 const UWQuestions = () => {
   return (
@@ -43,12 +44,13 @@ const UWQuestions = () => {
             <div className="decision-section">
               <h2 className="decision-header">Decision</h2>
               <div className="decision-container">
-                <div className="buttons">
+                <ModalDesign/>
+                {/*<div className="buttons">
                   <button className="action-button">Approve</button>
                   <button className="action-button">Decline</button>
                   <button className="action-button">Referral</button>
-                </div>
-                <h4>Notes:</h4>
+                </div>*/}
+                <h4 style={{marginTop:'20px'}}>Notes:</h4>
                 <textarea className="notes" placeholder=""></textarea>
               </div>
             </div>

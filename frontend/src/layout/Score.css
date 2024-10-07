@@ -1,0 +1,41 @@
+.score-title {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 10px;
+    background-color: rgb(227, 204, 204); /* Background color */
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 2px 20px;               /* Add padding to create space around the text */                 /* Ensure the title takes the full width of its container */
+    box-sizing: border-box;       /* Make sure padding is included in the width */
+    text-align: center;  
+          /* Optional: center the text */
+}
+
+    
+    .circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white; /* White center */
+     /* Blue border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 20px;
+    }
+    
+    .circle.hidden {
+    display: none;
+    }
+    
+    .percent {
+    position: absolute;
+    font-size: 22px;
+    font-weight: bold;
+    color: black; /* Blue text */
+    }
+ 

@@ -6,9 +6,9 @@
     border-radius: 8px;
     border-color: 3px solid #204fc2;
     box-shadow: 0 2px 8px  #204fc2;
-    margin: 20px;
-    margin-left: 20px;
     height: 100%;
+    margin-left: 30px;
+    margin-top: 26px;
     
   }
   
@@ -28,7 +28,8 @@
     color: #204fc2;
    font-weight: 600;
    align-items: center;
-  
+   text-decoration: underline;
+   margin-left: 12px;
    
     
   }

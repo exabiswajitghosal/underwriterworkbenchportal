@@ -77,25 +77,25 @@ const Dashboard = () => {
   return (
     <div className="content">
       <div style={{ display: 'flex' }}>
-        <div className="card-container">
-          <div className="card" onClick={() => showGrid('myteamscases')}>
+        <div className="dashboard-card-container">
+          <div className="dashboardcard" onClick={() => showGrid('myteamscases')}>
             <h3>My Teams Cases</h3>
             <p>(40)</p>
           </div>
-          <div className="card" onClick={() => showGrid('myassignedcases')}>
+          <div className="dashboardcard" onClick={() => showGrid('myassignedcases')}>
             <h3>My Assigned Cases</h3>
             <p>(25)</p>
           </div>
-          <div className="card" onClick={() => showGrid('senttobroker')}>
+          <div className="dashboardcard" onClick={() => showGrid('senttobroker')}>
             <h3>Sent to Broker</h3>
             <p>(5)</p>
           </div>
-          <div className="card" onClick={() => showGrid('close')}>
+          <div className="dashboardcard" onClick={() => showGrid('close')}>
             <h3>Closed</h3>
             <p>(10)</p>
           </div>
         </div>
-        <div className="chart-container">
+        <div className="chart-container"  style={{border: '2px solid grey', padding:'5px',marginLeft:'120px'}}>
           <canvas id="myPieChart" ref={chartRef}></canvas>
         </div>
       </div>

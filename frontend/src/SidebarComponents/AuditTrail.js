@@ -6,7 +6,8 @@ const AuditTrail = () => {
     <Row>
       <Col span={24}>
     <div className="content" id="AuditTrail">
-      <h1 className="title">Audit Trail</h1>
+    <h1 style={{textAlign:'center',backgroundColor:'#1d4ed8', color:'white',marginBottom:'30px',borderRadius: '5px'}}>Audit Trail</h1>
+
       <div className="section">
         <form id="AuditTrailForm">
           <table id="AuditTrailTable">

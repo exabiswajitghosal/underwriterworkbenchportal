@@ -16,7 +16,7 @@
 .complogo {
   width: 100px;
   height: 50px;
-  margin-right: 800px;
+  margin-right: 750px;
   margin-left: 10px;
 }
 /* Search bar styling */
@@ -27,10 +27,12 @@ align-items: center;
 
 max-width: 600px;
 
+
 }
 
 .searchInput {
 width: 100%;
+height: 40px;
 padding: 10px 45px 10px ; /*Padding to create space for the icon */
 border: 1px solid #ccc;
 border-radius: 50px;
@@ -45,6 +47,8 @@ transition: box-shadow 0.2s ease-in-out;
 /* Enhance the 3D effect on focus */
 box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2), -5px -5px 12px rgba(255, 255, 255, 0.9);
 }
+
+
 
 .searchIcon {
 position: absolute;

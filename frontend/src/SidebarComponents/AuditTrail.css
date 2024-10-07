@@ -31,12 +31,12 @@ button {
 }
 
 button:hover {
-  background-color: #15039a;
+  background-color: #cad9f6;
   opacity: 0.8;
 }
 
 .title {
   text-align: center;
-  color:#204fc2;
+  color:white;
 
 }

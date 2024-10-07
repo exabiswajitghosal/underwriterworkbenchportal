@@ -8,6 +8,14 @@
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   }
+
+  .header-cell {
+    background-color: blue !important;
+    color: white !important;
+    font-weight: bold;
+    text-align: center;
+  }
+  
   
   @media (max-width: 991px) {
     .mainContainer {

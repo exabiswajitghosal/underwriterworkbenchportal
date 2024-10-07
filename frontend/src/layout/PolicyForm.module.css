@@ -1,7 +1,8 @@
-.container {
-  display: grid;
+.maincontainer{
+  display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 100%;
+  justify-content: center;
   margin: 30px auto;
   padding: 0 20px; /* Add padding for better spacing on smaller screens */
   box-sizing: border-box;
@@ -19,6 +20,10 @@
   width: 100%; /* Ensure full width of the screen */
   box-sizing: border-box; /* Include padding in the width */
 }
+.customlable {
+  font-size: 18px;
+}
+
 
 .formColumns {
   display: flex;
@@ -124,7 +129,7 @@
 }
 
 .submitButton:hover {
-  background-color: #4434ee;
+  background-color: #3475ee;
 }
 
 @media (max-width: 991px) {

@@ -6,6 +6,8 @@ import AuditTrailLayoutDesign from './SidebarComponents/AuditTrailLayout';
 import AccountLayoutDesign from './SidebarComponents/AccountInfoLayout';
 import LayoutDesign from './components/Layout';
 import SubmissionLayoutDesign from './SidebarComponents/SubmissionLayout';
+import DocumentScreen from './SidebarComponents/DocumentScreen';
+import ClearanceScreen from './SidebarComponents/ClearanceScreen';
 
 const App = () => {
  
@@ -28,6 +30,10 @@ const App = () => {
           <Route path="submission" element={<SubmissionLayoutDesign />} />
           <Route path="audit-trail" element={<AuditTrailLayoutDesign/>} />
           <Route path="accountinfo" element={<AccountLayoutDesign/>} />
+          <Route path="documentscreen" element={<DocumentScreen/>} />
+          <Route path="clearancescreen" element={<ClearanceScreen/>} />
+          
+          
           
        
       </Routes>

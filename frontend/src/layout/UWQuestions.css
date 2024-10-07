@@ -43,16 +43,16 @@
   margin-top: 40px; /* Adjust top margin */
 }
 
-/* Buttons container */
+/*
 .buttons {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center buttons horizontally */
+  align-items: center; 
   margin-bottom: 20px;
   
 }
 
-/* Action buttons */
+
 .action-button {
   background-color: #2196F3;
   padding: 15px 70px;
@@ -63,7 +63,7 @@
   cursor: pointer;
   text-align: center;
   padding-right: 115px;
-}
+}*/
 
 /* Notes textarea */
 .notes {
@@ -73,6 +73,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+ 
 }
 
 /* Optional: Vertical line if needed */
