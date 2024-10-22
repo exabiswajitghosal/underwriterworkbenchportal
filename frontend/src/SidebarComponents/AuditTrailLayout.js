@@ -74,7 +74,7 @@ const AuditTrailLayoutDesign = () => {
                 <Menu
                     theme="dark"
                     mode="inline"
-                    defaultSelectedKeys={['1']}>
+                   >
                     
                       
                     <Menu.Item key="1" icon={<SettingFilled />} >
@@ -128,7 +128,7 @@ const AuditTrailLayoutDesign = () => {
                         textAlign: 'center',
                     }}
                 >
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                   UW Portal {new Date().getFullYear()} 
                 </Footer>
                 
             </Layout>
