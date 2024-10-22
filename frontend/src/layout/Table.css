@@ -10,7 +10,7 @@ table {
 }
 
 th {
-    background-color: #0333b6; /* Blue background for header */
+    background-color:  #5d9de2; /* Blue background for header */
     color: white;
     padding: 12px;
     text-align: left;
@@ -37,3 +37,6 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #edf2f7; /* Light hover effect */
 }
+
+
+
