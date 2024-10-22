@@ -38,7 +38,7 @@ function Insights({ id }) {
               insights.map((insight, index) => (
                 // Mapping over key_insights inside each insight
                 insight.key_insights
-                  .filter((keyInsight) => keyInsight.priority === 'high')
+                  .filter((keyInsight) => keyInsight.priority.toLowerCase() === 'high')
                   .map((keyInsight, keyIndex) => (
                     <li key={`${index}-${keyIndex}`} className="list-decimal font-bold p-2 mx-8">
                       {keyInsight.insight}

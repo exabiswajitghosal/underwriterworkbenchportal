@@ -35,7 +35,7 @@ function Inferences({ id }) {
         <div className="bg-white p-4 rounded-md shadow">
           <ol className="space-y-2">
             {
-              inferences.mismatches.filter((inference) => inference.priority === 'high').map((inference, index) => (
+              inferences.mismatches.filter((inference) => inference.priority.toLowerCase() === 'high').map((inference, index) => (
                 <li key={index} className='font-bold list-decimal p-2 mx-6'>{inference.risk}</li>
               ))
             }
