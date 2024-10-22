@@ -5,7 +5,7 @@ import "./Tab.css";
 import { Col, Row } from "antd";
 import FormInput from "../components/FormInput ";
 import Documents from "./RightSidebar";
-import ScoreComponent from "./Score";
+
 import ApexChart from "./Riskchart";
 function PolicyForm() {
   const [activeTab, setActiveTab] = useState("Tab1"); // Set default tab
