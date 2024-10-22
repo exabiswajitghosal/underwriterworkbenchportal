@@ -12,6 +12,7 @@
 .tab button {
   font-size: 16px;
   font-weight: bold;
+  margin-left: 0px;
   color: var(--Global-Neutral-Grey-800, #adacb0);
   background-color: transparent;
   border: none;
@@ -27,6 +28,6 @@
 
 .tab button.active {
   color: var(--Global-Neutral-Grey-1100, #2d2b32);
-  background-color: rgb(200, 200, 253);
+  background-color:#658ef5;
 }
 
