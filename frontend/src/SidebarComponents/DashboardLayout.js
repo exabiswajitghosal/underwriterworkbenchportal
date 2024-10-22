@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Sidebar from '../components/Sider';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -73,7 +74,7 @@ const DashboardLayoutDesign = () => {
                 <Menu
                     theme="dark"
                     mode="inline"
-                    defaultSelectedKeys={['1']}>
+                    >
                     
                       
                     <Menu.Item key="1" icon={<SettingFilled />} >
@@ -127,7 +128,7 @@ const DashboardLayoutDesign = () => {
                         textAlign: 'center',
                     }}
                 >
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                    UW Portal {new Date().getFullYear()} 
                 </Footer>
                 
             </Layout>
