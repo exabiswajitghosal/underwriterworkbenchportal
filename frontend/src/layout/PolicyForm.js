@@ -6,6 +6,7 @@ import { Col, Row } from "antd";
 import FormInput from "../components/FormInput ";
 import Documents from "./RightSidebar";
 import ScoreComponent from "./Score";
+import ApexChart from "./Riskchart";
 function PolicyForm() {
   const [activeTab, setActiveTab] = useState("Tab1"); // Set default tab
 
@@ -19,12 +20,12 @@ function PolicyForm() {
         <div className={styles.maincontainer}>
           <div>
             {/* Tab Buttons */}
-            <div className="tab">
+            <div className="tab" style={{marginLeft:"0px"}}>
               <button
                 className={`tablinks ${activeTab === "Tab1" ? "active" : ""}`}
                 onClick={(event) => openMainTab(event, "Tab1")}
               >
-                Poilcy Information
+                Policy Information
               </button>
               <button
                 className={`tablinks ${activeTab === "Tab2" ? "active" : ""}`}
@@ -87,13 +88,13 @@ function PolicyForm() {
                         />
                       </Col>
                       <Col span={10}>
-                        <label className="customlable">Affinity Group:</label>
+                        <h7>Affinity Group:</h7>
                       </Col>
                       <Col span={10}>
-                        <label className="customlable">
+                        <h10 className="customlable">
                           This information will help the agent better understand
                           your needs and objectives.
-                        </label>
+                        </h10>
                       </Col>
                       <Col span={10}>
                         <FormInput
@@ -181,7 +182,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                           label={<span style={{ fontSize: "15px" }}>Country</span>}
+                           label={<span style={{ fontSize: "15px" }}>County</span>}
                           value=""
                           readOnly
                           reqired={true}
@@ -235,10 +236,11 @@ function PolicyForm() {
                   
                     <Row gutter={16}>
                       <Col span={10}>
-                      <div><ScoreComponent/></div>
-                      <div>
+                      
+                      <div><ApexChart/></div>
+                      {/* <div>
                         <h6>Suggestions</h6>
-                      <textarea style={{height: "200px",}} placeholder=""></textarea></div>
+                      <textarea style={{height: "200px",}} placeholder=""></textarea></div> */}
                       </Col>
                      
                     </Row>
@@ -250,44 +252,45 @@ function PolicyForm() {
 
             {activeTab === "Tab2" && (
               <div id="Tab2" className="tabcontent">
+                <h5 className={styles.sectionName}>Company Contact Details</h5>
                 <Row gutter={16}>
                   <Col span={12}>
                     <Row gutter={26}>
                       <Col span={10}>
                         <FormInput
-                          label="Relationship to Primary Named insured"
+                         label={<span style={{ fontSize: "15px" }}>Relationship to primary name insured</span>}
                           value="Relation"
                           reqired={true}
                         />
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Industry Code"
+                          label={<span style={{ fontSize: "15px" }}>Industry code</span>}
                           value="ax77890"
                           reqired={true}
                         />
                       </Col>
-                      <Col span={10}>
+                      {/* <Col span={10}>
                         <label className="customlable">Contact Details</label>
                       </Col>
                       <Col span={10}>
                         <label className="customlable">Company</label>
-                      </Col>
+                      </Col> */}
 
                       <Col span={10}>
                         <FormInput
-                          label="Office Phone"
+                          label={<span style={{ fontSize: "15px" }}>Office Phone</span>}
                           value="23177890"
                           reqired={true}
                           readOnly
                         />
                       </Col>
                       <Col span={10}>
-                        <FormInput label="Fax" value="" reqired={true} />
+                        <FormInput label={<span style={{ fontSize: "15px" }}>Fax</span>} value="" reqired={true} />
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Primary Email"
+                          label={<span style={{ fontSize: "15px" }}>Primary Email</span>}
                           value="xyz@email.com"
                           reqired={true}
                           readOnly
@@ -295,7 +298,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Secondary Email"
+                           label={<span style={{ fontSize: "15px" }}>Secondary Email</span>}
                           value="xyz@email.com"
                           reqired={true}
                           readOnly
@@ -304,7 +307,7 @@ function PolicyForm() {
 
                       <Col span={10}>
                         <FormInput
-                          label="Address"
+                           label={<span style={{ fontSize: "15px" }}>Address</span>}
                           value=""
                           reqired={true}
                           readOnly
@@ -312,7 +315,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Country"
+                           label={<span style={{ fontSize: "15px" }}>Country</span>}
                           value="United States"
                           reqired={true}
                           readOnly
@@ -320,7 +323,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Address 1"
+                           label={<span style={{ fontSize: "15px" }}>Address 1 </span>}
                           value="Addressline 1"
                           reqired={true}
                           readOnly
@@ -328,7 +331,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Address 2"
+                           label={<span style={{ fontSize: "15px" }}>Address 2 </span>}
                           value="Addressline 2"
                           reqired={true}
                           readOnly
@@ -337,7 +340,7 @@ function PolicyForm() {
 
                       <Col span={10}>
                         <FormInput
-                          label="City"
+                          label={<span style={{ fontSize: "15px" }}>City</span>}
                           value=""
                           reqired={true}
                           readOnly
@@ -345,7 +348,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Country"
+                          label={<span style={{ fontSize: "15px" }}>Country</span>}
                           value="Anchorage"
                           reqired={true}
                           readOnly
@@ -354,7 +357,7 @@ function PolicyForm() {
 
                       <Col span={10}>
                         <FormInput
-                          label="State"
+                           label={<span style={{ fontSize: "15px" }}>State</span>}
                           value="California"
                           reqired={true}
                           readOnly
@@ -362,7 +365,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="ZIP Code"
+                           label={<span style={{ fontSize: "15px" }}>Zip Code</span>}
                           value="9001-####"
                           reqired={true}
                           readOnly
@@ -370,7 +373,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Address Type"
+                           label={<span style={{ fontSize: "15px" }}>Address Type </span>}
                           value="Home"
                           reqired={true}
                           readOnly
@@ -378,7 +381,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Address Description"
+                           label={<span style={{ fontSize: "15px" }}>Address Description</span>}
                           value=""
                           reqired={true}
                           readOnly
@@ -389,26 +392,34 @@ function PolicyForm() {
 
                   <Col span={12}>
                     <Row gutter={20}>
-                      <Col span={10}>
-                        <label className="customlable">Official IDs</label>
+                      {/* <Col span={10}>
+                        <label className="customlable" >Official IDs</label>
                       </Col>
                       <Col span={10}>
                         <label className="customlable"></label>
-                      </Col>
+                      </Col> */}
                       <Col span={10}>
                         <FormInput
-                          label="FEIN"
+                           label={<span style={{ fontSize: "15px" }}>FEIN</span>}
                           value="22-52693"
                           reqired={true}
                           readOnly
                         />
                       </Col>
                       <Col span={10}>
-                        <label className="customlable"></label>
+                        <FormInput
+                           label={<span style={{ fontSize: "15px" }}>Code</span>}
+                          value="22-52693"
+                          reqired={true}
+                          readOnly
+                        />
                       </Col>
+                      {/* <Col span={10}>
+                        <label className="customlable"></label>
+                      </Col> */}
                       <Col span={10}>
                         <FormInput
-                          label="Address"
+                           label={<span style={{ fontSize: "15px" }}>Address</span>}
                           value="Same Addresss as:"
                           readOnly
                           reqired={true}
@@ -416,7 +427,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Country"
+                           label={<span style={{ fontSize: "15px" }}>Country</span>}
                           value="United States"
                           readOnly
                           reqired={true}
@@ -424,7 +435,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Address 1"
+                           label={<span style={{ fontSize: "15px" }}>Address 1 </span>}
                           value="Addressline 1"
                           readOnly
                           reqired={true}
@@ -432,7 +443,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Address 2"
+                           label={<span style={{ fontSize: "15px" }}>Address 2 </span>}
                           value="Addressline 2"
                           readOnly
                           reqired={true}
@@ -440,7 +451,7 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="City"
+                           label={<span style={{ fontSize: "15px" }}>City</span>}
                           value=""
                           readOnly
                           reqired={true}
@@ -448,22 +459,22 @@ function PolicyForm() {
                       </Col>
                       <Col span={10}>
                         <FormInput
-                          label="Country"
+                           label={<span style={{ fontSize: "15px" }}>Country </span>}
                           value="United States"
                           readOnly
                           reqired={true}
                         />
                       </Col>
 
-                      <Col span={10}>
+                      {/* <Col span={10}>
                         <label className="customlable">License</label>
                       </Col>
                       <Col span={10}>
                         <label className="customlable"></label>
-                      </Col>
+                      </Col> */}
                       <Col span={10}>
                         <FormInput
-                          label="License Status"
+                           label={<span style={{ fontSize: "15px" }}>License status</span>}
                           value=""
                           readOnly
                           reqired={true}
@@ -480,6 +491,8 @@ function PolicyForm() {
       <Col span={4}>
         <Documents />
       </Col>
+
+      
     </Row>
   );
 }
