@@ -8,8 +8,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import LocationComponent from '../lob/commercialproperty/LocationComponent';
 import { Button, Row, Col } from 'antd';
 
-const Sublob = () => {
+const Sublob = (props) => {
   const [activeSection, setActiveSection] = useState('');
+  const {showAccount}=props;
 
   const showSublob = (sectionId) => {
     setActiveSection(sectionId);
@@ -22,7 +23,7 @@ const Sublob = () => {
           <Button
             id="policy"
             className={`sublob-item ${activeSection === 'policyInfo' ? 'active' : ''}`}
-            onClick={() => showSublob('policyInfo')}
+            onClick={() => {showSublob('policyInfo');showAccount(false);}}
             block style={{width:'13rem'}}
           >
             <i className="fas fa-file-alt"></i> Application/Policy
@@ -32,7 +33,7 @@ const Sublob = () => {
           <Button
             id="Location"
             className={`sublob-item ${activeSection === 'locationInfo' ? 'active' : ''}`}
-            onClick={() => showSublob('locationInfo')}
+            onClick={() => {showSublob('locationInfo'); showAccount(false);}}
             block style={{width:'13rem'}}
           >
             <i className="fas fa-map-marker-alt"></i> Location
@@ -42,7 +43,7 @@ const Sublob = () => {
           <Button
             id="Loss"
             className={`sublob-item ${activeSection === 'lossInfo' ? 'active' : ''}`}
-            onClick={() => showSublob('lossInfo')}
+            onClick={() => {showSublob('lossInfo');showAccount(false);}}
             block style={{width:'13rem'}}
           >
             <i className="fas fa-exclamation-triangle"></i> Loss
@@ -52,7 +53,7 @@ const Sublob = () => {
           <Button
             id="uwquestion"
             className={`sublob-item ${activeSection === 'uw' ? 'active' : ''}`}
-            onClick={() => showSublob('uw')}
+            onClick={() => {showSublob('uw');showAccount(false);}}
             block style={{width:'13rem'}}
           >
             <i className="fas fa-question-circle"></i> UW
@@ -62,7 +63,7 @@ const Sublob = () => {
           <Button
             id="uwdecision"
             className={`sublob-item ${activeSection === 'quoteSummary' ? 'active' : ''}`}
-            onClick={() => showSublob('quoteSummary')}
+            onClick={() => {showSublob('quoteSummary'); showAccount(false);}}
             block style={{width:'13rem'}}
           >
             <i className="fas fa-gavel"></i> Quote Summary
@@ -72,7 +73,7 @@ const Sublob = () => {
           <Button
             id="bindIssue"
             className={`sublob-item ${activeSection === 'bindIssue' ? 'active' : ''}`}
-            onClick={() => showSublob('bindIssue')}
+            onClick={() => {showSublob('bindIssue'); showAccount(false);}}
             block style={{width:'13.5rem'}}
           >
             <i className="fas fa-gavel"></i> Bind/Issue
