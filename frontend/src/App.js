@@ -20,7 +20,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <LayoutDesign/>
+                <DashboardLayoutDesign/>
               </>
             }
           />
@@ -32,8 +32,6 @@ const App = () => {
           <Route path="accountinfo" element={<AccountLayoutDesign/>} />
           <Route path="documentscreen" element={<DocumentScreen/>} />
           <Route path="clearancescreen" element={<ClearanceScreen/>} />
-          
-          
           
        
       </Routes>

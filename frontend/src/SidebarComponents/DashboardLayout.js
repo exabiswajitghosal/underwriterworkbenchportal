@@ -37,29 +37,11 @@ const DashboardLayoutDesign = () => {
                 />
                 {!collapsed && <h4 style={{ color: 'white', textAlign: 'center' }}>Underwriting Workbench</h4>}
 
-                <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c6ccf97ba0270962e77c546c4769ceb9568acdf197d37473c8380510eab3531?placeholderIfAbsent=true&apiKey=d51d7313bdca4fcf802b81d20b6296aa"
-                    alt="User avatar"
-                    style={{
-                        borderRadius: '10px',
-                        height: collapsed ? '50px' : '100px', // Dynamic size based on collapsed state
-                        display: 'block',
-                        margin: '20px auto',
-                        transition: 'height 0.3s ease' // Smooth transition for size change
-                    }}
-                />
+                
 
-                {!collapsed && <h4 style={{ color: 'white', textAlign: 'center' }}>Wilson Properties</h4>}
+            
 
-                {!collapsed && (
-                    <address style={{ display: 'flex', justifyContent: 'center' }}>
-                        <img
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/400be7cb3efa8c57f2495018b33cfff53bce52364b7b7798751d7c5f5c7d1dac?placeholderIfAbsent=true&apiKey=d51d7313bdca4fcf802b81d20b6296aa"
-                            alt="Location icon"
-                            style={{ margin: '0 auto' }}
-                        />
-                    </address>
-                )}
+                
 
                 <Divider
                     variant="dotted"
@@ -77,23 +59,26 @@ const DashboardLayoutDesign = () => {
                     >
                     
                       
-                    <Menu.Item key="1" icon={<SettingFilled />} >
-                    {!collapsed ? <Link to="/submission">Submission</Link> : ''}
-                           
-                    </Menu.Item>
-                    <Menu.Item key="2" icon={<HomeOutlined />}>
+                   
+                    <Menu.Item key="1" icon={<HomeOutlined />}>
                            {!collapsed ? <Link to="/dashboard">Dashboard</Link> : ''} 
+
                             
                         </Menu.Item>
-                        
-                        <Menu.Item key="3" icon={<AuditOutlined />}>
-                        {!collapsed ? <Link to="/audit-trail">Audit Trail</Link> : ''}
-                            
-                       </Menu.Item>
-                       <Menu.Item key="4" icon={<InfoCircleOutlined />}>
+                        <Menu.Item key="2" icon={<InfoCircleOutlined />}>
                             {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
                             
                      </Menu.Item>
+                     <Menu.Item key="3" icon={<SettingFilled />} >
+                    {!collapsed ? <Link to="/submission">Create Submission</Link> : ''}
+                           
+                    </Menu.Item>
+                        
+                        <Menu.Item key="4" icon={<AuditOutlined />}>
+                        {!collapsed ? <Link to="/audit-trail">Audit Trail</Link> : ''}
+                            
+                       </Menu.Item>
+                      
                     
                 </Menu>
             </Sider>

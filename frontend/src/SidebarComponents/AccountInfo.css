@@ -26,7 +26,8 @@
   }
   
   .chart-section {
-    width: 35%;
+    width: 30%;
+    margin-right: 100px;
   }
   
   .billing-info {

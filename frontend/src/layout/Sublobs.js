@@ -36,7 +36,7 @@ const Sublob = (props) => {
             onClick={() => {showSublob('locationInfo'); showAccount(false);}}
             block style={{width:'13rem'}}
           >
-            <i className="fas fa-map-marker-alt"></i> Location
+            <i className="fas fa-map-marker-alt"></i>Risk
           </Button>
         </Col>
         <Col  xs={24} sm={12} md={8} lg={6} xl={4}>

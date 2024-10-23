@@ -23,13 +23,13 @@ h1 {
   }
 
 .submissioncard{
-    background-image: url("./bggg2.jpg");
+    background-color: whitesmoke;
     border-radius: 15px;
     padding: 20px;
     text-align: center;
     border-top: 2px solid #0e25ec;
     cursor: pointer;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, box-shadow 0.2s;
 
 }

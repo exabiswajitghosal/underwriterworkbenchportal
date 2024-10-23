@@ -197,7 +197,7 @@ const Tableantd = () => {
 
   const columns = [
     {
-      title: 'Location',
+      title: 'Address',
       dataIndex: 'location',
       key: 'location',
       ...getColumnSearchProps('location'),
@@ -291,7 +291,7 @@ const Tableantd = () => {
             className={`tablinks ${activeTab === "Tab1" ? "active" : ""}`}
             onClick={(event) => openMainTab(event, 'Tab1')}
           >
-            Details
+            Buildings
           </button>
           <button
             className={`tablinks ${activeTab === "Tab2" ? "active" : ""}`}

@@ -49,7 +49,7 @@
 }
 
 .sublob-item.active {
-  background-color: #0046d5; /* Active state: blue */
+  background-color: #2d67da; /* Active state: blue */
   color: #fff;
   border-color: transparent;
 }

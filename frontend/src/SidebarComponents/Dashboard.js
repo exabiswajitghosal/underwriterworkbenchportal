@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Chart } from 'chart.js/auto';
 import './Dashboard.css';
 import "./Table.css";
@@ -27,6 +28,7 @@ const Dashboard = () => {
   const [selectedGrid, setSelectedGrid] = useState([]);
   const chartRef = useRef(null); // Reference to the canvas element
   let myPieChartInstance = useRef(null); // Reference to store chart instance
+  const navigate = useNavigate(); // Use navigate for routing
 
   // Function to create the Pie Chart
   const createPieChart = () => {
@@ -74,6 +76,10 @@ const Dashboard = () => {
     setSelectedGrid(data[type]);
   };
 
+  const handleRowClick = (row) => {
+    navigate('/accountinfo', { state: { account: row } }); // Navigate to accountinfo with row data
+  };
+
   return (
     <div className="content">
       <div style={{ display: 'flex' }}>
@@ -105,7 +111,7 @@ const Dashboard = () => {
           <table>
             <thead>
               <tr>
-                <th>Case ID</th>
+               {/* <th>Case ID</th>*/}
                 <th>Client Name</th>
                 <th>LOB</th>
                 <th>Limit</th>
@@ -118,8 +124,8 @@ const Dashboard = () => {
             </thead>
             <tbody>
               {selectedGrid.map((row, index) => (
-                <tr key={index}>
-                  <td>{row.id}</td>
+                <tr key={index} onClick={() => handleRowClick(row)}> {/* Added onClick to each row */}
+                 {/* <td>{row.id}</td>*/}
                   <td>{row.client}</td>
                   <td>{row.lob}</td>
                   <td>{row.limit}</td>
