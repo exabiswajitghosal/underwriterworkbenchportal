@@ -159,7 +159,7 @@ function CreateSubmission() {
         const fetchData = async () => {
             try {
                 // Make the API request
-                const response = await axios.get(`https://underwriting-assessment.onrender.com/api/v1/insured_data_by_id?partyId=671b24567fec518a7d5f6807`);
+                const response = await axios.get(`https://underwriterportalbackend.onrender.com/api/v1/insured_data_by_id?submission_id=671b24567fec518a7d5f6807`);
 
                 if (response.status === 200) {
                     // setInferences(response.data); // Assuming data is a JSON object
