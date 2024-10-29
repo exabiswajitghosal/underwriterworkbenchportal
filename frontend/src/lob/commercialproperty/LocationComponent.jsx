@@ -9,15 +9,20 @@ import { Col, Row } from "antd";
 
 import Tableantd
  from "../../layout/Tableantd";
+import LocationTable from "./LocationTable";
+import LocationTab from "./LocationTab";
 
 export function LocationComponent() {
   return (
     <Row>
       <Col span={20}>
         <main className={styles.mainContainer}>
-          <LocationHeader />
+          <LocationTab/>
+         
+          {/* <LocationTable/> */}
+          {/* <LocationHeader />
           <Tableantd/>
-          {/* <LocationForm/> */}
+           <LocationForm/>  */}
         </main>
       </Col>
       <Col span={4}>

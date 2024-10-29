@@ -150,7 +150,7 @@ function CreateSubmission() {
             // Show a pop-up if names don't match
             Modal.error({
                 title: "No such account",
-                content: "The person do not have any account.",
+                content: "The person is not insured.",
             });
         }
     };
@@ -167,7 +167,6 @@ function CreateSubmission() {
                     setBasicInfo({
                         partyId: insuredData.insuredInfo.partyId,
                         insuredName: insuredData.insuredInfo.orgName,
-
                         orgType: insuredData.insuredInfo.orgType,
                         dba: insuredData.insuredInfo.dba,
                         fein: insuredData.insuredInfo.fein,

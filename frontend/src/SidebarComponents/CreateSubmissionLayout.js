@@ -69,7 +69,7 @@ const CreateSubmissionLayout = () => {
                         {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
                     </Menu.Item>
                     <Menu.Item key="5" icon={<SettingFilled />}>
-                        {!collapsed ? <Link to="/createsubmission">Create Submission</Link> : ''}
+                        {!collapsed ? <Link to="/createsubmission">Submission</Link> : ''}
                     </Menu.Item>
                 </Menu>
             </Sider>
