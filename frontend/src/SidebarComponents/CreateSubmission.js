@@ -213,7 +213,7 @@ function CreateSubmission() {
 
     return (
         <Row>
-            <Col span={20}>
+            <Col span={24}>
                 <div className={styles.maincontainer}>
                     <div style={{ justifyContent: "right", marginLeft: "55rem" }}>
                         <Tooltip title="Edit">
@@ -622,9 +622,9 @@ function CreateSubmission() {
                     </Row>
                 </div>
             </Col>
-            <Col span={4}>
+            {/* <Col span={4}>
                 <Documents />
-            </Col>
+            </Col> */}
         </Row>
     );
 }

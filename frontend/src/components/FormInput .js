@@ -14,25 +14,28 @@ const FormInput = ({
 }) => {
   return (
     
-      <Form.Item
-        name={name}
-        label={label}
-        className="label"
-        rules={[
-          ...(required
-            ? [{ required: true, message: `Please enter ${name}!` }]
-            : []),
-          ...rules,
-        ]}
-      >
-        <Input
-          placeholder={placeholder}
-          value={value}
-          defaultValue={defaultValue}
-          {...rest}
-          className= "input"
-        />
-      </Form.Item>
+    <Form.Item
+    name={name}
+    label={label}
+    className="label"
+    rules={[
+      ...(required
+        ? [{ required: true, message: `Please enter ${name}!` }]
+        : []),
+      ...rules,
+    ]}
+    labelCol={{ span: 24 }} // Makes label span full width
+    wrapperCol={{ span: 24 }} // Makes input span full width
+  >
+    <Input
+      placeholder={placeholder}
+      value={value}
+      defaultValue={defaultValue}
+      {...rest}
+      className="input"
+    />
+  </Form.Item>
+  
     
   );
 };

@@ -15,7 +15,7 @@ import LocationTab from "./LocationTab";
 export function LocationComponent() {
   return (
     <Row>
-      <Col span={20}>
+      <Col span={24}>
         <main className={styles.mainContainer}>
           <LocationTab/>
          
@@ -25,10 +25,10 @@ export function LocationComponent() {
            <LocationForm/>  */}
         </main>
       </Col>
-      <Col span={4}>
+      {/* <Col span={4}>
         <Documents />
        
-      </Col>
+      </Col> */}
     </Row>
   );
 }

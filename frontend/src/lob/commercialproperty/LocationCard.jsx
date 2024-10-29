@@ -10,12 +10,12 @@ const LocationCard = () => {
             title={<div style={{ color: 'black' }}>Flood:</div>}
             headStyle={{ borderBottom: '2px solid gray' }}
             style={{
-              width: 200,
-              height: 150,
+              width: 222,
+              height: 160,
               border: '1px solid grey',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
               borderRadius: '8px',
-              backgroundColor: 'white',
+              backgroundColor: '#e4f3f8',
               marginBottom: '20px',
             }}
           >
@@ -37,7 +37,7 @@ const LocationCard = () => {
                   <b  style={{fontSize:"12px"}}>CoreLogic</b>
                 </button>
               </Col>
-              <Col span={12}>
+              {/* <Col span={12}>
                 <button
                   style={{
                     width: '100%',
@@ -53,7 +53,7 @@ const LocationCard = () => {
                 >
                   <b style={{fontSize:"12px"}} >Hazard Hub</b>
                 </button>
-              </Col>
+              </Col> */}
             </Row>
           </Card>
         </Col>
@@ -62,16 +62,16 @@ const LocationCard = () => {
             title={<div style={{ color: 'black' }}>Hurricane & Tornado:</div>}
             headStyle={{ borderBottom: '2px solid gray' }}
             style={{
-              width: 200,
-              height: 150,
+              width: 222,
+              height: 160,
               border: '1px solid grey',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
               borderRadius: '8px',
-              backgroundColor: 'white',
+              backgroundColor: '#e4f3f8',
             }}
           >
             <Row gutter={5} style={{ marginTop: 'auto' }}>
-              <Col span={12}>
+              {/* <Col span={12}>
                 <button
                   style={{
                     width: '100%',
@@ -86,7 +86,7 @@ const LocationCard = () => {
                 >
                   <b style={{fontSize:"12px"}}>CoreLogic</b>
                 </button>
-              </Col>
+              </Col> */}
               <Col span={12}>
                 <button
                   style={{
@@ -112,12 +112,12 @@ const LocationCard = () => {
             title={<div style={{ color: 'black' }}>Earthquake</div>}
             headStyle={{ borderBottom: '2px solid gray' }}
             style={{
-              width: 200,
-              height: 150,
+              width: 222,
+              height: 160,
               border: '1px solid gray',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
               borderRadius: '8px',
-              backgroundColor: 'white',
+              backgroundColor: '#e4f3f8',
             }}
           />
         </Col>
@@ -128,12 +128,12 @@ const LocationCard = () => {
             title={<div style={{ color: 'black' }}>Sinkhole</div>}
             headStyle={{ borderBottom: '2px solid gray' }}
             style={{
-              width: 200,
-              height: 150,
+              width: 222,
+              height: 160,
               border: '1px solid gray',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
               borderRadius: '8px',
-              backgroundColor: 'white',
+              backgroundColor: '#e4f3f8',
             }}
           />
         </Col>
@@ -142,12 +142,12 @@ const LocationCard = () => {
             title={<div style={{ color: 'black' }}>Hail & Wind</div>}
             headStyle={{ borderBottom: '2px solid gray' }}
             style={{
-              width: 200,
-              height: 150,
+              width: 222,
+              height: 160,
               border: '1px solid gray',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
               borderRadius: '8px',
-              backgroundColor: 'white',
+              backgroundColor: '#e4f3f8',
             }}
           />
         </Col>
@@ -156,12 +156,12 @@ const LocationCard = () => {
             title={<div style={{ color: 'black' }}>Crime</div>}
             headStyle={{ borderBottom: '2px solid gray' }}
             style={{
-              width: 200,
-              height: 150,
+              width: 222,
+              height: 160,
               border: '1px solid gray',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
               borderRadius: '8px',
-              backgroundColor: 'white',
+              backgroundColor: '#e4f3f8',
               marginBottom: '20px',
             }}
           />

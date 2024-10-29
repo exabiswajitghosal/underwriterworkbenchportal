@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
-import { Button, Space, Table, Input, Row, Col, Form, Modal } from 'antd';
+import { Button, Space, Table, Input, Row, Col, Form, Modal, Select } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import MapView from './Map';
 import LocationCard from './LocationCard';
 import styles from './LocationComponent.module.css';
 import '../../components/TableStyles.css';
+
+const { Option } = Select;
 
 const LocationTable = () => {
   const [data, setData] = useState([]);
@@ -19,6 +21,17 @@ const LocationTable = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const searchInput = useRef(null);
+
+  const usStates = [
+    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 
+    'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 
+    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 
+    'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 
+    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 
+    'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 
+    'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 
+    'Wisconsin', 'Wyoming'
+  ];
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -105,22 +118,31 @@ const LocationTable = () => {
   };
 
   const columns = [
+    // {
+    //   title: 'Location',
+    //   dataIndex: 'location',
+    //   key: 'location',
+    //   ...getColumnSearchProps('location'),
+    //   sorter: (a, b) => a.location.length - b.location.length,
+    //   sortOrder: sortedInfo.columnKey === 'location' ? sortedInfo.order : null,
+    //   ellipsis: true,
+    // },
     {
-      title: 'Location',
-      dataIndex: 'location',
-      key: 'location',
-      ...getColumnSearchProps('location'),
-      sorter: (a, b) => a.location.length - b.location.length,
-      sortOrder: sortedInfo.columnKey === 'location' ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: 'Address 1',
+      title: 'AddressLine 1',
       dataIndex: 'address1',
       key: 'address1',
       ...getColumnSearchProps('address1'),
       sorter: (a, b) => a.address1.length - b.address1.length,
       sortOrder: sortedInfo.columnKey === 'address1' ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: 'AddressLine 2',
+      dataIndex: 'address2',
+      key: 'address2',
+      ...getColumnSearchProps('address2'),
+      sorter: (a, b) => a.address2?.length - b.address2?.length,
+      sortOrder: sortedInfo.columnKey === 'address2' ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
@@ -139,6 +161,15 @@ const LocationTable = () => {
       ...getColumnSearchProps('zip'),
       sorter: (a, b) => a.zip.length - b.zip.length,
       sortOrder: sortedInfo.columnKey === 'zip' ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: 'Country',
+      dataIndex: 'country',
+      key: 'country',
+      ...getColumnSearchProps('country'),
+      sorter: (a, b) => a.country.length - b.country.length,
+      sortOrder: sortedInfo.columnKey === 'country' ? sortedInfo.order : null,
       ellipsis: true,
     },
   ];
@@ -168,14 +199,14 @@ const LocationTable = () => {
 
   return (
     <div className={`${styles.container} tableContainer`}>
-      <Row gutter={16} style={{ marginBottom: 8,marginTop: 8 }}>
+      <Row gutter={16} style={{ marginBottom: 8, marginTop: 8 }}>
         <Col span={24}>
           <Button type="primary" onClick={showModal}>
             Add Location
           </Button>
         </Col>
       </Row>
-      <Row gutter={16}  style={{ flexGrow: 1, width: "100%" }}>
+      <Row gutter={16} style={{ flexGrow: 1, width: "100%" }}>
         <Col span={selectedRow ? 14 : 24} style={{ width: '100%' }}>
           <Table
             rowSelection={{ ...rowSelection }}
@@ -185,7 +216,7 @@ const LocationTable = () => {
             style={{ width: '100%' }}
             pagination={{ pageSize: 4 }}
             className="custom-table-header"
-            tableLayout='fixed'
+            tableLayout="fixed"
           />
         </Col>
 
@@ -197,7 +228,7 @@ const LocationTable = () => {
             <Col span={14} style={{ marginTop: 16 }}>
               <LocationCard />
             </Col>
-            <Col span={10}  style={{ marginTop: 16 }}>
+            <Col span={10} style={{ marginTop: 16 }}>
               <div
                 className={styles.widgetBox}
                 style={{
@@ -206,10 +237,11 @@ const LocationTable = () => {
                   alignItems: 'center',
                   flexDirection: 'column',
                   height: '320px',
+                  width:"480px"
                 }}
               >
-                <h2  className={styles.blinkingText}>Red Flags!</h2>
-                <h3  >e.g. High flood risk</h3>
+                <h2 className={styles.blinkingText}>Red Flags!</h2>
+                <h3>e.g. High flood risk</h3>
               </div>
             </Col>
           </>
@@ -223,26 +255,38 @@ const LocationTable = () => {
         onCancel={handleCancel}
       >
         <Form form={form} layout="vertical" name="form_in_modal">
-          <Form.Item
+          {/* <Form.Item
             name="location"
             label="Location"
             rules={[{ required: true, message: 'Please input the location!' }]}
           >
             <Input />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
             name="address1"
-            label="Address 1"
-            rules={[{ required: true, message: 'Please input the address!' }]}
+            label="AddressLine 1"
+            rules={[{ required: true, message: 'Please input Address Line 1!' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="address2"
+            label="AddressLine 2"
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="state"
             label="State"
-            rules={[{ required: true, message: 'Please input the state!' }]}
+            rules={[{ required: true, message: 'Please select the state!' }]}
           >
-            <Input />
+            <Select placeholder="Select a state">
+              {usStates.map(state => (
+                <Option key={state} value={state}>
+                  {state}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
           <Form.Item
             name="zip"
@@ -250,6 +294,13 @@ const LocationTable = () => {
             rules={[{ required: true, message: 'Please input the ZIP code!' }]}
           >
             <Input />
+          </Form.Item>
+          <Form.Item
+            name="country"
+            label="Country"
+            initialValue="USA"
+          >
+            <Input disabled />
           </Form.Item>
         </Form>
       </Modal>

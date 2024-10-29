@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
+import { Button, Row, Col } from 'antd';
 
 
 import styles from "./LocationComponent.module.css";
 import LocationTable from './LocationTable';
 import LocationBuildingTab from "./LocationBuildingTab"
-import Insights from './Insights';
+import OverallInsights from "./OverallInsights"
 
 
 
@@ -32,24 +33,24 @@ const LocationTab = () => {
         <div className={styles.container}>
         {/* Tab Buttons */}
         <div className="tab">
-          <button
+          <Button
             className={`tablinks ${activeTab === "Tab1" ? "active" : ""}`}
             onClick={(event) => openMainTab(event, 'Tab1')}
           >
            Location
-          </button>
-          <button
+          </Button>
+          <Button
             className={`tablinks ${activeTab === "Tab2" ? "active" : ""}`}
             onClick={(event) => openMainTab(event, 'Tab2')}
           >
             Buildings
-          </button>
-          <button
+          </Button>
+          <Button
             className={`tablinks ${activeTab === "Tab3" ? "active" : ""}`}
             onClick={(event) => openMainTab(event, 'Tab3')}
           >
-            Overall Insights
-          </button>
+            GenAI Insights
+          </Button>
         </div>
 
         {/* Tab Content */}
@@ -73,7 +74,7 @@ const LocationTab = () => {
       </div>)}
       {activeTab === "Tab3" && (
         <div id="Tab3" className="tabcontent">
-        <Insights/>
+        <OverallInsights/>
       </div>)}
         </div> 
        </>
