@@ -166,6 +166,36 @@ const LocationCard = () => {
             }}
           />
         </Col>
+        <Col span={8}>
+          <Card
+            title={<div style={{ color: 'black' }}>Crime</div>}
+            headStyle={{ borderBottom: '2px solid gray' }}
+            style={{
+              width: 222,
+              height: 160,
+              border: '1px solid gray',
+              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+              borderRadius: '8px',
+              backgroundColor: '#e4f3f8',
+              marginBottom: '20px',
+            }}
+          />
+        </Col>
+        <Col span={8}>
+          <Card
+            title={<div style={{ color: 'black' }}>Crime</div>}
+            headStyle={{ borderBottom: '2px solid gray' }}
+            style={{
+              width: 222,
+              height: 160,
+              border: '1px solid gray',
+              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+              borderRadius: '8px',
+              backgroundColor: '#e4f3f8',
+              marginBottom: '20px',
+            }}
+          />
+        </Col>
       </Row>
     </>
   );

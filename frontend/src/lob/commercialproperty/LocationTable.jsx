@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Space, Table, Input, Row, Col, Form, Modal, Select } from 'antd';
+import { Button, Space, Table, Input, Row, Col, Form, Modal, Select, Radio } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import MapView from './Map';
@@ -10,7 +10,16 @@ import '../../components/TableStyles.css';
 const { Option } = Select;
 
 const LocationTable = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    {
+      key: 1,
+      address1: "1234 Elm Street",
+      address2: "Apt 101",
+      state: "California",
+      zip: "90210",
+      country: "USA"
+    }
+  ]);
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [selectionType] = useState('radio');
   const [selectedRow, setSelectedRow] = useState(null);
@@ -19,6 +28,7 @@ const LocationTable = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [sameAsRiskLocation, setSameAsRiskLocation] = useState(false);
   const [form] = Form.useForm();
   const searchInput = useRef(null);
 
@@ -118,15 +128,6 @@ const LocationTable = () => {
   };
 
   const columns = [
-    // {
-    //   title: 'Location',
-    //   dataIndex: 'location',
-    //   key: 'location',
-    //   ...getColumnSearchProps('location'),
-    //   sorter: (a, b) => a.location.length - b.location.length,
-    //   sortOrder: sortedInfo.columnKey === 'location' ? sortedInfo.order : null,
-    //   ellipsis: true,
-    // },
     {
       title: 'AddressLine 1',
       dataIndex: 'address1',
@@ -176,6 +177,7 @@ const LocationTable = () => {
 
   const showModal = () => {
     setIsModalVisible(true);
+    form.resetFields();
   };
 
   const handleOk = () => {
@@ -225,24 +227,8 @@ const LocationTable = () => {
             <Col span={10}>
               <MapView />
             </Col>
-            <Col span={14} style={{ marginTop: 16 }}>
+            <Col span={16} style={{ marginTop: 16 }}>
               <LocationCard />
-            </Col>
-            <Col span={10} style={{ marginTop: 16 }}>
-              <div
-                className={styles.widgetBox}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  height: '320px',
-                  width:"480px"
-                }}
-              >
-                <h2 className={styles.blinkingText}>Red Flags!</h2>
-                <h3>e.g. High flood risk</h3>
-              </div>
             </Col>
           </>
         )}
@@ -255,13 +241,27 @@ const LocationTable = () => {
         onCancel={handleCancel}
       >
         <Form form={form} layout="vertical" name="form_in_modal">
-          {/* <Form.Item
-            name="location"
-            label="Location"
-            rules={[{ required: true, message: 'Please input the location!' }]}
-          >
-            <Input />
-          </Form.Item> */}
+          <Form.Item>
+            <Radio.Group
+              onChange={(e) => {
+                setSameAsRiskLocation(e.target.value);
+                if (e.target.value) {
+                  form.setFieldsValue({
+                    address1: "123 Innovation Drive",
+                    address2: "Suite 200",
+                    state: "CA",
+                    zip: "90210",
+                    country: "USA"
+                  });
+                } else {
+                  form.resetFields();
+                }
+              }}
+              value={sameAsRiskLocation}
+            >
+              <Radio value={true}>Same as mailing address</Radio>
+            </Radio.Group>
+          </Form.Item>
           <Form.Item
             name="address1"
             label="AddressLine 1"

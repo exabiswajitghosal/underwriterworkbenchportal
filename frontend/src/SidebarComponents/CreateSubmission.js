@@ -12,7 +12,7 @@ function CreateSubmission() {
     const navigate = useNavigate();
     // Separate state for each widget section's form data and editing state
     const [basicInfo, setBasicInfo] = useState({
-        partyId: "",
+    
         orgName: "",
 
         orgType: "",
@@ -39,13 +39,13 @@ function CreateSubmission() {
         city: "",
         state: "",
         country: "",
-        riskLocation: "",
+    
 
         isEditing: false,
     });
 
     const [insuredInfo, setInsuredInfo] = useState({
-        partyId: "",
+    
         firstName: "",
         middleName: "",
         lastName: "",
@@ -75,7 +75,7 @@ function CreateSubmission() {
     const handleCreateNewBasicInfo = () => {
         console.log("Edit icon clicked!"); // Log for debugging
         setBasicInfo({
-            partyId: "",
+            
             insuredName: "",
             insuredType: "",
             firstName: "",
@@ -165,7 +165,7 @@ function CreateSubmission() {
                     // setInferences(response.data); // Assuming data is a JSON object
                     const insuredData = response.data;
                     setBasicInfo({
-                        partyId: insuredData.insuredInfo.partyId,
+                        
                         insuredName: insuredData.insuredInfo.orgName,
                         orgType: insuredData.insuredInfo.orgType,
                         dba: insuredData.insuredInfo.dba,
@@ -187,10 +187,10 @@ function CreateSubmission() {
                         city: insuredData.insuredMailingAddress[0].city,
                         state: insuredData.insuredMailingAddress[0].state,
                         country: insuredData.insuredMailingAddress[0].country,
-                        riskLocation: insuredData.insuredMailingAddress[0].riskLocation,
+                       
                     })
                     setInsuredInfo({
-                        partyId: insuredData.insuredContactPerson.partyId,
+                        
                         firstName: insuredData.insuredContactPerson.firstName,
                         middleName: insuredData.insuredContactPerson.middleName,
                         lastName: insuredData.insuredContactPerson.lastName,
@@ -238,7 +238,7 @@ function CreateSubmission() {
                                 </div>
 
                                 <Row gutter={24}>
-                                    <Col span={6}>
+                                    {/* <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Party ID</span>}
                                             value={basicInfo.partyId}
@@ -246,7 +246,7 @@ function CreateSubmission() {
                                             onChange={(e) => handleInputChange(e, "basicInfo", "partyId")}
                                             disabled// Allow editing based on state
                                         />
-                                    </Col>
+                                    </Col> */}
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Insured Name</span>}
@@ -494,20 +494,20 @@ function CreateSubmission() {
                                         />
                                     </Col>
 
-                                    <Col span={6}>
+                                    {/* <Col span={6}>
                                         <label style={{ fontSize: "15px", marginRight: "40px" }}>Risk Location Same as Mailing Address</label>
                                         <Radio.Group
                                             value={locationInfo.riskLocation}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "riskLocation")}
-                                            readOnly={!locationInfo.isEditing} // Allow editing based on state
+                                            readOnly={!locationInfo.isEditing} 
 
                                         >
                                             <Radio value={true} >Yes</Radio>
                                             <Radio value={false}>No</Radio>
 
-                                            {/* Add more Radio options as needed */}
+                                            
                                         </Radio.Group>
-                                    </Col>
+                                    </Col> */}
 
                                 </Row>
                             </div>
@@ -531,7 +531,7 @@ function CreateSubmission() {
                                 </div>
 
                                 <Row gutter={22}>
-                                    <Col span={6}>
+                                    {/* <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>PartyId</span>}
                                             value={insuredInfo.partyId}
@@ -539,7 +539,7 @@ function CreateSubmission() {
                                             onChange={(e) => handleInputChange(e, "insuredInfo", "partyId")}
                                             disabled // Allow editing based on state
                                         />
-                                    </Col>
+                                    </Col> */}
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>First Name</span>}
