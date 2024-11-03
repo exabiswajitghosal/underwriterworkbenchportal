@@ -227,12 +227,49 @@ const LocationTable = () => {
             <Col span={10}>
               <MapView />
             </Col>
-            <Col span={16} style={{ marginTop: 16 }}>
+            <Col span={24} style={{ marginTop: 16 }}>
               <LocationCard />
             </Col>
           </>
         )}
       </Row>
+      
+      <Row justify="center" style={{ marginTop: '30px', padding: '10px 0' }}>
+        <Col span={24} style={{ textAlign: 'center' }}>
+          <div
+            style={{
+              display: 'inline-block',
+              overflow: 'hidden',
+              width: '100%',  // width of the label area
+              border: '1px  #003f5c',
+              borderRadius: '8px',
+              padding: '5px',
+              backgroundColor: '#e4f3f8',
+            }}
+          >
+            <div
+              style={{
+                fontSize: '16px',
+                color: '#003f5c',
+                fontWeight: 'bold',
+                whiteSpace: 'nowrap',
+                animation: 'marquee 30s linear infinite',
+              }}
+            >
+              📢 Report: Please review and assess your risk factors displayed above for flood, wildfire, earthquake, and more.
+            </div>
+          </div>
+        </Col>
+      </Row>
+
+      {/* CSS 
+      {/* CSS for marquee effect */}
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(100%); }
+          100% { transform: translateX(-100%); }
+        }
+      `}</style>
 
       <Modal
         title="Add Location"

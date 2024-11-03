@@ -214,8 +214,13 @@ function CreateSubmission() {
     return (
         <Row>
             <Col span={24}>
+           
                 <div className={styles.maincontainer}>
-                    <div style={{ justifyContent: "right", marginLeft: "55rem" }}>
+
+                <Row gutter={16}>
+                        <Col span={22}></Col>
+                        <Col span={2}>
+                        <div style={{ justifyContent: "right",}}>
                         <Tooltip title="Edit">
                             <Button shape="circle" onClick={handleEditInsured} icon={<EditOutlined style={{ fontSize: "20px" }} />} style={{ fontSize: "20px" }} />
                         </Tooltip>
@@ -227,6 +232,10 @@ function CreateSubmission() {
                             <Button shape="circle" onClick={handleSearchClick} icon={<SearchOutlined style={{ fontSize: "20px" }} />} style={{ fontSize: "20px", marginLeft: "0.4rem" }} />
                         </Tooltip>
                     </div>
+                       </Col>
+                       
+                    </Row>
+                   
                     <Row gutter={16}>
                         {/* First Widget Section: Basic Information */}
                         <Col span={24}>

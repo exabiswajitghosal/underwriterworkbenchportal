@@ -206,6 +206,10 @@ export function LocationBuildingTab() {
         fireSprinkler:"",
         sprinkleredArea:"",
         roofType: "",
+        estimatedrcv:"",
+        propertyClass:"",
+        coverages:"",
+        rateType:"",
         causeofLoss:"",
         excludeVandalism:"",
         excludeSprinkler:"",
@@ -283,15 +287,15 @@ export function LocationBuildingTab() {
               <div style={{ marginBottom: "20px" }}>
                 <h5  style={{marginBottom: 20}}>Building List for {selectedLocation}</h5>
                 <table className="table"  style={{marginBottom: 90}}>
-                  <thead   className="custom-table-header">
+                  <thead >
                     <tr>
-                      <th>Select</th>
-                      <th>SL.</th>
-                      <th>Location Details</th>
-                      <th>Year Built</th>
-                      <th>Square Footage</th>
-                      <th>Roof Type</th>
-                      <th>Action</th>
+                      <th style={{backgroundColor: "#5d9de2"}}>Select</th>
+                      <th style={{backgroundColor: "#5d9de2"}}>SL.</th>
+                      <th style={{backgroundColor: "#5d9de2"}}>Location Details</th>
+                      <th style={{backgroundColor: "#5d9de2"}}>Year Built</th>
+                      <th style={{backgroundColor: "#5d9de2"}}>Square Footage</th>
+                      <th style={{backgroundColor: "#5d9de2"}}>Roof Type</th>
+                      <th style={{backgroundColor: "#5d9de2"}}>Action</th>
                     </tr>
                   </thead>
                   <tbody>

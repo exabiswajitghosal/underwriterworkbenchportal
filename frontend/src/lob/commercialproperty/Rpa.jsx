@@ -11,9 +11,11 @@ function Rpa() {
 
   // Sample addresses
   const addresses = {
-    nyAddress1: '456 Park Ave, New York, NY',
-    nyAddress2: '225 Rector Place, New York, NY',
-    nyAddress3: 'Trump World Tower, New York, NY',
+    // nyAddress1: '456 Park Ave, New York, NY',
+    // nyAddress2: '225 Rector Place, New York, NY',
+    // nyAddress3: 'Trump World Tower, New York, NY',
+    nyAddress1: '1234 Elm Street, New York, NY',
+    nyAddress2: '123 Innovation Drive, New York, NY',
   };
 
   // URL generators

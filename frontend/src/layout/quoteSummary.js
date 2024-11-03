@@ -2,7 +2,7 @@ import React from "react";
 import "./QuoteSummary.css"; // Assuming you have your styles in a separate CSS file
 import { Col, Row } from "antd";
 import Documents from "./RightSidebar";
-const QuoteSummary = () => {
+const QuoteSummaries = () => {
   return (
     <Row>
       <Col span={20}>
@@ -171,4 +171,4 @@ const QuoteSummary = () => {
   );
 };
 
-export default QuoteSummary;
+export default QuoteSummaries;

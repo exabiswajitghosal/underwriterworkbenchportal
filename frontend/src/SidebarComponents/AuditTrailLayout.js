@@ -3,7 +3,7 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
     UploadOutlined,
-    UserOutlined, SettingFilled, HomeOutlined, AuditOutlined, InfoCircleOutlined, SearchOutlined,
+    UserOutlined, SettingFilled, HomeOutlined, AuditOutlined, InfoCircleOutlined, SearchOutlined, FileAddOutlined,
     VideoCameraOutlined, BellTwoTone
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
@@ -53,33 +53,23 @@ const AuditTrailLayoutDesign = () => {
 
                 <div className="demo-logo-vertical" />
 
-                <Menu
-                    theme="dark"
-                    mode="inline"
-                    >
+                <Menu theme="dark" mode="inline"  >
                     
-                      
-                   
                     <Menu.Item key="1" icon={<HomeOutlined />}>
-                           {!collapsed ? <Link to="/dashboard">Dashboard</Link> : ''} 
-
-                            
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<InfoCircleOutlined />}>
-                            {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
-                            
-                     </Menu.Item>
-                     <Menu.Item key="3" icon={<SettingFilled />} >
-                    {!collapsed ? <Link to="/submission">Create Submission</Link> : ''}
-                           
+                        {!collapsed ? <Link to="/dashboard">Dashboard</Link> : ''}
                     </Menu.Item>
-                        
-                        <Menu.Item key="4" icon={<AuditOutlined />}>
+                    <Menu.Item key="2" icon={<FileAddOutlined />}>
+                        {!collapsed ? <Link to="/submission">Create Submission</Link> : ''}
+                    </Menu.Item>
+                    <Menu.Item key="3" icon={<AuditOutlined />}>
                         {!collapsed ? <Link to="/audit-trail">Audit Trail</Link> : ''}
-                            
-                       </Menu.Item>
-                      
-                    
+                    </Menu.Item>
+                    <Menu.Item key="4" icon={<InfoCircleOutlined />}>
+                        {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
+                    </Menu.Item>
+                    <Menu.Item key="5" icon={<SettingFilled />}>
+                        {!collapsed ? <Link to="/createsubmission">Submission</Link> : ''}
+                    </Menu.Item>
                 </Menu>
             </Sider>
 
