@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button, ConfigProvider, Modal, Space } from 'antd';
+import { Button, ConfigProvider, Modal, Space, Col } from 'antd';
 import { createStyles, useTheme } from 'antd-style';
-import { Col } from 'antd';
 
 const useStyle = createStyles(({ token }) => ({
   'my-modal-body': {
@@ -28,18 +27,22 @@ const ModalDesign = () => {
   const [isModalOpen, setIsModalOpen] = useState([false, false, false]);
   const { styles } = useStyle();
   const token = useTheme();
+
   const toggleModal = (idx, target) => {
     setIsModalOpen((p) => {
-      p[idx] = target;
-      return [...p];
+      const updatedState = [...p];
+      updatedState[idx] = target;
+      return updatedState;
     });
   };
+
   const classNames = {
     body: styles['my-modal-body'],
     mask: styles['my-modal-mask'],
     header: styles['my-modal-header'],
     content: styles['my-modal-content'],
   };
+
   const modalStyles = {
     header: {
       borderLeft: `5px solid ${token.colorPrimary}`,
@@ -49,8 +52,8 @@ const ModalDesign = () => {
     body: {
       boxShadow: 'inset 0 0 5px #999',
       borderRadius: 5,
-      padding: '10px', // Increased padding
-      minHeight: '40px', // Ensures the box is larger
+      padding: '10px',
+      minHeight: '40px',
     },
     mask: {
       backdropFilter: 'blur(10px)',
@@ -73,67 +76,38 @@ const ModalDesign = () => {
     </Space>
   );
 
+  const actions = [
+    { label: "Approve", color: "#83F06A", index: 0, message: "Do you want to approve the application?" },
+    { label: "Decline", color: "#F54343", index: 1, message: "Do you want to reject the application?" },
+    { label: "Referral", color: "#2AC3F7", index: 2, message: "Do you want to refer the application?" },
+  ];
+
   return (
     <>
-      <Col span={12}>
-        <Button
-          type="primary"
-          style={{ padding: '25px 75px', marginBottom: '10px', marginLeft: '180px' }}
-          onClick={() => toggleModal(0, true)}
-        >
-          Approve
-        </Button>
-
-        <Button
-          type="primary"
-          style={{ padding: '25px 75px', marginBottom: '10px', marginLeft: '180px' }}
-          onClick={() => toggleModal(1, true)}
-        >
-          Decline
-        </Button>
-
-        <Button
-          type="primary"
-          style={{ padding: '25px 75px', marginBottom: '10px', marginLeft: '180px' }}
-          onClick={() => toggleModal(2, true)}
-        >
-          Referral
-        </Button>
+      <Col span={24} style={{ justifyContent: "space-around", display: "flex" }}>
+        {actions.map(({ label, color, index }) => (
+          <Button
+            key={label}
+            type="primary"
+            style={{ padding: '25px 75px', marginBottom: '10px', backgroundColor: color }}
+            onClick={() => toggleModal(index, true)}
+          >
+            {label}
+          </Button>
+        ))}
       </Col>
 
-      <Modal
-        title="Approve"
-        open={isModalOpen[0]}
-        footer={renderFooter(0)}
-        classNames={classNames}
-        styles={modalStyles}
-      >
-        <p>Do you want to approve the application?</p>
-      </Modal>
-
-      <ConfigProvider
-        modal={{
-          classNames,
-          styles: modalStyles,
-        }}
-      >
-        <Modal
-          title="Decline"
-          open={isModalOpen[1]}
-          footer={renderFooter(1)}
-        >
-          <p>Do you want to reject the application?</p>
-        </Modal>
-
-        <Modal
-          title="Referral"
-          open={isModalOpen[2]}
-          footer={renderFooter(2)}
-          classNames={classNames}
-          styles={modalStyles}
-        >
-          <p>Do you want to refer the application?</p>
-        </Modal>
+      <ConfigProvider modal={{ classNames, styles: modalStyles }}>
+        {actions.map(({ label, message, index }) => (
+          <Modal
+            key={label}
+            title={label}
+            open={isModalOpen[index]}
+            footer={renderFooter(index)}
+          >
+            <p>{message}</p>
+          </Modal>
+        ))}
       </ConfigProvider>
     </>
   );

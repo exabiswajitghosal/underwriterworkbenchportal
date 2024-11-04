@@ -69,7 +69,7 @@ const Sublob2 = (props) => {
             onClick={() => { showSublob('uw') }}
             block style={{ width: '10rem' }}
           >
-            <i className="fas fa-question-circle"></i> UW
+            <i className="fas fa-question-circle"></i> UW Questions
           </Button>
         </Col>
         <Col xs={22} sm={11} md={7} lg={5} xl={3}>
