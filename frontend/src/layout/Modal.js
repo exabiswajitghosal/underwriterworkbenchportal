@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ConfigProvider, Modal, Space, Col } from 'antd';
+import { Button, ConfigProvider, Modal, Space, Col, Select } from 'antd';
 import { createStyles, useTheme } from 'antd-style';
 
 const useStyle = createStyles(({ token }) => ({
@@ -27,6 +27,7 @@ const ModalDesign = () => {
   const [isModalOpen, setIsModalOpen] = useState([false, false, false]);
   const { styles } = useStyle();
   const token = useTheme();
+  const [selectedUnderwriter, setSelectedUnderwriter] = useState(null);
 
   const toggleModal = (idx, target) => {
     setIsModalOpen((p) => {
@@ -69,27 +70,35 @@ const ModalDesign = () => {
 
   const renderFooter = (modalIdx) => (
     <Space>
-      <Button type="primary" onClick={() => toggleModal(modalIdx, false)}>
-        Yes
-      </Button>
-      <Button onClick={() => toggleModal(modalIdx, false)}>No</Button>
+      {modalIdx === 2 ? ( // For Referral modal only
+        <Button type="primary" onClick={() => toggleModal(modalIdx, false)}>
+          OK
+        </Button>
+      ) : (
+        <>
+          <Button type="primary" onClick={() => toggleModal(modalIdx, false)}>
+            Yes
+          </Button>
+          <Button onClick={() => toggleModal(modalIdx, false)}>No</Button>
+        </>
+      )}
     </Space>
   );
 
   const actions = [
-    { label: "Approve", color: "#83F06A", index: 0, message: "Do you want to approve the application?" },
-    { label: "Decline", color: "#F54343", index: 1, message: "Do you want to reject the application?" },
-    { label: "Referral", color: "#2AC3F7", index: 2, message: "Do you want to refer the application?" },
+    { label: "Approve", color: "#2cdd99", index: 0, message: "Do you want to approve the application?" },
+    { label: "Decline", color: "#da2d2d", index: 1, message: "Do you want to reject the application?" },
+    { label: "Referral", color: "#2c66d1", index: 2, message: "Select which Underwriter you want to refer" },
   ];
 
   return (
     <>
-      <Col span={24} style={{ justifyContent: "space-around", display: "flex" }}>
+      <Col span={24} style={{ display: "flex",justifyContent:'center', gap: '15px' }}>
         {actions.map(({ label, color, index }) => (
           <Button
             key={label}
             type="primary"
-            style={{ padding: '25px 75px', marginBottom: '10px', backgroundColor: color }}
+            style={{ padding: '25px 75px', backgroundColor: color }}
             onClick={() => toggleModal(index, true)}
           >
             {label}
@@ -106,6 +115,17 @@ const ModalDesign = () => {
             footer={renderFooter(index)}
           >
             <p>{message}</p>
+            {label === "Referral" && (
+              <Select
+                placeholder="Select Underwriter"
+                style={{ width: "100%", marginTop: "10px" }}
+                onChange={(value) => setSelectedUnderwriter(value)}
+              >
+                <Select.Option value="underwriter1">Underwriter 1</Select.Option>
+                <Select.Option value="underwriter2">Underwriter 2</Select.Option>
+                <Select.Option value="underwriter3">Underwriter 3</Select.Option>
+              </Select>
+            )}
           </Modal>
         ))}
       </ConfigProvider>

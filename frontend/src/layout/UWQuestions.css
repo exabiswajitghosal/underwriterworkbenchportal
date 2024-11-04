@@ -84,3 +84,20 @@
   background-color: rgb(2, 2, 130);
   margin: 0 20px;
 }
+
+.override-decision-container {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  background-color: #fff;
+}
+
+.override-decision-container h4 {
+  margin-bottom: 10px;
+}
+
+
+.decision-container {
+  margin-top: 10px;
+}

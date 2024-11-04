@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { Radio, Modal, Typography, Row, Col } from 'antd';
+import { Radio, Modal, Typography, Row, Col, Checkbox } from 'antd';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 function Rpa() {
   const [address, setAddress] = useState('');
   const [showRpa, setShowRpa] = useState(false);
   const [zillowIframeError, setZillowIframeError] = useState(false);
   const [streetEasyIframeError, setStreetEasyIframeError] = useState(false);
+  const [showZillow, setShowZillow] = useState(false); // Start unchecked
+  const [showStreetEasy, setShowStreetEasy] = useState(false); // Start unchecked
 
   // Sample addresses
   const addresses = {
-    // nyAddress1: '456 Park Ave, New York, NY',
-    // nyAddress2: '225 Rector Place, New York, NY',
-    // nyAddress3: 'Trump World Tower, New York, NY',
-    nyAddress1: '1234 Elm Street, New York, NY',
-    nyAddress2: '123 Innovation Drive, New York, NY',
+    nyAddress1: '1234 Elm Street',
+    nyAddress2: '123 Innovation Drive',
+    nyAddress3: '225 Rector Place, New York, NY',
   };
 
   // URL generators
@@ -45,8 +45,26 @@ function Rpa() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <Title level={2}>Search for an Address on Zillow and StreetEasy</Title>
-      <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+      <div style={{ fontSize: '16px', marginBottom: '20px' }}>Search Address</div>
+      <div style={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
+        
+        {/* Checkbox Controls for Zillow and StreetEasy */}
+        <div style={{ marginBottom: '10px' }}>
+          <Checkbox 
+            checked={showZillow} 
+            onChange={(e) => setShowZillow(e.target.checked)}
+          >
+            Zillow
+          </Checkbox>
+          <Checkbox 
+            checked={showStreetEasy} 
+            onChange={(e) => setShowStreetEasy(e.target.checked)}
+          >
+            StreetEasy
+          </Checkbox>
+        </div>
+
+        {/* Radio Buttons for Sample Addresses */}
         <div style={{ marginRight: '20px', minWidth: '200px' }}>
           <Radio.Group onChange={handleAddressChange} value={address}>
             {Object.keys(addresses).map((key) => (
@@ -63,7 +81,8 @@ function Rpa() {
           onCancel={closeRpa}
           footer={null}
           width="90%"
-          style={{ top: 0 }}
+          style={{ top: 0, height: '95vh', overflow: 'hidden' }} // Prevents overflow
+          bodyStyle={{ overflowY: 'auto', height: 'calc(90vh - 55px)', padding: 0 }} // Adjusts body height and removes horizontal overflow
         >
           <RpaWindow
             address={address}
@@ -73,6 +92,8 @@ function Rpa() {
             streetEasyIframeError={streetEasyIframeError}
             setZillowIframeError={setZillowIframeError}
             setStreetEasyIframeError={setStreetEasyIframeError}
+            showZillow={showZillow}
+            showStreetEasy={showStreetEasy}
           />
         </Modal>
       </div>
@@ -87,39 +108,54 @@ function RpaWindow({
   zillowIframeError, 
   streetEasyIframeError, 
   setZillowIframeError, 
-  setStreetEasyIframeError 
+  setStreetEasyIframeError, 
+  showZillow, 
+  showStreetEasy 
 }) {
+  // Determine column span based on which iframes are selected
+  const colSpan = (showZillow && showStreetEasy) ? 12 : 24;
+
   return (
     <div>
       <Text strong>Address:</Text> <Text>{address}</Text>
-      <Row gutter={16} style={{ marginTop: '20px' }}>
-        <Col span={12}>
-          <div className="iframe-container">
-            <iframe
-              src={zillowIframeError ? null : zillowUrl}
-              title="Zillow Search"
-              onError={() => setZillowIframeError(true)}
-              style={{ width: '100%', height: '400px', border: '1px solid #ddd' }}
-            />
-            {zillowIframeError && (
-              <Text type="danger">Zillow iframe could not load. Try opening in a new tab.</Text>
-            )}
-          </div>
-        </Col>
+      <Row gutter={16} style={{ marginTop: '20px', width: '100%' }}>
 
-        <Col span={12}>
-          <div className="iframe-container">
-            <iframe
-              src={streetEasyIframeError ? null : streetEasyUrl}
-              title="StreetEasy Search"
-              onError={() => setStreetEasyIframeError(true)}
-              style={{ width: '100%', height: '400px', border: '1px solid #ddd' }}
-            />
-            {streetEasyIframeError && (
-              <Text type="danger">StreetEasy iframe could not load. Try opening in a new tab.</Text>
-            )}
-          </div>
-        </Col>
+        {/* Zillow iframe */}
+        {showZillow && (
+          <Col span={colSpan} style={{ width: '100%' }}>
+            <div className="iframe-container" style={{ width: '100%' }}>
+              <iframe
+                src={zillowIframeError ? null : zillowUrl}
+                title="Zillow Search"
+                onError={() => setZillowIframeError(true)}
+                style={{ width: '100%', height: '400px', border: '1px solid #ddd' }}
+              />
+              {zillowIframeError && (
+                <Text type="danger">Zillow iframe could not load. Try opening in a new tab.</Text>
+              )}
+            </div>
+          </Col>
+        )}
+
+        {/* StreetEasy iframe */}
+        {showStreetEasy && !streetEasyIframeError && (
+          <Col span={colSpan} style={{ width: '100%' }}>
+            <div className="iframe-container" style={{ width: '100%' }}>
+              <iframe
+                src={streetEasyUrl}
+                title="StreetEasy Search"
+                onError={() => setStreetEasyIframeError(true)}
+                style={{ width: '100%', height: '400px', border: '1px solid #ddd' }}
+              />
+            </div>
+          </Col>
+        )}
+        
+        {showStreetEasy && streetEasyIframeError && (
+          <Col span={colSpan} style={{ width: '100%', textAlign: 'center' }}>
+            <Text type="danger">StreetEasy iframe could not load. Try searching directly on their website.</Text>
+          </Col>
+        )}
       </Row>
     </div>
   );
