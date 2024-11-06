@@ -247,6 +247,7 @@ const SearchInsured = () => {
                         <label style={{ marginBottom: '17px' }}>Program Name</label>
                         <DropdownSelect
                             // label="Program Name"
+                            id='programName'
                             value={searchCriteria.programName}
                             onChange={(value) => setSearchCriteria((prev) => ({ ...prev, programName: value }))}
                             placeholder="Select Program"
@@ -262,7 +263,7 @@ const SearchInsured = () => {
                         <label style={{ marginBottom: '17px' }}>Product Name</label>
                         <DropdownSelect
                             // label="Product Name"
-                            name="productName"
+                            id="productName"
                             value={searchCriteria.productName}
                             onChange={(value) => setSearchCriteria((prev) => ({ ...prev, productName: value }))}
                             placeholder="Select Product"
@@ -278,7 +279,7 @@ const SearchInsured = () => {
                         <label style={{ marginBottom: '17px' }}>Occupancy Type</label>
                         <DropdownSelect
                             // label="Occupancy Type"
-                            name="occupancyType"
+                            id="occupancyType"
                             value={searchCriteria.occupancyType}
                             onChange={(value) => setSearchCriteria((prev) => ({ ...prev, occupancyType: value }))}
                             placeholder="Select Occupancy Type"
@@ -298,6 +299,7 @@ const SearchInsured = () => {
                     </Col>
                     <Col span={4}>
                         <FormInput
+                        id="agencyName"
                             label="Agency Name"
                             value={searchCriteria.agencyName}
                             onChange={handleInputChange}
@@ -308,7 +310,7 @@ const SearchInsured = () => {
                         <label style={{ marginBottom: '17px' }}>Primary Risk State</label>
                         <DropdownSelect
                             // label="Primary Risk State"
-                            name="primaryRiskState"
+                            id="primaryRiskState"
                             value={searchCriteria.primaryRiskState}
                             onChange={(value) => setSearchCriteria((prev) => ({ ...prev, primaryRiskState: value }))}
                             placeholder="Select State"
@@ -324,7 +326,7 @@ const SearchInsured = () => {
                         <label style={{ marginBottom: '17px' }}>Primary Risk</label>
                         <DropdownSelect
                             // label="Primary Risk"
-                            name="primaryRisk"
+                            id="primaryRisk"
                             value={searchCriteria.primaryRisk}
                             onChange={(value) => setSearchCriteria((prev) => ({ ...prev, primaryRisk: value }))}
                             placeholder="Select Primary Risk"

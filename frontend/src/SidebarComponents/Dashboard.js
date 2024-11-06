@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Chart } from 'chart.js/auto';
+import { Table, Button, Space, Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
 import './Dashboard.css';
-import "./Table.css";
+import './Table.css';
 
 const data = {
   myteamscases: [
@@ -25,121 +28,243 @@ const data = {
 };
 
 const Dashboard = () => {
-  const [selectedGrid, setSelectedGrid] = useState([]);
-  const chartRef = useRef(null); // Reference to the canvas element
-  let myPieChartInstance = useRef(null); // Reference to store chart instance
-  const navigate = useNavigate(); // Use navigate for routing
+  const navigate = useNavigate();
+  const [filteredInfo, setFilteredInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
 
-  // Function to create the Pie Chart
-  const createPieChart = () => {
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{ marginBottom: 8, display: 'block' }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => clearFilters && handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+          <Button type="link" size="small" onClick={() => close()}>
+            Close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex] ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()) : '',
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+  const policiesChartRef = useRef(null);
+  const submissionsChartRef = useRef(null);
+  const donutChartRef = useRef(null);
+
+  useEffect(() => {
+    createBarChart(policiesChartRef, 'Policies Issued', ['Auto', 'Property', 'Liability', 'Health', 'Life'], [30, 25, 40, 35, 20]);
+    createBarChart(submissionsChartRef, 'Submission in Progress', ['Auto', 'Property', 'Liability', 'Health', 'Life'], [15, 18, 22, 20, 17]);
+    createDonutChart();
+
+    return () => {
+      [policiesChartRef, submissionsChartRef, donutChartRef].forEach(ref => {
+        if (ref.current) ref.current.chartInstance.destroy();
+      });
+    };
+  }, []);
+
+  const createBarChart = (chartRef, title, labels, data) => {
     const ctx = chartRef.current.getContext('2d');
-
-    // If chart already exists, destroy it before creating a new one
-    if (myPieChartInstance.current) {
-      myPieChartInstance.current.destroy();
-    }
-
-    // Create the new Pie Chart
-    myPieChartInstance.current = new Chart(ctx, {
-      type: 'pie',
+    chartRef.current.chartInstance = new Chart(ctx, {
+      type: 'bar',
       data: {
-        labels: ['My Teams Cases', 'My Assigned Cases', 'Sent to Broker', 'Closed'],
-        datasets: [{
-          data: [40, 25, 5, 10],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-        }]
+        labels,
+        datasets: [{ label: title, data, backgroundColor: '#36A2EB' }],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom',
-          },
-        },
-      }
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } },
+      },
     });
   };
 
-  useEffect(() => {
-    createPieChart();
-
-    // Cleanup function to destroy chart when component unmounts
-    return () => {
-      if (myPieChartInstance.current) {
-        myPieChartInstance.current.destroy();
-      }
-    };
-  }, []); // Empty dependency array to run the effect only once after the component mounts
-
-  const showGrid = (type) => {
-    setSelectedGrid(data[type]);
+  const createDonutChart = () => {
+    const ctx = donutChartRef.current.getContext('2d');
+    donutChartRef.current.chartInstance = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['New Business', 'Renewal Premium'],
+        datasets: [{ data: [700, 300], backgroundColor: ['#FF6384', '#FFCE56'] }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+      },
+    });
   };
 
-  const handleRowClick = (row) => {
-    navigate('/accountinfo', { state: { account: row } }); // Navigate to accountinfo with row data
+  const handleRowClick = (record) => {
+    navigate('/accountinfo', { state: { account: record } });
   };
+
+  const handleChange = (pagination, filters, sorter) => {
+    setFilteredInfo(filters);
+    setSortedInfo(sorter);
+  };
+  const handleNewSubmission = (record) => {
+    console.log("New Submission data:", record);
+  };
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'client',
+      key: 'client',
+      ...getColumnSearchProps('client'),
+      filters: [...new Set(data.myteamscases.concat(data.myassignedcases, data.senttobroker, data.close).map(item => ({ text: item.client, value: item.client })))],
+      filteredValue: filteredInfo.client || null,
+      onFilter: (value, record) => record.client.includes(value),
+    },
+    {
+      title: 'LOB',
+      dataIndex: 'lob',
+      key: 'lob',
+      ...getColumnSearchProps('lob'),
+      filters: [...new Set(data.myteamscases.concat(data.myassignedcases, data.senttobroker, data.close).map(item => ({ text: item.lob, value: item.lob })))],
+      filteredValue: filteredInfo.lob || null,
+      onFilter: (value, record) => record.lob.includes(value),
+    },
+    { title: 'Limit', dataIndex: 'limit', key: 'limit' },
+    { title: 'Status', dataIndex: 'status', key: 'status', ...getColumnSearchProps('status') },
+    { title: 'Sub-Status', dataIndex: 'substatus', key: 'substatus' },
+    { title: 'Date Submitted', dataIndex: 'date', key: 'date', sorter: (a, b) => new Date(a.date) - new Date(b.date), sortOrder: sortedInfo.columnKey === 'date' ? sortedInfo.order : null },
+    { title: 'Underwriter', dataIndex: 'underwriter', key: 'underwriter', ...getColumnSearchProps('underwriter') },
+    {
+      title: 'Priority',
+      dataIndex: 'priority',
+      key: 'priority',
+      filters: [{ text: 'High', value: 'High' }, { text: 'Medium', value: 'Medium' }, { text: 'Low', value: 'Low' }],
+      filteredValue: filteredInfo.priority || null,
+      onFilter: (value, record) => record.priority.includes(value),
+      // Render with custom styles based on priority level
+      render: (priority) => {
+        let backgroundColor;
+        if (priority === 'High') backgroundColor = '#ff4d4f';    // Red
+        else if (priority === 'Medium') backgroundColor = '#fa8c16'; // Orange
+        else if (priority === 'Low') backgroundColor = '#28a745';   // Green
+  
+        return (
+          <span
+          style={{
+            backgroundColor,
+            color: 'black',
+            padding: '6px 12px',
+            borderRadius: '4px',
+            display: 'inline-block',
+            minWidth: '80px',    // Fixed width for uniformity
+            textAlign: 'center', // Centers text within the box
+          }}
+        >
+            {priority}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'New Submission',
+      key: 'newSubmission',
+      render: (_, record) => (
+        <Button type="primary" onClick={() => handleNewSubmission(record)}>
+          <div style={{ fontSize: '12px' }}>
+            New Submission
+          </div>
+        </Button>
+      ),
+    }
+  ];
+
+  const combinedData = [
+    ...data.myteamscases,
+    ...data.myassignedcases,
+    ...data.senttobroker,
+    ...data.close
+  ];
 
   return (
     <div className="content">
-      <div style={{ display: 'flex' }}>
-        <div className="dashboard-card-container">
-          <div className="dashboardcard" onClick={() => showGrid('myteamscases')}>
-            <h3>My Teams Cases</h3>
-            <p>(40)</p>
-          </div>
-          <div className="dashboardcard" onClick={() => showGrid('myassignedcases')}>
-            <h3>My Assigned Cases</h3>
-            <p>(25)</p>
-          </div>
-          <div className="dashboardcard" onClick={() => showGrid('senttobroker')}>
-            <h3>Sent to Broker</h3>
-            <p>(5)</p>
-          </div>
-          <div className="dashboardcard" onClick={() => showGrid('close')}>
-            <h3>Closed</h3>
-            <p>(10)</p>
-          </div>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '5px', flexWrap: 'nowrap' }}>
+        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Policies Issued</div>
+          <canvas ref={policiesChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
         </div>
-        <div className="chart-container"  style={{border: '2px solid grey', padding:'5px',marginLeft:'120px'}}>
-          <canvas id="myPieChart" ref={chartRef}></canvas>
+        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Submission in Progress</div>
+          <canvas ref={submissionsChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
+        </div>
+        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>New Business vs Renewal Premium $</div>
+          <canvas ref={donutChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
+        </div>
+        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Map</div>
+          <img src="./usa.svg" alt="Map of USA" style={{ width: '100%', height: '70%', objectFit: 'contain' }} />
         </div>
       </div>
 
-      <div className="main-content">
-        <div className="grid-container">
-          <table>
-            <thead>
-              <tr>
-               {/* <th>Case ID</th>*/}
-                <th>Client Name</th>
-                <th>LOB</th>
-                <th>Limit</th>
-                <th>Status</th>
-                <th>Sub-Status</th>
-                <th>Date Submitted</th>
-                <th>Underwriter</th>
-                <th>Priority</th>
-              </tr>
-            </thead>
-            <tbody>
-              {selectedGrid.map((row, index) => (
-                <tr key={index} onClick={() => handleRowClick(row)}> {/* Added onClick to each row */}
-                 {/* <td>{row.id}</td>*/}
-                  <td>{row.client}</td>
-                  <td>{row.lob}</td>
-                  <td>{row.limit}</td>
-                  <td>{row.status}</td>
-                  <td>{row.substatus || 'N/A'}</td>
-                  <td>{row.date}</td>
-                  <td>{row.underwriter}</td>
-                  <td><div className={`priority-box ${row.priority.toLowerCase()}`}>{row.priority}</div></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Table
+        columns={columns}
+        dataSource={combinedData}
+        onChange={handleChange}
+        onRow={(record) => ({
+          onClick: () => handleRowClick(record),
+        })}
+        pagination={{ pageSize: 5 }}
+      />
+      <Button type="primary" onClick={() => navigate('/submission')}>Submission</Button>
     </div>
   );
 };
