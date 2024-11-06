@@ -3,7 +3,7 @@ import "./UWQuestions.css";
 import { Col, Row } from 'antd';
 import Documents from "./RightSidebar";
 import ModalDesign from "./Modal";
-import FormInput from "../components/FormInput ";
+import FormInput from "../components/FormInput";
 import DropdownSelect from "../components/FormDropdown";
 
 const uwquestionsData = [

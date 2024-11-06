@@ -3,7 +3,7 @@ import styles from "./PolicyForm.module.css";
 import { useState } from "react";
 import "./Tab.css";
 import { Col, Row } from "antd";
-import FormInput from "../components/FormInput ";
+import FormInput from "../components/FormInput";
 import Documents from "./RightSidebar";
 
 import ApexChart from "./Riskchart";

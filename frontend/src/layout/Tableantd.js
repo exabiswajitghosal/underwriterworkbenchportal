@@ -3,7 +3,7 @@ import { Button, Space, Table, Divider, Radio, Form, Input } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
-import FormInput from '../components/FormInput ';
+import FormInput from '../components/FormInput';
 import { MapView } from '../lob/commercialproperty/Map';
 import styles from "../lob/commercialproperty/LocationComponent.module.css";
 import '../components/TableStyles.css'

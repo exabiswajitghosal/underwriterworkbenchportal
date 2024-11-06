@@ -8,6 +8,7 @@ import LayoutDesign from './components/Layout';
 import CreateSubmissionLayout from './SidebarComponents/CreateSubmissionLayout';
 import DocumentScreen from './SidebarComponents/DocumentScreen';
 import ClearanceScreen from './SidebarComponents/ClearanceScreen';
+import SearchInsuredLayout from './SidebarComponents/SearchInsuredLayout';
 
 const App = () => {
  
@@ -27,11 +28,12 @@ const App = () => {
 
           {/* Define other routes for different screens */}
           <Route path="dashboard" element={<DashboardLayoutDesign/>} />
-          <Route path="submission" element={<CreateSubmissionLayout/>} />
+          <Route path="createsubmission" element={<CreateSubmissionLayout/>} />
           <Route path="audit-trail" element={<AuditTrailLayoutDesign/>} />
           <Route path="accountinfo" element={<AccountLayoutDesign/>} />
           <Route path="documentscreen" element={<DocumentScreen/>} />
           <Route path="clearancescreen" element={<ClearanceScreen/>} />
+          <Route path='submission' element={<SearchInsuredLayout/>}/>
           
        
       </Routes>
