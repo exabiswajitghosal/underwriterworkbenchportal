@@ -27,17 +27,17 @@ const LocationTab = () => {
 
   return (
 
-<>
+    <>
       {/* Form to display selected row data */}
-      
-        <div className={styles.container}>
+
+      <div className={styles.container}>
         {/* Tab Buttons */}
         <div className="tab">
           <Button
             className={`tablinks ${activeTab === "Tab1" ? "active" : ""}`}
             onClick={(event) => openMainTab(event, 'Tab1')}
           >
-           Location
+            Location
           </Button>
           <Button
             className={`tablinks ${activeTab === "Tab2" ? "active" : ""}`}
@@ -54,32 +54,32 @@ const LocationTab = () => {
         </div>
 
         {/* Tab Content */}
-        
-            {activeTab === "Tab1" && (
-              <div id="Tab1" className="tabcontent">
-           <LocationTable/>
-              </div>
-            )}
+
+        {activeTab === "Tab1" && (
+          <div id="Tab1" className="tabcontent">
+            <LocationTable />
+          </div>
+        )}
 
 
 
-            
-   {activeTab === "Tab2" && (
-        <div id="Tab2" className="tabcontent">
-          <LocationBuildingTab/>
+
+        {activeTab === "Tab2" && (
+          <div id="Tab2" className="tabcontent">
+            <LocationBuildingTab />
 
 
-            
-    
-      </div>)}
-      {activeTab === "Tab3" && (
-        <div id="Tab3" className="tabcontent">
-        <OverallInsights/>
-      </div>)}
-        </div> 
-       </>
-       
-    
+
+
+          </div>)}
+        {activeTab === "Tab3" && (
+          <div id="Tab3" className="tabcontent">
+            <OverallInsights />
+          </div>)}
+      </div>
+    </>
+
+
   );
 
 };

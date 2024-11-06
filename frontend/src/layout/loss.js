@@ -5,6 +5,9 @@ import { Button, Card, Col, Modal, Row, Input, DatePicker } from 'antd';
 const LossInfo = () => {
   const [activeTab, setActiveTab] = useState("PriorPolicies");
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLossSummaryModalVisible, setIsLossSummaryModalVisible] = useState(false);
+  const [isLossDetailModalVisible, setIsLossDetailModalVisible] = useState(false);
+
   const [newPolicy, setNewPolicy] = useState({
     carrier: "",
     policyNumber: "",
@@ -14,10 +17,34 @@ const LossInfo = () => {
     losses: "",
     totalLosses: ""
   });
+  const [newLossSummary, setNewLossSummary] = useState({
+    policyYear: "",
+    annualPremium: "",
+    claims: "",
+    openClaims: "",
+    totalInsuredLosses: "",
+    totalPaidLosses: "",
+    expenses: ""
+  });
+  const [newLossDetail, setNewLossDetail] = useState({
+    claimNumber: "",
+    effectiveDate: "",
+    expirationDate: "",
+    carrier: "",
+    lob: "",
+    accidentDescription: "",
+    reportedDate: "",
+    status: "",
+    class: "",
+    totalPaid: "",
+    totalIncurred: ""
+  });
 
   const [policies, setPolicies] = useState([]);
   const [selectedPolicies, setSelectedPolicies] = useState([]);
   const [selectedClaim, setSelectedClaim] = useState(null);
+  const [lossSummaries, setLossSummaries] = useState([]);
+  const [lossDetails, setLossDetails] = useState([]);
 
   const claimsData = [
     {
@@ -92,13 +119,64 @@ const LossInfo = () => {
     setIsModalVisible(false);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewPolicy({ ...newPolicy, [name]: value });
+  // Loss Summary Modal Handlers
+  const showLossSummaryModal = () => {
+    setIsLossSummaryModalVisible(true);
+  };
+  const handleLossSummaryModalOk = () => {
+    setLossSummaries([...lossSummaries, newLossSummary]);
+    setNewLossSummary({
+      policyYear: "",
+      annualPremium: "",
+      claims: "",
+      openClaims: "",
+      totalInsuredLosses: "",
+      totalPaidLosses: "",
+      expenses: ""
+    });
+    setIsLossSummaryModalVisible(false);
+  };
+  const handleLossSummaryModalCancel = () => {
+    setIsLossSummaryModalVisible(false);
   };
 
-  const handleDateChange = (name, date) => {
-    setNewPolicy({ ...newPolicy, [name]: date ? date.format("YYYY-MM-DD") : "" });
+
+
+  // Loss Detail Modal Handlers
+  const showLossDetailModal = () => {
+    setIsLossDetailModalVisible(true);
+  };
+  const handleLossDetailModalOk = () => {
+    setLossDetails([...lossDetails, newLossDetail]);
+    setNewLossDetail({
+      claimNumber: "",
+      effectiveDate: "",
+      expirationDate: "",
+      carrier: "",
+      lob: "",
+      accidentDescription: "",
+      reportedDate: "",
+      status: "",
+      class: "",
+      totalPaid: "",
+      totalIncurred: ""
+    });
+    setIsLossDetailModalVisible(false);
+  };
+  const handleLossDetailModalCancel = () => {
+    setIsLossDetailModalVisible(false);
+  };
+
+
+
+
+  const handleInputChange = (e, setStateFunction) => {
+    const { name, value } = e.target;
+    setStateFunction((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDateChange = (name, date, setStateFunction) => {
+    setStateFunction((prev) => ({ ...prev, [name]: date ? date.format("YYYY-MM-DD") : "" }));
   };
 
   const handleCheckboxChange = (index) => {
@@ -112,6 +190,14 @@ const LossInfo = () => {
   const handleDelete = () => {
     setPolicies(policies.filter((_, index) => !selectedPolicies.includes(index)));
     setSelectedPolicies([]);
+  };
+
+  // Function to calculate the sum of total losses
+  const calculateTotalLossesSum = () => {
+    return policies.reduce((sum, policy) => {
+      const losses = parseFloat(policy.totalLosses) || 0;
+      return sum + losses;
+    }, 0).toFixed(2);  // Fixed to two decimal places
   };
 
   return (
@@ -184,7 +270,7 @@ const LossInfo = () => {
                   <tr>
                     <td colSpan="7">Sum:</td>
                     <td>
-                      <input type="text" placeholder="$" readOnly />
+                      <input type="text" value={`$${calculateTotalLossesSum()}`} readOnly />
                     </td>
                   </tr>
                 </tfoot>
@@ -200,45 +286,45 @@ const LossInfo = () => {
                   placeholder="Carrier"
                   name="carrier"
                   value={newPolicy.carrier}
-                  onChange={handleInputChange}
+                  onChange={(e) => handleInputChange(e, setNewPolicy)}
                   style={{ marginBottom: "10px" }}
                 />
                 <Input
                   placeholder="Policy #"
                   name="policyNumber"
                   value={newPolicy.policyNumber}
-                  onChange={handleInputChange}
+                  onChange={(e) => handleInputChange(e, setNewPolicy)}
                   style={{ marginBottom: "10px" }}
                 />
                 <DatePicker
                   placeholder="Effective Date"
                   style={{ width: "100%", marginBottom: "10px" }}
-                  onChange={(date) => handleDateChange("effectiveDate", date)}
+                  onChange={(date) => handleDateChange("effectiveDate", date, setNewPolicy)}
                 />
                 <DatePicker
                   placeholder="Expiration Date"
                   style={{ width: "100%", marginBottom: "10px" }}
-                  onChange={(date) => handleDateChange("expirationDate", date)}
+                  onChange={(date) => handleDateChange("effectiveDate", date, setNewPolicy)}
                 />
                 <Input
                   placeholder="Annual Premium"
                   name="annualPremium"
                   value={newPolicy.annualPremium}
-                  onChange={handleInputChange}
+                  onChange={(e) => handleInputChange(e, setNewPolicy)}
                   style={{ marginBottom: "10px" }}
                 />
                 <Input
                   placeholder="# Losses"
                   name="losses"
                   value={newPolicy.losses}
-                  onChange={handleInputChange}
+                  onChange={(e) => handleInputChange(e, setNewPolicy)}
                   style={{ marginBottom: "10px" }}
                 />
                 <Input
                   placeholder="Total Losses"
                   name="totalLosses"
                   value={newPolicy.totalLosses}
-                  onChange={handleInputChange}
+                  onChange={(e) => handleInputChange(e, setNewPolicy)}
                   style={{ marginBottom: "10px" }}
                 />
               </Modal>
@@ -249,6 +335,9 @@ const LossInfo = () => {
             <div id="Claims" className="tabcontent">
               <div style={{ marginTop: "20px" }}>
                 <h3>Loss Summary</h3>
+                <Button type="primary" onClick={showLossSummaryModal} style={{ marginBottom: "10px" }}>
+                  Add Loss
+                </Button>
                 <table style={{ marginBottom: "20px" }}>
                   <thead>
                     <tr>
@@ -280,7 +369,70 @@ const LossInfo = () => {
                   </tbody>
                 </table>
 
+                {/* Add Loss Summary Modal */}
+                <Modal
+                  title="Add Loss Summary"
+                  visible={isLossSummaryModalVisible}
+                  onOk={handleLossSummaryModalOk}
+                  onCancel={handleLossSummaryModalCancel}
+                >
+                  <Input
+                    placeholder="Policy Year"
+                    name="policyYear"
+                    value={newLossSummary.policyYear}
+                    onChange={(e) => handleInputChange(e, setNewLossSummary)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Annual Premium"
+                    name="annualPremium"
+                    value={newLossSummary.annualPremium}
+                    onChange={(e) => handleInputChange(e, setNewLossSummary)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Claims"
+                    name="claims"
+                    value={newLossSummary.claims}
+                    onChange={(e) => handleInputChange(e, setNewLossSummary)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Open Claims"
+                    name="openClaims"
+                    value={newLossSummary.openClaims}
+                    onChange={(e) => handleInputChange(e, setNewLossSummary)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Total Insured Losses"
+                    name="totalInsuredLosses"
+                    value={newLossSummary.totalInsuredLosses}
+                    onChange={(e) => handleInputChange(e, setNewLossSummary)}
+                    style={{ marginBottom: "10px" }}
+                  />
+
+                  <Input
+                    placeholder="Total paid Losses"
+                    name="totalPaidLosses"
+                    value={newLossSummary.totalPaidLosses}
+                    onChange={(e) => handleInputChange(e, setNewLossSummary)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="expenses"
+                    name="expenses"
+                    value={newLossSummary.expenses}
+                    onChange={(e) => handleInputChange(e, setNewLossSummary)}
+                    style={{ marginBottom: "10px" }}
+                  />
+
+                </Modal>
+
                 <h3>Loss Details</h3>
+                <Button type="primary" onClick={showLossDetailModal} style={{ marginBottom: "10px" }}>
+                  Add Loss Detail
+                </Button>
                 <table>
                   <thead>
                     <tr>
@@ -326,6 +478,87 @@ const LossInfo = () => {
                   </tbody>
                 </table>
 
+                {/* Add Loss Detail Modal */}
+                <Modal
+                  title="Add Loss Detail"
+                  visible={isLossDetailModalVisible}
+                  onOk={handleLossDetailModalOk}
+                  onCancel={handleLossDetailModalCancel}
+                >
+                  <Input
+                    placeholder="Claim Number"
+                    name="claimNumber"
+                    value={newLossDetail.claimNumber}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <DatePicker
+                    placeholder="Effective Date"
+                    style={{ width: "100%", marginBottom: "10px" }}
+                    onChange={(date) => handleDateChange("effectiveDate", date, setNewLossDetail)}
+                  />
+                   <DatePicker
+                    placeholder="Effective Date"
+                    style={{ width: "100%", marginBottom: "10px" }}
+                    onChange={(date) => handleDateChange("effectiveDate", date, setNewLossDetail)}
+                  />
+                  <Input
+                    placeholder="Carrier"
+                    name="carrier"
+                    value={newLossDetail.carrier}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Lob"
+                    name="lob"
+                    value={newLossDetail.lob}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Accident Description"
+                    name="accidentDescription"
+                    value={newLossDetail.accidentDescription}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                 <DatePicker
+                    placeholder="Reported Date"
+                    style={{ width: "100%", marginBottom: "10px" }}
+                    onChange={(date) => handleDateChange("reportedDate", date, setNewLossDetail)}
+                  />
+                  <Input
+                    placeholder="Status"
+                    name="status"
+                    value={newLossDetail.status}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Class"
+                    name="class"
+                    value={newLossDetail.class}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Total Paid"
+                    name="totalPaid"
+                    value={newLossDetail.totalPaid}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+                  <Input
+                    placeholder="Total Incurred"
+                    name="totalIncurred"
+                    value={newLossDetail.totalIncurred}
+                    onChange={(e) => handleInputChange(e, setNewLossDetail)}
+                    style={{ marginBottom: "10px" }}
+                  />
+
+                </Modal>
+
                 <h3>Notes</h3>
                 <Card
                   title="Claim Notes History"
@@ -358,7 +591,7 @@ const LossInfo = () => {
                     <p>Please first select any row to see the history</p>
                   )}
 
-                 
+
                 </Card>
               </div>
             </div>

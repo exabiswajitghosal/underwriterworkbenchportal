@@ -122,8 +122,8 @@ const Coverages = () => {
         onChange={handleLocationChange}
         style={{ width: 250, height: 50, marginTop: 40 }}
       >
-        <Option value="Location 1">Location 1</Option>
-        <Option value="Location 2">Location 2</Option>
+        <Option value="Location 1">1234 Elm Steem</Option>
+        <Option value="Location 2">123 Innovation Drive</Option>
       </Select>
 
       {/* Edit/Save button */}

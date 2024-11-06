@@ -75,13 +75,23 @@ const UWQuestions = () => {
             {/* </div> */}
           </div>
 
-          <h4 style={{ marginTop: '20px' }}>System recommended decision:</h4>
-          <textarea 
-            className="notes" 
-            placeholder="" 
-            value={uwnotes}
-            onChange={(e) => setUWNotes(e.target.value)}
-          />
+           {/* System Recommended Decision */}
+           <h4 style={{ marginTop: '20px' }}>System recommended decision:</h4>
+          <div
+            style={{
+              fontSize:"18px",
+              padding: '15px',
+              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+              fontWeight: 500,
+              borderRadius: '5px',
+              backgroundColor: '#e6ffe6', // Light green background for highlight
+              color: 'green',
+              
+              
+            }}
+          >
+            Approved- Insured passed all the underwriting criteria.
+          </div>
 
 
          {/* Override Decision Section */}
@@ -97,13 +107,29 @@ const UWQuestions = () => {
               <ModalDesign />
             </div>
           </div>
+          <Row gutter={16}>
+        <Col span={20}></Col>
+        <Col span={4}>
+          <div>
+            <button
+              type="submit"
+              style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
+            >
+              <b>Next</b>
+            </button>
+          </div>
+        </Col>
+      </Row>
         </div>
+        
       </Col>
       {/* Uncomment and use if Documents component is needed in future */}
       {/* <Col span={4}>
         <Documents />
       </Col> */}
+      
     </Row>
+    
   );
 };
 
