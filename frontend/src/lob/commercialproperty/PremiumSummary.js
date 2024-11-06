@@ -1,26 +1,57 @@
 import React, { useState } from 'react';
-import { Table, Input, Typography,  } from 'antd';
-import { Color } from 'antd/es/color-picker';
+import { Table, Input, Typography, Button, Tooltip, Row, Col, Select } from 'antd';
+import { EditOutlined, SaveOutlined } from '@ant-design/icons';
 
-
-const { Text, Title } = Typography;
+const { Option } = Select;
+const { TextArea } = Input;
+const { Title } = Typography;
 
 const PremiumSummary = () => {
-  const [editingRow, setEditingRow] = useState(null);
-  const [data, setData] = useState([
-    { key: 1, description: 'Customer request', coverageAmount: '', premium: '', override: false },
-    { key: 2, description: 'Building No', coverageAmount: '', premium: '', override: false },
-    { key: 3, description: 'Building Limit', coverageAmount: '', premium: '', override: true },
-    { key: 4, description: 'Annual Rents and Fees', coverageAmount: '', premium: '', override: true },
-    { key: 5, description: 'Flood Coverage', coverageAmount: '', premium: '', override: true },
-    { key: 6, description: 'Earthquake Coverage', coverageAmount: '', premium: '', override: true },
-    { key: 7, description: 'Ord/Law Blanket Limits', coverageAmount: '', premium: '', override: true },
-    { key: 8, description: 'BPP Limit', coverageAmount: '', premium: '', override: true },
-    { key: 9, description: 'Property Deductible', coverageAmount: '', premium: '', override: true },
-    { key: 10, description: 'Total Premium', coverageAmount: '', premium: '', override: false },
-    { key: 11, description: 'Fees & Taxes', coverageAmount: '', premium: '', override: false },
-    { key: 12, description: 'Total Payable', coverageAmount: '', premium: '', override: false },
-  ]);
+  const [editing, setEditing] = useState(false); // Global editing state
+  const [selectedBuilding, setSelectedBuilding] = useState(null); // Selected building state
+
+  // Data for each building
+  const buildingData = {
+    1: [
+      { key: 1, description: 'Building Limit', coverageAmount: '', premium: '' },
+      { key: 2, description: 'Annual Rents and Fees', coverageAmount: '', premium: '' },
+      { key: 3, description: 'Flood Coverage', coverageAmount: '', premium: '' },
+      { key: 4, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
+      { key: 5, description: 'Ord/Law Blanket Limits', coverageAmount: '', premium: '' },
+      { key: 6, description: 'BPP Limit', coverageAmount: '', premium: '' },
+      { key: 7, description: 'Property Deductible', coverageAmount: '', premium: '' },
+    ],
+    2: [
+      { key: 1, description: 'Building Limit', coverageAmount: '', premium: '' },
+      { key: 2, description: 'Annual Rents and Fees', coverageAmount: '', premium: '' },
+      { key: 3, description: 'Flood Coverage', coverageAmount: '', premium: '' },
+      { key: 4, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
+      { key: 5, description: 'Ord/Law Blanket Limits', coverageAmount: '', premium: '' },
+      { key: 6, description: 'BPP Limit', coverageAmount: '', premium: '' },
+      { key: 7, description: 'Property Deductible', coverageAmount: '', premium: '' },
+    ],
+  };
+
+  // Display data for the selected building or an empty array if none is selected
+  const [data, setData] = useState([]);
+
+  // Toggles editing mode for the entire table
+  const toggleEditing = () => setEditing(!editing);
+
+  // Updates data for the specific row and field
+  const handleFieldChange = (key, field, value) => {
+    setData((prevData) =>
+      prevData.map((item) =>
+        item.key === key ? { ...item, [field]: value } : item
+      )
+    );
+  };
+
+  // Handles building selection change
+  const handleBuildingChange = (value) => {
+    setSelectedBuilding(value);
+    setData(buildingData[value] || []);
+  };
 
   // Column configuration for the table
   const columns = [
@@ -33,90 +64,121 @@ const PremiumSummary = () => {
       title: 'Coverage Amount',
       dataIndex: 'coverageAmount',
       key: 'coverageAmount',
-      render: (text, record) => (
-        editingRow === record.key ? (
+      render: (text, record) =>
+        editing ? (
           <Input
             value={text}
-            onChange={(e) => handleFieldChange(record.key, 'coverageAmount', e.target.value)}
+            onChange={(e) =>
+              handleFieldChange(record.key, 'coverageAmount', e.target.value)
+            }
           />
         ) : (
           text
-        )
-      ),
+        ),
     },
     {
       title: 'Premium',
       dataIndex: 'premium',
       key: 'premium',
-      render: (text, record) => (
-        editingRow === record.key ? (
+      render: (text, record) =>
+        editing ? (
           <Input
             value={text}
-            onChange={(e) => handleFieldChange(record.key, 'premium', e.target.value)}
+            onChange={(e) =>
+              handleFieldChange(record.key, 'premium', e.target.value)
+            }
           />
         ) : (
           text
-        )
-      ),
-    },
-    {
-      title: '',
-      dataIndex: 'override',
-      key: 'override',
-      
-      render: (override, record) => (
-        override ? (
-          <Text
-            style={{ color: '#1d4ed8', cursor: 'pointer' }} // Blue color and pointer cursor for link effect
-            onClick={() => toggleEditRow(record.key)}
-          >
-            {editingRow === record.key ? 'Save' : 'Override'}
-          </Text>
-        ) : null
-      ),
+        ),
     },
   ];
 
-  // Toggles editing state for a row
-  const toggleEditRow = (key) => {
-    if (editingRow === key) {
-      setEditingRow(null); // Save changes and exit edit mode
-    } else {
-      setEditingRow(key); // Enter edit mode for the selected row
-    }
-  };
-
-  // Updates data for the specific row and field
-  const handleFieldChange = (key, field, value) => {
-    setData((prevData) =>
-      prevData.map((item) =>
-        item.key === key ? { ...item, [field]: value } : item
-      )
-    );
-  };
-
   return (
     <div className="premium-summary" id="premiumSummary">
+      <span style={{ marginRight: '10px', fontSize: '18px' }}>Building No.:</span>
+      <Select
+        placeholder="Select Building Number"
+        onChange={handleBuildingChange}
+        style={{ width: 100, height: 50, marginTop: 40 }}
+      >
+        <Option value={1}>1</Option>
+        <Option value={2}>2</Option>
+      </Select>
+
+      {/* Edit/Save button */}
+      <Row gutter={16}>
+        <Col span={22}></Col>
+        <Col span={2}>
+          <Button
+            shape="circle"
+            icon={
+              editing ? (
+                <Tooltip title="Save">
+                  <SaveOutlined style={{ fontSize: '20px' }} />
+                </Tooltip>
+              ) : (
+                <Tooltip title="Edit">
+                  <EditOutlined style={{ fontSize: '20px' }} />
+                </Tooltip>
+              )
+            }
+            onClick={toggleEditing}
+            style={{ marginBottom: 10, marginLeft: 16, fontSize: 20, marginTop: 1 }}
+          />
+        </Col>
+      </Row>
+
+      {/* Table */}
+      {selectedBuilding && (
+        <Table
+          dataSource={data}
+          columns={columns}
+          pagination={false}
+          size="small"
+          className="custom-table-header"
+          bordered
+          style={{ marginTop: 2 }}
+        />)}
+     
+     {selectedBuilding && (
       <Table
-        dataSource={data}
-        columns={columns}
+        dataSource={[
+          { key: 'totalPremium', label: 'Total Premium', value: '' },
+          { key: 'feeTaxes', label: 'Fees & Taxes', value: '' },
+          { key: 'totalPayable', label: 'Total Payable', value: '' },
+        ]}
+        columns={[
+          { title: '', dataIndex: 'label', key: 'label' },
+          { title: '', dataIndex: 'value', key: 'value' },
+        ]}
         pagination={false}
         size="small"
-        className="custom-table-header"
         bordered
-        style={{ marginTop: 30 }}
-      />
+      /> )}
 
       {/* Underwriter Notes */}
-     
       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
         <Title level={4}>UW Notes:</Title>
-        <Input.TextArea
+        <TextArea
           placeholder="Enter notes here"
           rows={4}
           style={{ marginTop: 10, width: '100%', border: '2px solid gray' }}
         />
       </div>
+      <Row gutter={16}>
+        <Col span={20}></Col>
+        <Col span={4}>
+          <div>
+            <button
+              type="submit"
+              style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
+            >
+              <b>Next</b>
+            </button>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };

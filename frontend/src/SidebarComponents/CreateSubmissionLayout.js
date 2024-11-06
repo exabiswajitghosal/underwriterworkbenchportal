@@ -12,7 +12,7 @@ import { Button, Layout, Menu, theme } from 'antd';
 import HeaderDesign from '../layout/HeaderDesign';
 
 import { Divider } from 'antd';
-import { Link, Outlet } from 'react-router-dom'; 
+import { Link, Outlet } from 'react-router-dom';
 import Sublob from '../layout/Sublobs';
 import CreateSubmission from './CreateSubmission';
 import Sublob2 from '../layout/Sublob2';
@@ -55,12 +55,12 @@ const CreateSubmissionLayout = () => {
                 />
 
                 <Menu theme="dark" mode="inline"  >
-                    
+
                     <Menu.Item key="1" icon={<HomeOutlined />}>
                         {!collapsed ? <Link to="/dashboard">Dashboard</Link> : ''}
                     </Menu.Item>
                     <Menu.Item key="2" icon={<FileAddOutlined />}>
-                        {!collapsed ? <Link to="/createsubmission">Create Submission</Link> : ''}
+                        {!collapsed ? <Link to="/submission">Create Submission</Link> : ''}
                     </Menu.Item>
                     <Menu.Item key="3" icon={<AuditOutlined />}>
                         {!collapsed ? <Link to="/audit-trail">Audit Trail</Link> : ''}
@@ -68,9 +68,9 @@ const CreateSubmissionLayout = () => {
                     <Menu.Item key="4" icon={<InfoCircleOutlined />}>
                         {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
                     </Menu.Item>
-                    <Menu.Item key="5" icon={<SettingFilled />}>
+                    {/* <Menu.Item key="5" icon={<SettingFilled />}>
                         {!collapsed ? <Link to="/createsubmission">Submission</Link> : ''}
-                    </Menu.Item>
+                    </Menu.Item> */}
                 </Menu>
             </Sider>
 
@@ -89,11 +89,11 @@ const CreateSubmissionLayout = () => {
                     {/* Removed PolicyCards component */}
                     {/* Keeping AccountInfo and other components */}
                     {/*showCreateSubmission && <CreateSubmission />*/}
-                    <Sublob2/>
+                    <Sublob2 />
                     <Outlet />
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
-                    Underwriter Portal {new Date().getFullYear()} 
+                    Underwriter Portal {new Date().getFullYear()}
                 </Footer>
             </Layout>
         </Layout>

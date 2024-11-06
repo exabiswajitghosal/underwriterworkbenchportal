@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
-import { Table, Input, Typography, Button, Row, Col } from 'antd';
+import { Table, Input, Typography, Button, Collapse, Row, Col } from 'antd';
 import { FilePdfOutlined } from '@ant-design/icons';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 const { Title } = Typography;
+const { Panel } = Collapse;
 
 const QuoteSummary = () => {
   const summaryRef = useRef(); // Create a ref to reference the component for PDF generation
@@ -117,54 +118,56 @@ const QuoteSummary = () => {
         bordered
       />
 
-      {/* Coverage Summary Table */}
-      <Title level={5} style={{ textAlign: 'center', backgroundColor: '#1d4ed8', color: 'white', padding: '5px', borderRadius: '5px', marginTop: '20px' }}>Coverage Summary</Title>
-      <Table
-        dataSource={coverageData}
-        columns={coverageColumns}
-        pagination={false}
-        size="small"
-        className="custom-table-header"
-        bordered
-        summary={() => (
-          <>
-            <Table.Summary.Row>
-              <Table.Summary.Cell colSpan={4}>Total</Table.Summary.Cell>
-              <Table.Summary.Cell>100000</Table.Summary.Cell>
-            </Table.Summary.Row>
-            <Table.Summary.Row>
-              <Table.Summary.Cell colSpan={4}>Fees & Taxes</Table.Summary.Cell>
-              <Table.Summary.Cell>1000</Table.Summary.Cell>
-            </Table.Summary.Row>
-            <Table.Summary.Row>
-              <Table.Summary.Cell colSpan={4}>Total Payable</Table.Summary.Cell>
-              <Table.Summary.Cell>101000</Table.Summary.Cell>
-            </Table.Summary.Row>
-          </>
-        )}
-      />
+      <Collapse defaultActiveKey={['1']} style={{ marginTop: '20px' }}>
+        <Panel header="Coverage Summary" key="1">
+          <Table
+            dataSource={coverageData}
+            columns={coverageColumns}
+            pagination={false}
+            size="small"
+            className="custom-table-header"
+            bordered
+            summary={() => (
+              <>
+                <Table.Summary.Row>
+                  <Table.Summary.Cell colSpan={4}>Total</Table.Summary.Cell>
+                  <Table.Summary.Cell>100000</Table.Summary.Cell>
+                </Table.Summary.Row>
+                <Table.Summary.Row>
+                  <Table.Summary.Cell colSpan={4}>Fees & Taxes</Table.Summary.Cell>
+                  <Table.Summary.Cell>1000</Table.Summary.Cell>
+                </Table.Summary.Row>
+                <Table.Summary.Row>
+                  <Table.Summary.Cell colSpan={4}>Total Payable</Table.Summary.Cell>
+                  <Table.Summary.Cell>101000</Table.Summary.Cell>
+                </Table.Summary.Row>
+              </>
+            )}
+          />
+        </Panel>
 
-      {/* Forms Table */}
-      <Title level={5} style={{ textAlign: 'center', backgroundColor: '#1d4ed8', color: 'white', padding: '5px', borderRadius: '5px', marginTop: '20px' }}>Forms</Title>
-      <Table
-        dataSource={formData}
-        columns={formColumns}
-        pagination={false}
-        size="small"
-        className="custom-table-header"
-        bordered
-      />
+        <Panel header="Forms" key="2">
+          <Table
+            dataSource={formData}
+            columns={formColumns}
+            pagination={false}
+            size="small"
+            className="custom-table-header"
+            bordered
+          />
+        </Panel>
 
-      {/* Invoice Details Table */}
-      <Title level={5} style={{ textAlign: 'center', backgroundColor: '#1d4ed8', color: 'white', padding: '5px', borderRadius: '5px', marginTop: '20px' }}>Invoice Details</Title>
-      <Table
-        dataSource={invoiceData}
-        columns={invoiceColumns}
-        pagination={false}
-        size="small"
-        className="custom-table-header"
-        bordered
-      />
+        <Panel header="Invoice Details" key="3">
+          <Table
+            dataSource={invoiceData}
+            columns={invoiceColumns}
+            pagination={false}
+            size="small"
+            className="custom-table-header"
+            bordered
+          />
+        </Panel>
+      </Collapse>
 
       {/* Underwriter Notes */}
       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
@@ -175,11 +178,14 @@ const QuoteSummary = () => {
           style={{ marginTop: 10, width: '100%', border: '2px solid gray' }}
         />
       </div>
+
       <Row gutter={16}>
         <Col span={20}></Col>
         <Col span={4}>
           <div>
-            <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }}><b>Submit</b></button>
+            <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }}>
+              <b>Next</b>
+            </button>
           </div>
         </Col>
       </Row>

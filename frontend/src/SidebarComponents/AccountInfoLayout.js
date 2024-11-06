@@ -12,7 +12,7 @@ import HeaderDesign from '../layout/HeaderDesign';
 
 import { Divider } from 'antd';
 
-import { Link, Outlet } from 'react-router-dom'; 
+import { Link, Outlet } from 'react-router-dom';
 import PolicyCards from '../layout/PolicyCards 1';
 import Sublob from '../layout/Sublobs';
 import AccountInfo from './AccountInfo';
@@ -30,7 +30,7 @@ const AccountLayoutDesign = () => {
     // const handleSublobClick = () => {
     //     setShowAccountInfo(false);
     // };
-console.log("showaccount", showAccountInfo);
+    console.log("showaccount", showAccountInfo);
     return (
         <Layout>
             <Sider
@@ -51,10 +51,10 @@ console.log("showaccount", showAccountInfo);
                 />
                 {!collapsed && <h4 style={{ color: 'white', textAlign: 'center' }}>Underwriting Workbench</h4>}
 
-                
 
-             
-               
+
+
+
 
                 <Divider
                     variant="dotted"
@@ -64,8 +64,8 @@ console.log("showaccount", showAccountInfo);
                     }}
                 />
 
-<Menu theme="dark" mode="inline"  >
-                    
+                <Menu theme="dark" mode="inline"  >
+
                     <Menu.Item key="1" icon={<HomeOutlined />}>
                         {!collapsed ? <Link to="/dashboard">Dashboard</Link> : ''}
                     </Menu.Item>
@@ -78,9 +78,9 @@ console.log("showaccount", showAccountInfo);
                     <Menu.Item key="4" icon={<InfoCircleOutlined />}>
                         {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
                     </Menu.Item>
-                    <Menu.Item key="5" icon={<SettingFilled />}>
+                    {/* <Menu.Item key="5" icon={<SettingFilled />}>
                         {!collapsed ? <Link to="/createsubmission">Submission</Link> : ''}
-                    </Menu.Item>
+                    </Menu.Item> */}
                 </Menu>
             </Sider>
 
@@ -98,14 +98,14 @@ console.log("showaccount", showAccountInfo);
                 >
                     <PolicyCards />
                     <Sublob showAccount={setShowAccountInfo} /> {/* Pass the function to Sublob */}
-                    
+
                     {/* Conditionally render AccountInfo based on state */}
                     {showAccountInfo && <AccountInfo />}
 
                     <Outlet />
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
-                    Underwriter Portal {new Date().getFullYear()} 
+                    Underwriter Portal {new Date().getFullYear()}
                 </Footer>
             </Layout>
         </Layout>
