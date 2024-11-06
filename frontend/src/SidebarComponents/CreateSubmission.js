@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CreateSubmission.module.css";
 import { Col, Row, Tooltip, Button, Radio, Form, Select } from "antd";
-import FormInput from "../components/FormInput ";
+import FormInput from "../components/FormInput";
 import Documents from "../layout/RightSidebar";
 import { EditOutlined, PlusCircleOutlined, SearchOutlined } from "@ant-design/icons";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate

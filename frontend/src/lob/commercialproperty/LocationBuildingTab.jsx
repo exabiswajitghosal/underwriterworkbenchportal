@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './LocationComponent.module.css';
 import { Col, Row, Select, Button, Radio } from "antd";
-import FormInput from "../../components/FormInput ";
+import FormInput from "../../components/FormInput";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Rpa from "./Rpa";
 

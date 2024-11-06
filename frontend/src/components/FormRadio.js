@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Radio } from "antd";
-import { RadioBtnBox } from "styles/components/FormControl";
+// import { RadioBtnBox } from "styles/components/FormControl";
 
 const FormRadio = ({
   name,
@@ -12,7 +12,7 @@ const FormRadio = ({
   ...rest
 }) => {
   return (
-    <RadioBtnBox>
+    // <RadioBtnBox>
       <Form.Item
         name={name}
         label={label}
@@ -32,7 +32,7 @@ const FormRadio = ({
           ))}
         </Radio.Group>
       </Form.Item>
-    </RadioBtnBox>
+    // </RadioBtnBox>
   );
 };
 
