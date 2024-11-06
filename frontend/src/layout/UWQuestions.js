@@ -20,6 +20,8 @@ const uwquestionsData = [
 const UWQuestions = () => {
   const [questions, setQuestions] = useState(uwquestionsData);
   const [notes, setNotes] = useState("This is a uwquestions overall feedback.");
+  const [uwnotes, setUWNotes] = useState("");
+
 
   const handleResponseChange = (index, newResponse) => {
     const updatedQuestions = [...questions];
@@ -73,18 +75,24 @@ const UWQuestions = () => {
             {/* </div> */}
           </div>
 
-          {/* Notes Section */}
-          <h4 style={{ marginTop: '20px' }}>Notes:</h4>
+          <h4 style={{ marginTop: '20px' }}>System recommended decision:</h4>
           <textarea 
             className="notes" 
             placeholder="" 
-            value={notes} 
-            onChange={(e) => setNotes(e.target.value)}
+            value={uwnotes}
+            onChange={(e) => setUWNotes(e.target.value)}
           />
 
-          {/* Decision Section */}
-          <div className="decision-section">
-            <h4>Decision:</h4>
+
+         {/* Override Decision Section */}
+          <div className="override-decision-container" style={{marginBottom:20}}>
+            <h4>Override Decision</h4>
+            <textarea 
+              className="notes" 
+              placeholder="" 
+              value={notes} 
+              onChange={(e) => setNotes(e.target.value)}
+            />
             <div className="decision-container">
               <ModalDesign />
             </div>
