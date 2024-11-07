@@ -217,7 +217,7 @@ const [lossDetails, setLossDetails] = useState(claimsData);
               className={`tablinks ${activeTab === "Claims" ? "active" : ""}`}
               onClick={(event) => openMainTab(event, "Claims")}
             >
-              Claims
+             Loss Summary
             </Button>
           </div>
 
@@ -336,7 +336,7 @@ const [lossDetails, setLossDetails] = useState(claimsData);
           {activeTab === "Claims" && (
             <div id="Claims" className="tabcontent">
               <div style={{ marginTop: "20px" }}>
-                <h3>Loss Summary</h3>
+                <h3>Loss Summary Details</h3>
                 <Button type="primary" onClick={showLossSummaryModal} style={{ marginBottom: "10px" }}>
                   Add Loss
                 </Button>
