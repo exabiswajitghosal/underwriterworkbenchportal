@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from './LocationComponent.module.css';
-import { Col, Row, Select, Button, Radio } from "antd";
+import { Col, Row, Select, Button, Radio, Checkbox } from "antd";
 import FormInput from "../../components/FormInput";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Rpa from "./Rpa";
@@ -56,6 +56,8 @@ export function LocationBuildingTab() {
     periodOfCoverages:"",
     limit:"",
     monthlyLimit:"",
+    showFloodFields: false,
+    showEarthquakeFields: false,
   });
   const [selectedBuildingIndex, setSelectedBuildingIndex] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -111,6 +113,8 @@ export function LocationBuildingTab() {
       periodOfCoverages:"",
       limit:"",
       monthlyLimit:"",
+      showFloodFields: false,
+    showEarthquakeFields: false,
     });
   };
 
@@ -120,6 +124,7 @@ export function LocationBuildingTab() {
       [name]: value,
     });
   };
+  
 
   const addOrUpdateBuilding = () => {
     const updatedBuildings = locationData[selectedLocation] || [];
@@ -184,6 +189,8 @@ export function LocationBuildingTab() {
       periodOfCoverages:"",
       limit:"",
       monthlyLimit:"",
+      showFloodFields: false,
+    showEarthquakeFields: false,
       });
   };
 
@@ -249,6 +256,8 @@ export function LocationBuildingTab() {
         periodOfCoverages:"",
         limit:"",
         monthlyLimit:"",
+        showFloodFields: false,
+    showEarthquakeFields: false,
 
        });
       setIsEditing(false);
@@ -259,7 +268,20 @@ export function LocationBuildingTab() {
   const nextTab = () => {
     setActiveTab("Tab2");
   };
+ 
+  const handleAdditionalCoverageInputChange = (field, value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
 
+  const handleCheckboxChange = (field) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [field]: !prevData[field],
+    }));
+  };
   return (
     <div className={styles.container}>
       <div style={{ display: "flex", alignItems: "center", marginBottom: "80px", marginTop: "30px", fontSize: "18px" }}>
@@ -559,7 +581,7 @@ export function LocationBuildingTab() {
 
     <div >
       <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h5 className={styles.widgetTitle}>Building Coverage</h5>
+        <h5 className={styles.widgetTitle}>Property Damage Coverage</h5>
         {/*<div  style={{ display: "flex", alignItems: "center" }}>
                 <Tooltip title="Edit">
                     <Button  shape="circle" onClick={handleEditBasicInfo} icon={<EditOutlined />} />
@@ -573,15 +595,15 @@ export function LocationBuildingTab() {
       </div>
 
       <Row gutter={22}>
-        <Col span={6}>
-          <FormInput
+        {/* <Col span={6}>
+           <FormInput
             label={<span style={{ fontSize: "15px" }}>Cause of Loss</span>}
             value={formData.causeofLoss}
             required={true}
             onChange={(e) => handleInputChange("causeofLoss", e.target.value)}
 
-          />
-        </Col>
+          /> 
+        </Col> */}
         <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Exclude Vandalism</span>}
@@ -691,7 +713,7 @@ export function LocationBuildingTab() {
 
           />
         </Col>
-        <Col span={6}>
+        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Cause of loss</span>}
             value={formData.causeofLoss2}
@@ -699,7 +721,7 @@ export function LocationBuildingTab() {
             onChange={(e) => handleInputChange("causeofLoss2", e.target.value)}
 
           />
-        </Col>
+        </Col> */}
         <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Exclude Vandalism</span>}
@@ -764,7 +786,7 @@ export function LocationBuildingTab() {
       </div>
 
       <Row gutter={22}>
-        <Col span={6}>
+        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Income Limit- not manufactured or rental $</span>}
             value={formData.incomeLimitManufacture}
@@ -773,8 +795,8 @@ export function LocationBuildingTab() {
 
 
           />
-        </Col>
-        <Col span={6}>
+        </Col> */}
+        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Income Limit- Mfg only $</span>}
             value={formData.incomeLimitMfg}
@@ -783,10 +805,10 @@ export function LocationBuildingTab() {
 
 
           />
-        </Col>
+        </Col> */}
         <Col span={6}>
           <FormInput
-            label={<span style={{ fontSize: "15px" }}>Income Limit- Rental only $</span>}
+            label={<span style={{ fontSize: "15px" }}>Income Limit $</span>}
             value={formData.incomeLimitrental}
             required={true}
             onChange={(e) => handleInputChange("incomeLimitrental", e.target.value)}
@@ -801,7 +823,7 @@ export function LocationBuildingTab() {
             onChange={(e) => handleInputChange("coinsurance3", e.target.value)}
           />
         </Col>
-        <Col span={6}>
+        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Cause of loss</span>}
             value={formData.causeofLoss3}
@@ -809,7 +831,7 @@ export function LocationBuildingTab() {
             onChange={(e) => handleInputChange("causeofLoss3", e.target.value)}
 
           />
-        </Col>
+        </Col> */}
         <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Waiting Period</span>}
@@ -835,47 +857,71 @@ export function LocationBuildingTab() {
     </div>
 
 
-    <div >
+    <div>
       <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h5 className={styles.widgetTitle}>Extra Expense Coverage</h5>
-   
+        <h5 className={styles.widgetTitle}>Additional Coverage</h5>
       </div>
 
-      <Row gutter={22}>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Limit</span>}
-            value={formData.limit}
-            required={true}
-            onChange={(e) => handleInputChange("limit", e.target.value)}
-          />
+      <Row gutter={22} style={{ marginBottom: '20px' }}>
+        <Col>
+          <Checkbox
+            checked={formData.showFloodFields}
+            onChange={() => handleCheckboxChange('showFloodFields')}
+          >
+            Flood Coverage
+          </Checkbox>
         </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Monthly Limit</span>}
-            value={formData.monthlyLimit}
-            required={true}
-            onChange={(e) => handleInputChange("monthlyLimit", e.target.value)}
-
-          />
+        <Col>
+          <Checkbox
+            checked={formData.showEarthquakeFields}
+            onChange={() => handleCheckboxChange('showEarthquakeFields')}
+          >
+            Earthquake Coverage
+          </Checkbox>
         </Col>
-
-
-
-
-
       </Row>
-      <Row justify="end" style={{ marginTop: "20px" ,marginBottom: "20px"}}>
-                  <Button type="primary"
-                    onClick={addOrUpdateBuilding}
-                    style={{ marginRight: "10px" }}
-                  >
-                    {isEditing ? "OK" : "Add Building"}
-                  </Button>
-                  <Button type="primary" onClick={nextTab}>
-                    Next
-                  </Button>
-                </Row>
+
+      {formData.showFloodFields && (
+        <Row gutter={22}>
+          <Col span={6}>
+            <FormInput
+              label={<span style={{ fontSize: "15px" }}>Flood Coverage Limit</span>}
+              value={formData.limit}
+              required={true}
+              onChange={(e) => handleAdditionalCoverageInputChange("limit", e.target.value)}
+            />
+          </Col>
+          <Col span={6}>
+            <FormInput
+              label={<span style={{ fontSize: "15px" }}>Flood Coverage Monthly Limit</span>}
+              value={formData.monthlyLimit}
+              required={true}
+              onChange={(e) => handleAdditionalCoverageInputChange("monthlyLimit", e.target.value)}
+            />
+          </Col>
+        </Row>
+      )}
+
+      {formData.showEarthquakeFields && (
+        <Row gutter={22}>
+          <Col span={6}>
+            <FormInput
+              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Limit</span>}
+              value={formData.limit}
+              required={true}
+              onChange={(e) => handleAdditionalCoverageInputChange("limit", e.target.value)}
+            />
+          </Col>
+          <Col span={6}>
+            <FormInput
+              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Monthly Limit</span>}
+              value={formData.monthlyLimit}
+              required={true}
+              onChange={(e) => handleAdditionalCoverageInputChange("monthlyLimit", e.target.value)}
+            />
+          </Col>
+        </Row>
+      )}
     </div>
 
   </Col>
