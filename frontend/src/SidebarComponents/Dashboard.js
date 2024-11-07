@@ -191,28 +191,28 @@ const Dashboard = () => {
       filteredValue: filteredInfo.priority || null,
       onFilter: (value, record) => record.priority.includes(value),
       // Render with custom styles based on priority level
-      render: (priority) => {
-        let backgroundColor;
-        if (priority === 'High') backgroundColor = '#ff4d4f';    // Red
-        else if (priority === 'Medium') backgroundColor = '#fa8c16'; // Orange
-        else if (priority === 'Low') backgroundColor = '#28a745';   // Green
+      // render: (priority) => {
+      //   let backgroundColor;
+      //   if (priority === 'High') backgroundColor = '#ff4d4f';    // Red
+      //   else if (priority === 'Medium') backgroundColor = '#fa8c16'; // Orange
+      //   else if (priority === 'Low') backgroundColor = '#28a745';   // Green
   
-        return (
-          <span
-          style={{
-            backgroundColor,
-            color: 'black',
-            padding: '6px 12px',
-            borderRadius: '4px',
-            display: 'inline-block',
-            minWidth: '80px',    // Fixed width for uniformity
-            textAlign: 'center', // Centers text within the box
-          }}
-        >
-            {priority}
-          </span>
-        );
-      },
+      //   return (
+      //     <span
+      //     style={{
+      //       backgroundColor,
+      //       color: 'black',
+      //       padding: '6px 12px',
+      //       borderRadius: '4px',
+      //       display: 'inline-block',
+      //       minWidth: '80px',    // Fixed width for uniformity
+      //       textAlign: 'center', // Centers text within the box
+      //     }}
+      //   >
+      //       {priority}
+      //     </span>
+      //   );
+      // },
     },
     {
       title: 'New Submission',

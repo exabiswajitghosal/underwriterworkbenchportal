@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Table, Input, Typography, Button, Tooltip, Row, Col, Select } from 'antd';
+import { Table, Input, Typography, Button, Tooltip, Row, Col, Select, Collapse } from 'antd';
 import { EditOutlined, SaveOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 const { TextArea } = Input;
 const { Title } = Typography;
-
+const { Panel } = Collapse;
 const PremiumSummary = () => {
   const [editing, setEditing] = useState(false); // Global editing state
   const [selectedBuilding, setSelectedBuilding] = useState(null); // Selected building state
 
   // Data for each building
   const buildingData = {
-    1: [
+    'Location 1': [
       { key: 1, description: 'Building Limit', coverageAmount: '', premium: '' },
       { key: 2, description: 'Annual Rents and Fees', coverageAmount: '', premium: '' },
       { key: 3, description: 'Flood Coverage', coverageAmount: '', premium: '' },
@@ -21,7 +21,7 @@ const PremiumSummary = () => {
       { key: 6, description: 'BPP Limit', coverageAmount: '', premium: '' },
       { key: 7, description: 'Property Deductible', coverageAmount: '', premium: '' },
     ],
-    2: [
+    'Location 2': [
       { key: 1, description: 'Building Limit', coverageAmount: '', premium: '' },
       { key: 2, description: 'Annual Rents and Fees', coverageAmount: '', premium: '' },
       { key: 3, description: 'Flood Coverage', coverageAmount: '', premium: '' },
@@ -96,17 +96,18 @@ const PremiumSummary = () => {
 
   return (
     <div className="premium-summary" id="premiumSummary">
-      <span style={{ marginRight: '10px', fontSize: '18px' }}>Building No.:</span>
+      <span style={{ marginRight: '10px', fontSize: '18px' }}>Select Location:</span>
       <Select
         placeholder="Select Building Number"
         onChange={handleBuildingChange}
-        style={{ width: 100, height: 50, marginTop: 40 }}
+        style={{ width: 200, height: 50, marginTop: 40 }}
       >
-        <Option value={1}>1</Option>
-        <Option value={2}>2</Option>
+                 <Option value="Location 1">1234 Elm Steem</Option>
+                 <Option value="Location 2">123 Innovation Drive</Option>
       </Select>
 
       {/* Edit/Save button */}
+      {selectedBuilding && (
       <Row gutter={16}>
         <Col span={22}></Col>
         <Col span={2}>
@@ -127,10 +128,12 @@ const PremiumSummary = () => {
             style={{ marginBottom: 10, marginLeft: 16, fontSize: 20, marginTop: 1 }}
           />
         </Col>
-      </Row>
+      </Row>)}
 
       {/* Table */}
       {selectedBuilding && (
+        <Collapse defaultActiveKey={['1']} style={{ marginTop: '20px' }}>
+           <Panel header="Building 1" key="1">
         <Table
           dataSource={data}
           columns={columns}
@@ -139,7 +142,28 @@ const PremiumSummary = () => {
           className="custom-table-header"
           bordered
           style={{ marginTop: 2 }}
-        />)}
+        />
+        </Panel>
+        <Panel header="Building 2" key="2">
+        <Table
+          dataSource={data}
+          columns={columns}
+          pagination={false}
+          size="small"
+          className="custom-table-header"
+          bordered
+          style={{ marginTop: 2 }}
+        />
+        </Panel>
+        </Collapse>
+      
+      
+      
+      
+      
+      
+      
+      )}
      
      {selectedBuilding && (
       <Table
@@ -154,12 +178,13 @@ const PremiumSummary = () => {
         ]}
         pagination={false}
         size="small"
+        style={{marginTop: "30px"}}
         bordered
       /> )}
 
       {/* Underwriter Notes */}
       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-        <Title level={4}>UW Notes:</Title>
+        <Title level={4}>Notes:</Title>
         <TextArea
           placeholder="Enter notes here"
           rows={4}

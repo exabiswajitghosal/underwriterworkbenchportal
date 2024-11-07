@@ -171,7 +171,7 @@ const QuoteSummary = () => {
 
       {/* Underwriter Notes */}
       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-        <Title level={4}>UW Notes:</Title>
+        <Title level={4}>Notes:</Title>
         <Input.TextArea
           placeholder="Enter notes here"
           rows={4}

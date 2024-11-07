@@ -12,12 +12,12 @@ const SearchInsured = () => {
     // const [insuredType, setInsuredType] = useState('Individual');
     const [searchCriteria, setSearchCriteria] = useState({
         name: '',
-        programName: '',
-        productName: '',
-        occupancyType: '',
+        programName: null,
+        productName: null,
+        occupancyType: null,
         agencyName: '',
-        primaryRisk: '',
-        primaryRiskState: ''
+        primaryRisk: null,
+        primaryRiskState: null
     });
     const [results, setResults] = useState([]);
     const [showNoResultsMessage, setShowNoResultsMessage] = useState(false);
@@ -99,12 +99,12 @@ const SearchInsured = () => {
         setShowNoResultsMessage(filteredData.length === 0);
         setSearchCriteria({
             name: '',
-            programName: '',
-            productName: '',
-            occupancyType: '',
+            programName: null,
+            productName: null,
+            occupancyType: null,
             agencyName: '',
-            primaryRisk: '',
-            primaryRiskState: ''
+            primaryRisk: null,
+            primaryRiskState: null
         })
         if (filteredData.length === 0) {
             message.warning('No results found. Please try again.');

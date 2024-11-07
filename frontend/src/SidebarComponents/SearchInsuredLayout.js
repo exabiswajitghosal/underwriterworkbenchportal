@@ -61,7 +61,7 @@ const SearchInsuredLayout = () => {
                         {!collapsed ? <Link to="/dashboard">Dashboard</Link> : ''}
                     </Menu.Item>
                     <Menu.Item key="2" icon={<FileAddOutlined />}>
-                        {!collapsed ? <Link to="/createsubmission">Create Submission</Link> : ''}
+                        {!collapsed ? <Link to="/submission">Create Submission</Link> : ''}
                     </Menu.Item>
                     <Menu.Item key="3" icon={<AuditOutlined />}>
                         {!collapsed ? <Link to="/audit-trail">Audit Trail</Link> : ''}
@@ -69,9 +69,9 @@ const SearchInsuredLayout = () => {
                     <Menu.Item key="4" icon={<InfoCircleOutlined />}>
                         {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
                     </Menu.Item>
-                    <Menu.Item key="5" icon={<SettingFilled />}>
+                    {/* <Menu.Item key="5" icon={<SettingFilled />}>
                         {!collapsed ? <Link to="/createsubmission">Submission</Link> : ''}
-                    </Menu.Item>
+                    </Menu.Item> */}
                 </Menu>
             </Sider>
 

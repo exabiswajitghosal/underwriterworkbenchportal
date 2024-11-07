@@ -31,10 +31,19 @@ const LocationCard = () => {
               marginBottom: '20px',
             }}
           >
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Flood Risk Score: {floodScore}</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Flood Zone: AE</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Elevation Variance: -1.1ft</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Property Elevation: 6ft</p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Flood Risk Score</span> <span>{floodScore}</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Flood Zone</span> <span>AE</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Elevation Variance</span> <span>-1.1ft</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Property Elevation</span> <span>6ft</span>
+            </p>
+
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
@@ -69,9 +78,16 @@ const LocationCard = () => {
               backgroundColor: getBackgroundColor(wildfireScore),
             }}
           >
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Wild Risk Score: {wildfireScore}</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Risk Description: Urban</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Number of Past Fires: 0</p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Wild Risk Score</span> <span>{wildfireScore}</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Risk Description</span> <span>Urban</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Number of Past Fires</span> <span>0</span>
+            </p>
+
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
@@ -106,7 +122,10 @@ const LocationCard = () => {
               backgroundColor: getBackgroundColor(earthquakeScore), // Use a different threshold if needed
             }}
           >
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>USA Earthquake Risk Score: {earthquakeScore}</p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>USA Earthquake Risk Score</span> <span>{earthquakeScore}</span>
+            </p>
+
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
@@ -144,10 +163,19 @@ const LocationCard = () => {
               backgroundColor: getBackgroundColor(stormSurgeScore), // Custom threshold if needed
             }}
           >
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Storm Surge: {stormSurgeScore}</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Hail Probability: Very low</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Tornado Exposure: 5-Very High</p>
-            <p style={{ color: 'black', margin: 0, fontSize: '16px' }}>Wind Pool Eligibility: Out</p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Storm Surge</span> <span>{stormSurgeScore}</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Hail Probability</span> <span>Very low</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Tornado Exposure</span> <span>5-Very High</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Wind Pool Eligibility</span> <span>Out</span>
+            </p>
+
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
@@ -181,31 +209,36 @@ const LocationCard = () => {
               backgroundColor: getBackgroundColor(sinkholeScore), // Custom threshold if needed
             }}
           >
-          <p style={{ color: 'black', margin: 0 ,fontSize:"16px"}}>Sinkhole Risk: Extreme</p>
-          <p style={{ color: 'black', margin: 0 ,fontSize:"16px"}}>Sinkhole Score: {sinkholeScore}</p>
-  
-          
-          <Row gutter={5} style={{ marginTop: 'auto' }}>
-          
-          <Col span={12}>
-            <button
-              style={{
-                width: '100%',
-                height:"30px",
-                backgroundColor: '#003f5c',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                padding: '5px 0',
-                marginTop:"54px"
-                
-              }}
-            >
-              <b style={{fontSize:"12px"}}>View More</b>
-            </button>
-          </Col>
-        </Row>
-       </Card>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Sinkhole Risk</span> <span>Extreme</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Sinkhole Score</span> <span>{sinkholeScore}</span>
+            </p>
+
+
+
+            <Row gutter={5} style={{ marginTop: 'auto' }}>
+
+              <Col span={12}>
+                <button
+                  style={{
+                    width: '100%',
+                    height: "30px",
+                    backgroundColor: '#003f5c',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    padding: '5px 0',
+                    marginTop: "54px"
+
+                  }}
+                >
+                  <b style={{ fontSize: "12px" }}>View More</b>
+                </button>
+              </Col>
+            </Row>
+          </Card>
         </Col>
         <Col span={8}>
           <Card
@@ -221,29 +254,34 @@ const LocationCard = () => {
               marginBottom: '20px',
             }}
           >
-            <p style={{ color: 'black', margin: 0 ,fontSize:"16px"}}>Fire Protected Class: Fully Protected</p>
-            <p style={{ color: 'black', margin: 0 ,fontSize:"16px"}}>Distance from Fire Station: 2.1 Miles</p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Fire Protected Class</span> <span>Fully Protected</span>
+            </p>
+            <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Distance from Fire Station</span> <span>2.1 Miles</span>
+            </p>
+
             <Row gutter={5} style={{ marginTop: 'auto' }}>
-          
-          <Col span={12}>
-            <button
-              style={{
-                width: '100%',
-                height:"30px",
-                backgroundColor: '#003f5c',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                padding: '5px 0',
-                marginTop:"55px"
-                
-              }}
-            >
-              <b style={{fontSize:"12px"}}>View More</b>
-            </button>
-          </Col>
-        </Row>
-            </Card>
+
+              <Col span={12}>
+                <button
+                  style={{
+                    width: '100%',
+                    height: "30px",
+                    backgroundColor: '#003f5c',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    padding: '5px 0',
+                    marginTop: "55px"
+
+                  }}
+                >
+                  <b style={{ fontSize: "12px" }}>View More</b>
+                </button>
+              </Col>
+            </Row>
+          </Card>
         </Col>
       </Row>
     </>

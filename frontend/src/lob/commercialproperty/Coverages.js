@@ -57,30 +57,25 @@ const Coverages = () => {
     {
       title: 'Client Requested Coverage Amount',
       dataIndex: 'coverageAmount',
-      render: (text, record) => (
-        editing ? (
-          <Input
-            value={text}
-            onChange={(e) => handleFieldChange(record.key, 'coverageAmount', e.target.value)}
-          />
-        ) : (
-          text
-        )
-      ),
+      render: (text) => <span className="coverageAmount">{text}</span>,
+      // render: (text, record) => (
+      //   editing ? (
+      //     <Input
+      //       value={text}
+      //       onChange={(e) => handleFieldChange(record.key, 'coverageAmount', e.target.value)}
+      //     />
+      //   ) : (
+      //     text
+      //   )
+      // ),
     },
     {
       title: 'Client Requested Deductible',
       dataIndex: 'deductible',
-      render: (text, record) => (
-        editing ? (
-          <Input
-            value={text}
-            onChange={(e) => handleFieldChange(record.key, 'deductible', e.target.value)}
-          />
-        ) : (
-          text
-        )
-      ),
+      render: (text) => <span className="deductible">{text}</span>,
+      // render: (text, record) => (
+    
+    
     },
     {
       title: 'Approved Coverage Amount',
@@ -160,7 +155,7 @@ const Coverages = () => {
 
       {/* UW Notes section */}
       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-        <Title level={4}>UW Notes:</Title>
+        <Title level={4}>Notes:</Title>
         <Input.TextArea
           placeholder="Enter notes here"
           rows={4}

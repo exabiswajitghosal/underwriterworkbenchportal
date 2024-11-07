@@ -12,7 +12,7 @@ import Bind from '../lob/commercialproperty/Bind';
 import Coverages from '../lob/commercialproperty/Coverages';
 
 const Sublob2 = (props) => {
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState('policyInfo');
   
   const showSublob = (sectionId) => {
     setActiveSection(sectionId);
