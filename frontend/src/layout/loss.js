@@ -223,7 +223,7 @@ const [lossDetails, setLossDetails] = useState(claimsData);
 
           {activeTab === "PriorPolicies" && (
             <div id="PriorPolicies" className="tabcontent" style={{ marginBottom: "20px" }} >
-              <Button type="primary" onClick={showAddPolicyModal} style={{ marginBottom: "10px" }}>
+              <Button type="primary" onClick={showAddPolicyModal} style={{ marginBottom: "10px",marginTop:'8px' }}>
                 Add Policy
               </Button>
               {selectedPolicies.length > 0 && (

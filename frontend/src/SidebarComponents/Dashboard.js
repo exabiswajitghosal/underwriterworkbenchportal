@@ -190,29 +190,6 @@ const Dashboard = () => {
       filters: [{ text: 'High', value: 'High' }, { text: 'Medium', value: 'Medium' }, { text: 'Low', value: 'Low' }],
       filteredValue: filteredInfo.priority || null,
       onFilter: (value, record) => record.priority.includes(value),
-      // Render with custom styles based on priority level
-      // render: (priority) => {
-      //   let backgroundColor;
-      //   if (priority === 'High') backgroundColor = '#ff4d4f';    // Red
-      //   else if (priority === 'Medium') backgroundColor = '#fa8c16'; // Orange
-      //   else if (priority === 'Low') backgroundColor = '#28a745';   // Green
-  
-      //   return (
-      //     <span
-      //     style={{
-      //       backgroundColor,
-      //       color: 'black',
-      //       padding: '6px 12px',
-      //       borderRadius: '4px',
-      //       display: 'inline-block',
-      //       minWidth: '80px',    // Fixed width for uniformity
-      //       textAlign: 'center', // Centers text within the box
-      //     }}
-      //   >
-      //       {priority}
-      //     </span>
-      //   );
-      // },
     },
     {
       title: 'New Submission',
@@ -249,10 +226,6 @@ const Dashboard = () => {
           <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>New Business vs Renewal Premium $</div>
           <canvas ref={donutChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
         </div>
-        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
-          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Map</div>
-          <img src="./usa.svg" alt="Map of USA" style={{ width: '100%', height: '70%', objectFit: 'contain' }} />
-        </div>
       </div>
 
       <Table
@@ -264,7 +237,6 @@ const Dashboard = () => {
         })}
         pagination={{ pageSize: 5 }}
       />
-      <Button type="primary" onClick={() => navigate('/submission')}>Submission</Button>
     </div>
   );
 };

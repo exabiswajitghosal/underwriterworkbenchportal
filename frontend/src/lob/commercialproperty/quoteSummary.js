@@ -82,13 +82,15 @@ const QuoteSummary = () => {
   return (
     <div className="quote-summary" ref={summaryRef}>
       {/* PDF Icon Button */}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
+      <Row gutter={16}>
+        <Col span={21}></Col>
+        <Col span={3}>
         <Button
           type="primary"
           icon={<FilePdfOutlined />}
           onClick={generatePDF} // Call the PDF generation function on click
           style={{
-            width: '15%',
+            width: '100%',
             color: '#1d4ed8',
             backgroundColor: 'white',
             borderRadius: '5px',
@@ -96,7 +98,8 @@ const QuoteSummary = () => {
         >
           Download PDF
         </Button>
-      </div>
+        </Col>
+      </Row>
 
       {/* Header Information */}
       <Title level={5}>Quote Summary</Title>

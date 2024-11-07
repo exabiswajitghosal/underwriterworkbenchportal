@@ -3,6 +3,7 @@ import { Button, Row, Col } from 'antd';
 
 
 import styles from "./LocationComponent.module.css";
+import '../../layout/Tab.css'
 import LocationTable from './LocationTable';
 import LocationBuildingTab from "./LocationBuildingTab"
 import OverallInsights from "./OverallInsights"
@@ -67,10 +68,6 @@ const LocationTab = () => {
         {activeTab === "Tab2" && (
           <div id="Tab2" className="tabcontent">
             <LocationBuildingTab />
-
-
-
-
           </div>)}
         {activeTab === "Tab3" && (
           <div id="Tab3" className="tabcontent">
