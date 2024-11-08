@@ -54,8 +54,10 @@ export function LocationBuildingTab() {
     causeofLoss3:"",
     waitingPeriod:"",
     periodOfCoverages:"",
-    limit:"",
-    monthlyLimit:"",
+    floodCoveragelimit:"",
+    floodCoveragemonthlyLimit:"",
+    earthquakeCoveragelimit:"",
+    earthquakeCoveragemonthlylimit:"",
     showFloodFields: false,
     showEarthquakeFields: false,
   });
@@ -111,8 +113,10 @@ export function LocationBuildingTab() {
       causeofLoss3:"",
       waitingPeriod:"",
       periodOfCoverages:"",
-      limit:"",
-      monthlyLimit:"",
+      floodCoveragelimit:"",
+      floodCoveragemonthlyLimit:"",
+      earthquakeCoveragelimit:"",
+      earthquakeCoveragemonthlylimit:"",
       showFloodFields: false,
     showEarthquakeFields: false,
     });
@@ -187,8 +191,10 @@ export function LocationBuildingTab() {
       causeofLoss3:"",
       waitingPeriod:"",
       periodOfCoverages:"",
-      limit:"",
-      monthlyLimit:"",
+      floodCoveragelimit:"",
+      floodCoveragemonthlyLimit:"",
+      earthquakeCoveragelimit:"",
+      earthquakeCoveragemonthlylimit:"",
       showFloodFields: false,
     showEarthquakeFields: false,
       });
@@ -254,8 +260,10 @@ export function LocationBuildingTab() {
         causeofLoss3:"",
         waitingPeriod:"",
         periodOfCoverages:"",
-        limit:"",
-        monthlyLimit:"",
+        floodCoveragelimit:"",
+        floodCoveragemonthlyLimit:"",
+        earthquakeCoveragelimit:"",
+        earthquakeCoveragemonthlylimit:"",
         showFloodFields: false,
     showEarthquakeFields: false,
 
@@ -661,7 +669,7 @@ export function LocationBuildingTab() {
         </Col>
         <Col span={6}>
           <FormInput
-            label={<span style={{ fontSize: "15px" }}>Building limit</span>}
+            label={<span style={{ fontSize: "15px" }}>Building Limit</span>}
             value={formData.buildingLimit}
             required={true}
             onChange={(e) => handleInputChange("buildingLimit", e.target.value)}
@@ -886,17 +894,17 @@ export function LocationBuildingTab() {
           <Col span={6}>
             <FormInput
               label={<span style={{ fontSize: "15px" }}>Flood Coverage Limit</span>}
-              value={formData.limit}
+              value={formData.floodCoveragelimit}
               required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("limit", e.target.value)}
+              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
             />
           </Col>
           <Col span={6}>
             <FormInput
               label={<span style={{ fontSize: "15px" }}>Flood Coverage Monthly Limit</span>}
-              value={formData.monthlyLimit}
+              value={formData.floodCoveragemonthlyLimit}
               required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("monthlyLimit", e.target.value)}
+              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
             />
           </Col>
         </Row>
@@ -907,17 +915,18 @@ export function LocationBuildingTab() {
           <Col span={6}>
             <FormInput
               label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Limit</span>}
-              value={formData.limit}
+              value={formData.earthquakeCoveragelimit
+              }
               required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("limit", e.target.value)}
+              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
             />
           </Col>
           <Col span={6}>
             <FormInput
               label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Monthly Limit</span>}
-              value={formData.monthlyLimit}
+              value={formData.earthquakeCoveragemonthlylimit}
               required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("monthlyLimit", e.target.value)}
+              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
             />
           </Col>
         </Row>
@@ -927,6 +936,20 @@ export function LocationBuildingTab() {
   </Col>
 
 </Row>
+<Row justify="end" style={{ marginTop: "20px" ,marginBottom: "20px"}}>
+        <Col span={20}></Col>
+        <Col span={4}>
+                  <Button type="primary"
+                    onClick={addOrUpdateBuilding}
+                    style={{ marginRight: "10px" }}
+                  >
+                    {isEditing ? "OK" : "Add Building"}
+                  </Button>
+                  <Button type="primary" onClick={nextTab}>
+                    Next
+                  </Button>
+                  </Col>
+                </Row>
 </div>
             </div>
           )}

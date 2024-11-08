@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './LossInfo.css';  // Import the CSS file
-import { Button, Card, Col, Modal, Row, Input, DatePicker } from 'antd';
+import { Button, Card, Col, Modal, Row, Input, DatePicker, Checkbox } from 'antd';
 
 const LossInfo = () => {
   const [activeTab, setActiveTab] = useState("PriorPolicies");
@@ -8,7 +8,7 @@ const LossInfo = () => {
   const [isLossSummaryModalVisible, setIsLossSummaryModalVisible] = useState(false);
   const [isLossDetailModalVisible, setIsLossDetailModalVisible] = useState(false);
   const lossdata = [
-    { policyYear:'2024', annualPremium:'500$', claims:'0', openClaims:'1', totalInsuredLosses:'10 000 $',totalPaidLosses:'200$', expenses:'100$' }
+    { policyYear: '2024', annualPremium: '500$', claims: '0', openClaims: '1', totalInsuredLosses: '10 000 $', totalPaidLosses: '200$', expenses: '100$' }
   ]
   const [newPolicy, setNewPolicy] = useState({
     carrier: "",
@@ -46,7 +46,7 @@ const LossInfo = () => {
   const [selectedPolicies, setSelectedPolicies] = useState([]);
   const [selectedClaim, setSelectedClaim] = useState(null);
   const [lossSummaries, setLossSummaries] = useState(lossdata);
-  
+
 
   const claimsData = [
     {
@@ -90,7 +90,7 @@ const LossInfo = () => {
     }
   ];
 
-const [lossDetails, setLossDetails] = useState(claimsData);
+  const [lossDetails, setLossDetails] = useState(claimsData);
   const openMainTab = (event, tabName) => {
     setActiveTab(tabName);
   };
@@ -201,8 +201,42 @@ const [lossDetails, setLossDetails] = useState(claimsData);
       return sum + losses;
     }, 0).toFixed(2);  // Fixed to two decimal places
   };
+  const [selectedLossSummary, setSelectedLossSummary] = useState(null);
+  const handleCheckboxChangspolicy = (loss) => {
+    setSelectedLossSummary(selectedLossSummary?.policyYear === loss.policyYear ? null : loss);
+  };
+  const handleInputChangeManual = (field, value) => {
+    setNewLossDetail((prevDetails) => ({
+      ...prevDetails,
+      [field]: value,
+    }));
+  };
+  const [errors, setErrors] = useState({
+    reportedDate: '',
+    effectiveDate: '',
+    expirationDate: ''
+  });
+
+  const handleDateChangeError = (field, value) => {
+    // Validate for MM-DD-YYYY format
+    const isValidDate = /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4}$/.test(value);
+
+    setNewLossDetail((prevDetails) => ({
+      ...prevDetails,
+      [field]: value,
+    }));
+
+    // Show error if date is invalid
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: !isValidDate && value.length === 10 ? 'Date must be in MM-DD-YYYY format.' : '',
+    }));
+  };
+
+
 
   return (
+    <>
     <Row>
       <Col span={20}>
         <div className="maincontainer" id="lossInfo">
@@ -217,13 +251,13 @@ const [lossDetails, setLossDetails] = useState(claimsData);
               className={`tablinks ${activeTab === "Claims" ? "active" : ""}`}
               onClick={(event) => openMainTab(event, "Claims")}
             >
-             Loss Summary
+              Loss Summary
             </Button>
           </div>
 
           {activeTab === "PriorPolicies" && (
             <div id="PriorPolicies" className="tabcontent" style={{ marginBottom: "20px" }} >
-              <Button type="primary" onClick={showAddPolicyModal} style={{ marginBottom: "10px",marginTop:'8px' }}>
+              <Button type="primary" onClick={showAddPolicyModal} style={{ marginBottom: "10px", marginTop: '8px' }}>
                 Add Policy
               </Button>
               {selectedPolicies.length > 0 && (
@@ -238,14 +272,14 @@ const [lossDetails, setLossDetails] = useState(claimsData);
               <table>
                 <thead>
                   <tr>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>&nbsp;</th>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Carrier</th>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Policy #</th>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Effective Date*</th>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Expiration Date</th>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Annual Premium</th>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}># Losses</th>
-                    <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Total Losses</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>&nbsp;</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Carrier</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Policy #</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Effective Date*</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Expiration Date</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Annual Premium</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}># Losses</th>
+                    <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Total Losses</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -337,30 +371,34 @@ const [lossDetails, setLossDetails] = useState(claimsData);
             <div id="Claims" className="tabcontent">
               <div style={{ marginTop: "20px" }}>
                 <h3>Loss Summary Details</h3>
-                <Button type="primary" onClick={showLossSummaryModal} style={{ marginBottom: "10px" }}>
+                {/* <Button type="primary" onClick={showLossSummaryModal} style={{ marginBottom: "10px" }}>
                   Add Loss
-                </Button>
+                </Button> */}
                 <table style={{ marginBottom: "20px" }}>
                   <thead>
                     <tr>
                       {/* <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>
                         
                       </th> */}
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Policy Year</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Annual Premium</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>#Claims</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>#Open Claims</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Total Insured Losses</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Total Paid Losses</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Expenses</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}></th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Policy Year</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Annual Premium</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>#Claims</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>#Open Claims</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Total Insured Losses</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Total Paid Losses</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Expenses</th>
                     </tr>
                   </thead>
                   <tbody>
                     {lossSummaries.map((loss, index) => (
-                      <tr key={index}>
-                        {/* <td>
-                          <input type="checkbox" style={{ marginLeft: "5px", height: '2px', width: '2px' }} />
-                        </td> */}
+                      <tr key={index} style={{ backgroundColor: selectedLossSummary?.policyYear === loss.policyYear ? '#e6f7ff' : 'transparent' }}>
+                        <td>
+                          <Checkbox
+                            onChange={() => handleCheckboxChangspolicy(loss)}
+                            checked={selectedLossSummary?.policyYear === loss.policyYear}
+                          />
+                        </td>
                         <td>{loss.policyYear}</td>
                         <td>{loss.annualPremium}</td>
                         <td>{loss.claims}</td>
@@ -435,57 +473,59 @@ const [lossDetails, setLossDetails] = useState(claimsData);
                   />
 
                 </Modal>
+                {selectedLossSummary && (
+                  <>
+                    <h3>Loss Details</h3>
+                    <Button type="primary" onClick={showLossDetailModal} style={{ marginBottom: "10px" }}>
+                      Add Loss Detail
+                    </Button>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>
 
-                <h3>Loss Details</h3>
-                <Button type="primary" onClick={showLossDetailModal} style={{ marginBottom: "10px" }}>
-                  Add Loss Detail
-                </Button>
-                <table>
-                  <thead>
-                    <tr>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>
-                        
-                      </th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Claim#</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Policy Eff Date</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Policy Exp Date</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Carrier</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>LOB</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Accident Description</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Reported Date</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Status</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Class</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Total Paid</th>
-                      <th style={{backgroundColor: "#5d9de2", height:'10%', color:'black', fontWeight: '500',}}>Total Incurred</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                    {lossDetails.map((claim, index) => (
-                      <tr key={index}>
-                        <td>
-                          <input
-                            type="checkbox"
-                            onChange={() => handleCheckboxChangeclaim(claim)}
-                            checked={selectedClaim?.claimNumber === claim.claimNumber}
-                          />
-                        </td>
-                        <td>{claim.claimNumber}</td>
-                        <td>{claim.effectiveDate}</td>
-                        <td>{claim.expirationDate}</td>
-                        <td>{claim.carrier}</td>
-                        <td>{claim.lob}</td>
-                        <td>{claim.accidentDescription}</td>
-                        <td>{claim.reportedDate}</td>
-                        <td>{claim.status}</td>
-                        <td>{claim.class}</td>
-                        <td>{claim.totalPaid}</td>
-                        <td>{claim.totalIncurred}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                          </th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Claim#</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Policy Eff Date</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Policy Exp Date</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Carrier</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>LOB</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Accident Description</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Reported Date</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Status</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Class</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Total Paid</th>
+                          <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'black', fontWeight: '500', }}>Total Incurred</th>
+                        </tr>
+                      </thead>
+                      <tbody>
 
+                        {lossDetails.map((claim, index) => (
+                          <tr key={index}>
+                            <td>
+                              <input
+                                type="checkbox"
+                                onChange={() => handleCheckboxChangeclaim(claim)}
+                                checked={selectedClaim?.claimNumber === claim.claimNumber}
+                              />
+                            </td>
+                            <td>{claim.claimNumber}</td>
+                            <td>{claim.effectiveDate}</td>
+                            <td>{claim.expirationDate}</td>
+                            <td>{claim.carrier}</td>
+                            <td>{claim.lob}</td>
+                            <td>{claim.accidentDescription}</td>
+                            <td>{claim.reportedDate}</td>
+                            <td>{claim.status}</td>
+                            <td>{claim.class}</td>
+                            <td>{claim.totalPaid}</td>
+                            <td>{claim.totalIncurred}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </>
+                )}
                 {/* Add Loss Detail Modal */}
                 <Modal
                   title="Add Loss Detail"
@@ -500,16 +540,41 @@ const [lossDetails, setLossDetails] = useState(claimsData);
                     onChange={(e) => handleInputChange(e, setNewLossDetail)}
                     style={{ marginBottom: "10px" }}
                   />
-                  <DatePicker
+                  {/* <DatePicker
                     placeholder="Effective Date"
                     style={{ width: "100%", marginBottom: "10px" }}
                     onChange={(date) => handleDateChange("effectiveDate", date, setNewLossDetail)}
-                  />
-                  <DatePicker
+                  /> */}
+                  {/* <DatePicker
                     placeholder="Effective Date"
                     style={{ width: "100%", marginBottom: "10px" }}
                     onChange={(date) => handleDateChange("effectiveDate", date, setNewLossDetail)}
+                  /> */}
+                  <Input
+                    placeholder="Effective Date (MM-DD-YYYY)"
+                    value={newLossDetail.effectiveDate}
+                    onChange={(e) => handleDateChangeError('effectiveDate', e.target.value)}
+                    style={{ marginBottom: "10px" }}
+                    maxLength={10}
                   />
+                  {errors.effectiveDate && (
+                    <p style={{ color: 'red', marginTop: '-8px', marginBottom: '10px' }}>
+                      {errors.effectiveDate}
+                    </p>
+                  )}
+                  <Input
+                    placeholder="Expiration Date (MM-DD-YYYY)"
+                    value={newLossDetail.expirationDate}
+                    onChange={(e) => handleDateChangeError('expirationDate', e.target.value)}
+                    style={{ marginBottom: "10px" }}
+                    maxLength={10}
+                  />
+                  {errors.expirationDate && (
+                    <p style={{ color: 'red', marginTop: '-8px', marginBottom: '10px' }}>
+                      {errors.expirationDate}
+                    </p>
+                  )}
+
                   <Input
                     placeholder="Carrier"
                     name="carrier"
@@ -531,11 +596,20 @@ const [lossDetails, setLossDetails] = useState(claimsData);
                     onChange={(e) => handleInputChange(e, setNewLossDetail)}
                     style={{ marginBottom: "10px" }}
                   />
-                  <DatePicker
-                    placeholder="Reported Date"
-                    style={{ width: "100%", marginBottom: "10px" }}
-                    onChange={(date) => handleDateChange("reportedDate", date, setNewLossDetail)}
+                  <Input
+                    placeholder="Reported Date: MM-DD-YYYY"
+                    value={newLossDetail.reportedDate}
+                    onChange={(e) => handleDateChangeError('reportedDate', e.target.value)}
+                    style={{ marginBottom: "10px" }}
+                    maxLength={10} // Limits input to 10 characters
                   />
+                  {errors.reportedDate && (
+                    <p style={{ color: 'red', marginTop: '-8px', marginBottom: '10px' }}>
+                      {errors.reportedDate}
+                    </p>
+                  )}
+
+
                   <Input
                     placeholder="Status"
                     name="status"
@@ -566,41 +640,43 @@ const [lossDetails, setLossDetails] = useState(claimsData);
                   />
 
                 </Modal>
+                {selectedLossSummary && (
+                  <>
+                    <h3>Notes</h3>
+                    <Card
+                      title="Claim Notes History"
+                      style={{
+                        marginBottom: "2rem",
+                        borderRadius: "12px",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                      }}
+                    >
 
-                <h3>Notes</h3>
-                <Card
-                  title="Claim Notes History"
-                  style={{
-                    marginBottom: "2rem",
-                    borderRadius: "12px",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-                  }}
-                >
+                      {selectedClaim ? (
 
-                  {selectedClaim ? (
-
-                    <ul style={{ listStyleType: "circle", paddingLeft: "2rem" }}>
-                      <p style={{ fontSize: "0.9rem" }}>Notes: (Dated) - 30/10/2024</p>
-                      <a href="#" style={{ textDecoration: "underline", fontSize: "0.9rem", marginBottom: "1rem", display: "inline-block" }}>
-                        Link to the Popup
-                      </a>
-                      <li>Accident Date</li>
-                      <li>Report Date</li>
-                      <li>Expenses Reserve</li>
-                      <li>Paid Loss</li>
-                      <li>Total Loss</li>
-                      <li>Carrier: {selectedClaim.carrier}</li>
-                      <li>LOB: {selectedClaim.lob}</li>
-                      <li>Status: {selectedClaim.status}</li>
-                      <li>Total Paid: {selectedClaim.totalPaid}</li>
-                      <li>Total Incurred: {selectedClaim.totalIncurred}</li>
-                    </ul>
-                  ) : (
-                    <p>Please first select any row to see the history</p>
-                  )}
+                        <ul style={{ listStyleType: "circle", paddingLeft: "2rem" }}>
+                          <p style={{ fontSize: "0.9rem" }}>Notes: (Dated) - 30/10/2024</p>
+                          <a href="#" style={{ textDecoration: "underline", fontSize: "0.9rem", marginBottom: "1rem", display: "inline-block" }}>
+                            Link to the Popup
+                          </a>
+                          <li>Accident Date</li>
+                          <li>Report Date</li>
+                          <li>Expenses Reserve</li>
+                          <li>Paid Loss</li>
+                          <li>Total Loss</li>
+                          <li>Carrier: {selectedClaim.carrier}</li>
+                          <li>LOB: {selectedClaim.lob}</li>
+                          <li>Status: {selectedClaim.status}</li>
+                          <li>Total Paid: {selectedClaim.totalPaid}</li>
+                          <li>Total Incurred: {selectedClaim.totalIncurred}</li>
+                        </ul>
+                      ) : (
+                        <p>Please first select any row to see the history</p>
+                      )}
 
 
-                </Card>
+                    </Card>
+                  </>)}
               </div>
             </div>
           )}
@@ -608,6 +684,20 @@ const [lossDetails, setLossDetails] = useState(claimsData);
       </Col>
 
     </Row>
+    <Row gutter={16}>
+    <Col span={20}></Col>
+    <Col span={4}>
+      <div>
+        <button
+          type="submit"
+          style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
+        >
+          <b>Next</b>
+        </button>
+      </div>
+    </Col>
+  </Row>
+  </>
   );
 };
 export default LossInfo;
