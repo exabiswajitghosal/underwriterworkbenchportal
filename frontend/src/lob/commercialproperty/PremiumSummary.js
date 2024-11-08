@@ -13,22 +13,22 @@ const PremiumSummary = () => {
   // Data for each building
   const buildingData = {
     'Location 1': [
-      { key: 1, description: 'Building Limit', coverageAmount: '', premium: '' },
-      { key: 2, description: 'Annual Rents and Fees', coverageAmount: '', premium: '' },
-      { key: 3, description: 'Flood Coverage', coverageAmount: '', premium: '' },
-      { key: 4, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
-      { key: 5, description: 'Ord/Law Blanket Limits', coverageAmount: '', premium: '' },
-      { key: 6, description: 'BPP Limit', coverageAmount: '', premium: '' },
-      { key: 7, description: 'Property Deductible', coverageAmount: '', premium: '' },
+      { key: 1, description: 'Property Damage Coverage', coverageAmount: '', premium: '' },
+      { key: 2, description: 'Business Personal Property', coverageAmount: '', premium: '' },
+      { key: 3, description: 'Business Income Coverage', coverageAmount: '', premium: '' },
+      { key: 4, description: 'Flood Coverage', coverageAmount: '', premium: '' },
+      { key: 5, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
+      { key: 6, description: 'Annual Rental and fees', coverageAmount: '', premium: '' },
+      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '', premium: '' },
     ],
     'Location 2': [
-      { key: 1, description: 'Building Limit', coverageAmount: '', premium: '' },
-      { key: 2, description: 'Annual Rents and Fees', coverageAmount: '', premium: '' },
-      { key: 3, description: 'Flood Coverage', coverageAmount: '', premium: '' },
-      { key: 4, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
-      { key: 5, description: 'Ord/Law Blanket Limits', coverageAmount: '', premium: '' },
-      { key: 6, description: 'BPP Limit', coverageAmount: '', premium: '' },
-      { key: 7, description: 'Property Deductible', coverageAmount: '', premium: '' },
+      { key: 1, description: 'Property Damage Coverage', coverageAmount: '', premium: '' },
+      { key: 2, description: 'Business Personal Property', coverageAmount: '', premium: '' },
+      { key: 3, description: 'Business Income Coverage', coverageAmount: '', premium: '' },
+      { key: 4, description: 'Flood Coverage', coverageAmount: '', premium: '' },
+      { key: 5, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
+      { key: 6, description: 'Annual Rental and fees', coverageAmount: '', premium: '' },
+      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '', premium: '' },
     ],
   };
 
@@ -102,8 +102,8 @@ const PremiumSummary = () => {
         onChange={handleBuildingChange}
         style={{ width: 200, height: 50, marginTop: 40 }}
       >
-                 <Option value="Location 1">1234 Elm Steem</Option>
-                 <Option value="Location 2">123 Innovation Drive</Option>
+                <Option value="Location 1">1234 Elm Street,Apt 101,California,90210,USA</Option>
+                <Option value="Location 2">123 Innovation Drive,Suite 200,CA,90210,USA</Option>
       </Select>
 
       {/* Edit/Save button */}
