@@ -6,20 +6,37 @@ import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import './Dashboard.css';
 import './Table.css';
+import { Tabs } from 'antd';
+
+const { TabPane } = Tabs;
+
+const MyTableComponent = ({ columns, dataSource, handleRowClick, handleChange }) => (
+  <Table
+    className="custom-table-header"
+    columns={columns}
+    dataSource={dataSource}
+    onChange={handleChange}
+    onRow={(record) => ({
+      onClick: () => handleRowClick(record),
+      className: 'clickable-row',
+    })}
+    pagination={{ pageSize: 3 }}
+  />
+);
 
 const data = {
   myteamscases: [
-    { id: '001', client: 'Client A', lob: 'Commercial Auto', status: 'Clearance UW', substatus: 'Senior UW', limit: '$500,000', date: '2024-08-20', underwriter: 'John Doe', priority: 'High' },
-    { id: '002', client: 'Client B', lob: 'Professional Liability', status: 'Clearance UW', substatus: 'Senior UW', limit: '$250,000', date: '2024-08-18', underwriter: 'Jane Smith', priority: 'Medium' }
+    { id: '001', client: 'Fleet Solutions', lob: 'Commercial Auto', status: 'Clearance UW', limit: '$500,000', date: '2024-08-20', underwriter: 'John Doe', priority: 'High' },
+    { id: '002', client: 'Skyline Residences', lob: 'Professional Liability', status: 'Clearance UW', limit: '$250,000', date: '2024-08-18', underwriter: 'Jane Smith', priority: 'Medium' }
   ],
   myassignedcases: [
-    { id: '003', client: 'Client C', lob: 'Commercial Auto', status: 'Open', limit: '$300,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
-    { id: '004', client: 'Client D', lob: 'Commercial Property', status: 'UW Review', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
-    { id: '005', client: 'Client E', lob: 'Commercial Auto', status: 'Clearance Review', substatus: 'Clarification', limit: '$500,000', date: '2024-08-12', underwriter: 'John Doe', priority: 'Low' }
+    { id: '003', client: 'Alliance Logistics', lob: 'Commercial Auto', status: 'Open', limit: '$300,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
+    { id: '004', client: 'Greenfield Estates', lob: 'Commercial Property', status: 'UW Review', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
+    { id: '005', client: 'Urban Transport', lob: 'Commercial Auto', status: 'Clearance Review', limit: '$500,000', date: '2024-08-12', underwriter: 'John Doe', priority: 'Low' }
   ],
   senttobroker: [
-    { id: '006', client: 'Client E', lob: 'Professional Liability', status: 'Broker Review', substatus: 'Document', limit: '$450,000', date: '2024-08-17', underwriter: 'Charlie Black', priority: 'Medium' },
-    { id: '007', client: 'Client F', lob: 'Commercial Auto', status: 'Broker Review', substatus: 'Quote', limit: '$100,000', date: '2024-08-09', underwriter: 'Charlie Black', priority: 'High' }
+    { id: '006', client: 'Uptown Commercial Spaces', lob: 'Professional Liability', status: 'Broker Review', limit: '$450,000', date: '2024-08-17', underwriter: 'Charlie Black', priority: 'Medium' },
+    { id: '007', client: 'Client F', lob: 'Commercial Auto', status: 'Broker Review', limit: '$100,000', date: '2024-08-09', underwriter: 'Charlie Black', priority: 'High' }
   ],
   close: [
     { id: '009', client: 'Client F', lob: 'Professional Liability', status: 'Approved', limit: '$700,000', date: '2024-08-10', underwriter: 'Daisy White', priority: 'Low' },
@@ -103,8 +120,8 @@ const Dashboard = () => {
   const donutChartRef = useRef(null);
 
   useEffect(() => {
-    createBarChart(policiesChartRef, 'Policies Issued', ['Auto', 'Property', 'Liability', 'Health', 'Life'], [30, 25, 40, 35, 20]);
-    createBarChart(submissionsChartRef, 'Submission in Progress', ['Auto', 'Property', 'Liability', 'Health', 'Life'], [15, 18, 22, 20, 17]);
+    createBarChart(policiesChartRef, 'Policies Issued', ['Comm Auto', 'Comm Property', 'Comm Liability', 'Inline marine'], [30, 25, 40, 35]);
+    createBarChart(submissionsChartRef, 'Submission in Progress', ['Comm Auto', 'Comm Property', 'Comm Liability', 'Inline marine'], [15, 18, 22, 20]);
     createDonutChart();
 
     return () => {
@@ -155,9 +172,6 @@ const Dashboard = () => {
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
-  const handleNewSubmission = (record) => {
-    console.log("New Submission data:", record);
-  };
 
   const columns = [
     {
@@ -180,7 +194,6 @@ const Dashboard = () => {
     },
     { title: 'Limit', dataIndex: 'limit', key: 'limit' },
     { title: 'Status', dataIndex: 'status', key: 'status', ...getColumnSearchProps('status') },
-    { title: 'Sub-Status', dataIndex: 'substatus', key: 'substatus' },
     { title: 'Date Submitted', dataIndex: 'date', key: 'date', sorter: (a, b) => new Date(a.date) - new Date(b.date), sortOrder: sortedInfo.columnKey === 'date' ? sortedInfo.order : null },
     { title: 'Underwriter', dataIndex: 'underwriter', key: 'underwriter', ...getColumnSearchProps('underwriter') },
     {
@@ -195,7 +208,13 @@ const Dashboard = () => {
       title: 'New Submission',
       key: 'newSubmission',
       render: (_, record) => (
-        <Button type="primary" onClick={() => handleNewSubmission(record)}>
+        <Button
+          type="primary"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate('/submission');
+          }}
+        >
           <div style={{ fontSize: '12px' }}>
             New Submission
           </div>
@@ -214,29 +233,42 @@ const Dashboard = () => {
   return (
     <div className="content">
       <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '5px', flexWrap: 'nowrap' }}>
-        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+        <div className="chart-container" style={{ flex: 1, flexDirection: 'column' }}>
           <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Policies Issued</div>
           <canvas ref={policiesChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
         </div>
-        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+        <div className="chart-container" style={{ flex: 1, flexDirection: 'column' }}>
           <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Submission in Progress</div>
           <canvas ref={submissionsChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
         </div>
-        <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+        <div className="chart-container" style={{ flex: 1, flexDirection: 'column' }}>
           <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>New Business vs Renewal Premium $</div>
           <canvas ref={donutChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
         </div>
+        {/* <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
+          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Map</div>
+          <img src="./usa.svg" alt="Map of USA" style={{ width: '100%', height: '70%', objectFit: 'contain' }} />
+        </div> */}
       </div>
 
-      <Table
-        columns={columns}
-        dataSource={combinedData}
-        onChange={handleChange}
-        onRow={(record) => ({
-          onClick: () => handleRowClick(record),
-        })}
-        pagination={{ pageSize: 5 }}
-      />
+      <Tabs defaultActiveKey="1">
+      <TabPane tab="My Work" key="1">
+        <MyTableComponent
+          columns={columns}
+          dataSource={data.myassignedcases}
+          handleRowClick={handleRowClick}
+          handleChange={handleChange}
+        />
+      </TabPane>
+      <TabPane tab="My Team Work" key="2">
+        <MyTableComponent
+          columns={columns}
+          dataSource={combinedData}
+          handleRowClick={handleRowClick}
+          handleChange={handleChange}
+        />
+      </TabPane>
+    </Tabs>
     </div>
   );
 };
