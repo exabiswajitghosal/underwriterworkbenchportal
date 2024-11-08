@@ -901,7 +901,7 @@ export function LocationBuildingTab() {
           </Col>
           <Col span={6}>
             <FormInput
-              label={<span style={{ fontSize: "15px" }}>Flood Coverage Monthly Limit</span>}
+              label={<span style={{ fontSize: "15px" }}>Flood Coverage Deductable</span>}
               value={formData.floodCoveragemonthlyLimit}
               required={true}
               onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
@@ -923,7 +923,7 @@ export function LocationBuildingTab() {
           </Col>
           <Col span={6}>
             <FormInput
-              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Monthly Limit</span>}
+              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Deductable</span>}
               value={formData.earthquakeCoveragemonthlylimit}
               required={true}
               onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
