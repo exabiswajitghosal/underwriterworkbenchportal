@@ -17,7 +17,7 @@ const uwquestionsData = [
   { question: "Has the applicant had a foreclosure, repossession, or bankruptcy during the last five years?", response: "no", comment: "The applicant has not faced any financial setbacks in the past five years." },
 ];
 
-const UWQuestions = () => {
+const UWQuestions = ({ onNext }) => {
   const [questions, setQuestions] = useState(uwquestionsData);
   const [notes, setNotes] = useState("This is a uwquestions overall feedback.");
   const [uwnotes, setUWNotes] = useState("");
@@ -112,6 +112,8 @@ const UWQuestions = () => {
         <Col span={4}>
           <div>
             <button
+
+              onClick={onNext}
               type="submit"
               style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
             >

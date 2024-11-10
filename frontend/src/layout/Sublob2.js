@@ -12,94 +12,100 @@ import Bind from '../lob/commercialproperty/Bind';
 import Coverages from '../lob/commercialproperty/Coverages';
 
 const Sublob2 = (props) => {
-  const [activeSection, setActiveSection] = useState('policyInfo');
-  
+  const sections = [
+    'policyInfo',
+    'locationInfo',
+    'lossInfo',
+    'coverages',
+    'uw',
+    'premiumSummary',
+    'quoteSummary'
+  ];
+
+  const [activeSection, setActiveSection] = useState(sections[0]);
+
   const showSublob = (sectionId) => {
     setActiveSection(sectionId);
   };
 
+  const goToNextSection = () => {
+    const currentIndex = sections.indexOf(activeSection);
+    if (currentIndex < sections.length - 1) {
+      setActiveSection(sections[currentIndex + 1]);
+    }
+  };
+
   return (
     <div style={{ padding: '10px', marginTop: '20px', position: 'relative' }}>
-      {/* Reduce the gap between buttons by setting gutter to 8 */}
-      <Row gutter={[4, 4]} justify="center" align="stretch">
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
+      <Row gutter={[16, 16]} align="stretch" justify={'center'}>
+        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
           <Button
-            id="policy"
             className={`sublob-item ${activeSection === 'policyInfo' ? 'active' : ''}`}
-            onClick={() => { showSublob('policyInfo') }}
-            block style={{ width: '10rem' }}
+            onClick={() => showSublob('policyInfo')}
+            block
+            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-file-alt"></i> Insured Info
           </Button>
         </Col>
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
+        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
           <Button
-            id="Location"
             className={`sublob-item ${activeSection === 'locationInfo' ? 'active' : ''}`}
-            onClick={() => { showSublob('locationInfo') }}
-            block style={{ width: '10rem' }}
+            onClick={() => showSublob('locationInfo')}
+            block
+            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
-            <i className="fas fa-map-marker-alt"></i>Risk
+            <i className="fas fa-map-marker-alt"></i> Risk
           </Button>
         </Col>
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
+        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
           <Button
-            id="Loss"
             className={`sublob-item ${activeSection === 'lossInfo' ? 'active' : ''}`}
-            onClick={() => { showSublob('lossInfo') }}
-            block style={{ width: '10rem' }}
+            onClick={() => showSublob('lossInfo')}
+            block
+            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-exclamation-triangle"></i> Loss
           </Button>
         </Col>
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
+        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
           <Button
-            id="coverages"
             className={`sublob-item ${activeSection === 'coverages' ? 'active' : ''}`}
-            onClick={() => { showSublob('coverages') }}
-            block style={{ width: '10rem' }}
+            onClick={() => showSublob('coverages')}
+            block
+            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
-            <i className="fas fa-exclamation-triangle"></i> Coverages 
+            <i className="fas fa-shield-alt"></i> Coverages
           </Button>
         </Col>
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
+        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
           <Button
-            id="uwquestion"
             className={`sublob-item ${activeSection === 'uw' ? 'active' : ''}`}
-            onClick={() => { showSublob('uw') }}
-            block style={{ width: '10rem' }}
+            onClick={() => showSublob('uw')}
+            block
+            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-question-circle"></i> UW Questions
           </Button>
         </Col>
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
+        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
           <Button
-            id="premiumSummary"
             className={`sublob-item ${activeSection === 'premiumSummary' ? 'active' : ''}`}
-            onClick={() => { showSublob('premiumSummary') }}
-            block style={{ width: '10rem' }}
+            onClick={() => showSublob('premiumSummary')}
+            block
+            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
-            <i className="fas fa-gavel"></i> Premium Summary
+            <i className="fas fa-calculator"></i> Premium Summary
           </Button>
         </Col>
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
+        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
           <Button
-            id="quoteSummary"
             className={`sublob-item ${activeSection === 'quoteSummary' ? 'active' : ''}`}
-            onClick={() => { showSublob('quoteSummary') }}
-            block style={{ width: '10rem' }}
+            onClick={() => showSublob('quoteSummary')}
+            block
+            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
-            <i className="fas fa-gavel"></i> Quote Summary
-          </Button>
-        </Col>
-        <Col xs={22} sm={11} md={7} lg={5} xl={3}>
-          <Button
-            id="bindIssue"
-            className={`sublob-item ${activeSection === 'bindIssue' ? 'active' : ''}`}
-            onClick={() => { showSublob('bindIssue') }}
-            block style={{ width: '10rem' }}
-          >
-            <i className="fas fa-gavel"></i> Bind/Issue
+            <i className="fas fa-file-signature"></i> Quote Summary
           </Button>
         </Col>
       </Row>
@@ -107,42 +113,37 @@ const Sublob2 = (props) => {
       {/* Conditional rendering based on the active section */}
       {activeSection === 'policyInfo' && (
         <div className="sublob-item.active" id="policyInfo">
-          <CreateSubmission />
+          <CreateSubmission onNext={goToNextSection} />
         </div>
       )}
       {activeSection === 'locationInfo' && (
         <div className="sublob-item.active" id="locationInfo">
-          <LocationComponent />
+          <LocationComponent onNext={goToNextSection} />
         </div>
       )}
       {activeSection === 'lossInfo' && (
         <div className="sublob-item.active" id="lossInfo">
-          <LossInfo />
+          <LossInfo onNext={goToNextSection} />
         </div>
       )}
       {activeSection === 'coverages' && (
         <div className="sublob-item.active" id="coverages">
-          <Coverages/>
+          <Coverages onNext={goToNextSection} />
         </div>
       )}
       {activeSection === 'uw' && (
         <div className="sublob-item.active" id="uw">
-          <UWQuestions />
+          <UWQuestions onNext={goToNextSection} />
         </div>
       )}
       {activeSection === 'premiumSummary' && (
         <div className="sublob-item.active" id="premiumSummary">
-          <PremiumSummary/>
+          <PremiumSummary onNext={goToNextSection} />
         </div>
       )}
       {activeSection === 'quoteSummary' && (
         <div className="sublob-item.active" id="quoteSummary">
-          <QuoteSummary/>
-        </div>
-      )}
-      {activeSection === 'bindIssue' && (
-        <div className="sublob-item.active" id="bindIssue">
-          <Bind/>
+          <QuoteSummary onNext={goToNextSection} />
         </div>
       )}
     </div>

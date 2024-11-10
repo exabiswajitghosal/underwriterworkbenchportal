@@ -291,7 +291,7 @@ export function LocationBuildingTab() {
     }));
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="locationBuildingTab">
       <div style={{ display: "flex", alignItems: "center", marginBottom: "80px", marginTop: "30px", fontSize: "18px" }}>
         <span style={{ marginRight: "10px" }}>Please select the location:</span>
         <Select
@@ -957,6 +957,7 @@ export function LocationBuildingTab() {
           {activeTab === "Tab2" && (
             <div id="Tab2" className="tabcontent">
               <Rpa />
+              
             </div>
           )}
         </div>

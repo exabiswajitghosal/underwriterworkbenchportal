@@ -6,7 +6,7 @@ const { Option } = Select;
 const { TextArea } = Input;
 const { Title } = Typography;
 const { Panel } = Collapse;
-const PremiumSummary = () => {
+const PremiumSummary = ({ onNext }) => {
   const [editing, setEditing] = useState(false); // Global editing state
   const [selectedBuilding, setSelectedBuilding] = useState(null); // Selected building state
 
@@ -196,6 +196,8 @@ const PremiumSummary = () => {
         <Col span={4}>
           <div>
             <button
+              
+              onClick={onNext}
               type="submit"
               style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
             >

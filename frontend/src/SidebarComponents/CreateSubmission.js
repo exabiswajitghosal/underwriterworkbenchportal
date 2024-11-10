@@ -7,7 +7,7 @@ import { EditOutlined, PlusCircleOutlined, SearchOutlined } from "@ant-design/ic
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Modal } from 'antd';
 import axios from 'axios';
-function CreateSubmission() {
+function  CreateSubmission({ onNext }) {
     // Separate state for each widget section's form data and editing state
     const navigate = useNavigate();
     // Separate state for each widget section's form data and editing state
@@ -623,7 +623,7 @@ function CreateSubmission() {
                         <Col span={20}></Col>
                         <Col span={4}>
                             <div >
-                                <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }}><b>Next</b></button></div></Col>
+                                <button type="submit"  onClick={onNext} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }}><b>Next</b></button></div></Col>
                         {/*} <Col span={4}>
             <div >
             <button type="account" style={{width: "10rem"}} onClick={() => handleClick()}><b>Go To Account</b></button>

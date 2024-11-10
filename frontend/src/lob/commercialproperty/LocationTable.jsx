@@ -31,6 +31,7 @@ const LocationTable = () => {
   const [sameAsRiskLocation, setSameAsRiskLocation] = useState(false);
   const [form] = Form.useForm();
   const searchInput = useRef(null);
+  const [activeTab, setActiveTab] = useState("LocationTable");
 
   const usStates = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 
@@ -199,8 +200,12 @@ const LocationTable = () => {
     setIsModalVisible(false);
   };
 
+  const nextTab= () => {
+    setActiveTab("locationBuildingTab");
+  };
+
   return (
-    <div className={`${styles.container} tableContainer`}>
+    <div className={`${styles.container} tableContainer`} id='LocationTable'>
       <Row gutter={16} style={{ marginBottom: 8, marginTop: 8 }}>
         <Col span={24}>
           <Button type="primary" onClick={showModal}>
@@ -232,6 +237,22 @@ const LocationTable = () => {
             </Col>
           </>
         )}
+      </Row>
+
+      <Row gutter={16}>
+        <Col span={20}></Col>
+        <Col span={4}>
+          <div>
+            <button
+              
+              onClick={nextTab}
+              type="submit"
+              style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
+            >
+              <b>Next</b>
+            </button>
+          </div>
+        </Col>
       </Row>
       
       <Row justify="center" style={{ marginTop: '30px', padding: '10px 0' }}>

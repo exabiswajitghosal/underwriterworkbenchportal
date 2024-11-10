@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './LossInfo.css';  // Import the CSS file
 import { Button, Card, Col, Modal, Row, Input, DatePicker, Checkbox } from 'antd';
 
-const LossInfo = () => {
+const LossInfo  = ({ onNext }) =>{
   const [activeTab, setActiveTab] = useState("PriorPolicies");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLossSummaryModalVisible, setIsLossSummaryModalVisible] = useState(false);
@@ -234,6 +234,10 @@ const LossInfo = () => {
   };
 
 
+  const nextTab = () => {
+    setActiveTab("Claims");
+  };
+
 
   return (
     <>
@@ -311,7 +315,20 @@ const LossInfo = () => {
                   </tr>
                 </tfoot>
               </table>
-
+              <Row gutter={16}>
+    <Col span={20}></Col>
+    <Col span={4}>
+      <div>
+        <button 
+          onClick={nextTab}
+          type="submit" 
+          style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
+        >
+          <b>Next</b>
+        </button>
+      </div>
+    </Col>
+  </Row>
               <Modal
                 title="Add New Policy"
                 visible={isModalVisible}
@@ -676,6 +693,20 @@ const LossInfo = () => {
 
 
                     </Card>
+                    <Row gutter={16}>
+    <Col span={20}></Col>
+    <Col span={4}>
+      <div>
+        <button
+          onClick={onNext}
+          type="submit" 
+          style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
+        >
+          <b>Next</b>
+        </button>
+      </div>
+    </Col>
+  </Row>
                   </>)}
               </div>
             </div>
@@ -684,19 +715,7 @@ const LossInfo = () => {
       </Col>
 
     </Row>
-    <Row gutter={16}>
-    <Col span={20}></Col>
-    <Col span={4}>
-      <div>
-        <button
-          type="submit"
-          style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
-        >
-          <b>Next</b>
-        </button>
-      </div>
-    </Col>
-  </Row>
+  
   </>
   );
 };
