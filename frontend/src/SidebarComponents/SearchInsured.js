@@ -97,15 +97,15 @@ const SearchInsured = () => {
 
         setResults(filteredData);
         setShowNoResultsMessage(filteredData.length === 0);
-        setSearchCriteria({
-            name: '',
-            programName: null,
-            productName: null,
-            occupancyType: null,
-            agencyName: '',
-            primaryRisk: null,
-            primaryRiskState: null
-        })
+        // setSearchCriteria({
+        //     name: '',
+        //     programName: null,
+        //     productName: null,
+        //     occupancyType: null,
+        //     agencyName: '',
+        //     primaryRisk: null,
+        //     primaryRiskState: null
+        // })
         if (filteredData.length === 0) {
             message.warning('No results found. Please try again.');
         }
@@ -299,7 +299,7 @@ const SearchInsured = () => {
                     </Col>
                     <Col span={4}>
                         <FormInput
-                        id="agencyName"
+                            id="agencyName"
                             label="Agency Name"
                             value={searchCriteria.agencyName}
                             onChange={handleInputChange}
@@ -348,15 +348,31 @@ const SearchInsured = () => {
                     dataSource={results}
                     rowKey={(record) => record.account}
                     pagination={{ pageSize: 5 }}
+                    rowHoverable
+                    components={{
+                        header: {
+                            cell: ({ className, ...restProps }) => (
+                                <th
+                                    {...restProps}
+                                    style={{
+                                        backgroundColor: '#5d9de2', // Set header background color here
+                                        color: '#fff', // Set header text color here
+                                    }}
+                                />
+                            ),
+                        },
+                    }}
+
                 />
 
                 {showNoResultsMessage && <p style={{ color: 'red' }}>No results found. Please try again.</p>}
-                <h2>
+                <Title level={2}>
                     Add LOB
-                </h2>
+                </Title>
                 <Col span={6}>
                     <DropdownSelect
                         label="LOB"
+                        placeholder='select LOB'
                         options={[{ label: 'Commercial Property', value: 'cp' }, { label: 'Commercial Auto', value: 'ca' }, { label: 'General Liability', value: 'gl' }]}
                     />
                 </Col>

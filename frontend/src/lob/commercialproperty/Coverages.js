@@ -12,20 +12,24 @@ const Coverages = ({ onNext }) =>{
   // Define table data for each location
   const locationData = {
     'Location 1': [
-      { key: 1, label: 'Property damage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 2, label: 'Annual Rental and Fees', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 3, label: 'Flood Coverages', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 4, label: 'Earthquake coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 5, label: 'Ord/Law Blanket Limits', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 6, label: 'BPP Limit', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 1, label: 'Property Damage Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 2, label: 'Business Personal Property', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 3, label: 'Business Income Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 4, label: 'Flood Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 5, label: 'Earthquake Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 6, label: 'Annual Rental and fees', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      
     ],
     'Location 2': [
-      { key: 1, label: 'Property damage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 2, label: 'Annual Rental and Fees', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 3, label: 'Flood Coverages', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 4, label: 'Earthquake coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 5, label: 'Ord/Law Blanket Limits', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
-      { key: 6, label: 'BPP Limit', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 1, label: 'Property Damage Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 2, label: 'Business Personal Property', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 3, label: 'Business Income Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 4, label: 'Flood Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 5, label: 'Earthquake Coverage', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 6, label: 'Annual Rental and fees', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '', deductible: '', approvedCoverage: '', approvedDeductible: '' },
+      
     ],
   };
 
@@ -117,8 +121,8 @@ const Coverages = ({ onNext }) =>{
         onChange={handleLocationChange}
         style={{ width: 250, height: 50, marginTop: 40 }}
       >
-        <Option value="Location 1">1234 Elm Steem</Option>
-        <Option value="Location 2">123 Innovation Drive</Option>
+        <Option value="Location 1">1234 Elm Street,Apt 101,California,90210,USA</Option>
+        <Option value="Location 2">123 Innovation Drive,Suite 200,CA,90210,USA</Option>
       </Select>
 
       {/* Edit/Save button */}
