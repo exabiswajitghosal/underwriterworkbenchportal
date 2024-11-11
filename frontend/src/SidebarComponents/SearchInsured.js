@@ -12,15 +12,17 @@ const SearchInsured = () => {
     // const [insuredType, setInsuredType] = useState('Individual');
     const [searchCriteria, setSearchCriteria] = useState({
         name: '',
+    });
+    const [results, setResults] = useState([]);
+    const [submissionDetails, setSubmissionDetails] = useState({
         programName: null,
         productName: null,
         occupancyType: null,
         agencyName: '',
         primaryRisk: null,
-        primaryRiskState: null
+        primaryRiskState: null,
+        lob: null
     });
-    const [results, setResults] = useState([]);
-    const [showNoResultsMessage, setShowNoResultsMessage] = useState(false);
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -85,27 +87,17 @@ const SearchInsured = () => {
 
         const filteredData = sampleData.filter((item) => {
             const nameMatch = !searchCriteria.name || item.name.toLowerCase().includes(searchCriteria.name.trim().toLowerCase());
-            const programMatch = !searchCriteria.programName || item.programName === searchCriteria.programName;
-            const productMatch = !searchCriteria.productName || item.productName === searchCriteria.productName;
-            const occupancyMatch = !searchCriteria.occupancyType || item.occupancyType === searchCriteria.occupancyType;
-            const agencyMatch = !searchCriteria.agencyName || item.agencyName?.toLowerCase().includes(searchCriteria.agencyName.trim().toLowerCase());
-            const primaryRiskMatch = !searchCriteria.primaryRisk || item.primaryRisk === searchCriteria.primaryRisk;
-            const primaryRiskStateMatch = !searchCriteria.primaryRiskState || item.primaryRiskState === searchCriteria.primaryRiskState;
+            // const programMatch = !searchCriteria.programName || item.programName === searchCriteria.programName;
+            // const productMatch = !searchCriteria.productName || item.productName === searchCriteria.productName;
+            // const occupancyMatch = !searchCriteria.occupancyType || item.occupancyType === searchCriteria.occupancyType;
+            // const agencyMatch = !searchCriteria.agencyName || item.agencyName?.toLowerCase().includes(searchCriteria.agencyName.trim().toLowerCase());
+            // const primaryRiskMatch = !searchCriteria.primaryRisk || item.primaryRisk === searchCriteria.primaryRisk;
+            // const primaryRiskStateMatch = !searchCriteria.primaryRiskState || item.primaryRiskState === searchCriteria.primaryRiskState;
 
-            return nameMatch && programMatch && productMatch && occupancyMatch && agencyMatch && primaryRiskMatch && primaryRiskStateMatch;
+            return nameMatch;
         });
 
         setResults(filteredData);
-        setShowNoResultsMessage(filteredData.length === 0);
-        // setSearchCriteria({
-        //     name: '',
-        //     programName: null,
-        //     productName: null,
-        //     occupancyType: null,
-        //     agencyName: '',
-        //     primaryRisk: null,
-        //     primaryRiskState: null
-        // })
         if (filteredData.length === 0) {
             message.warning('No results found. Please try again.');
         }
@@ -128,7 +120,7 @@ const SearchInsured = () => {
             <Header style={{ background: '#fff', padding: '16px 0' }}>
                 <Title level={2}>Search Insured</Title>
             </Header>
-            <Content style={{ margin: '16px' }}>
+            <Content style={{ margin: '16px', }}>
                 {/* <div className="insured-type">
                     <label htmlFor='insuredType'>Insured Type</label>
                     <br />
@@ -146,14 +138,15 @@ const SearchInsured = () => {
 
                 {/* Conditional Fields Section */}
 
-                <Row gutter={16} style={{ marginBottom: 16 }}>
+                <Row gutter={16} style={{ marginBottom: 2 }}>
                     <Col span={8}>
                         <FormInput
                             id="name"
-                            label="Insured Name"
+                            label="Insured Name *"
                             value={searchCriteria.name}
                             onChange={handleInputChange}
                             placeholder="Enter Insured Name"
+                            required={true}
                         />
                         {/* {insuredType === 'Individual' && (
                             <>
@@ -207,9 +200,9 @@ const SearchInsured = () => {
                         )} */}
                     </Col>
                 </Row>
-                <Row>
-                    {/* General Search Criteria Fields */}
-                    {/* <Col span={24}>
+                {/* <Row>
+                    // General Search Criteria Fields
+                    <Col span={24}>
                         <FormInput
                             label="Address Line 1"
                             value={searchCriteria.addressLine1}
@@ -240,7 +233,7 @@ const SearchInsured = () => {
                             onChange={handleInputChange}
                             placeholder="Enter Country"
                         />
-                    </Col> */}
+                    </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col span={4}>
@@ -337,7 +330,7 @@ const SearchInsured = () => {
                             ]}
                         />
                     </Col>
-                </Row>
+                </Row> */}
 
                 <Button type="primary" icon={<SearchOutlined />} onClick={performSearch} style={{ marginTop: 16, marginBottom: 16 }}>
                     Search
@@ -364,18 +357,119 @@ const SearchInsured = () => {
                     }}
 
                 />
+            </Content>
+            <Header style={{ background: '#fff', padding: '16px 0' }}>
+                <Title level={2}>Add LOB</Title>
+            </Header>
+            <Content>
+                <Row gutter={16}>
+                    <Col span={6}>
+                        <label style={{ marginBottom: '17px' }}>Program Name</label>
+                        <DropdownSelect
+                            // label="Program Name"
+                            id='programName'
+                            value={submissionDetails.programName}
+                            onChange={(value) => setSubmissionDetails((prev) => ({ ...prev, programName: value }))}
+                            placeholder="Select Program"
+                            options={[
+                                { label: "Ayspre", value: "ayspre" },
+                                { label: "Pentium", value: "pentium" },
+                                { label: "Impulse", value: "impulse" },
+                                { label: "Archer", value: "archer" }
+                            ]}
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <label style={{ marginBottom: '17px' }}>Product Name</label>
+                        <DropdownSelect
+                            // label="Product Name"
+                            id="productName"
+                            value={submissionDetails.productName}
+                            onChange={(value) => setSubmissionDetails((prev) => ({ ...prev, productName: value }))}
+                            placeholder="Select Product"
+                            options={[
+                                { label: "Habitational Risk", value: "habitational_risk" },
+                                { label: "Builder's Risk", value: "builders_risk" },
+                                { label: "Fine Arts", value: "fine_arts" },
+                                { label: "Commercial Property", value: "commercial_property" }
+                            ]}
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <label style={{ marginBottom: '17px' }}>Occupancy Type</label>
+                        <DropdownSelect
+                            // label="Occupancy Type"
+                            id="occupancyType"
+                            value={submissionDetails.occupancyType}
+                            onChange={(value) => setSubmissionDetails((prev) => ({ ...prev, occupancyType: value }))}
+                            placeholder="Select Occupancy Type"
+                            options={[
+                                { label: "Office", value: "office" },
+                                { label: "Retail", value: "retail" },
+                                { label: "Residential", value: "residential" },
+                                { label: "Industrial/Manufacturing", value: "industrial/manufacturing" },
+                                { label: "Warehouse/Storage", value: "warehouse/storage" },
+                                { label: "Hospitality", value: "hospitality" },
+                                { label: "Healthcare", value: "healthcare" },
+                                { label: "Educational", value: "educational" },
+                                { label: "Mixed-use", value: "mixed-use" },
+                                { label: "Vacant or Unoccupied", value: "vacant or unoccupied" }
+                            ]}
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <FormInput
+                            id="agencyName"
+                            label="Agency Name"
+                            value={submissionDetails.agencyName}
+                            onChange={handleInputChange}
+                            placeholder="Enter Agency Name"
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <label style={{ marginBottom: '17px' }}>Primary Risk State</label>
+                        <DropdownSelect
+                            // label="Primary Risk State"
+                            id="primaryRiskState"
+                            value={submissionDetails.primaryRiskState}
+                            onChange={(value) => setSubmissionDetails((prev) => ({ ...prev, primaryRiskState: value }))}
+                            placeholder="Select State"
+                            options={[
+                                { label: "New York", value: "new york" },
+                                { label: "New Jersey", value: "new jersey" },
+                                { label: "Texas", value: "texas" },
+                                { label: "California", value: "california" }
+                            ]}
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <label style={{ marginBottom: '17px' }}>Primary Risk</label>
+                        <DropdownSelect
+                            // label="Primary Risk"
+                            id="primaryRisk"
+                            value={submissionDetails.primaryRisk}
+                            onChange={(value) => setSubmissionDetails((prev) => ({ ...prev, primaryRisk: value }))}
+                            placeholder="Select Primary Risk"
+                            options={[
+                                { label: "Commercial Property", value: "commercial property" },
+                                { label: "Commercial Auto", value: "commercial auto" },
+                                { label: "Inland Marine", value: "inland marine" }
+                            ]}
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <label style={{ marginBottom: '17px' }}>LOB</label>
+                        <DropdownSelect
+                            // label="LOB"
+                            id="lob"
+                            value={submissionDetails.lob}
+                            onChange={(value) => setSubmissionDetails((prev) => ({ ...prev, lob: value }))}
+                            placeholder='select LOB'
+                            options={[{ label: 'Commercial Property', value: 'cp' }, { label: 'Commercial Auto', value: 'ca' }, { label: 'General Liability', value: 'gl' }]}
+                        />
+                    </Col>
+                </Row>
 
-                {showNoResultsMessage && <p style={{ color: 'red' }}>No results found. Please try again.</p>}
-                <Title level={2}>
-                    Add LOB
-                </Title>
-                <Col span={6}>
-                    <DropdownSelect
-                        label="LOB"
-                        placeholder='select LOB'
-                        options={[{ label: 'Commercial Property', value: 'cp' }, { label: 'Commercial Auto', value: 'ca' }, { label: 'General Liability', value: 'gl' }]}
-                    />
-                </Col>
                 <Button type="primary" onClick={() => navigate('/createsubmission')} style={{ padding: '25px 75px', margin: '10px' }} >
                     Create Submission
                 </Button>
