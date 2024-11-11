@@ -86,19 +86,23 @@ const ModalDesign = () => {
   );
 
   const actions = [
-    { label: "Approve", color: "#2cdd99", index: 0, message: "Do you want to approve the application?" },
-    { label: "Decline", color: "#da2d2d", index: 1, message: "Do you want to reject the application?" },
+    { label: "Approve", color: "#2c66d1", index: 0, message: "Do you want to approve the application?" },
+    { label: "Decline", color: "#2c66d1", index: 1, message: "Do you want to reject the application?" },
     { label: "Referral", color: "#2c66d1", index: 2, message: "Select which Underwriter you want to refer" },
   ];
 
   return (
     <>
-      <Col span={24} style={{ display: "flex",justifyContent:'center', gap: '15px' }}>
+      <Col span={24} style={{ display: "flex", justifyContent: "center" }}>
         {actions.map(({ label, color, index }) => (
           <Button
             key={label}
             type="primary"
-            style={{ padding: '25px 75px', backgroundColor: color }}
+            style={{
+              padding: "25px 75px",
+              backgroundColor: color,
+              margin: "0 10px", // Adjust the value as needed to reduce the gap
+            }}
             onClick={() => toggleModal(index, true)}
           >
             {label}

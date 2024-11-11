@@ -39,10 +39,10 @@ const QuoteSummary = () => {
 
   // Define table data for each section
   const coverageData = [
-    { key: 1, location: 'Location 1', coverage: '', limit: '', deductible: '', premium: '' },
-    { key: 2, location: 'Location 2', coverage: '', limit: '', deductible: '', premium: '' },
-    { key: 3, location: 'Location 3', coverage: '', limit: '', deductible: '', premium: '' },
-    { key: 4, location: 'Location 4', coverage: '', limit: '', deductible: '', premium: '' },
+    { key: 1, location: 'Location 1', coverage: '$4000', limit: '', deductible: '', premium: '' },
+    { key: 2, location: 'Location 2', coverage: '$4000', limit: '', deductible: '', premium: '' },
+    { key: 3, location: 'Location 3', coverage: '$5000', limit: '', deductible: '', premium: '' },
+    { key: 4, location: 'Location 4', coverage: '$3000', limit: '', deductible: '', premium: '' },
   ];
 
   const formData = [

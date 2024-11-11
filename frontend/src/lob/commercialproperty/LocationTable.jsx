@@ -9,7 +9,7 @@ import '../../components/TableStyles.css';
 
 const { Option } = Select;
 
-const LocationTable = () => {
+const  LocationTable = ({ nextTab }) => {
   const [data, setData] = useState([
     {
       key: 1,
@@ -200,9 +200,6 @@ const LocationTable = () => {
     setIsModalVisible(false);
   };
 
-  const nextTab= () => {
-    setActiveTab("locationBuildingTab");
-  };
 
   return (
     <div className={`${styles.container} tableContainer`} id='LocationTable'>

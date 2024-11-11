@@ -5,7 +5,7 @@
   align-items: center;
   padding: 20px;
   background-color: #f9f9f9;
-  flex-wrap: nowrap; /* Ensures the buttons are displayed in a single line */
+  flex-wrap: wrap; /* Ensures the buttons are displayed in a single line */
   width: 100vw; /* Full width of the viewport */
   /* Apply 10px left margin */
   box-sizing: border-box; /* Include padding/margin in element's width */
@@ -64,4 +64,10 @@
 
 .sublob-item.active:hover {
   background-color: #003bb3;
+}
+
+@media (min-width: 768px) {
+  .sublob-container {
+    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+  }
 }

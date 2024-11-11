@@ -13,22 +13,22 @@ const PremiumSummary = ({ onNext }) => {
   // Data for each building
   const buildingData = {
     'Location 1': [
-      { key: 1, description: 'Property Damage Coverage', coverageAmount: '', premium: '' },
-      { key: 2, description: 'Business Personal Property', coverageAmount: '', premium: '' },
-      { key: 3, description: 'Business Income Coverage', coverageAmount: '', premium: '' },
-      { key: 4, description: 'Flood Coverage', coverageAmount: '', premium: '' },
-      { key: 5, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
-      { key: 6, description: 'Annual Rental and fees', coverageAmount: '', premium: '' },
-      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '', premium: '' },
+      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$4000', premium: '' },
+      { key: 2, description: 'Business Personal Property', coverageAmount: '$5000', premium: '' },
+      { key: 3, description: 'Business Income Coverage', coverageAmount: '$5000', premium: '' },
+      { key: 4, description: 'Flood Coverage', coverageAmount: '$3000', premium: '' },
+      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$5000', premium: '' },
+      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$4000', premium: '' },
+      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$4000', premium: '' },
     ],
     'Location 2': [
-      { key: 1, description: 'Property Damage Coverage', coverageAmount: '', premium: '' },
-      { key: 2, description: 'Business Personal Property', coverageAmount: '', premium: '' },
-      { key: 3, description: 'Business Income Coverage', coverageAmount: '', premium: '' },
-      { key: 4, description: 'Flood Coverage', coverageAmount: '', premium: '' },
-      { key: 5, description: 'Earthquake Coverage', coverageAmount: '', premium: '' },
-      { key: 6, description: 'Annual Rental and fees', coverageAmount: '', premium: '' },
-      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '', premium: '' },
+      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$5000', premium: '' },
+      { key: 2, description: 'Business Personal Property', coverageAmount: '$4000', premium: '' },
+      { key: 3, description: 'Business Income Coverage', coverageAmount: '$4000', premium: '' },
+      { key: 4, description: 'Flood Coverage', coverageAmount: '$3000', premium: '' },
+      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$3000', premium: '' },
+      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$5000', premium: '' },
+      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$4000', premium: '' },
     ],
   };
 
