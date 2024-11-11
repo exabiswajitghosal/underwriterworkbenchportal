@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Sublob.css'; // Import the CSS file for styling
-import LossInfo from '../lob/commercialproperty/LossInfo';
+import '../layout/Sublob.css'; // Import the CSS file for styling
+// import LossInfo from './loss';
 import UWQuestions from '../lob/commercialproperty/UWQuestions';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import LocationComponent from '../lob/commercialproperty/LocationComponent';
@@ -11,7 +11,7 @@ import PremiumSummary from '../lob/commercialproperty/PremiumSummary';
 import Bind from '../lob/commercialproperty/Bind';
 import Coverages from '../lob/commercialproperty/Coverages';
 
-const Sublob2 = (props) => {
+const AccountInfoSublobs = (props) => {
   const sections = [
     'policyInfo',
     'locationInfo',
@@ -123,7 +123,7 @@ const Sublob2 = (props) => {
       )}
       {activeSection === 'lossInfo' && (
         <div className="sublob-item.active" id="lossInfo">
-          <LossInfo onNext={goToNextSection} />
+          {/* <LossInfo onNext={goToNextSection} /> */}
         </div>
       )}
       {activeSection === 'coverages' && (
@@ -150,4 +150,4 @@ const Sublob2 = (props) => {
   );
 };
 
-export default Sublob2;
+export default AccountInfoSublobs;

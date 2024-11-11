@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import Sublob2 from './layout/Sublob2';
 import AuditTrail from './SidebarComponents/AuditTrail';
 import AccountInfo from './SidebarComponents/AccountInfo';
+import AccountDashboard from './SidebarComponents/AccountDashboard';
 const { Sider, Content, Footer } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -52,11 +53,14 @@ const App = () => {
             <Menu.Item key="2" icon={<SettingFilled />} >
               {!collapsed ? <Link to="/submission">Submission</Link> : ''}
             </Menu.Item>
-            <Menu.Item key="3" icon={<AuditOutlined />}>
+            {/* <Menu.Item key="3" icon={<AuditOutlined />}>
               {!collapsed ? <Link to="/audit-trail">Audit Trail</Link> : ''}
+            </Menu.Item> */}
+            <Menu.Item key="3" icon={<InfoCircleOutlined />}>
+              {!collapsed ? <Link to="/accountdashboard">Account Dashboard</Link> : ''}
             </Menu.Item>
             <Menu.Item key="4" icon={<InfoCircleOutlined />}>
-              {!collapsed ? <Link to="/accountinfo">Account Information</Link> : ''}
+              {!collapsed ? <Link to="/accountinfo">Account Details</Link> : ''}
             </Menu.Item>
           </Menu>
         </Sider>
@@ -78,6 +82,7 @@ const App = () => {
               {/* Define other routes for different screens */}
               <Route path="createsubmission" element={<Sublob2 />} />
               <Route path="audit-trail" element={<AuditTrail />} />
+              <Route path="accountdashboard" element={<AccountDashboard />} />
               <Route path="accountinfo" element={<AccountInfo />} />
               <Route path="documentscreen" element={<DocumentScreen />} />
               <Route path="clearancescreen" element={<ClearanceScreen />} />
