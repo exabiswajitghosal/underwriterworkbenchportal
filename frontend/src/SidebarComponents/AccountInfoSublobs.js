@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import '../layout/Sublob.css'; // Import the CSS file for styling
-// import LossInfo from './loss';
-import UWQuestions from '../lob/commercialproperty/UWQuestions';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import LocationComponent from '../lob/commercialproperty/LocationComponent';
 import { Button, Row, Col } from 'antd';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import '../layout/Sublob.css'; // Import the CSS file for styling
+import LossInfo from '../lob/commercialproperty/LossInfo';
+import UWQuestions from '../lob/commercialproperty/UWQuestions';
+import LocationComponent from '../lob/commercialproperty/LocationComponent';
 import CreateSubmission from '../SidebarComponents/CreateSubmission';
 import QuoteSummary from '../lob/commercialproperty/quoteSummary';
 import PremiumSummary from '../lob/commercialproperty/PremiumSummary';
-import Bind from '../lob/commercialproperty/Bind';
+// import Bind from '../lob/commercialproperty/Bind';
 import Coverages from '../lob/commercialproperty/Coverages';
 
 const AccountInfoSublobs = (props) => {
@@ -123,7 +123,7 @@ const AccountInfoSublobs = (props) => {
       )}
       {activeSection === 'lossInfo' && (
         <div className="sublob-item.active" id="lossInfo">
-          {/* <LossInfo onNext={goToNextSection} /> */}
+          <LossInfo onNext={goToNextSection} />
         </div>
       )}
       {activeSection === 'coverages' && (
