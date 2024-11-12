@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Sublob.css'; // Import the CSS file for styling
+// import './Sublob.css'; // Import the CSS file for styling
 import LossInfo from '../lob/commercialproperty/LossInfo';
 import UWQuestions from '../lob/commercialproperty/UWQuestions';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -21,7 +21,7 @@ const Sublob2 = (props) => {
     'premiumSummary',
     'quoteSummary'
   ];
-
+ 
   const [activeSection, setActiveSection] = useState(sections[0]);
 
   const showSublob = (sectionId) => {
@@ -36,74 +36,74 @@ const Sublob2 = (props) => {
   };
 
   return (
-    <div style={{ padding: '10px', marginTop: '20px', position: 'relative' }}>
-      <Row gutter={[16, 16]} align="stretch" justify={'center'}>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
+    <div style={{  marginTop: '20px', position: 'relative' }}>
+      <Row gutter={[16, 16]} align="stretch" justify={'space-between'}>
+        <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
           <Button
             className={`sublob-item ${activeSection === 'policyInfo' ? 'active' : ''}`}
             onClick={() => showSublob('policyInfo')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+            block style={{ width: '10rem' }}
+            // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-file-alt"></i> Insured Info
           </Button>
         </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
+        <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
           <Button
             className={`sublob-item ${activeSection === 'locationInfo' ? 'active' : ''}`}
             onClick={() => showSublob('locationInfo')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+            block style={{ width: '10rem' }}
+            // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-map-marker-alt"></i> Risk
           </Button>
         </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
+        <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
           <Button
             className={`sublob-item ${activeSection === 'lossInfo' ? 'active' : ''}`}
             onClick={() => showSublob('lossInfo')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+            block style={{ width: '10rem' }}
+            // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-exclamation-triangle"></i> Loss
           </Button>
         </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
+        <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
           <Button
             className={`sublob-item ${activeSection === 'coverages' ? 'active' : ''}`}
             onClick={() => showSublob('coverages')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+            block style={{ width: '10rem' }}
+            // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-shield-alt"></i> Coverages
           </Button>
         </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
+        <Col xs={23} sm={12} md={7} lg={5} xl={3}>
           <Button
             className={`sublob-item ${activeSection === 'uw' ? 'active' : ''}`}
             onClick={() => showSublob('uw')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+            block style={{ width: '10rem' }}
+            // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-question-circle"></i> UW Questions
           </Button>
         </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
+        <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
           <Button
             className={`sublob-item ${activeSection === 'premiumSummary' ? 'active' : ''}`}
             onClick={() => showSublob('premiumSummary')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+            block style={{ width: '10rem' }}
+            // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-calculator"></i> Premium Summary
           </Button>
         </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
+        <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
           <Button
             className={`sublob-item ${activeSection === 'quoteSummary' ? 'active' : ''}`}
             onClick={() => showSublob('quoteSummary')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+            block style={{ width: '10rem' }}
+            // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-file-signature"></i> Quote Summary
           </Button>

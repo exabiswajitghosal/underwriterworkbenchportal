@@ -18,6 +18,7 @@ import AccountDashboard from './SidebarComponents/AccountDashboard';
 const { Sider, Content, Footer } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();

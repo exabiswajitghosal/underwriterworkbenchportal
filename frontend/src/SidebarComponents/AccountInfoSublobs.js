@@ -22,8 +22,8 @@ const AccountInfoSublobs = (props) => {
     'quoteSummary'
   ];
 
-  const [activeSection, setActiveSection] = useState(sections[0]);
-
+  const [activeSection, setActiveSection] = useState();
+  const {showAccount}=props;
   const showSublob = (sectionId) => {
     setActiveSection(sectionId);
   };
@@ -36,117 +36,117 @@ const AccountInfoSublobs = (props) => {
   };
 
   return (
-    <div style={{ padding: '10px', marginTop: '20px', position: 'relative' }}>
-      <Row gutter={[16, 16]} align="stretch" justify={'center'}>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
-          <Button
-            className={`sublob-item ${activeSection === 'policyInfo' ? 'active' : ''}`}
-            onClick={() => showSublob('policyInfo')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
-          >
-            <i className="fas fa-file-alt"></i> Insured Info
-          </Button>
-        </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
-          <Button
-            className={`sublob-item ${activeSection === 'locationInfo' ? 'active' : ''}`}
-            onClick={() => showSublob('locationInfo')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
-          >
-            <i className="fas fa-map-marker-alt"></i> Risk
-          </Button>
-        </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
-          <Button
-            className={`sublob-item ${activeSection === 'lossInfo' ? 'active' : ''}`}
-            onClick={() => showSublob('lossInfo')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
-          >
-            <i className="fas fa-exclamation-triangle"></i> Loss
-          </Button>
-        </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
-          <Button
-            className={`sublob-item ${activeSection === 'coverages' ? 'active' : ''}`}
-            onClick={() => showSublob('coverages')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
-          >
-            <i className="fas fa-shield-alt"></i> Coverages
-          </Button>
-        </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
-          <Button
-            className={`sublob-item ${activeSection === 'uw' ? 'active' : ''}`}
-            onClick={() => showSublob('uw')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
-          >
-            <i className="fas fa-question-circle"></i> UW Questions
-          </Button>
-        </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
-          <Button
-            className={`sublob-item ${activeSection === 'premiumSummary' ? 'active' : ''}`}
-            onClick={() => showSublob('premiumSummary')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
-          >
-            <i className="fas fa-calculator"></i> Premium Summary
-          </Button>
-        </Col>
-        <Col xs={24} sm={12} md={7} lg={6} xl={4}>
-          <Button
-            className={`sublob-item ${activeSection === 'quoteSummary' ? 'active' : ''}`}
-            onClick={() => showSublob('quoteSummary')}
-            block
-            style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
-          >
-            <i className="fas fa-file-signature"></i> Quote Summary
-          </Button>
-        </Col>
-      </Row>
+    <div style={{  marginTop: '20px', position: 'relative' }}>
+    <Row gutter={[16, 16]} align="stretch" justify={'space-between'}>
+      <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
+        <Button
+          className={`sublob-item ${activeSection === 'policyInfo' ? 'active' : ''}`}
+          onClick={() => {showSublob('policyInfo'); showAccount(false);}}
+          block style={{ width: '10rem' }}
+          // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+        >
+          <i className="fas fa-file-alt"></i> Insured Info
+        </Button>
+      </Col>
+      <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
+        <Button
+          className={`sublob-item ${activeSection === 'locationInfo' ? 'active' : ''}`}
+          onClick={() => {showSublob('locationInfo'); showAccount(false);}}
+          block style={{ width: '10rem' }}
+          // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+        >
+          <i className="fas fa-map-marker-alt"></i> Risk
+        </Button>
+      </Col>
+      <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
+        <Button
+          className={`sublob-item ${activeSection === 'lossInfo' ? 'active' : ''}`}
+          onClick={() => {showSublob('lossInfo'); showAccount(false);}}
+          block style={{ width: '10rem' }}
+          // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+        >
+          <i className="fas fa-exclamation-triangle"></i> Loss
+        </Button>
+      </Col>
+      <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
+        <Button
+          className={`sublob-item ${activeSection === 'coverages' ? 'active' : ''}`}
+          onClick={() => {showSublob('coverages'); showAccount(false);}}
+          block style={{ width: '10rem' }}
+          // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+        >
+          <i className="fas fa-shield-alt"></i> Coverages
+        </Button>
+      </Col>
+      <Col xs={23} sm={12} md={7} lg={5} xl={3}>
+        <Button
+          className={`sublob-item ${activeSection === 'uw' ? 'active' : ''}`}
+          onClick={() => {showSublob('uw'); showAccount(false);}}
+          block style={{ width: '10rem' }}
+          // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+        >
+          <i className="fas fa-question-circle"></i> UW Questions
+        </Button>
+      </Col>
+      <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
+        <Button
+          className={`sublob-item ${activeSection === 'premiumSummary' ? 'active' : ''}`}
+          onClick={() => {showSublob('premiumSummary'); showAccount(false);}}
+          block style={{ width: '10rem' }}
+          // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+        >
+          <i className="fas fa-calculator"></i> Premium Summary
+        </Button>
+      </Col>
+      <Col  xs={23} sm={12} md={7} lg={5} xl={3}>
+        <Button
+          className={`sublob-item ${activeSection === 'quoteSummary' ? 'active' : ''}`}
+          onClick={() => {showSublob('quoteSummary');showAccount(false);}}
+          block style={{ width: '10rem' }}
+          // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
+        >
+          <i className="fas fa-file-signature"></i> Quote Summary
+        </Button>
+      </Col>
+    </Row>
 
-      {/* Conditional rendering based on the active section */}
-      {activeSection === 'policyInfo' && (
-        <div className="sublob-item.active" id="policyInfo">
-          <CreateSubmission onNext={goToNextSection} />
-        </div>
-      )}
-      {activeSection === 'locationInfo' && (
-        <div className="sublob-item.active" id="locationInfo">
-          <LocationComponent onNext={goToNextSection} />
-        </div>
-      )}
-      {activeSection === 'lossInfo' && (
-        <div className="sublob-item.active" id="lossInfo">
-          <LossInfo onNext={goToNextSection} />
-        </div>
-      )}
-      {activeSection === 'coverages' && (
-        <div className="sublob-item.active" id="coverages">
-          <Coverages onNext={goToNextSection} />
-        </div>
-      )}
-      {activeSection === 'uw' && (
-        <div className="sublob-item.active" id="uw">
-          <UWQuestions onNext={goToNextSection} />
-        </div>
-      )}
-      {activeSection === 'premiumSummary' && (
-        <div className="sublob-item.active" id="premiumSummary">
-          <PremiumSummary onNext={goToNextSection} />
-        </div>
-      )}
-      {activeSection === 'quoteSummary' && (
-        <div className="sublob-item.active" id="quoteSummary">
-          <QuoteSummary onNext={goToNextSection} />
-        </div>
-      )}
-    </div>
+    {/* Conditional rendering based on the active section */}
+    {activeSection === 'policyInfo' && (
+      <div className="sublob-item.active" id="policyInfo">
+        <CreateSubmission onNext={goToNextSection} />
+      </div>
+    )}
+    {activeSection === 'locationInfo' && (
+      <div className="sublob-item.active" id="locationInfo">
+        <LocationComponent onNext={goToNextSection} />
+      </div>
+    )}
+    {activeSection === 'lossInfo' && (
+      <div className="sublob-item.active" id="lossInfo">
+        <LossInfo onNext={goToNextSection} />
+      </div>
+    )}
+    {activeSection === 'coverages' && (
+      <div className="sublob-item.active" id="coverages">
+        <Coverages onNext={goToNextSection} />
+      </div>
+    )}
+    {activeSection === 'uw' && (
+      <div className="sublob-item.active" id="uw">
+        <UWQuestions onNext={goToNextSection} />
+      </div>
+    )}
+    {activeSection === 'premiumSummary' && (
+      <div className="sublob-item.active" id="premiumSummary">
+        <PremiumSummary onNext={goToNextSection} />
+      </div>
+    )}
+    {activeSection === 'quoteSummary' && (
+      <div className="sublob-item.active" id="quoteSummary">
+        <QuoteSummary onNext={goToNextSection} />
+      </div>
+    )}
+  </div>
   );
 };
 

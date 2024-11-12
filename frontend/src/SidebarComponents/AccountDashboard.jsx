@@ -42,8 +42,8 @@ const AccountDashboard = () => {
 
   return (
     <Layout>
-      <div className="relevant-info" id="details-section">
-        <div className="details-container">
+      <div  id="details-section" style={{backgroundColor: "white"}}>
+        <div className="details-container" style={{backgroundColor: "white"}}>
           {/* Account Information Section */}
           <div className="account-info">
             <h2>Details</h2>
@@ -75,7 +75,7 @@ const AccountDashboard = () => {
         </div>
 
         {/* Policy Terms Section */}
-        <div className="policy-terms">
+        <div className="policy-terms" >
           <h3>Policy Terms</h3>
           <table>
             <thead>

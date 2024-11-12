@@ -17,7 +17,7 @@
   justify-content: space-between;
   flex-direction: row; /* Ensure items are displayed in a row */
   justify-content: center; /* Center sub-LOB items horizontally */
-  align-items: center; /* Center sub-LOB items vertically */
+  /*align-items: center; Center sub-LOB items vertically */
 
   width: 100%; /* Ensure the sublob container takes full width */
   
@@ -37,10 +37,10 @@
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center; /* Center text horizontally */
-  align-items: center; /* Center text vertically */
+  /* align-items: center; Center text vertically */
   height: 40px;
   width: 100px;
-  margin-left: 2px;
+
   
 }
 

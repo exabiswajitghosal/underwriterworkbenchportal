@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import './AccountInfo.css';
 import { Layout } from 'antd';
 import PolicyCards from '../layout/PolicyCards';
 import AccountInfoSublobs from './AccountInfoSublobs';
+import AccountDashboard from './AccountDashboard';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -18,6 +19,7 @@ const AccountInfo = () => {
       'Billed: $11,077.18',
       'Past Due: $1,000.18'
     ],
+    
     datasets: [
       {
         label: 'Billing',
@@ -33,6 +35,7 @@ const AccountInfo = () => {
       },
     ],
   };
+  const [showAccountInfo, setShowAccountInfo] = useState(true); // Add state to control visibility of AccountInfo
   const pieChartOptions = {
     responsive: true,
     plugins: {
@@ -43,9 +46,10 @@ const AccountInfo = () => {
   };
 
   return (
-    <Layout>
+    <Layout style={{backgroundColor: "white"}}>
       <PolicyCards/>
-      <AccountInfoSublobs/>
+      <AccountInfoSublobs showAccount={setShowAccountInfo}/>
+      {showAccountInfo && <AccountDashboard/>}
     </Layout>
   );
 };

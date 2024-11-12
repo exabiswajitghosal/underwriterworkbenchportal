@@ -30,8 +30,8 @@ export function PolicyCards() {
   ];
 
   return (
-    <section className={styles.policyCards}>
-      <Row gutter={[16, 16]} justify="space-between" style={{ marginRight: "30px",marginLeft:"3px"}}>
+    <section >
+      <Row gutter={[8, 8]} justify="space-between" >
         {policies.map((policy, index) => (
           <Col
             key={index}
@@ -50,7 +50,7 @@ export function PolicyCards() {
               onClick={() => setActivePolicy(policy.name)}  // Set active policy on click
               style={{
                 height: "102px",
-                width: "242px",
+                width: "225px",
                 borderRadius: "12px",
                 boxShadow: "0 30px 60px rgba(138, 159, 158, 0.2)",
                 borderTopColor: "steelblue",
