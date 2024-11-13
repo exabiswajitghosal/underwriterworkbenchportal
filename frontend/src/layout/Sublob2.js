@@ -42,7 +42,7 @@ const Sublob2 = (props) => {
           <Button
             className={`sublob-item ${activeSection === 'policyInfo' ? 'active' : ''}`}
             onClick={() => showSublob('policyInfo')}
-            block style={{ width: '10rem' }}
+            block style={{ width: '11rem' }}
             // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-file-alt"></i> Insured Info
@@ -52,7 +52,7 @@ const Sublob2 = (props) => {
           <Button
             className={`sublob-item ${activeSection === 'locationInfo' ? 'active' : ''}`}
             onClick={() => showSublob('locationInfo')}
-            block style={{ width: '10rem' }}
+            block style={{ width: '11rem' }}
             // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-map-marker-alt"></i> Risk
@@ -62,7 +62,7 @@ const Sublob2 = (props) => {
           <Button
             className={`sublob-item ${activeSection === 'lossInfo' ? 'active' : ''}`}
             onClick={() => showSublob('lossInfo')}
-            block style={{ width: '10rem' }}
+            block style={{ width: '11rem' }}
             // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-exclamation-triangle"></i> Loss
@@ -82,7 +82,7 @@ const Sublob2 = (props) => {
           <Button
             className={`sublob-item ${activeSection === 'uw' ? 'active' : ''}`}
             onClick={() => showSublob('uw')}
-            block style={{ width: '10rem' }}
+            block style={{ width: '11rem' }}
             // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-question-circle"></i> UW Questions
@@ -92,7 +92,7 @@ const Sublob2 = (props) => {
           <Button
             className={`sublob-item ${activeSection === 'premiumSummary' ? 'active' : ''}`}
             onClick={() => showSublob('premiumSummary')}
-            block style={{ width: '10rem' }}
+            block style={{ width: '11rem' }}
             // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-calculator"></i> Premium Summary
@@ -102,7 +102,7 @@ const Sublob2 = (props) => {
           <Button
             className={`sublob-item ${activeSection === 'quoteSummary' ? 'active' : ''}`}
             onClick={() => showSublob('quoteSummary')}
-            block style={{ width: '10rem' }}
+            block style={{ width: '11rem' }}
             // style={{ height: '3rem', fontSize: '1rem', width: '100%' }}
           >
             <i className="fas fa-file-signature"></i> Quote Summary

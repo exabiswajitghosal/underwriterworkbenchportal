@@ -200,6 +200,18 @@ const  LocationTable = ({ nextTab }) => {
     setIsModalVisible(false);
   };
 
+  // New state to handle the visibility of the document sidebar
+  const [isDocumentMenuVisible, setDocumentMenuVisible] = useState(false);
+
+  const handleDocumentMenuHover = () => {
+    setDocumentMenuVisible(true);
+  };
+
+  const handleDocumentMenuLeave = () => {
+    setDocumentMenuVisible(false);
+  };
+
+
 
   return (
     <div className={`${styles.container} tableContainer`} id='LocationTable'>
@@ -251,6 +263,59 @@ const  LocationTable = ({ nextTab }) => {
           </div>
         </Col>
       </Row>
+      <div
+        onMouseEnter={handleDocumentMenuHover}
+        onMouseLeave={handleDocumentMenuLeave}
+        style={{
+          position: 'fixed',
+          top: '50%',
+          right: 0,
+          transform: 'translateY(-50%)',
+          backgroundColor: '#003f5c',
+          color: '#fff',
+          padding: '10px',
+          width: '50px',        // Width of the vertical button
+          height: '230px',       // Height of the vertical button
+          borderRadius: '8px 0 0 8px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          writingMode: 'vertical-rl', // Rotates text vertically
+          textAlign: 'center',
+          cursor: 'pointer',
+          zIndex: 1000,
+          fontWeight:"600",
+          fontSize:'22px'
+        }}
+      >
+        Documents
+      </div>
+
+      {/* Document menu that slides in on hover */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '25%', // Centered vertically with 50% height
+          right: isDocumentMenuVisible ? '0' : '-300px', // Adjusted width for visibility
+          width: '300px', 
+          height: '50%', 
+          backgroundColor: '#f4f4f4',
+          transition: 'right 0.3s ease',
+          padding: '20px',
+          zIndex: 999,
+          boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
+          borderRadius: '8px 0 0 8px', 
+        }}
+        onMouseEnter={handleDocumentMenuHover}
+        onMouseLeave={handleDocumentMenuLeave}
+      >
+        <h3>Documents</h3>
+        <ul style={{ listStyleType: 'disc', paddingLeft: '20px', fontSize: '18px' }}>
+          <li><a href="fire_flood_print.pdf" target="_blank" rel="noopener noreferrer">Corelogic.pdf</a></li>
+          <li><a href="riskmeter_report.pdf" target="_blank" rel="noopener noreferrer">HazardHub.pdf</a></li>
+        </ul>
+      </div>
+      
       
       <Row justify="center" style={{ marginTop: '30px', padding: '10px 0' }}>
         <Col span={24} style={{ textAlign: 'center' }}>
