@@ -259,7 +259,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Insured Name</span>}
-                                            value={basicInfo.insuredName}
+                                            value= "Kew Gardens Property"
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "basicInfo", "insuredName")}
                                             readOnly={!basicInfo.isEditing} // Allow editing based on state
@@ -442,7 +442,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Postal Code</span>}
-                                            value={locationInfo.pinCode}
+                                            value="11415"
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "pinCode")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -451,7 +451,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Addess Line 1</span>}
-                                            value={locationInfo.addressLine1}
+                                            value="123-05 84th Avenue "
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "addressLine1")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -460,7 +460,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Addess Line 2</span>}
-                                            value={locationInfo.addressLine2}
+                                            // value={locationInfo.addressLine2}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "addressLine2")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -469,7 +469,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>County</span>}
-                                            value={locationInfo.county}
+                                            value="NY"
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "country")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -478,7 +478,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>City</span>}
-                                            value={locationInfo.city}
+                                            value="New York"
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "city")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -487,7 +487,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>State</span>}
-                                            value={locationInfo.state}
+                                            value="NY State"
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "state")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state

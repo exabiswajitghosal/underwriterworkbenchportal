@@ -19,6 +19,7 @@ const  LocationTable = ({ nextTab }) => {
       zip: "90210",
       country: "USA"
     }
+   
   ]);
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [selectionType] = useState('radio');
@@ -302,10 +303,10 @@ const  LocationTable = ({ nextTab }) => {
                 setSameAsRiskLocation(e.target.value);
                 if (e.target.value) {
                   form.setFieldsValue({
-                    address1: "123 Innovation Drive",
-                    address2: "Suite 200",
-                    state: "CA",
-                    zip: "90210",
+                    address1: "123-05 84th Avenue, Kew Gardens",
+                    address2: "",
+                    state: "NY State",
+                    zip: "11415",
                     country: "USA"
                   });
                 } else {

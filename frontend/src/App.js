@@ -51,17 +51,18 @@ const App = () => {
             <Menu.Item key="1" icon={<HomeOutlined />}>
               {!collapsed ? <Link to="/">Dashboard</Link> : ''}
             </Menu.Item>
-            <Menu.Item key="2" icon={<SettingFilled />} >
-              {!collapsed ? <Link to="/submission">Submission</Link> : ''}
-            </Menu.Item>
+           
             {/* <Menu.Item key="3" icon={<AuditOutlined />}>
               {!collapsed ? <Link to="/audit-trail">Audit Trail</Link> : ''}
             </Menu.Item> */}
-            <Menu.Item key="3" icon={<InfoCircleOutlined />}>
-              {!collapsed ? <Link to="/accountdashboard">Account Dashboard</Link> : ''}
+            <Menu.Item key="2" icon={<InfoCircleOutlined />}>
+              {!collapsed ? <Link to="/accountdashboard">Account Information</Link> : ''}
             </Menu.Item>
-            <Menu.Item key="4" icon={<InfoCircleOutlined />}>
+            <Menu.Item key="3" icon={<InfoCircleOutlined />}>
               {!collapsed ? <Link to="/accountinfo">Account Details</Link> : ''}
+            </Menu.Item>
+            <Menu.Item key="4" icon={<SettingFilled />} >
+              {!collapsed ? <Link to="/submission">New Submission</Link> : ''}
             </Menu.Item>
           </Menu>
         </Sider>

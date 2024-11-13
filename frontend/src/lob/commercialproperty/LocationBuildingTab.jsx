@@ -300,8 +300,8 @@ export function LocationBuildingTab() {
           value={selectedLocation}
           style={{ width: 250, height: 50 }}
         >
-          <Option value="1234 Elm Street">1234 Elm Street,Apt 101,California,90210,USA</Option>
-          <Option value="123 Innovation Drive">123 Innovation Drive,Suite 200,CA,90210,USA</Option>
+           <Option value="123-05 84th Avenue">123-05 84th Avenue, Kew Gardens, NY 11415</Option>
+        <Option value="1234 Elm Street">1234 Elm Street,Apt 101,California,90210,USA</Option>
           
         </Select>
       </div>

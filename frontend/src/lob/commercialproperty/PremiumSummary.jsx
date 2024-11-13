@@ -98,12 +98,12 @@ const PremiumSummary = ({ onNext }) => {
     <div className="premium-summary" id="premiumSummary">
       <span style={{ marginRight: '10px', fontSize: '18px' }}>Select Location:</span>
       <Select
-        placeholder="Select Building Number"
+        placeholder="Select Location"
         onChange={handleBuildingChange}
         style={{ width: 200, height: 50, marginTop: 40 }}
       >
-                <Option value="Location 1">1234 Elm Street,Apt 101,California,90210,USA</Option>
-                <Option value="Location 2">123 Innovation Drive,Suite 200,CA,90210,USA</Option>
+                 <Option value="Location 1">123-05 84th Avenue, Kew Gardens, NY 11415</Option>
+                 <Option value="Location 2">1234 Elm Street,Apt 101,California,90210,USA</Option>
       </Select>
 
       {/* Edit/Save button */}
