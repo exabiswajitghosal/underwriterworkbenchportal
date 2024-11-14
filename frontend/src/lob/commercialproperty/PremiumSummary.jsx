@@ -13,22 +13,22 @@ const PremiumSummary = ({ onNext }) => {
   // Data for each building
   const buildingData = {
     'Location 1': [
-      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$4000', premium: '' },
-      { key: 2, description: 'Business Personal Property', coverageAmount: '$5000', premium: '' },
-      { key: 3, description: 'Business Income Coverage', coverageAmount: '$5000', premium: '' },
-      { key: 4, description: 'Flood Coverage', coverageAmount: '$3000', premium: '' },
-      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$5000', premium: '' },
-      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$4000', premium: '' },
-      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$4000', premium: '' },
+      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$400,000', premium: '$4000' },
+      { key: 2, description: 'Business Personal Property', coverageAmount: '$500,000', premium: '$5000' },
+      { key: 3, description: 'Business Income Coverage', coverageAmount: '$500,000', premium: '$5000' },
+      { key: 4, description: 'Flood Coverage', coverageAmount: '$300,000', premium: '$3000' },
+      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$500,000', premium: '$5000' },
+      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$400,000', premium: '$4000' },
+      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', premium: '$4000' },
     ],
     'Location 2': [
-      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$5000', premium: '' },
-      { key: 2, description: 'Business Personal Property', coverageAmount: '$4000', premium: '' },
-      { key: 3, description: 'Business Income Coverage', coverageAmount: '$4000', premium: '' },
-      { key: 4, description: 'Flood Coverage', coverageAmount: '$3000', premium: '' },
-      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$3000', premium: '' },
-      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$5000', premium: '' },
-      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$4000', premium: '' },
+      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$500,000', premium: '$5000' },
+      { key: 2, description: 'Business Personal Property', coverageAmount: '$400,000', premium: '$4000' },
+      { key: 3, description: 'Business Income Coverage', coverageAmount: '$400,000', premium: '$4000' },
+      { key: 4, description: 'Flood Coverage', coverageAmount: '$300,000', premium: '$3000' },
+      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$300,000', premium: '$3000' },
+      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$500,000', premium: '$5000' },
+      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', premium: '$4000' },
     ],
   };
 
@@ -144,7 +144,7 @@ const PremiumSummary = ({ onNext }) => {
           style={{ marginTop: 2 }}
         />
         </Panel>
-        <Panel header="Building 2" key="2">
+        {/* <Panel header="Building 2" key="2">
         <Table
           dataSource={data}
           columns={columns}
@@ -154,7 +154,7 @@ const PremiumSummary = ({ onNext }) => {
           bordered
           style={{ marginTop: 2 }}
         />
-        </Panel>
+        </Panel> */}
         </Collapse>
       
       
@@ -168,9 +168,9 @@ const PremiumSummary = ({ onNext }) => {
      {selectedBuilding && (
       <Table
         dataSource={[
-          { key: 'totalPremium', label: 'Total Premium', value: '' },
-          { key: 'feeTaxes', label: 'Fees & Taxes', value: '' },
-          { key: 'totalPayable', label: 'Total Payable', value: '' },
+          { key: 'totalPremium', label: 'Total Premium', value: '100000' },
+          { key: 'feeTaxes', label: 'Fees & Taxes', value: '10000' },
+          { key: 'totalPayable', label: 'Total Payable', value: '100000' },
         ]}
         columns={[
           { title: '', dataIndex: 'label', key: 'label' },

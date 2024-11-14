@@ -8,7 +8,7 @@ import LocationComponent from '../lob/commercialproperty/LocationComponent';
 import CreateSubmission from '../SidebarComponents/CreateSubmission';
 import QuoteSummary from '../lob/commercialproperty/quoteSummary';
 import PremiumSummary from '../lob/commercialproperty/PremiumSummary';
-// import Bind from '../lob/commercialproperty/Bind';
+
 import Coverages from '../lob/commercialproperty/Coverages';
 
 const AccountInfoSublobs = (props) => {
@@ -22,7 +22,7 @@ const AccountInfoSublobs = (props) => {
     'quoteSummary'
   ];
 
-  const [activeSection, setActiveSection] = useState();
+  const [activeSection, setActiveSection] = useState('policyInfo');
   const {showAccount}=props;
   const showSublob = (sectionId) => {
     setActiveSection(sectionId);

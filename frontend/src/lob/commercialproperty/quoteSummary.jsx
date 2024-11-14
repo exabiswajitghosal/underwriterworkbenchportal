@@ -39,24 +39,22 @@ const QuoteSummary = () => {
 
   // Define table data for each section
   const coverageData = [
-    { key: 1, location: 'Location 1', coverage: '$4000', limit: '', deductible: '', premium: '' },
-    { key: 2, location: 'Location 2', coverage: '$4000', limit: '', deductible: '', premium: '' },
-    { key: 3, location: 'Location 3', coverage: '$5000', limit: '', deductible: '', premium: '' },
-    { key: 4, location: 'Location 4', coverage: '$3000', limit: '', deductible: '', premium: '' },
+    { key: 1, location: '123-05 84th Avenue, Kew Gardens, NY 11415', coverage: '$4000,000', limit: '$4000,000', deductible: '$40000', premium: '$50000' },
+    { key: 2, location: '1234 Elm Street', coverage: '$5000,000', limit: '$5000,000', deductible: '$50000', premium: '$50000' },
+    
   ];
 
   const formData = [
     { key: 1, formNumber: '1', formName: '', description: '' },
     { key: 2, formNumber: '2', formName: '', description: '' },
-    { key: 3, formNumber: '3', formName: '', description: '' },
-    { key: 4, formNumber: '4', formName: '', description: '' },
+   
   ];
 
   const invoiceData = [
-    { key: 1, label: 'Invoice Number', value: '' },
-    { key: 2, label: 'Installment No.', value: '' },
-    { key: 3, label: 'Total Premium Due', value: '' },
-    { key: 4, label: 'Installment Premium Due', value: '' },
+    { key: 1, label: 'Invoice Number', value: '11202556' },
+    { key: 2, label: 'Installment No.', value: '11202456' },
+    { key: 3, label: 'Total Premium Due', value: '$50000' },
+    { key: 4, label: 'Installment Premium Due', value: '$4000' },
   ];
 
   // Define columns for each table
@@ -105,11 +103,11 @@ const QuoteSummary = () => {
       <Title level={5}>Quote Summary</Title>
       <Table
         dataSource={[
-          { key: 'quoteNumber', label: 'Quote Number', value: '' },
-          { key: 'effectiveDate', label: 'Policy Effective Date', value: '' },
-          { key: 'endDate', label: 'Policy End Date', value: '' },
-          { key: 'insuredName', label: 'Insured Name', value: '' },
-          { key: 'mailingAddress', label: 'Mailing Address', value: '' },
+          { key: 'quoteNumber', label: 'Quote Number', value: 'abc0014562' },
+          { key: 'effectiveDate', label: 'Policy Effective Date', value: '12/11/2024' },
+          { key: 'endDate', label: 'Policy End Date', value: '12/11/2025' },
+          { key: 'insuredName', label: 'Insured Name', value: 'Kew Gardens Property' },
+          { key: 'mailingAddress', label: 'Mailing Address', value: '123-05 84th Avenue, Kew Gardens, NY 11415' },
         ]}
         columns={[
           { title: '', dataIndex: 'label', key: 'label' },
@@ -138,11 +136,11 @@ const QuoteSummary = () => {
                 </Table.Summary.Row>
                 <Table.Summary.Row>
                   <Table.Summary.Cell colSpan={4}>Fees & Taxes</Table.Summary.Cell>
-                  <Table.Summary.Cell>1000</Table.Summary.Cell>
+                  <Table.Summary.Cell>10000</Table.Summary.Cell>
                 </Table.Summary.Row>
                 <Table.Summary.Row>
                   <Table.Summary.Cell colSpan={4}>Total Payable</Table.Summary.Cell>
-                  <Table.Summary.Cell>101000</Table.Summary.Cell>
+                  <Table.Summary.Cell>100000</Table.Summary.Cell>
                 </Table.Summary.Row>
               </>
             )}
@@ -187,7 +185,7 @@ const QuoteSummary = () => {
         <Col span={4}>
           <div>
             <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }}>
-              <b>Next</b>
+              <b>Create Quote</b>
             </button>
           </div>
         </Col>

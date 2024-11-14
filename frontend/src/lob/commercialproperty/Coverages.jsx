@@ -12,23 +12,23 @@ const Coverages = ({ onNext }) =>{
   // Define table data for each location
   const locationData = {
     'Location 1': [
-      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$4000', deductible: '$400', approvedCoverage: '', approvedDeductible: '' },
-      { key: 2, label: 'Business Personal Property', coverageAmount: '$5000', deductible: '$500', approvedCoverage: '', approvedDeductible: '' },
-      { key: 3, label: 'Business Income Coverage', coverageAmount: '$5000', deductible: '$500', approvedCoverage: '', approvedDeductible: '' },
-      { key: 4, label: 'Flood Coverage', coverageAmount: '$3000', deductible: '$300', approvedCoverage: '', approvedDeductible: '' },
-      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$5000', deductible: '$500', approvedCoverage: '', approvedDeductible: '' },
-      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$4000', deductible: '$400', approvedCoverage: '', approvedDeductible: '' },
-      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$4000', deductible: '$400', approvedCoverage: '', approvedDeductible: '' },
+      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$30000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
       
     ],
     'Location 2': [
-      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$4000', deductible: '$400', approvedCoverage: '', approvedDeductible: '' },
-      { key: 2, label: 'Business Personal Property', coverageAmount: '$5000', deductible: '$500', approvedCoverage: '', approvedDeductible: '' },
-      { key: 3, label: 'Business Income Coverage', coverageAmount: '$5000', deductible: '$500', approvedCoverage: '', approvedDeductible: '' },
-      { key: 4, label: 'Flood Coverage', coverageAmount: '$3000', deductible: '$300', approvedCoverage: '', approvedDeductible: '' },
-      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$5000', deductible: '$500', approvedCoverage: '', approvedDeductible: '' },
-      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$4000', deductible: '$400', approvedCoverage: '', approvedDeductible: '' },
-      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$4000', deductible: '$400', approvedCoverage: '', approvedDeductible: '' },
+      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$30000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
       
     ],
   };

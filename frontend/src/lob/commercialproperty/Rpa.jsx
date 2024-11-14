@@ -13,9 +13,9 @@ function Rpa() {
 
   // Sample addresses
   const addresses = {
-    nyAddress1: '1234 Elm Street',
-    nyAddress2: '123 Innovation Drive',
-    nyAddress3: '225 Rector Place, New York, NY',
+    nyAddress1: '123-05 84th Avenue, Kew Gardens, NY 11415',
+    nyAddress2: '1234 Elm Street',
+   
   };
 
   // URL generators
@@ -30,18 +30,22 @@ function Rpa() {
   const handleAddressChange = (e) => {
     const selectedAddress = e.target.value;
 
-    // Reset errors and state to allow reopening of the same address
-    setZillowIframeError(false);
-    setStreetEasyIframeError(false);
+    // Reset the address briefly to allow re-opening with the same address
+    setAddress('');
     setShowRpa(false); // Close modal before reopening
 
     setTimeout(() => {
       setAddress(selectedAddress);
       setShowRpa(true); // Reopen modal after resetting
-    }, 0);
+      setZillowIframeError(false); // Reset errors for new iframe load
+      setStreetEasyIframeError(false);
+    }, 100); // A short delay to reset state
   };
 
-  const closeRpa = () => setShowRpa(false);
+  const closeRpa = () => {
+    setShowRpa(false);
+    setAddress(''); // Reset address to empty after closing
+  };
 
   return (
     <div style={{ padding: '20px' }}>
@@ -75,16 +79,14 @@ function Rpa() {
           </Radio.Group>
         </div>
 
-        
-
         <Modal
           title="Address Details"
           visible={showRpa}
           onCancel={closeRpa}
           footer={null}
           width="90%"
-          style={{ top: 0, height: '95vh', overflow: 'hidden' }} // Prevents overflow
-          bodyStyle={{ overflowY: 'auto', height: 'calc(90vh - 55px)', padding: 0 }} // Adjusts body height and removes horizontal overflow
+          style={{ top: 0, height: '95vh', overflow: 'hidden' }}
+          bodyStyle={{ overflowY: 'auto', height: 'calc(90vh - 55px)', padding: 0 }}
         >
           <RpaWindow
             address={address}
@@ -114,7 +116,6 @@ function RpaWindow({
   showZillow, 
   showStreetEasy 
 }) {
-  // Determine column span based on which iframes are selected
   const colSpan = (showZillow && showStreetEasy) ? 12 : 24;
 
   return (
@@ -130,7 +131,7 @@ function RpaWindow({
                 src={zillowIframeError ? null : zillowUrl}
                 title="Zillow Search"
                 onError={() => setZillowIframeError(true)}
-                style={{ width: '100%', height: '400px', border: '1px solid #ddd' }}
+                style={{ width: '100%', height: '100vh', border: '1px solid #ddd' }}
               />
               {zillowIframeError && (
                 <Text type="danger">Zillow iframe could not load. Try opening in a new tab.</Text>
@@ -147,7 +148,7 @@ function RpaWindow({
                 src={streetEasyUrl}
                 title="StreetEasy Search"
                 onError={() => setStreetEasyIframeError(true)}
-                style={{ width: '100%', height: '400px', border: '1px solid #ddd' }}
+                style={{ width: '100%', height: '100vh', border: '1px solid #ddd' }}
               />
             </div>
           </Col>

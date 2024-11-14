@@ -55,8 +55,8 @@ const AccountDashboard = () => {
             <div className="account-info-content">
               <div>
                 <p><strong>Account No:</strong> 123456789</p>
-                <p><strong>Account Holder:</strong> Wilson Properties</p>
-                <p><strong>Billing Address:</strong> 123 Parkway, CA 37890</p>
+                <p><strong>Account Holder:</strong>Kew Garden Property</p>
+                <p><strong>Billing Address:</strong> 123-05 84th Avenue, Kew Gardens, NY 11415</p>
                 <p><strong>FEIN:</strong> 1234567</p>
                 <p><strong>Contact No:</strong> (327)678-556</p>
               </div>
@@ -64,7 +64,7 @@ const AccountDashboard = () => {
                 <p><strong>Organization Type:</strong> Business</p>
                 <p><strong>Industry Code:</strong> 243107</p>
                 <p><strong>Status:</strong> Active</p>
-                <p><strong>Email Address:</strong> wilsonprop@gmail.com</p>
+                <p><strong>Email Address:</strong> kewprop@gmail.com</p>
               </div>
             </div>
           </div>
