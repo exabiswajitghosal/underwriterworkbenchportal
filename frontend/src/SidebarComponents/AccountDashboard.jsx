@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import './AccountInfo.css';
@@ -39,8 +40,12 @@ const AccountDashboard = () => {
       },
     },
   };
-
+  const navigate = useNavigate();
+  const handleRowClick = () => {
+    navigate('/accountinfo');
+  };
   return (
+    
     <Layout>
       <div  id="details-section" style={{backgroundColor: "white"}}>
         <div className="details-container" style={{backgroundColor: "white"}}>
@@ -81,7 +86,7 @@ const AccountDashboard = () => {
             <thead>
               <tr>
                 <th>Policy#</th>
-                <th>Product</th>
+                <th >Product</th>
                 <th>Status</th>
                 <th>Dates Effective</th>
                 <th>Premium</th>
@@ -91,7 +96,9 @@ const AccountDashboard = () => {
             <tbody>
               <tr>
                 <td>7234238834</td>
-                <td>Commercial Property</td>
+                <td>
+                  <span onClick={handleRowClick}>
+                  Commercial Property</span></td>
                 <td>Active</td>
                 <td>01/01/2024-01/01/2025</td>
                 <td>$12,000.00</td>

@@ -165,7 +165,7 @@ const Dashboard = () => {
   };
 
   const handleRowClick = (record) => {
-    navigate('/accountinfo', { state: { account: record } });
+    navigate('/accountdashboard', { state: { account: record } });
   };
 
   const handleChange = (pagination, filters, sorter) => {
