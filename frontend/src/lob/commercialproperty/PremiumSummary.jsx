@@ -103,7 +103,7 @@ const PremiumSummary = ({ onNext }) => {
         style={{ width: 200, height: 50, marginTop: 40 }}
       >
                  <Option value="Location 1">123-05 84th Avenue, Kew Gardens, NY 11415</Option>
-                 <Option value="Location 2">1234 Elm Street,Apt 101,California,90210,USA</Option>
+                 {/* <Option value="Location 2">1234 Elm Street,Apt 101,California,90210,USA</Option> */}
       </Select>
 
       {/* Edit/Save button */}

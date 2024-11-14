@@ -40,7 +40,7 @@ const QuoteSummary = () => {
   // Define table data for each section
   const coverageData = [
     { key: 1, location: '123-05 84th Avenue, Kew Gardens, NY 11415', coverage: '$4000,000', limit: '$4000,000', deductible: '$40000', premium: '$50000' },
-    { key: 2, location: '1234 Elm Street', coverage: '$5000,000', limit: '$5000,000', deductible: '$50000', premium: '$50000' },
+    // { key: 2, location: '1234 Elm Street', coverage: '$5000,000', limit: '$5000,000', deductible: '$50000', premium: '$50000' },
     
   ];
 
@@ -132,15 +132,15 @@ const QuoteSummary = () => {
               <>
                 <Table.Summary.Row>
                   <Table.Summary.Cell colSpan={4}>Total</Table.Summary.Cell>
-                  <Table.Summary.Cell>100000</Table.Summary.Cell>
+                  <Table.Summary.Cell>$50000</Table.Summary.Cell>
                 </Table.Summary.Row>
                 <Table.Summary.Row>
                   <Table.Summary.Cell colSpan={4}>Fees & Taxes</Table.Summary.Cell>
-                  <Table.Summary.Cell>10000</Table.Summary.Cell>
+                  <Table.Summary.Cell>$10000</Table.Summary.Cell>
                 </Table.Summary.Row>
                 <Table.Summary.Row>
                   <Table.Summary.Cell colSpan={4}>Total Payable</Table.Summary.Cell>
-                  <Table.Summary.Cell>100000</Table.Summary.Cell>
+                  <Table.Summary.Cell>$100000</Table.Summary.Cell>
                 </Table.Summary.Row>
               </>
             )}

@@ -50,7 +50,7 @@ export function PolicyCards() {
               onClick={() => setActivePolicy(policy.name)}  // Set active policy on click
               style={{
                 height: "102px",
-                width: "225px",
+                width: "245px",
                 borderRadius: "12px",
                 boxShadow: "0 30px 60px rgba(138, 159, 158, 0.2)",
                 borderTopColor: "steelblue",

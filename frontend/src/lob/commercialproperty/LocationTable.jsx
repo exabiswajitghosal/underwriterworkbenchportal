@@ -13,10 +13,10 @@ const  LocationTable = ({ nextTab }) => {
   const [data, setData] = useState([
     {
       key: 1,
-      address1: "1234 Elm Street",
-      address2: "Apt 101",
-      state: "California",
-      zip: "90210",
+      address1: "123-05 84th Avenue",
+      address2: " ",
+      state: "NY State",
+      zip: "11415",
       country: "USA"
     }
    
@@ -269,14 +269,14 @@ const  LocationTable = ({ nextTab }) => {
         onMouseLeave={handleDocumentMenuLeave}
         style={{
           position: 'fixed',
-          top: '50%',
+          top: '80%',
           right: 0,
           transform: 'translateY(-50%)',
-          backgroundColor: '#003f5c',
+          backgroundColor: ' #7eaada',
           color: '#fff',
           padding: '10px',
           width: '50px',        // Width of the vertical button
-          height: '230px',       // Height of the vertical button
+          height: '200px',       // Height of the vertical button
           borderRadius: '8px 0 0 8px',
           display: 'flex',
           alignItems: 'center',

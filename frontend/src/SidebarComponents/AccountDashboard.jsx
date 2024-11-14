@@ -45,14 +45,14 @@ const AccountDashboard = () => {
     navigate('/accountinfo');
   };
   return (
-    
+
     <Layout>
-      <div  id="details-section" style={{backgroundColor: "white"}}>
-        <div className="details-container" style={{backgroundColor: "white"}}>
+      <div id="details-section" style={{ backgroundColor: "white" }}>
+        <div className="details-container" style={{ backgroundColor: "white" }}>
           {/* Account Information Section */}
           <div className="account-info">
-            <h2>Details</h2>
-            <div className="account-info-content">
+            <h2 style={{marginLeft:"20px", textDecorationLine: "blink"}}>Details</h2>
+            <div className="account-info-content" style={{ marginLeft: "20px" }}>
               <div>
                 <p><strong>Account No:</strong> 123456789</p>
                 <p><strong>Account Holder:</strong>Kew Garden Property</p>
@@ -94,11 +94,9 @@ const AccountDashboard = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>7234238834</td>
-                <td>
-                  <span onClick={handleRowClick}>
-                  Commercial Property</span></td>
+              <tr onClick={handleRowClick}>
+                <td> 7234238834</td>
+                <td> Commercial Property</td>
                 <td>Active</td>
                 <td>01/01/2024-01/01/2025</td>
                 <td>$12,000.00</td>

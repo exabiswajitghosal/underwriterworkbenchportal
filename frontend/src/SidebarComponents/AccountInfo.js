@@ -47,8 +47,8 @@ const AccountInfo = () => {
 
   return (
     <Layout style={{backgroundColor: "white"}}>
-      {/* <PolicyCards/> */}
-      <h2>Kew Gardens Commercial Property Details</h2>
+      <PolicyCards/>
+     
       <AccountInfoSublobs showAccount={setShowAccountInfo}/>
      
     </Layout>
