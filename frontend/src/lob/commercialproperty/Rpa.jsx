@@ -14,9 +14,9 @@ function Rpa() {
   // Sample addresses
   const addresses = {
     nyAddress1: '123-05 84th Avenue, Kew Gardens, NY 11415',
-    nyAddress2: '1234 Elm Street',
-   
+    
   };
+  // nyAddress2: '1234 Elm Street',
 
   // URL generators
   const generateZillowSearchUrl = (address) => `https://www.zillow.com/homes/${encodeURIComponent(address)}`;
@@ -24,7 +24,8 @@ function Rpa() {
     const [buildingAddress, cityState] = address.split(',');
     const formattedBuildingAddress = buildingAddress.trim().toLowerCase().replace(/ /g, '-');
     const cityName = cityState ? cityState.trim().split(' ')[0].toLowerCase().replace(/ /g, '-') : 'unknown';
-    return `https://streeteasy.com/building/${formattedBuildingAddress}-${cityName}`;
+    // return `https://streeteasy.com/building/${formattedBuildingAddress}-${cityName}`;
+    return `https://streeteasy.com/building/123_05-84-avenue-kew_gardens`;
   };
 
   const handleAddressChange = (e) => {

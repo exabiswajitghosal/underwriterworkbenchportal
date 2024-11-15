@@ -30,8 +30,8 @@ const data = {
     { id: '002', client: 'Skyline Residences', lob: 'Professional Liability', status: 'Clearance UW', limit: '$250,000', date: '2024-08-18', underwriter: 'Jane Smith', priority: 'Medium' }
   ],
   myassignedcases: [
-    { id: '003', client: 'New York Property', lob: 'Commercial Property', status: 'Open', limit: '$300,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
-    { id: '004', client: 'Kew Garden Property', lob: 'Commercial Property', status: 'Open', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
+    { id: '003', client: 'Kew Garden Property', lob: 'Commercial Property', status: 'Open', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
+    { id: '004', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Open', limit: '$300,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
    
   ],
   senttobroker: [
@@ -205,14 +205,15 @@ const Dashboard = () => {
       onFilter: (value, record) => record.priority.includes(value),
     },
     {
-      title: 'New Submission',
+      title: 'Action',
       key: 'newSubmission',
       render: (_, record) => (
         <Button
           type="primary"
           onClick={(e) => {
             e.stopPropagation();
-            navigate('/submission');
+            console.log("Record data to be passed:", record); // Check if data is there
+            navigate('/submission', { state: { record } });
           }}
         >
           <div style={{ fontSize: '12px' }}>

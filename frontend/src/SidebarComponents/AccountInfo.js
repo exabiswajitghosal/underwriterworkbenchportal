@@ -6,6 +6,7 @@ import { Layout } from 'antd';
 import PolicyCards from '../layout/PolicyCards';
 import AccountInfoSublobs from './AccountInfoSublobs';
 import AccountDashboard from './AccountDashboard';
+import { FloatButton } from 'antd';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -19,7 +20,7 @@ const AccountInfo = () => {
       'Billed: $11,077.18',
       'Past Due: $1,000.18'
     ],
-    
+
     datasets: [
       {
         label: 'Billing',
@@ -46,11 +47,41 @@ const AccountInfo = () => {
   };
 
   return (
-    <Layout style={{backgroundColor: "white"}}>
-      <PolicyCards/>
-     
-      <AccountInfoSublobs showAccount={setShowAccountInfo}/>
-     
+    <Layout style={{ backgroundColor: "white" }}>
+      {/* Account Information Section */}
+      <div className="" style={{
+        padding: "10px 20px",
+        marginBottom: "20px",
+        border: "1px solid #ccc",
+        maxWidth: "600px",
+        marginLeft: "0"
+      }}>
+        <h2 style={{ fontSize: "1.2em", margin: 0 }}>Details</h2>
+        <div
+          className="account-info-content"
+          style={{
+            display: "flex",
+            gap: "0px",
+            alignItems: "center",
+            fontSize: "0.9em"
+          }}
+        >
+          <p style={{ display: "inline" }}>
+            <strong>Account No:</strong> 123456789
+          </p>
+          <p style={{ display: "inline" }}>
+            <strong>Account Holder:</strong> Kew Garden Property
+          </p>
+          <p style={{ display: "inline" }}>
+            <strong>Organization Type:</strong> Business
+          </p>
+        </div>
+      </div>
+
+      <PolicyCards />
+
+      <AccountInfoSublobs showAccount={setShowAccountInfo} />
+      <FloatButton.BackTop />
     </Layout>
   );
 };
