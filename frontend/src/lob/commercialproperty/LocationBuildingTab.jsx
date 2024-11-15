@@ -351,9 +351,12 @@ export function LocationBuildingTab() {
                         </td>
                         <td>{index + 1}</td>
                         <td>{selectedLocation}</td>
-                        <td>{building.yearBuilt}</td>
-                        <td>{building.squareFootage}</td>
-                        <td>{building.roofType}</td>
+                        {/* <td>{building.yearBuilt}</td> */}
+                        <td>1952</td>
+                        {/* <td>{building.squareFootage}</td> */}
+                        <td>45,000</td>
+                        {/* <td>{building.roofType}</td> */}
+                        <td>Flat Roof with Gravel</td>
                         <td>
                           <a href="#" onClick={() => deleteBuilding(index)}>Delete</a>
                         </td>
@@ -596,7 +599,7 @@ export function LocationBuildingTab() {
                    </Tooltip>
                    
                     <Tooltip title="Create">
-                    <Button  shape="circle"  onClick={handleCreateNewBasicInfo} icon={<PlusCircleOutlined />} />
+                    <Button  shape="circle"  onClick={handleCreateNewBasicInfo} icon={<PlusCircleOutlined />} />       
                    </Tooltip>
                    
                 </div>*/}
