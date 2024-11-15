@@ -30,7 +30,7 @@ const data = {
     { id: '002', client: 'Skyline Residences', lob: 'Professional Liability', status: 'Clearance UW', limit: '$250,000', date: '2024-08-18', underwriter: 'Jane Smith', priority: 'Medium' }
   ],
   myassignedcases: [
-    { id: '003', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'Open', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
+    // { id: '003', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'Open', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
     { id: '004', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Open', limit: '$300,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
    
   ],
@@ -120,8 +120,8 @@ const Dashboard = () => {
   const donutChartRef = useRef(null);
 
   useEffect(() => {
-    createBarChart(policiesChartRef, 'Policies Issued', ['Comm Auto', 'Comm Property', 'Comm Liability', 'Inline marine'], [30, 25, 40, 35]);
-    createBarChart(submissionsChartRef, 'Submission in Progress', ['Comm Auto', 'Comm Property', 'Comm Liability', 'Inline marine'], [15, 18, 22, 20]);
+    createBarChart(policiesChartRef, 'Policies Issued', ['Commercial Auto', 'Commercial Property', 'Commercial Liability', 'Inland marine'], [30, 25, 40, 35]);
+    createBarChart(submissionsChartRef, 'Submission in Progress', ['Commercial Auto', 'Commercial Property', 'Commercial Liability', 'Inland marine'], [15, 18, 22, 20]);
     createDonutChart();
 
     return () => {

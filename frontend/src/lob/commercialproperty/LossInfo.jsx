@@ -44,7 +44,17 @@ const LossInfo = ({ onNext }) => {
     totalIncurred: ""
   });
 
-  const [policies, setPolicies] = useState([]);
+  const [policies, setPolicies] = useState([
+    {
+      carrier: "StateFarm",
+      policyNumber: "POL123456789",
+      effectiveDate: "2024-01-01",
+      expirationDate: "2024-12-31",
+      annualPremium: "$1,200",
+      losses: 3,
+      totalLosses: "$3,500"
+    }    
+  ]);
   const [selectedPolicies, setSelectedPolicies] = useState([]);
   const [selectedClaim, setSelectedClaim] = useState(null);
   const [lossSummaries, setLossSummaries] = useState(lossdata);
@@ -276,7 +286,7 @@ const LossInfo = ({ onNext }) => {
 
 
   return (
-    <Layout style={{backgroundColor:'white'}}>
+    <Layout style={{ backgroundColor: 'white' }}>
       <Row gutter={16}>
         <Col span={20}>
           <div className="maincontainer" id="lossInfo">
@@ -346,7 +356,8 @@ const LossInfo = ({ onNext }) => {
                     <tr>
                       <td colSpan="7">Sum:</td>
                       <td>
-                        <input type="text" value={`$${calculateTotalLossesSum()}`} readOnly />
+                        <input type="text" value="$3,500" readOnly />
+                        {/* {`$${calculateTotalLossesSum()}`} */}
                       </td>
                     </tr>
                   </tfoot>
@@ -708,7 +719,7 @@ const LossInfo = ({ onNext }) => {
                           <Collapse accordion defaultActiveKey={['1']}>
                             {selectedClaim.notes.map((note, index) => (
                               <Panel header={`Notes: (Dated) - ${note.noteDate}`} key={index}>
-                                <div style={{ display: "flex", justifyContent:'space-between' }}>
+                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                   <p>Accident Date: {note.accidentDate}</p>
                                   <p>Report Date: {note.reportedDate}</p>
                                   <p>Expenses Reserve: {note.expenseReserve}</p>
@@ -717,6 +728,7 @@ const LossInfo = ({ onNext }) => {
                                   label="Note"
                                   value={note.note}
                                   placeholder="Note"
+                                  readOnly
                                 />
                               </Panel>
                             ))}

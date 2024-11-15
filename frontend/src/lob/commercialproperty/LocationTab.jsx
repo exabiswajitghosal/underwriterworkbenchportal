@@ -44,7 +44,7 @@ const LocationTab = () => {
           className={`tablinks ${activeTab === "Tab3" ? "active" : ""}`}
           onClick={() => openMainTab("Tab3")}
         >
-          GenAI Insights
+          AI Insights(Beta)
         </Button>
       </div>
 

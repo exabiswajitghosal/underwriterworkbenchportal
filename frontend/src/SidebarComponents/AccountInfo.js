@@ -52,11 +52,10 @@ const AccountInfo = () => {
       <div className="" style={{
         padding: "10px 20px",
         marginBottom: "20px",
-        border: "1px solid #ccc",
-        maxWidth: "600px",
+        // border: "1px solid #ccc",
+        maxWidth: "800px",
         marginLeft: "0"
       }}>
-        <h2 style={{ fontSize: "1.2em", margin: 0 }}>Details</h2>
         <div
           className="account-info-content"
           style={{
@@ -67,13 +66,13 @@ const AccountInfo = () => {
           }}
         >
           <p style={{ display: "inline" }}>
+            <strong>Account Holder:</strong> Skyline Property Inc.
+          </p>
+          <p style={{ display: "inline" }}>
             <strong>Account No:</strong> 123456789
           </p>
           <p style={{ display: "inline" }}>
-            <strong>Account Holder:</strong> Kew Garden Property Inc.
-          </p>
-          <p style={{ display: "inline" }}>
-            <strong>Organization Type:</strong> Business
+            <strong>Organization Type:</strong> Property Management
           </p>
         </div>
       </div>

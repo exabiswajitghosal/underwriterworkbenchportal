@@ -85,7 +85,7 @@ const SearchInsured = () => {
             },
             {
                 account: '123456789',
-                name: 'Kew Gardens Property Inc.',
+                name: 'Skyline Property Inc.',
                 type: 'Individual',
                 address: '123-05 84th Avenue ',
                 lobs: 'CP, GL, PL',

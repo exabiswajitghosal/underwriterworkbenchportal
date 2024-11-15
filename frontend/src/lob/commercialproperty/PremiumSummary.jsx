@@ -133,7 +133,7 @@ const PremiumSummary = ({ onNext }) => {
       {/* Table */}
       {selectedBuilding && (
         <Collapse defaultActiveKey={['1']} style={{ marginTop: '20px' }}>
-           <Panel header="Building 1" key="1">
+           <Panel header="Building No: 123-05" key="1">
         <Table
           dataSource={data}
           columns={columns}
@@ -167,11 +167,11 @@ const PremiumSummary = ({ onNext }) => {
      
      {selectedBuilding && (
       <Table
-        dataSource={[
-          { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
-          { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
-          { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
-        ]}
+      dataSource={[
+        { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
+        { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
+        { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
+      ]}
         columns={[
           { title: '', dataIndex: 'label', key: 'label' },
           { title: '', dataIndex: 'value', key: 'value' },
