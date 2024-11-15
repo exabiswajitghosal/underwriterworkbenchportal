@@ -417,7 +417,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Year Built</span>}
-                            value="2012"
+                            value="1952"
                             required={true}
                             onChange={(e) => handleInputChange("yearBuilt", e.target.value)}
 
@@ -426,7 +426,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Square Footage</span>}
-                            value="12000sq ft"
+                            value="45,000"
                             required={true}
                             onChange={(e) => handleInputChange("squareFootage", e.target.value)}
                           />
@@ -438,7 +438,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Units Count</span>}
-                            value="20"
+                            value="25"
                             required={true}
                             onChange={(e) => handleInputChange("unitsCount", e.target.value)}
                           />
@@ -448,7 +448,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>Stories Count</span>}
-                            value="7"
+                            value="5"
                             required={true}
                             onChange={(e) => handleInputChange("storiesCount", e.target.value)}
 
@@ -458,7 +458,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>FreePlacesCount</span>}
-                            value="5"
+                            value="10"
                             required={true}
                             onChange={(e) => handleInputChange("freePlacesCount", e.target.value)}
 
@@ -467,7 +467,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Rooms Count</span>}
-                            value="50"
+                            value="100"
                             required={true}
                             onChange={(e) => handleInputChange("roomsCount", e.target.value)}
                           />
@@ -475,7 +475,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Parking Spaces Count</span>}
-                            value="30"
+                            value="15"
                             required={true}
                             onChange={(e) => handleInputChange("parkingSpacesCount", e.target.value)}
                           />
@@ -483,7 +483,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Protective devices</span>}
-                            value="yes"
+                            value="Smoke detectors, Alarm system, CCTV"
                             required={true}
                             onChange={(e) => handleInputChange("protectiveDevices", e.target.value)}
                           />
@@ -491,7 +491,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>FreePlacesCount</span>}
-                            value="5"
+                            value="10"
 
                             required={true}
                             onChange={(e) => handleInputChange("freePlacesCount2", e.target.value)}
@@ -500,7 +500,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Construction Type</span>}
-                            value="Commercial"
+                            value="Masonry"
                             required={true}
                             onChange={(e) => handleInputChange("constructionType", e.target.value)}
                           />
@@ -516,7 +516,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Sprinklered area</span>}
-                            value="5000sq ft"
+                            value="100%"
                             required={true}
                             onChange={(e) => handleInputChange("sprinkleredArea", e.target.value)}
                           />
@@ -537,7 +537,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Roof type</span>}
-                            value="Flat"
+                            value="Flat roof with gravel"
                             required={true}
                             onChange={(e) => handleInputChange("roofType", e.target.value)}
 
@@ -546,7 +546,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Estimated replacement cost value</span>}
-                            value="$20000"
+                            value="$15,000,000"
                             required={true}
                             onChange={(e) => handleInputChange("estimatedrcv", e.target.value)}
 
@@ -555,7 +555,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Property class</span>}
-                            value="Commercail"
+                            value="Residental Building"
                             required={true}
                             onChange={(e) => handleInputChange("propertyClass", e.target.value)}
 
@@ -564,7 +564,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Coverages</span>}
-                            value="$50000"
+                            value="Property damage, Fire, Liability"
                             required={true}
                             onChange={(e) => handleInputChange("coverages", e.target.value)}
 
@@ -573,7 +573,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Rate Type</span>}
-                            value="Fixed"
+                            value="Residental Standard Rate"
                             required={true}
                             onChange={(e) => handleInputChange("rateType", e.target.value)}
 
@@ -633,7 +633,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Wind % deductable</span>}
-                            value="50%"
+                            value="2%"
                             required={true}
                             onChange={(e) => handleInputChange("windDeductable", e.target.value)}
 
@@ -642,7 +642,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Valuation Method</span>}
-                            value="profit method"
+                            value="Replacement Cost"
                             required={true}
                             onChange={(e) => handleInputChange("valuationMethod", e.target.value)}
 
@@ -652,7 +652,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Auto increase %</span>}
-                            value="10%"
+                            value="4%"
                             required={true}
                             onChange={(e) => handleInputChange("autoIncrease", e.target.value)}
 
@@ -670,7 +670,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Building Limit</span>}
-                            value="4%"
+                            value="$15,000,000"
                             required={true}
                             onChange={(e) => handleInputChange("buildingLimit", e.target.value)}
 
@@ -679,7 +679,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Building Deductible</span>}
-                            value="$4000"
+                            value="$5,000"
                             required={true}
                             onChange={(e) => handleInputChange("buildingDeductable", e.target.value)}
                           />
@@ -706,7 +706,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Business Personal Property Limit</span>}
-                            value="$10000"
+                            value="$5,00,000"
                             required={true}
                             onChange={(e) => handleInputChange("bppl", e.target.value)}
 
@@ -715,7 +715,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Business Personal Property Deductable</span>}
-                            value="$3000"
+                            value="$2,500"
                             required={true}
                             onChange={(e) => handleInputChange("bppd", e.target.value)}
 
@@ -751,7 +751,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Wind % deductable</span>}
-                            value="4%"
+                            value="2%"
                             required={true}
                             onChange={(e) => handleInputChange("windDeductable2", e.target.value)}
 
@@ -760,7 +760,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Valuation Method</span>}
-                            value="Profit method"
+                            value="Replacement Cost"
                             required={true}
                             onChange={(e) => handleInputChange("valuationMethod2", e.target.value)}
                           />
@@ -768,7 +768,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Reporting form</span>}
-                            value="Daily report"
+                            value="Monthly reporting"
                             required={true}
                             onChange={(e) => handleInputChange("reportingForm", e.target.value)}
 
@@ -777,7 +777,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
-                            value="80%"
+                            value="90%"
                             required={true}
                             onChange={(e) => handleInputChange("coinsurance2", e.target.value)}
 
@@ -817,7 +817,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Income Limit $</span>}
-                            value="$20000"
+                            value="$10,00,000"
                             required={true}
                             onChange={(e) => handleInputChange("incomeLimitrental", e.target.value)}
 
@@ -826,7 +826,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
-                            value="80%"
+                            value="50%"
                             required={true}
                             onChange={(e) => handleInputChange("coinsurance3", e.target.value)}
                           />
@@ -843,7 +843,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Waiting Period</span>}
-                            value="1 year"
+                            value="72 hours"
                             required={true}
                             onChange={(e) => handleInputChange("waitingPeriod", e.target.value)}
 
@@ -852,7 +852,7 @@ export function LocationBuildingTab() {
                         <Col span={6}>
                           <FormInput
                             label={<span style={{ fontSize: "15px" }}>Period of coverages</span>}
-                            value="2 years"
+                            value="12 months"
                             required={true}
                             onChange={(e) => handleInputChange("periodOfCoverages", e.target.value)}
                           />
@@ -894,7 +894,7 @@ export function LocationBuildingTab() {
                           <Col span={6}>
                             <FormInput
                               label={<span style={{ fontSize: "15px" }}>Flood Coverage Limit</span>}
-                              value="$10000"
+                              value="$5,00,000"
                               required={true}
                               onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
                             />
@@ -902,7 +902,7 @@ export function LocationBuildingTab() {
                           <Col span={6}>
                             <FormInput
                               label={<span style={{ fontSize: "15px" }}>Flood Coverage Deductable</span>}
-                              value="$2000"
+                              value="$25,000"
                               required={true}
                               onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
                             />
@@ -915,7 +915,7 @@ export function LocationBuildingTab() {
                           <Col span={6}>
                             <FormInput
                               label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Limit</span>}
-                              value="$2000"
+                              value="$10,00,000"
                               required={true}
                               onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
                             />
@@ -923,7 +923,7 @@ export function LocationBuildingTab() {
                           <Col span={6}>
                             <FormInput
                               label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Deductable</span>}
-                              value="$1000"
+                              value="$50,000"
                               required={true}
                               onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
                             />
