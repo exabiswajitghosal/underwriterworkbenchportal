@@ -168,9 +168,9 @@ const PremiumSummary = ({ onNext }) => {
      {selectedBuilding && (
       <Table
         dataSource={[
-          { key: 'totalPremium', label: 'Total Premium', value: '100000' },
-          { key: 'feeTaxes', label: 'Fees & Taxes', value: '10000' },
-          { key: 'totalPayable', label: 'Total Payable', value: '100000' },
+          { key: 'totalPremium', label: 'Total Premium', value: '$100000' },
+          { key: 'feeTaxes', label: 'Fees & Taxes', value: '$10000' },
+          { key: 'totalPayable', label: 'Total Payable', value: '$100000' },
         ]}
         columns={[
           { title: '', dataIndex: 'label', key: 'label' },

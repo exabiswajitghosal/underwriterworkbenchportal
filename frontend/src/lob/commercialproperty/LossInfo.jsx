@@ -61,8 +61,8 @@ const LossInfo = ({ onNext }) => {
       reportedDate: "06/22/2024",
       status: "closed",
       class: "0",
-      totalPaid: "15000",
-      totalIncurred: "30987",
+      totalPaid: "$15000",
+      totalIncurred: "$30987",
       notes: [
         {
           noteDate: "06/22/2024",
@@ -90,8 +90,8 @@ const LossInfo = ({ onNext }) => {
       reportedDate: "05/15/2022",
       status: "open",
       class: "1",
-      totalPaid: "7000",
-      totalIncurred: "15000",
+      totalPaid: "$7000",
+      totalIncurred: "$15000",
       notes: [
         {
           noteDate: "05/09/2024",
@@ -112,8 +112,8 @@ const LossInfo = ({ onNext }) => {
       reportedDate: "08/25/2021",
       status: "closed",
       class: "2",
-      totalPaid: "12000",
-      totalIncurred: "18000",
+      totalPaid: "$12000",
+      totalIncurred: "$18000",
       notes: [
         {
           noteDate: "08/19/2024",

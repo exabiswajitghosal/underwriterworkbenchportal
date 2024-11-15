@@ -12,52 +12,52 @@ export function LocationBuildingTab() {
   const [activeTab, setActiveTab] = useState("Tab1");
   const [locationData, setLocationData] = useState({});
   const [formData, setFormData] = useState({
-    yearBuilt: "", 
+    yearBuilt: "",
     squareFootage: "",
-    unitsCount:"", 
+    unitsCount: "",
     storiesCount: "",
-    freePlacesCount:"",
-    roomsCount:"",
-    parkingSpacesCount:"",
-    protectiveDevices:"",
-    freePlacesCount2:"",
-    constructionType:"",
-    fireSprinkler:"",
-    sprinkleredArea:"",
+    freePlacesCount: "",
+    roomsCount: "",
+    parkingSpacesCount: "",
+    protectiveDevices: "",
+    freePlacesCount2: "",
+    constructionType: "",
+    fireSprinkler: "",
+    sprinkleredArea: "",
     roofType: "",
-    estimatedrcv:"",
-    propertyClass:"",
-    coverages:"",
-    rateType:"",
-    causeofLoss:"",
-    excludeVandalism:"",
-    excludeSprinkler:"",
-    windDeductable:"",
-    valuationMethod:"",
-    autoIncrease:"",
-    coinsurance:"",
-    buildingLimit:"",
-    buildingDeductable:"",
-    bppl:"",
-    bppd:"",
-    causeofLoss2:"",
-    excludeVandalism2:"",
-    excludeSprinkler2:"",
-    windDeductable2:"",
-    valuationMethod2:"",
-    reportingForm:"",
-    coinsurance2:"",
-    incomeLimitManufacture:"",
-    incomeLimitMfg:"",
-    incomeLimitrental:"",
-    coinsurance3:"",
-    causeofLoss3:"",
-    waitingPeriod:"",
-    periodOfCoverages:"",
-    floodCoveragelimit:"",
-    floodCoveragemonthlyLimit:"",
-    earthquakeCoveragelimit:"",
-    earthquakeCoveragemonthlylimit:"",
+    estimatedrcv: "",
+    propertyClass: "",
+    coverages: "",
+    rateType: "",
+    causeofLoss: "",
+    excludeVandalism: "",
+    excludeSprinkler: "",
+    windDeductable: "",
+    valuationMethod: "",
+    autoIncrease: "",
+    coinsurance: "",
+    buildingLimit: "",
+    buildingDeductable: "",
+    bppl: "",
+    bppd: "",
+    causeofLoss2: "",
+    excludeVandalism2: "",
+    excludeSprinkler2: "",
+    windDeductable2: "",
+    valuationMethod2: "",
+    reportingForm: "",
+    coinsurance2: "",
+    incomeLimitManufacture: "",
+    incomeLimitMfg: "",
+    incomeLimitrental: "",
+    coinsurance3: "",
+    causeofLoss3: "",
+    waitingPeriod: "",
+    periodOfCoverages: "",
+    floodCoveragelimit: "",
+    floodCoveragemonthlyLimit: "",
+    earthquakeCoveragelimit: "",
+    earthquakeCoveragemonthlylimit: "",
     showFloodFields: false,
     showEarthquakeFields: false,
   });
@@ -71,54 +71,54 @@ export function LocationBuildingTab() {
 
     // Set form data to blank for the new location if no data exists
     setFormData({
-      yearBuilt: "", 
+      yearBuilt: "",
       squareFootage: "",
-      unitsCount:"", 
+      unitsCount: "",
       storiesCount: "",
-      freePlacesCount:"",
-      roomsCount:"",
-      parkingSpacesCount:"",
-      protectiveDevices:"",
-      freePlacesCount2:"",
-      constructionType:"",
-      fireSprinkler:"",
-      sprinkleredArea:"",
+      freePlacesCount: "",
+      roomsCount: "",
+      parkingSpacesCount: "",
+      protectiveDevices: "",
+      freePlacesCount2: "",
+      constructionType: "",
+      fireSprinkler: "",
+      sprinkleredArea: "",
       roofType: "",
-      estimatedrcv:"",
-      propertyClass:"",
-      coverages:"",
-      rateType:"",
-      causeofLoss:"",
-      excludeVandalism:"",
-      excludeSprinkler:"",
-      windDeductable:"",
-      valuationMethod:"",
-      autoIncrease:"",
-      coinsurance:"",
-      buildingLimit:"",
-      buildingDeductable:"",
-      bppl:"",
-      bppd:"",
-      causeofLoss2:"",
-      excludeVandalism2:"",
-      excludeSprinkler2:"",
-      windDeductable2:"",
-      valuationMethod2:"",
-      reportingForm:"",
-      coinsurance2:"",
-      incomeLimitManufacture:"",
-      incomeLimitMfg:"",
-      incomeLimitrental:"",
-      coinsurance3:"",
-      causeofLoss3:"",
-      waitingPeriod:"",
-      periodOfCoverages:"",
-      floodCoveragelimit:"",
-      floodCoveragemonthlyLimit:"",
-      earthquakeCoveragelimit:"",
-      earthquakeCoveragemonthlylimit:"",
+      estimatedrcv: "",
+      propertyClass: "",
+      coverages: "",
+      rateType: "",
+      causeofLoss: "",
+      excludeVandalism: "",
+      excludeSprinkler: "",
+      windDeductable: "",
+      valuationMethod: "",
+      autoIncrease: "",
+      coinsurance: "",
+      buildingLimit: "",
+      buildingDeductable: "",
+      bppl: "",
+      bppd: "",
+      causeofLoss2: "",
+      excludeVandalism2: "",
+      excludeSprinkler2: "",
+      windDeductable2: "",
+      valuationMethod2: "",
+      reportingForm: "",
+      coinsurance2: "",
+      incomeLimitManufacture: "",
+      incomeLimitMfg: "",
+      incomeLimitrental: "",
+      coinsurance3: "",
+      causeofLoss3: "",
+      waitingPeriod: "",
+      periodOfCoverages: "",
+      floodCoveragelimit: "",
+      floodCoveragemonthlyLimit: "",
+      earthquakeCoveragelimit: "",
+      earthquakeCoveragemonthlylimit: "",
       showFloodFields: false,
-    showEarthquakeFields: false,
+      showEarthquakeFields: false,
     });
   };
 
@@ -128,7 +128,7 @@ export function LocationBuildingTab() {
       [name]: value,
     });
   };
-  
+
 
   const addOrUpdateBuilding = () => {
     const updatedBuildings = locationData[selectedLocation] || [];
@@ -149,55 +149,55 @@ export function LocationBuildingTab() {
 
     // Reset form
     setFormData({
-      yearBuilt: "", 
+      yearBuilt: "",
       squareFootage: "",
-      unitsCount:"", 
+      unitsCount: "",
       storiesCount: "",
-      freePlacesCount:"",
-      roomsCount:"",
-      parkingSpacesCount:"",
-      protectiveDevices:"",
-      freePlacesCount2:"",
-      constructionType:"",
-      fireSprinkler:"",
-      sprinkleredArea:"",
+      freePlacesCount: "",
+      roomsCount: "",
+      parkingSpacesCount: "",
+      protectiveDevices: "",
+      freePlacesCount2: "",
+      constructionType: "",
+      fireSprinkler: "",
+      sprinkleredArea: "",
       roofType: "",
-      estimatedrcv:"",
-      propertyClass:"",
-      coverages:"",
-      rateType:"",
-      causeofLoss:"",
-      excludeVandalism:"",
-      excludeSprinkler:"",
-      windDeductable:"",
-      valuationMethod:"",
-      autoIncrease:"",
-      coinsurance:"",
-      buildingLimit:"",
-      buildingDeductable:"",
-      bppl:"",
-      bppd:"",
-      causeofLoss2:"",
-      excludeVandalism2:"",
-      excludeSprinkler2:"",
-      windDeductable2:"",
-      valuationMethod2:"",
-      reportingForm:"",
-      coinsurance2:"",
-      incomeLimitManufacture:"",
-      incomeLimitMfg:"",
-      incomeLimitrental:"",
-      coinsurance3:"",
-      causeofLoss3:"",
-      waitingPeriod:"",
-      periodOfCoverages:"",
-      floodCoveragelimit:"",
-      floodCoveragemonthlyLimit:"",
-      earthquakeCoveragelimit:"",
-      earthquakeCoveragemonthlylimit:"",
+      estimatedrcv: "",
+      propertyClass: "",
+      coverages: "",
+      rateType: "",
+      causeofLoss: "",
+      excludeVandalism: "",
+      excludeSprinkler: "",
+      windDeductable: "",
+      valuationMethod: "",
+      autoIncrease: "",
+      coinsurance: "",
+      buildingLimit: "",
+      buildingDeductable: "",
+      bppl: "",
+      bppd: "",
+      causeofLoss2: "",
+      excludeVandalism2: "",
+      excludeSprinkler2: "",
+      windDeductable2: "",
+      valuationMethod2: "",
+      reportingForm: "",
+      coinsurance2: "",
+      incomeLimitManufacture: "",
+      incomeLimitMfg: "",
+      incomeLimitrental: "",
+      coinsurance3: "",
+      causeofLoss3: "",
+      waitingPeriod: "",
+      periodOfCoverages: "",
+      floodCoveragelimit: "",
+      floodCoveragemonthlyLimit: "",
+      earthquakeCoveragelimit: "",
+      earthquakeCoveragemonthlylimit: "",
       showFloodFields: false,
-    showEarthquakeFields: false,
-      });
+      showEarthquakeFields: false,
+    });
   };
 
   const selectBuilding = (index) => {
@@ -217,57 +217,57 @@ export function LocationBuildingTab() {
     });
 
     if (selectedBuildingIndex === index) {
-      setFormData({ 
-        yearBuilt: "", 
-        squareFootage: "",
-        unitsCount:"", 
-        storiesCount: "",
-        freePlacesCount:"",
-        roomsCount:"",
-        parkingSpacesCount:"",
-        protectiveDevices:"",
-        freePlacesCount2:"",
-        constructionType:"",
-        fireSprinkler:"",
-        sprinkleredArea:"",
+      setFormData({
+        yearBuilt: "2001",
+        squareFootage: "12000sq ft",
+        unitsCount: "25",
+        storiesCount: "7",
+        freePlacesCount: "2",
+        roomsCount: "10",
+        parkingSpacesCount: "10",
+        protectiveDevices: "yes",
+        freePlacesCount2: "2",
+        constructionType: "commercial",
+        fireSprinkler: "yes",
+        sprinkleredArea: "5000sq ft",
         roofType: "",
-        estimatedrcv:"",
-        propertyClass:"",
-        coverages:"",
-        rateType:"",
-        causeofLoss:"",
-        excludeVandalism:"",
-        excludeSprinkler:"",
-        windDeductable:"",
-        valuationMethod:"",
-        autoIncrease:"",
-        coinsurance:"",
-        buildingLimit:"",
-        buildingDeductable:"",
-        bppl:"",
-        bppd:"",
-        causeofLoss2:"",
-        excludeVandalism2:"",
-        excludeSprinkler2:"",
-        windDeductable2:"",
-        valuationMethod2:"",
-        reportingForm:"",
-        coinsurance2:"",
-        incomeLimitManufacture:"",
-        incomeLimitMfg:"",
-        incomeLimitrental:"",
-        coinsurance3:"",
-        causeofLoss3:"",
-        waitingPeriod:"",
-        periodOfCoverages:"",
-        floodCoveragelimit:"",
-        floodCoveragemonthlyLimit:"",
-        earthquakeCoveragelimit:"",
-        earthquakeCoveragemonthlylimit:"",
+        estimatedrcv: "",
+        propertyClass: "",
+        coverages: "",
+        rateType: "",
+        causeofLoss: "",
+        excludeVandalism: "",
+        excludeSprinkler: "",
+        windDeductable: "",
+        valuationMethod: "",
+        autoIncrease: "",
+        coinsurance: "",
+        buildingLimit: "",
+        buildingDeductable: "",
+        bppl: "",
+        bppd: "",
+        causeofLoss2: "",
+        excludeVandalism2: "",
+        excludeSprinkler2: "",
+        windDeductable2: "",
+        valuationMethod2: "",
+        reportingForm: "",
+        coinsurance2: "",
+        incomeLimitManufacture: "",
+        incomeLimitMfg: "",
+        incomeLimitrental: "",
+        coinsurance3: "",
+        causeofLoss3: "",
+        waitingPeriod: "",
+        periodOfCoverages: "",
+        floodCoveragelimit: "",
+        floodCoveragemonthlyLimit: "",
+        earthquakeCoveragelimit: "",
+        earthquakeCoveragemonthlylimit: "",
         showFloodFields: false,
-    showEarthquakeFields: false,
+        showEarthquakeFields: false,
 
-       });
+      });
       setIsEditing(false);
       setSelectedBuildingIndex(null);
     }
@@ -276,7 +276,7 @@ export function LocationBuildingTab() {
   const nextTab = () => {
     setActiveTab("Tab2");
   };
- 
+
   const handleAdditionalCoverageInputChange = (field, value) => {
     setFormData(prevData => ({
       ...prevData,
@@ -300,9 +300,9 @@ export function LocationBuildingTab() {
           value={selectedLocation}
           style={{ width: 250, height: 50 }}
         >
-           <Option value="123-05 84th Avenue">123-05 84th Avenue, Kew Gardens, NY 11415</Option>
-        {/* <Option value="1234 Elm Street">1234 Elm Street,Apt 101,California,90210,USA</Option> */}
-          
+          <Option value="123-05 84th Avenue">123-05 84th Avenue, Kew Gardens, NY 11415</Option>
+          {/* <Option value="1234 Elm Street">1234 Elm Street,Apt 101,California,90210,USA</Option> */}
+
         </Select>
       </div>
 
@@ -327,17 +327,17 @@ export function LocationBuildingTab() {
             <div id="Tab1" className="tabcontent">
               {/* Building List Table */}
               <div style={{ marginBottom: "20px" }}>
-                <h5  style={{marginBottom: 20}}>Building List for {selectedLocation}</h5>
-                <table className="table"  style={{marginBottom: 90}}>
+                <h5 style={{ marginBottom: 20 }}>Building List for {selectedLocation}</h5>
+                <table className="table" style={{ marginBottom: 90 }}>
                   <thead >
                     <tr>
-                      <th style={{backgroundColor: "#5d9de2"}}>Select</th>
-                      <th style={{backgroundColor: "#5d9de2"}}>SL.</th>
-                      <th style={{backgroundColor: "#5d9de2"}}>Location Details</th>
-                      <th style={{backgroundColor: "#5d9de2"}}>Year Built</th>
-                      <th style={{backgroundColor: "#5d9de2"}}>Square Footage</th>
-                      <th style={{backgroundColor: "#5d9de2"}}>Roof Type</th>
-                      <th style={{backgroundColor: "#5d9de2"}}>Action</th>
+                      <th style={{ backgroundColor: "#5d9de2" }}>Select</th>
+                      <th style={{ backgroundColor: "#5d9de2" }}>SL.</th>
+                      <th style={{ backgroundColor: "#5d9de2" }}>Location Details</th>
+                      <th style={{ backgroundColor: "#5d9de2" }}>Year Built</th>
+                      <th style={{ backgroundColor: "#5d9de2" }}>Square Footage</th>
+                      <th style={{ backgroundColor: "#5d9de2" }}>Roof Type</th>
+                      <th style={{ backgroundColor: "#5d9de2" }}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -407,190 +407,190 @@ export function LocationBuildingTab() {
 
               <div>
 
-<Row gutter={16}>
-  {/* First Widget Section: Basic Information */}
-  <Col span={24}>
-    <div >
+                <Row gutter={16}>
+                  {/* First Widget Section: Basic Information */}
+                  <Col span={24}>
+                    <div >
 
 
-      <Row gutter={16}>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Year Built</span>}
-            value={formData.yearBuilt}
-            required={true}
-            onChange={(e) => handleInputChange("yearBuilt", e.target.value)}
+                      <Row gutter={16}>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Year Built</span>}
+                            value="2012"
+                            required={true}
+                            onChange={(e) => handleInputChange("yearBuilt", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Square Footage</span>}
-            value={formData.squareFootage}
-            required={true}
-            onChange={(e) => handleInputChange("squareFootage", e.target.value)}
-          />
-        </Col>
-
-
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Square Footage</span>}
+                            value="12000sq ft"
+                            required={true}
+                            onChange={(e) => handleInputChange("squareFootage", e.target.value)}
+                          />
+                        </Col>
 
 
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Units Count</span>}
-            value={formData.unitsCount}
-            required={true}
-            onChange={(e) => handleInputChange("unitsCount", e.target.value)}
-          />
-        </Col>
 
 
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px", marginRight: "40px" }}>Stories Count</span>}
-            value={formData.storiesCount}
-            required={true}
-            onChange={(e) => handleInputChange("storiesCount", e.target.value)}
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Units Count</span>}
+                            value="20"
+                            required={true}
+                            onChange={(e) => handleInputChange("unitsCount", e.target.value)}
+                          />
+                        </Col>
 
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>FreePlacesCount</span>}
-            value={formData.freePlacesCount}
-            required={true}
-            onChange={(e) => handleInputChange("freePlacesCount", e.target.value)}
-
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Rooms Count</span>}
-            value={formData.roomsCount}
-            required={true}
-            onChange={(e) => handleInputChange("roomsCount", e.target.value)}
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Parking Spaces Count</span>}
-            value={formData.parkingSpacesCount}
-            required={true}
-            onChange={(e) => handleInputChange("parkingSpacesCount", e.target.value)}
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Protective devices</span>}
-            value={formData.protectiveDevices}
-            required={true}
-            onChange={(e) => handleInputChange("protectiveDevices", e.target.value)}
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>FreePlacesCount</span>}
-            value={formData.freePlacesCount2}
-
-            required={true}
-            onChange={(e) => handleInputChange("freePlacesCount2", e.target.value)}
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Construction Type</span>}
-            value={formData.constructionType}
-            required={true}
-            onChange={(e) => handleInputChange("constructionType", e.target.value)}
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Fire Sprinkler</span>}
-            value={formData.fireSprinkler}
-            required={true}
-            onChange={(e) => handleInputChange("fireSprinkler", e.target.value)}
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Sprinklered area</span>}
-            value={formData.sprinkleredArea}
-            required={true}
-            onChange={(e) => handleInputChange("sprinkleredArea", e.target.value)}
-          />
-        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px", marginRight: "40px" }}>Stories Count</span>}
+                            value="7"
+                            required={true}
+                            onChange={(e) => handleInputChange("storiesCount", e.target.value)}
 
 
-      </Row>
-    </div>
-  </Col>
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>FreePlacesCount</span>}
+                            value="5"
+                            required={true}
+                            onChange={(e) => handleInputChange("freePlacesCount", e.target.value)}
 
-  {/* Second Widget Section: Location Information */}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Rooms Count</span>}
+                            value="50"
+                            required={true}
+                            onChange={(e) => handleInputChange("roomsCount", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Parking Spaces Count</span>}
+                            value="30"
+                            required={true}
+                            onChange={(e) => handleInputChange("parkingSpacesCount", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Protective devices</span>}
+                            value="yes"
+                            required={true}
+                            onChange={(e) => handleInputChange("protectiveDevices", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>FreePlacesCount</span>}
+                            value="5"
 
-  <Col span={24}>
-    <div >
+                            required={true}
+                            onChange={(e) => handleInputChange("freePlacesCount2", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Construction Type</span>}
+                            value="Commercial"
+                            required={true}
+                            onChange={(e) => handleInputChange("constructionType", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Fire Sprinkler</span>}
+                            value="yes"
+                            required={true}
+                            onChange={(e) => handleInputChange("fireSprinkler", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Sprinklered area</span>}
+                            value="5000sq ft"
+                            required={true}
+                            onChange={(e) => handleInputChange("sprinkleredArea", e.target.value)}
+                          />
+                        </Col>
 
 
-      <Row gutter={22}>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Roof type</span>}
-            value={formData.roofType}
-                      required={true}
-                      onChange={(e) => handleInputChange("roofType", e.target.value)}
+                      </Row>
+                    </div>
+                  </Col>
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Estimated replacement cost value</span>}
-            value={formData.estimatedrcv}
-            required={true}
-            onChange={(e) => handleInputChange("estimatedrcv", e.target.value)}
+                  {/* Second Widget Section: Location Information */}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Property class</span>}
-            value={formData.propertyClass}
-            required={true}
-            onChange={(e) => handleInputChange("propertyClass", e.target.value)}
-
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Coverages</span>}
-            value={formData.coverages}
-            required={true}
-            onChange={(e) => handleInputChange("coverages", e.target.value)}
-
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Rate Type</span>}
-            value={formData.rateType}
-            required={true}
-            onChange={(e) => handleInputChange("rateType", e.target.value)}
-
-          />
-        </Col>
+                  <Col span={24}>
+                    <div >
 
 
-      </Row>
-    </div>
+                      <Row gutter={22}>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Roof type</span>}
+                            value="Flat"
+                            required={true}
+                            onChange={(e) => handleInputChange("roofType", e.target.value)}
+
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Estimated replacement cost value</span>}
+                            value="$20000"
+                            required={true}
+                            onChange={(e) => handleInputChange("estimatedrcv", e.target.value)}
+
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Property class</span>}
+                            value="Commercail"
+                            required={true}
+                            onChange={(e) => handleInputChange("propertyClass", e.target.value)}
+
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Coverages</span>}
+                            value="$50000"
+                            required={true}
+                            onChange={(e) => handleInputChange("coverages", e.target.value)}
+
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Rate Type</span>}
+                            value="Fixed"
+                            required={true}
+                            onChange={(e) => handleInputChange("rateType", e.target.value)}
+
+                          />
+                        </Col>
 
 
-    {/* Third Widget Section: Insured Information */}
+                      </Row>
+                    </div>
 
-    <div >
-      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h5 className={styles.widgetTitle}>Property Damage Coverage</h5>
-        {/*<div  style={{ display: "flex", alignItems: "center" }}>
+
+                    {/* Third Widget Section: Insured Information */}
+
+                    <div >
+                      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <h5 className={styles.widgetTitle}>Property Damage Coverage</h5>
+                        {/*<div  style={{ display: "flex", alignItems: "center" }}>
                 <Tooltip title="Edit">
                     <Button  shape="circle" onClick={handleEditBasicInfo} icon={<EditOutlined />} />
                    </Tooltip>
@@ -600,10 +600,10 @@ export function LocationBuildingTab() {
                    </Tooltip>
                    
                 </div>*/}
-      </div>
+                      </div>
 
-      <Row gutter={22}>
-        {/* <Col span={6}>
+                      <Row gutter={22}>
+                        {/* <Col span={6}>
            <FormInput
             label={<span style={{ fontSize: "15px" }}>Cause of Loss</span>}
             value={formData.causeofLoss}
@@ -612,85 +612,85 @@ export function LocationBuildingTab() {
 
           /> 
         </Col> */}
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Exclude Vandalism</span>}
-            value={formData.excludeVandalism}
-            required={true}
-            onChange={(e) => handleInputChange("excludeVandalism", e.target.value)}
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Exclude Vandalism</span>}
+                            value="No"
+                            required={true}
+                            onChange={(e) => handleInputChange("excludeVandalism", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Exclude sprinkler</span>}
-            value={formData.excludeSprinkler}
-            required={true}
-            onChange={(e) => handleInputChange("excludeSprinkler", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Exclude sprinkler</span>}
+                            value="No"
+                            required={true}
+                            onChange={(e) => handleInputChange("excludeSprinkler", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Wind % deductable</span>}
-            value={formData.windDeductable}
-            required={true}
-            onChange={(e) => handleInputChange("windDeductable", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Wind % deductable</span>}
+                            value="50%"
+                            required={true}
+                            onChange={(e) => handleInputChange("windDeductable", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Valuation Method</span>}
-            value={formData.valuationMethod}
-            required={true}
-            onChange={(e) => handleInputChange("valuationMethod", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Valuation Method</span>}
+                            value="profit method"
+                            required={true}
+                            onChange={(e) => handleInputChange("valuationMethod", e.target.value)}
 
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Auto increase %</span>}
-            value={formData.autoIncrease}
-            required={true}
-            onChange={(e) => handleInputChange("autoIncrease", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Auto increase %</span>}
+                            value="10%"
+                            required={true}
+                            onChange={(e) => handleInputChange("autoIncrease", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
-            value={formData.coinsurance}
-            required={true}
-            onChange={(e) => handleInputChange("coinsurance", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
+                            value="80%"
+                            required={true}
+                            onChange={(e) => handleInputChange("coinsurance", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Building Limit</span>}
-            value={formData.buildingLimit}
-            required={true}
-            onChange={(e) => handleInputChange("buildingLimit", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Building Limit</span>}
+                            value="4%"
+                            required={true}
+                            onChange={(e) => handleInputChange("buildingLimit", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Building Deductable</span>}
-            value={formData.buildingDeductable}
-            required={true}
-            onChange={(e) => handleInputChange("buildingDeductable", e.target.value)}
-          />
-        </Col>
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Building Deductible</span>}
+                            value="$4000"
+                            required={true}
+                            onChange={(e) => handleInputChange("buildingDeductable", e.target.value)}
+                          />
+                        </Col>
 
-      </Row>
-    </div>
-    <div >
-      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h5 className={styles.widgetTitle}>Business Personal Property</h5>
-        {/*<div  style={{ display: "flex", alignItems: "center" }}>
+                      </Row>
+                    </div>
+                    <div >
+                      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <h5 className={styles.widgetTitle}>Business Personal Property</h5>
+                        {/*<div  style={{ display: "flex", alignItems: "center" }}>
                 <Tooltip title="Edit">
                     <Button  shape="circle" onClick={handleEditBasicInfo} icon={<EditOutlined />} />
                    </Tooltip>
@@ -700,28 +700,28 @@ export function LocationBuildingTab() {
                    </Tooltip>
                    
                 </div>*/}
-      </div>
+                      </div>
 
-      <Row gutter={22}>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Business Personal Property Limit</span>}
-            value={formData.bppl}
-            required={true}
-            onChange={(e) => handleInputChange("bppl", e.target.value)}
+                      <Row gutter={22}>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Business Personal Property Limit</span>}
+                            value="$10000"
+                            required={true}
+                            onChange={(e) => handleInputChange("bppl", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Business Personal Property Deductable</span>}
-            value={formData.bppd}
-            required={true}
-            onChange={(e) => handleInputChange("bppd", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Business Personal Property Deductable</span>}
+                            value="$3000"
+                            required={true}
+                            onChange={(e) => handleInputChange("bppd", e.target.value)}
 
-          />
-        </Col>
-        {/* <Col span={6}>
+                          />
+                        </Col>
+                        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Cause of loss</span>}
             value={formData.causeofLoss2}
@@ -730,71 +730,71 @@ export function LocationBuildingTab() {
 
           />
         </Col> */}
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Exclude Vandalism</span>}
-            value={formData.excludeVandalism2}
-            required={true}
-            onChange={(e) => handleInputChange("excludeVandalism2", e.target.value)}
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Exclude Vandalism</span>}
+                            value="No"
+                            required={true}
+                            onChange={(e) => handleInputChange("excludeVandalism2", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Exclude Sprinkler</span>}
-            value={formData.excludeSprinkler2}
-            required={true}
-            onChange={(e) => handleInputChange("excludeSprinkler2", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Exclude Sprinkler</span>}
+                            value="No"
+                            required={true}
+                            onChange={(e) => handleInputChange("excludeSprinkler2", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Wind % deductable</span>}
-            value={formData.windDeductable2}
-            required={true}
-            onChange={(e) => handleInputChange("windDeductable2", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Wind % deductable</span>}
+                            value="4%"
+                            required={true}
+                            onChange={(e) => handleInputChange("windDeductable2", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Valuation Method</span>}
-            value={formData.valuationMethod2}
-            required={true}
-            onChange={(e) => handleInputChange("valuationMethod2", e.target.value)}
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Reporting form</span>}
-            value={formData.reportingForm}
-            required={true}
-            onChange={(e) => handleInputChange("reportingForm", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Valuation Method</span>}
+                            value="Profit method"
+                            required={true}
+                            onChange={(e) => handleInputChange("valuationMethod2", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Reporting form</span>}
+                            value="Daily report"
+                            required={true}
+                            onChange={(e) => handleInputChange("reportingForm", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
-            value={formData.coinsurance2}
-            required={true}
-            onChange={(e) => handleInputChange("coinsurance2", e.target.value)}
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
+                            value="80%"
+                            required={true}
+                            onChange={(e) => handleInputChange("coinsurance2", e.target.value)}
 
-          />
-        </Col>
+                          />
+                        </Col>
 
-      </Row>
-    </div>
+                      </Row>
+                    </div>
 
-    <div >
-      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h5 className={styles.widgetTitle}>Business Income Coverage</h5>
-       
-      </div>
+                    <div >
+                      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <h5 className={styles.widgetTitle}>Business Income Coverage</h5>
 
-      <Row gutter={22}>
-        {/* <Col span={6}>
+                      </div>
+
+                      <Row gutter={22}>
+                        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Income Limit- not manufactured or rental $</span>}
             value={formData.incomeLimitManufacture}
@@ -804,7 +804,7 @@ export function LocationBuildingTab() {
 
           />
         </Col> */}
-        {/* <Col span={6}>
+                        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Income Limit- Mfg only $</span>}
             value={formData.incomeLimitMfg}
@@ -814,24 +814,24 @@ export function LocationBuildingTab() {
 
           />
         </Col> */}
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Income Limit $</span>}
-            value={formData.incomeLimitrental}
-            required={true}
-            onChange={(e) => handleInputChange("incomeLimitrental", e.target.value)}
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Income Limit $</span>}
+                            value="$20000"
+                            required={true}
+                            onChange={(e) => handleInputChange("incomeLimitrental", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
-            value={formData.coinsurance3}
-            required={true}
-            onChange={(e) => handleInputChange("coinsurance3", e.target.value)}
-          />
-        </Col>
-        {/* <Col span={6}>
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Coinsurance</span>}
+                            value="80%"
+                            required={true}
+                            onChange={(e) => handleInputChange("coinsurance3", e.target.value)}
+                          />
+                        </Col>
+                        {/* <Col span={6}>
           <FormInput
             label={<span style={{ fontSize: "15px" }}>Cause of loss</span>}
             value={formData.causeofLoss3}
@@ -840,124 +840,123 @@ export function LocationBuildingTab() {
 
           />
         </Col> */}
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Waiting Period</span>}
-            value={formData.waitingPeriod}
-            required={true}
-            onChange={(e) => handleInputChange("waitingPeriod", e.target.value)}
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Waiting Period</span>}
+                            value="1 year"
+                            required={true}
+                            onChange={(e) => handleInputChange("waitingPeriod", e.target.value)}
 
-          />
-        </Col>
-        <Col span={6}>
-          <FormInput
-            label={<span style={{ fontSize: "15px" }}>Period of coverages</span>}
-            value={formData.periodOfCoverages}
-            required={true}
-            onChange={(e) => handleInputChange("periodOfCoverages", e.target.value)}
-          />
-        </Col>
-
-
+                          />
+                        </Col>
+                        <Col span={6}>
+                          <FormInput
+                            label={<span style={{ fontSize: "15px" }}>Period of coverages</span>}
+                            value="2 years"
+                            required={true}
+                            onChange={(e) => handleInputChange("periodOfCoverages", e.target.value)}
+                          />
+                        </Col>
 
 
-      </Row>
-    </div>
 
 
-    <div>
-      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h5 className={styles.widgetTitle}>Additional Coverage</h5>
-      </div>
+                      </Row>
+                    </div>
 
-      <Row gutter={22} style={{ marginBottom: '20px' }}>
-        <Col>
-          <Checkbox
-            checked={formData.showFloodFields}
-            onChange={() => handleCheckboxChange('showFloodFields')}
-          >
-            Flood Coverage
-          </Checkbox>
-        </Col>
-        <Col>
-          <Checkbox
-            checked={formData.showEarthquakeFields}
-            onChange={() => handleCheckboxChange('showEarthquakeFields')}
-          >
-            Earthquake Coverage
-          </Checkbox>
-        </Col>
-      </Row>
 
-      {formData.showFloodFields && (
-        <Row gutter={22}>
-          <Col span={6}>
-            <FormInput
-              label={<span style={{ fontSize: "15px" }}>Flood Coverage Limit</span>}
-              value={formData.floodCoveragelimit}
-              required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
-            />
-          </Col>
-          <Col span={6}>
-            <FormInput
-              label={<span style={{ fontSize: "15px" }}>Flood Coverage Deductable</span>}
-              value={formData.floodCoveragemonthlyLimit}
-              required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
-            />
-          </Col>
-        </Row>
-      )}
+                    <div>
+                      <div className={styles.widgetHeader} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <h5 className={styles.widgetTitle}>Additional Coverage</h5>
+                      </div>
 
-      {formData.showEarthquakeFields && (
-        <Row gutter={22}>
-          <Col span={6}>
-            <FormInput
-              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Limit</span>}
-              value={formData.earthquakeCoveragelimit
-              }
-              required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
-            />
-          </Col>
-          <Col span={6}>
-            <FormInput
-              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Deductable</span>}
-              value={formData.earthquakeCoveragemonthlylimit}
-              required={true}
-              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
-            />
-          </Col>
-        </Row>
-      )}
-    </div>
+                      <Row gutter={22} style={{ marginBottom: '20px' }}>
+                        <Col>
+                          <Checkbox
+                            checked={formData.showFloodFields}
+                            onChange={() => handleCheckboxChange('showFloodFields')}
+                          >
+                            Flood Coverage
+                          </Checkbox>
+                        </Col>
+                        <Col>
+                          <Checkbox
+                            checked={formData.showEarthquakeFields}
+                            onChange={() => handleCheckboxChange('showEarthquakeFields')}
+                          >
+                            Earthquake Coverage
+                          </Checkbox>
+                        </Col>
+                      </Row>
 
-  </Col>
+                      {formData.showFloodFields && (
+                        <Row gutter={22}>
+                          <Col span={6}>
+                            <FormInput
+                              label={<span style={{ fontSize: "15px" }}>Flood Coverage Limit</span>}
+                              value="$10000"
+                              required={true}
+                              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
+                            />
+                          </Col>
+                          <Col span={6}>
+                            <FormInput
+                              label={<span style={{ fontSize: "15px" }}>Flood Coverage Deductable</span>}
+                              value="$2000"
+                              required={true}
+                              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
+                            />
+                          </Col>
+                        </Row>
+                      )}
 
-</Row>
-<Row justify="end" style={{ marginTop: "20px" ,marginBottom: "20px"}}>
-        <Col span={20}></Col>
-        <Col span={4}>
-                  <Button type="primary"
-                    onClick={addOrUpdateBuilding}
-                    style={{ marginRight: "10px" }}
-                  >
-                    {isEditing ? "OK" : "Add Building"}
-                  </Button>
-                  <Button type="primary" onClick={nextTab}>
-                    Next
-                  </Button>
+                      {formData.showEarthquakeFields && (
+                        <Row gutter={22}>
+                          <Col span={6}>
+                            <FormInput
+                              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Limit</span>}
+                              value="$2000"
+                              required={true}
+                              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragelimit", e.target.value)}
+                            />
+                          </Col>
+                          <Col span={6}>
+                            <FormInput
+                              label={<span style={{ fontSize: "15px" }}>Earthquake Coverage Deductable</span>}
+                              value="$1000"
+                              required={true}
+                              onChange={(e) => handleAdditionalCoverageInputChange("floodCoveragemonthlyLimit", e.target.value)}
+                            />
+                          </Col>
+                        </Row>
+                      )}
+                    </div>
+
                   </Col>
-                </Row>
-</div>
+
+                </Row>
+                <Row justify="end" style={{ marginTop: "20px", marginBottom: "20px" }}>
+                  <Col span={16}></Col>
+                  <Col span={8}>
+                    <Button type="primary"
+                      onClick={addOrUpdateBuilding}
+                      style={{ marginRight: "10px" }}
+                    >
+                      {isEditing ? "OK" : "Add Building"}
+                    </Button>
+                    <Button type="primary" onClick={nextTab}>
+                      Next
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
             </div>
           )}
 
           {activeTab === "Tab2" && (
             <div id="Tab2" className="tabcontent">
               <Rpa />
-              
+
             </div>
           )}
         </div>

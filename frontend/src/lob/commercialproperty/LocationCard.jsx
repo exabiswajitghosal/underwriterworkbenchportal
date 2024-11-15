@@ -79,7 +79,7 @@ const LocationCard = () => {
             }}
           >
             <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-              <span>Wild Risk Score</span> <span>{wildfireScore}</span>
+              <span>Wildfire Risk Score</span> <span>{wildfireScore}</span>
             </p>
             <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
               <span>Risk Description</span> <span>Urban</span>

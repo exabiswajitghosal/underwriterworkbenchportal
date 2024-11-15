@@ -125,9 +125,9 @@ const ModalDesign = () => {
                 style={{ width: "100%", marginTop: "10px" }}
                 onChange={(value) => setSelectedUnderwriter(value)}
               >
-                <Select.Option value="underwriter1">Underwriter 1</Select.Option>
-                <Select.Option value="underwriter2">Underwriter 2</Select.Option>
-                <Select.Option value="underwriter3">Underwriter 3</Select.Option>
+              <Select.Option value="underwriter1">Henry Oscar</Select.Option>
+                <Select.Option value="underwriter2">Alexander William</Select.Option>
+                <Select.Option value="underwriter3">Samuel Smith</Select.Option>
               </Select>
             )}
           </Modal>
