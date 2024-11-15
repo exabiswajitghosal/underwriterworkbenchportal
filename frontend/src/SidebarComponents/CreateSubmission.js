@@ -259,7 +259,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Insured Name</span>}
-                                            value= "Kew Gardens Property"
+                                            value= "Kew Gardens Property Inc."
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "basicInfo", "insuredName")}
                                             readOnly={!basicInfo.isEditing} // Allow editing based on state

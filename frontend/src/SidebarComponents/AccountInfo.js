@@ -70,7 +70,7 @@ const AccountInfo = () => {
             <strong>Account No:</strong> 123456789
           </p>
           <p style={{ display: "inline" }}>
-            <strong>Account Holder:</strong> Kew Garden Property
+            <strong>Account Holder:</strong> Kew Garden Property Inc.
           </p>
           <p style={{ display: "inline" }}>
             <strong>Organization Type:</strong> Business

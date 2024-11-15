@@ -39,7 +39,7 @@ const QuoteSummary = () => {
 
   // Define table data for each section
   const coverageData = [
-    { key: 1, location: '123-05 84th Avenue, Kew Gardens, NY 11415', coverage: '$4000,000', limit: '$4000,000', deductible: '$40000', premium: '$50000' },
+    { key: 1, location: '123-05 84th Avenue, Kew Gardens, NY 11415', coverage: '$4000,000', limit: '$4000,000', deductible: '$4000', premium: '$50000' },
     // { key: 2, location: '1234 Elm Street', coverage: '$5000,000', limit: '$5000,000', deductible: '$50000', premium: '$50000' },
     
   ];
@@ -103,10 +103,10 @@ const QuoteSummary = () => {
       <Title level={5}>Quote Summary</Title>
       <Table
         dataSource={[
-          { key: 'quoteNumber', label: 'Quote Number', value: 'abc0014562' },
+          { key: 'quoteNumber', label: 'Quote Number', value: 'Q0014562' },
           { key: 'effectiveDate', label: 'Policy Effective Date', value: '12/11/2024' },
           { key: 'endDate', label: 'Policy End Date', value: '12/11/2025' },
-          { key: 'insuredName', label: 'Insured Name', value: 'Kew Gardens Property' },
+          { key: 'insuredName', label: 'Insured Name', value: 'Kew Gardens Property Inc.' },
           { key: 'mailingAddress', label: 'Mailing Address', value: '123-05 84th Avenue, Kew Gardens, NY 11415' },
         ]}
         columns={[

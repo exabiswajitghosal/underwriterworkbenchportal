@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Table, Input, Typography, Button, Select, Row, Col, Tooltip } from 'antd';
+import { Table, Input, Typography, Button, Select, Row, Col, Tooltip, Collapse } from 'antd';
 import { EditOutlined, SaveOutlined } from '@ant-design/icons';
 import styles from './LocationComponent.module.css';
 const { Title } = Typography;
 const { Option } = Select;
-
+const { Panel } = Collapse;
 const Coverages = ({ onNext }) =>{
   const [editing, setEditing] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -12,23 +12,23 @@ const Coverages = ({ onNext }) =>{
   // Define table data for each location
   const locationData = {
     'Location 1': [
-      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$30000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$3000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
       
     ],
     'Location 2': [
-      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$30000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$50000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$40000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$3000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
+      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
       
     ],
   };
@@ -145,6 +145,8 @@ const Coverages = ({ onNext }) =>{
           </Col>
           </Row>
           {/* Table for the selected location */}
+          <Collapse defaultActiveKey={['1']} style={{ marginTop: '20px' }}>
+          <Panel header="Building 1" key="1">
           <Table
             dataSource={rowData}
             columns={columns}
@@ -155,7 +157,7 @@ const Coverages = ({ onNext }) =>{
             style={{ marginTop: 2 }}
           />
         
-      
+      </Panel></Collapse>
 
       {/* UW Notes section */}
       <div style={{ marginTop: '20px', marginBottom: '20px' }}>

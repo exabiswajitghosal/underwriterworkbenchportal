@@ -55,7 +55,7 @@ const AccountDashboard = () => {
             <div className="account-info-content" style={{ marginLeft: "20px" }}>
               <div>
                 <p><strong>Account No:</strong> 123456789</p>
-                <p><strong>Account Holder:</strong>Kew Garden Property</p>
+                <p><strong>Account Holder:</strong>Kew Garden Property Inc.</p>
                 <p><strong>Billing Address:</strong> 123-05 84th Avenue, Kew Gardens, NY 11415</p>
                 <p><strong>FEIN:</strong> 1234567</p>
                 <p><strong>Contact No:</strong> (327)678-556</p>

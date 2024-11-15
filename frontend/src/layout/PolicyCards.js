@@ -31,15 +31,15 @@ export function PolicyCards() {
 
   return (
     <section >
-      <Row gutter={[8, 8]} justify="space-between" >
+      <Row gutter={[4, 4]} justify={"space-between"} >
         {policies.map((policy, index) => (
           <Col
             key={index}
-            xs={24}
-            sm={12}
-            md={8}
-            lg={6}
-            xl={4}
+            xs={20}
+            sm={10}
+            md={12}
+            lg={10}
+            xl={6}
             className={`${styles.policyCard} ${
               activePolicy === policy.name ? styles.activeCard : ""
             }`}
@@ -49,8 +49,8 @@ export function PolicyCards() {
               className="policyCard"
               onClick={() => setActivePolicy(policy.name)}  // Set active policy on click
               style={{
-                height: "102px",
-                width: "245px",
+                height: "100px",
+                width: "330px",
                 borderRadius: "12px",
                 boxShadow: "0 30px 60px rgba(138, 159, 158, 0.2)",
                 borderTopColor: "steelblue",
