@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './LossInfo.css';  // Import the CSS file
-import { Button, Card, Col, Modal, Row, Input, DatePicker, Checkbox, Layout } from 'antd';
+import FormInput from '../../components/FormInput'
+import { Button, Card, Col, Modal, Row, Input, DatePicker, Checkbox, Layout, Collapse } from 'antd';
+const { Panel } = Collapse;
 
 const LossInfo = ({ onNext }) => {
   const [activeTab, setActiveTab] = useState("PriorPolicies");
@@ -8,7 +10,7 @@ const LossInfo = ({ onNext }) => {
   const [isLossSummaryModalVisible, setIsLossSummaryModalVisible] = useState(false);
   const [isLossDetailModalVisible, setIsLossDetailModalVisible] = useState(false);
   const lossdata = [
-    { policyYear: '2024', annualPremium: '500$', claims: '0', openClaims: '1', totalInsuredLosses: '10 000 $', totalPaidLosses: '200$', expenses: '100$' }
+    { policyYear: '2024', annualPremium: '$ 500', claims: '0', openClaims: '1', totalInsuredLosses: '$ 10,000', totalPaidLosses: '$ 200', expenses: '$ 100' }
   ]
   const [newPolicy, setNewPolicy] = useState({
     carrier: "",
@@ -55,12 +57,28 @@ const LossInfo = ({ onNext }) => {
       expirationDate: "07/15/2024",
       carrier: "Allianz",
       lob: "Property",
-      accidentDescription: "WATER DAMAGE",
-      reportedDate: "6/22/2024",
+      accidentDescription: "FIRE DAMAGE",
+      reportedDate: "06/22/2024",
       status: "closed",
       class: "0",
-      totalPaid: "0",
-      totalIncurred: "30987"
+      totalPaid: "15000",
+      totalIncurred: "30987",
+      notes: [
+        {
+          noteDate: "06/22/2024",
+          accidentDate: "06/21/2024",
+          reportedDate: "06/22/2024",
+          expenseReserve: "$20000.00",
+          note: "The claimant was not responsible for the lossess"
+        },
+        {
+          noteDate: "06/16/2024",
+          accidentDate: "06/15/2024",
+          reportedDate: "06/16/2024",
+          expenseReserve: "$5000.00",
+          note: "",
+        }
+      ]
     },
     {
       claimNumber: "40051071-02",
@@ -68,12 +86,21 @@ const LossInfo = ({ onNext }) => {
       expirationDate: "05/10/2023",
       carrier: "Zurich",
       lob: "Auto",
-      accidentDescription: "COLLISION",
-      reportedDate: "5/15/2022",
+      accidentDescription: "VEHICLE THEFT",
+      reportedDate: "05/15/2022",
       status: "open",
       class: "1",
-      totalPaid: "5000",
-      totalIncurred: "12000"
+      totalPaid: "7000",
+      totalIncurred: "15000",
+      notes: [
+        {
+          noteDate: "05/09/2024",
+          accidentDate: "05/09/2022",
+          reportedDate: "05/15/2022",
+          expenseReserve: "$10000.00",
+          note: ""
+        }
+      ]
     },
     {
       claimNumber: "40051072-03",
@@ -81,12 +108,21 @@ const LossInfo = ({ onNext }) => {
       expirationDate: "08/20/2022",
       carrier: "AIG",
       lob: "Liability",
-      accidentDescription: "SLIP AND FALL",
-      reportedDate: "8/25/2021",
+      accidentDescription: "SLIP AND FALL - SEVERE",
+      reportedDate: "08/25/2021",
       status: "closed",
       class: "2",
-      totalPaid: "8000",
-      totalIncurred: "15000"
+      totalPaid: "12000",
+      totalIncurred: "18000",
+      notes: [
+        {
+          noteDate: "08/19/2024",
+          accidentDate: "08/19/2021",
+          reportedDate: "08/25/2021",
+          expenseReserve: "$8000.00",
+          note: ""
+        }
+      ]
     }
   ];
 
@@ -240,7 +276,7 @@ const LossInfo = ({ onNext }) => {
 
 
   return (
-    <Layout>
+    <Layout style={{backgroundColor:'white'}}>
       <Row gutter={16}>
         <Col span={20}>
           <div className="maincontainer" id="lossInfo">
@@ -668,25 +704,23 @@ const LossInfo = ({ onNext }) => {
                           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                         }}
                       >
-
                         {selectedClaim ? (
-
-                          <ul style={{ listStyleType: "circle", paddingLeft: "2rem" }}>
-                            <p style={{ fontSize: "0.9rem" }}>Notes: (Dated) - 30/10/2024</p>
-                            <a href="#" style={{ textDecoration: "underline", fontSize: "0.9rem", marginBottom: "1rem", display: "inline-block" }}>
-                              Link to the Popup
-                            </a>
-                            <li>Accident Date</li>
-                            <li>Report Date</li>
-                            <li>Expenses Reserve</li>
-                            <li>Paid Loss</li>
-                            <li>Total Loss</li>
-                            <li>Carrier: {selectedClaim.carrier}</li>
-                            <li>LOB: {selectedClaim.lob}</li>
-                            <li>Status: {selectedClaim.status}</li>
-                            <li>Total Paid: {selectedClaim.totalPaid}</li>
-                            <li>Total Incurred: {selectedClaim.totalIncurred}</li>
-                          </ul>
+                          <Collapse accordion defaultActiveKey={['1']}>
+                            {selectedClaim.notes.map((note, index) => (
+                              <Panel header={`Notes: (Dated) - ${note.noteDate}`} key={index}>
+                                <div style={{ display: "flex", justifyContent:'space-between' }}>
+                                  <p>Accident Date: {note.accidentDate}</p>
+                                  <p>Report Date: {note.reportedDate}</p>
+                                  <p>Expenses Reserve: {note.expenseReserve}</p>
+                                </div>
+                                <FormInput
+                                  label="Note"
+                                  value={note.note}
+                                  placeholder="Note"
+                                />
+                              </Panel>
+                            ))}
+                          </Collapse>
                         ) : (
                           <p>Please first select any row to see the history</p>
                         )}
@@ -713,9 +747,7 @@ const LossInfo = ({ onNext }) => {
             )}
           </div>
         </Col>
-
       </Row>
-
     </Layout>
   );
 };
