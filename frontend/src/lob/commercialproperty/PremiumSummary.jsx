@@ -13,13 +13,13 @@ const PremiumSummary = ({ onNext }) => {
   // Data for each building
   const buildingData = {
     'Location 1': [
-      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$400,000', premium: '$4000' },
-      { key: 2, description: 'Business Personal Property', coverageAmount: '$500,000', premium: '$5000' },
-      { key: 3, description: 'Business Income Coverage', coverageAmount: '$500,000', premium: '$5000' },
-      { key: 4, description: 'Flood Coverage', coverageAmount: '$300,000', premium: '$3000' },
-      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$500,000', premium: '$5000' },
-      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$400,000', premium: '$4000' },
-      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', premium: '$4000' },
+      { key: 1, description: 'Property Damage Coverage', coverageAmount: '$15,000,000', premium: '$22,000' },
+      { key: 2, description: 'Business Personal Property', coverageAmount: '$500,000', premium: '$5,000' },
+      { key: 3, description: 'Business Income Coverage', coverageAmount: '$1,000,000', premium: '$3,000' },
+      { key: 4, description: 'Flood Coverage', coverageAmount: '$500,000', premium: '$7,000' },
+      { key: 5, description: 'Earthquake Coverage', coverageAmount: '$1,000,000', premium: '$5,000' },
+      { key: 6, description: 'Annual Rental and fees', coverageAmount: '$250,000', premium: '$2,000' },
+      { key: 7, description: 'Ord/ Law Blanket Limits', coverageAmount: '$100,000', premium: '$3,000' },
     ],
     'Location 2': [
       { key: 1, description: 'Property Damage Coverage', coverageAmount: '$500,000', premium: '$5000' },
@@ -168,9 +168,9 @@ const PremiumSummary = ({ onNext }) => {
      {selectedBuilding && (
       <Table
         dataSource={[
-          { key: 'totalPremium', label: 'Total Premium', value: '$100000' },
-          { key: 'feeTaxes', label: 'Fees & Taxes', value: '$10000' },
-          { key: 'totalPayable', label: 'Total Payable', value: '$100000' },
+          { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
+          { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
+          { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
         ]}
         columns={[
           { title: '', dataIndex: 'label', key: 'label' },
