@@ -13,25 +13,7 @@ const SearchInsured = () => {
     const [searchCriteria, setSearchCriteria] = useState({
         name: '',
     });
-    const [results, setResults] = useState([
-        {
-            account: '123456789',
-            name: 'Kew Gardens Property Inc.',
-            type: 'Individual',
-            address: '123-05 84th Avenue ',
-            lobs: 'CP, GL, PL',
-            effective: '01/01/2024',
-            expiry: '12/31/2024',
-            status: 'Open',
-            city: 'New York',
-            state: 'NY',
-            programName: 'ayspre',
-            productName: 'habitational_risk',
-            occupancyType: 'office',
-            primaryRiskState: 'new york',
-            primaryRisk: 'commercial property'
-        }
-    ]);
+    const [results, setResults] = useState([]);
     const [submissionDetails, setSubmissionDetails] = useState({
         programName: null,
         productName: null,
@@ -51,7 +33,7 @@ const SearchInsured = () => {
         // Sample data for testing
         const sampleData = [
             {
-                account: 'Exasure',
+                account: '7657676757',
                 name: 'John Doe',
                 type: 'Individual',
                 address: '123 Main St',
@@ -68,7 +50,7 @@ const SearchInsured = () => {
                 primaryRisk: 'commercial property'
             },
             {
-                account: 'Exasure',
+                account: '98675676765',
                 name: 'John H',
                 type: 'Individual',
                 address: '123 Main St',
@@ -85,7 +67,7 @@ const SearchInsured = () => {
                 primaryRisk: 'commercial property'
             },
             {
-                account: 'Exasure',
+                account: '234646758',
                 name: 'Exavalu',
                 type: 'Entity',
                 address: '123 Main St',
@@ -97,6 +79,23 @@ const SearchInsured = () => {
                 state: 'NY',
                 programName: 'ayspre',
                 productName: 'builders_risk',
+                occupancyType: 'office',
+                primaryRiskState: 'new york',
+                primaryRisk: 'commercial property'
+            },
+            {
+                account: '123456789',
+                name: 'Kew Gardens Property Inc.',
+                type: 'Individual',
+                address: '123-05 84th Avenue ',
+                lobs: 'CP, GL, PL',
+                effective: '01/01/2024',
+                expiry: '12/31/2024',
+                status: 'Open',
+                city: 'New York',
+                state: 'NY',
+                programName: 'ayspre',
+                productName: 'habitational_risk',
                 occupancyType: 'office',
                 primaryRiskState: 'new york',
                 primaryRisk: 'commercial property'
