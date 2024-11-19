@@ -45,7 +45,7 @@ const MyMenu = ({ collapsed }) => {
         {!collapsed ? <Link to="/accountinfo" style={{ textDecoration: 'none' }}>Account Details</Link> : ''}
       </Menu.Item>
       <Menu.Item key="4" icon={<SettingFilled />}>
-        {!collapsed ? <Link to="/submission" style={{ textDecoration: 'none' }}>New Submission</Link> : ''}
+        {!collapsed ? <Link to="/createsubmission" style={{ textDecoration: 'none' }}>Create Submission</Link> : ''}
       </Menu.Item>
     </Menu>
   );
@@ -107,7 +107,7 @@ const App = () => {
               <Route path="accountinfo" element={<AccountInfo />} />
               <Route path="documentscreen" element={<DocumentScreen />} />
               <Route path="clearancescreen" element={<ClearanceScreen />} />
-              <Route path="submission" element={<SearchInsured />} />
+              <Route path="searchinsured" element={<SearchInsured />} />
             </Routes>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
