@@ -14,6 +14,7 @@ import Sublob2 from './layout/Sublob2';
 import AuditTrail from './SidebarComponents/AuditTrail';
 import AccountInfo from './SidebarComponents/AccountInfo';
 import AccountDashboard from './SidebarComponents/AccountDashboard';
+import Login from './layout/Login';
 
 const { Sider, Content, Footer } = Layout;
 
@@ -100,7 +101,7 @@ const App = () => {
             }}
           >
             <Routes>
-              <Route exact path="/" element={<Dashboard />} />
+              <Route exact path="/" element={<Login/>} />
               <Route path="createsubmission" element={<Sublob2 />} />
               <Route path="audit-trail" element={<AuditTrail />} />
               <Route path="accountdashboard" element={<AccountDashboard />} />

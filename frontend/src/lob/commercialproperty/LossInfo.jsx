@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import './LossInfo.css';  // Import the CSS file
 import FormInput from '../../components/FormInput'
 import { Button, Card, Col, Modal, Row, Input, DatePicker, Checkbox, Layout, Collapse } from 'antd';
+import Documents from '../../layout/Documents'
 const { Panel } = Collapse;
+
 
 const LossInfo = ({ onNext }) => {
   const [activeTab, setActiveTab] = useState("PriorPolicies");
@@ -376,6 +378,7 @@ const LossInfo = ({ onNext }) => {
                     </div>
                   </Col>
                 </Row>
+                <Documents />
                 <Modal
                   title="Add New Policy"
                   visible={isModalVisible}

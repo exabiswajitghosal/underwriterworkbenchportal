@@ -6,6 +6,7 @@ import MapView from './Map';
 import LocationCard from './LocationCard';
 import styles from './LocationComponent.module.css';
 import '../../components/TableStyles.css';
+import Documents from '../../layout/Documents'
 
 const { Option } = Select;
 
@@ -264,58 +265,7 @@ const  LocationTable = ({ nextTab }) => {
           </div>
         </Col>
       </Row>
-      <div
-        onMouseEnter={handleDocumentMenuHover}
-        onMouseLeave={handleDocumentMenuLeave}
-        style={{
-          position: 'fixed',
-          top: '80%',
-          right: 0,
-          transform: 'translateY(-50%)',
-          backgroundColor: ' #7eaada',
-          color: '#fff',
-          padding: '10px',
-          width: '50px',        // Width of the vertical button
-          height: '200px',       // Height of the vertical button
-          borderRadius: '8px 0 0 8px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          writingMode: 'vertical-rl', // Rotates text vertically
-          textAlign: 'center',
-          cursor: 'pointer',
-          zIndex: 1000,
-          fontWeight:"600",
-          fontSize:'22px'
-        }}
-      >
-        Documents
-      </div>
-
-      {/* Document menu that slides in on hover */}
-      <div
-        style={{
-          position: 'fixed',
-          top: '25%', // Centered vertically with 50% height
-          right: isDocumentMenuVisible ? '0' : '-300px', // Adjusted width for visibility
-          width: '300px', 
-          height: '50%', 
-          backgroundColor: '#f4f4f4',
-          transition: 'right 0.3s ease',
-          padding: '20px',
-          zIndex: 999,
-          boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
-          borderRadius: '8px 0 0 8px', 
-        }}
-        onMouseEnter={handleDocumentMenuHover}
-        onMouseLeave={handleDocumentMenuLeave}
-      >
-        <h3>Documents</h3>
-        <ul style={{ listStyleType: 'disc', paddingLeft: '20px', fontSize: '18px' }}>
-          <li><a href="fire_flood_print.pdf" target="_blank" rel="noopener noreferrer">Corelogic.pdf</a></li>
-          <li><a href="riskmeter_report.pdf" target="_blank" rel="noopener noreferrer">HazardHub.pdf</a></li>
-        </ul>
-      </div>
+      <Documents />
       
       
       <Row justify="center" style={{ marginTop: '30px', padding: '10px 0' }}>
