@@ -18,16 +18,14 @@ import Login from './layout/Login';
 
 const { Sider, Content, Footer } = Layout;
 
-// Extracted MyMenu to handle `useLocation`
 const MyMenu = ({ collapsed }) => {
   const location = useLocation();
 
-  // Map paths to menu keys
   const pathToKey = {
-    '/': '1',
+    '/dashboard': '1',
     '/accountdashboard': '2',
     '/accountinfo': '3',
-    '/submission': '4',
+    '/createsubmission': '4',
   };
 
   return (
@@ -37,7 +35,7 @@ const MyMenu = ({ collapsed }) => {
       selectedKeys={[pathToKey[location.pathname] || '1']}
     >
       <Menu.Item key="1" icon={<HomeOutlined />}>
-        {!collapsed ? <Link to="/" style={{ textDecoration: 'none' }}>Dashboard</Link> : ''}
+        {!collapsed ? <Link to="/dashboard" style={{ textDecoration: 'none' }}>Dashboard</Link> : ''}
       </Menu.Item>
       <Menu.Item key="2" icon={<InfoCircleOutlined />}>
         {!collapsed ? <Link to="/accountdashboard" style={{ textDecoration: 'none' }}>Account Information</Link> : ''}
@@ -52,16 +50,20 @@ const MyMenu = ({ collapsed }) => {
   );
 };
 
-const App = () => {
+const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const location = useLocation();
+
+  const isLoginPage = location.pathname === '/';
+
   return (
-    <Router>
-      <Layout>
+    <Layout>
+      {!isLoginPage && (
         <Sider
           trigger={null}
           collapsible
@@ -89,33 +91,44 @@ const App = () => {
           <div className="demo-logo-vertical" />
           <MyMenu collapsed={collapsed} />
         </Sider>
-        <Layout>
-          <HeaderDesign />
-          <Content
-            style={{
-              margin: '5px 9px',
-              padding: 24,
-              minHeight: 560,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            <Routes>
-              <Route exact path="/" element={<Login/>} />
-              <Route path="createsubmission" element={<Sublob2 />} />
-              <Route path="audit-trail" element={<AuditTrail />} />
-              <Route path="accountdashboard" element={<AccountDashboard />} />
-              <Route path="accountinfo" element={<AccountInfo />} />
-              <Route path="documentscreen" element={<DocumentScreen />} />
-              <Route path="clearancescreen" element={<ClearanceScreen />} />
-              <Route path="searchinsured" element={<SearchInsured />} />
-            </Routes>
-          </Content>
+      )}
+      <Layout>
+        {!isLoginPage && <HeaderDesign />}
+        <Content
+          style={{
+            margin: '5px 9px',
+            padding: 24,
+            minHeight: 560,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          <Routes>
+            <Route exact path="/" element={<Login />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="createsubmission" element={<Sublob2 />} />
+            <Route path="audit-trail" element={<AuditTrail />} />
+            <Route path="accountdashboard" element={<AccountDashboard />} />
+            <Route path="accountinfo" element={<AccountInfo />} />
+            <Route path="documentscreen" element={<DocumentScreen />} />
+            <Route path="clearancescreen" element={<ClearanceScreen />} />
+            <Route path="searchinsured" element={<SearchInsured />} />
+          </Routes>
+        </Content>
+        {!isLoginPage && (
           <Footer style={{ textAlign: 'center' }}>
             Underwriter Workbench {new Date().getFullYear()}
           </Footer>
-        </Layout>
+        )}
       </Layout>
+    </Layout>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppLayout />
     </Router>
   );
 };

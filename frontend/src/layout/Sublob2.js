@@ -10,6 +10,7 @@ import QuoteSummary from '../lob/commercialproperty/quoteSummary';
 import PremiumSummary from '../lob/commercialproperty/PremiumSummary';
 import Bind from '../lob/commercialproperty/Bind';
 import Coverages from '../lob/commercialproperty/Coverages';
+import Documents from './Documents';
 
 const Sublob2 = (props) => {
   const sections = [
@@ -146,6 +147,7 @@ const Sublob2 = (props) => {
           <QuoteSummary onNext={goToNextSection} />
         </div>
       )}
+       <Documents />
     </div>
   );
 };

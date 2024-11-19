@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table, Input, Typography, Button, Select, Row, Col, Tooltip, Collapse } from 'antd';
 import { EditOutlined, SaveOutlined } from '@ant-design/icons';
 import styles from './LocationComponent.module.css';
+
 const { Title } = Typography;
 const { Option } = Select;
 const { Panel } = Collapse;
@@ -168,6 +169,7 @@ const Coverages = ({ onNext }) =>{
           style={{ marginTop: 10, width: '100%', border: '2px solid gray' }}
         />
       </div>
+      
       <Row gutter={16}>
                         <Col span={20}></Col>
                         <Col span={4}>

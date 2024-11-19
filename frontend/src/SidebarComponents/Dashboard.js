@@ -7,6 +7,7 @@ import Highlighter from 'react-highlight-words';
 import './Dashboard.css';
 import './Table.css';
 import { Tabs } from 'antd';
+import PortfolioInsights from './PortfolioInsights';
 
 const { TabPane } = Tabs;
 
@@ -30,8 +31,8 @@ const data = {
     { id: '002', client: 'Skyline Residences', lob: 'Professional Liability', status: 'Clearance UW', limit: '$250,000', date: '2024-08-18', underwriter: 'Jane Smith', priority: 'Medium' }
   ],
   myassignedcases: [
-    // { id: '003', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'Open', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
-    { id: '004', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Open', limit: '$300,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
+    { id: '003', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Bound', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
+    { id: '004', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'Bound', limit: '$15,000,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
    
   ],
   senttobroker: [
@@ -213,11 +214,11 @@ const Dashboard = () => {
           onClick={(e) => {
             e.stopPropagation();
             console.log("Record data to be passed:", record); // Check if data is there
-            navigate('/submission', { state: { record } });
+            navigate('/createsubmission', { state: { record } });
           }}
         >
-          <div style={{ fontSize: '12px' }}>
-            New Submission
+          <div style={{ fontSize: '12px'}}>
+            Create Submission
           </div>
         </Button>
       ),
@@ -232,44 +233,98 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="content">
-      <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '5px', flexWrap: 'nowrap' }}>
-        <div className="chart-container" style={{ flex: 1, flexDirection: 'column' }}>
-          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Policies Issued</div>
-          <canvas ref={policiesChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
-        </div>
-        <div className="chart-container" style={{ flex: 1, flexDirection: 'column' }}>
-          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Submission in Progress</div>
-          <canvas ref={submissionsChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
-        </div>
-        <div className="chart-container" style={{ flex: 1, flexDirection: 'column' }}>
-          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>New Business vs Renewal Premium $</div>
-          <canvas ref={donutChartRef} style={{ maxHeight: '200px', width: '100%' }}></canvas>
-        </div>
-        {/* <div className="chart-container" style={{ width: '23%', flexDirection: 'column' }}>
-          <div style={{ textAlign: 'center', fontSize: '16px', marginBottom: '5px' }}>Map</div>
-          <img src="./usa.svg" alt="Map of USA" style={{ width: '100%', height: '70%', objectFit: 'contain' }} />
-        </div> */}
-      </div>
-
+    <div style={{ padding: '10px' }}>
       <Tabs defaultActiveKey="1">
-      <TabPane tab="My Work" key="1">
-        <MyTableComponent
-          columns={columns}
-          dataSource={data.myassignedcases}
-          handleRowClick={handleRowClick}
-          handleChange={handleChange}
-        />
-      </TabPane>
-      <TabPane tab="My Team Work" key="2">
-        <MyTableComponent
-          columns={columns}
-          dataSource={combinedData}
-          handleRowClick={handleRowClick}
-          handleChange={handleChange}
-        />
-      </TabPane>
-    </Tabs>
+        <TabPane tab="My Dashboard" key="1">
+          <div className="content">
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                gap: '5px',
+                flexWrap: 'nowrap',
+              }}
+            >
+              <div
+                className="chart-container"
+                style={{ flex: 1, flexDirection: 'column' }}
+              >
+                <div
+                  style={{
+                    textAlign: 'center',
+                    fontSize: '16px',
+                    marginBottom: '5px',
+                  }}
+                >
+                  Policies Issued
+                </div>
+                <canvas
+                  ref={policiesChartRef}
+                  style={{ maxHeight: '200px', width: '100%' }}
+                ></canvas>
+              </div>
+              <div
+                className="chart-container"
+                style={{ flex: 1, flexDirection: 'column' }}
+              >
+                <div
+                  style={{
+                    textAlign: 'center',
+                    fontSize: '16px',
+                    marginBottom: '5px',
+                  }}
+                >
+                  Submission in Progress
+                </div>
+                <canvas
+                  ref={submissionsChartRef}
+                  style={{ maxHeight: '200px', width: '100%' }}
+                ></canvas>
+              </div>
+              <div
+                className="chart-container"
+                style={{ flex: 1, flexDirection: 'column' }}
+              >
+                <div
+                  style={{
+                    textAlign: 'center',
+                    fontSize: '16px',
+                    marginBottom: '5px',
+                  }}
+                >
+                  New Business vs Renewal Premium $
+                </div>
+                <canvas
+                  ref={donutChartRef}
+                  style={{ maxHeight: '200px', width: '100%' }}
+                ></canvas>
+              </div>
+            </div>
+
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="My Work" key="1">
+                <MyTableComponent
+                  columns={columns}
+                  dataSource={data.myassignedcases}
+                  handleRowClick={handleRowClick}
+                  handleChange={handleChange}
+                />
+              </TabPane>
+              <TabPane tab="My Team Work" key="2">
+                <MyTableComponent
+                  columns={columns}
+                  dataSource={combinedData}
+                  handleRowClick={handleRowClick}
+                  handleChange={handleChange}
+                />
+              </TabPane>
+            </Tabs>
+          </div>
+        </TabPane>
+        <TabPane tab="My Portfolio Insights" key="2">
+        <PortfolioInsights />
+        </TabPane>
+      </Tabs>
     </div>
   );
 };

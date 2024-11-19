@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Col, Row } from 'antd';
+import React, { useState } from 'react';
+import { Card, Col, Row, Popover,  Button  } from 'antd';
 
 const LocationCard = () => {
   // Define threshold limits for each score
@@ -13,7 +13,13 @@ const LocationCard = () => {
   const getBackgroundColor = (score, limit = 50) => {
     return score > limit ? '#ffcccc' : '#e4f3f8';
   };
-
+  const [open, setOpen] = useState(false);
+  const hide = () => {
+    setOpen(false);
+  };
+  const handleOpenChange = (newOpen) => {
+    setOpen(newOpen);
+  };
   return (
     <>
       <Row gutter={16}>
@@ -46,7 +52,7 @@ const LocationCard = () => {
 
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
-                <button
+                {/* <button
                   style={{
                     width: '100%',
                     height: '30px',
@@ -59,7 +65,52 @@ const LocationCard = () => {
                   }}
                 >
                   <b style={{ fontSize: '12px' }}>View More</b>
-                </button>
+                </button> */}
+               <Popover
+  content={
+    <div > {/* Set the desired width */}
+      <a onClick={hide} style={{ color: 'blue', margin: 0, fontSize: '16px', }}>
+        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+          <span>Base Flood Risk Score</span> <span>16</span>
+        </p>
+        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+          <span>Structure Intersect</span> <span>YES</span>
+        </p>
+        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+          <span>Water Surface Elevation</span> <span>NA</span>
+        </p>
+        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+          <span>Risk Rating</span> <span>Very Low</span>
+        </p>
+        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+          <span>Base Risk Rating</span> <span>Low</span>
+        </p>
+        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+          <span>MAP Date</span> <span>05-09-2007</span>
+        </p>
+        Close
+      </a>
+    </div>
+  }
+  trigger="click"
+  open={open}
+  onOpenChange={handleOpenChange}
+  overlayStyle={{ width: '400px' }} // Set custom width here
+>
+  <Button type="primary"
+  style={{
+    width: '100%',
+    height: '30px',
+    backgroundColor: '#003f5c',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '1px 0',
+    marginTop: '10px',
+  }}
+  >View more</Button>
+</Popover>
+
               </Col>
             </Row>
           </Card>

@@ -50,8 +50,8 @@ const AccountInfo = () => {
     <Layout style={{ backgroundColor: "white" }}>
       {/* Account Information Section */}
       <div className="" style={{
-        padding: "10px 20px",
-        marginBottom: "20px",
+        padding: "5px 4px",
+        marginBottom: "4px",
         // border: "1px solid #ccc",
         maxWidth: "800px",
         marginLeft: "0"
@@ -60,18 +60,19 @@ const AccountInfo = () => {
           className="account-info-content"
           style={{
             display: "flex",
-            gap: "0px",
-            alignItems: "center",
-            fontSize: "0.9em"
+            
+            gap: "100px",
+            // alignItems: "center",
+            // fontSize: "0.9em"
           }}
         >
-          <p style={{ display: "inline" }}>
+          <p style={{ display: "inline",  fontSize: "1.3rem" }}>
             <strong>Account Holder:</strong> Skyline Property Inc.
           </p>
-          <p style={{ display: "inline" }}>
+          <p style={{ display: "inline",  fontSize: "1.3rem" }}>
             <strong>Account No:</strong> 123456789
           </p>
-          <p style={{ display: "inline" }}>
+          <p style={{ display: "inline",  fontSize: "1.3rem" }}>
             <strong>Organization Type:</strong> Property Management
           </p>
         </div>

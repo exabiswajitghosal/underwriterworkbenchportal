@@ -1,7 +1,11 @@
 import React from "react";
 import "./Login.css"; // Import corresponding CSS file
-
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+  const navigate = useNavigate();
+  const handleRowClick = () => {
+    navigate('/dashboard');
+  };
   return (
     <div className="login-container">
       <div className="login-box">
@@ -30,7 +34,7 @@ const Login = () => {
               Change Password
             </a>
           </div>
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button" onClick={handleRowClick}>
             SUBMIT
           </button>
         </form>
