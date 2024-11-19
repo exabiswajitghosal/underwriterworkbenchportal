@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Col, Row, Popover,  Button  } from 'antd';
+import { Card, Col, Row, Popover, Button } from 'antd';
 
 const LocationCard = () => {
   // Define threshold limits for each score
@@ -66,50 +66,62 @@ const LocationCard = () => {
                 >
                   <b style={{ fontSize: '12px' }}>View More</b>
                 </button> */}
-               <Popover
-  content={
-    <div > {/* Set the desired width */}
-      <a onClick={hide} style={{ color: 'blue', margin: 0, fontSize: '16px', }}>
-        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-          <span>Base Flood Risk Score</span> <span>16</span>
-        </p>
-        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-          <span>Structure Intersect</span> <span>YES</span>
-        </p>
-        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-          <span>Water Surface Elevation</span> <span>NA</span>
-        </p>
-        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-          <span>Risk Rating</span> <span>Very Low</span>
-        </p>
-        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-          <span>Base Risk Rating</span> <span>Low</span>
-        </p>
-        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-          <span>MAP Date</span> <span>05-09-2007</span>
-        </p>
-        Close
-      </a>
-    </div>
-  }
-  trigger="click"
-  open={open}
-  onOpenChange={handleOpenChange}
-  overlayStyle={{ width: '400px' }} // Set custom width here
->
-  <Button type="primary"
-  style={{
-    width: '100%',
-    height: '30px',
-    backgroundColor: '#003f5c',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    padding: '1px 0',
-    marginTop: '10px',
-  }}
-  >View more</Button>
-</Popover>
+                <Popover
+                  content={
+                    <div > {/* Set the desired width */}
+                      <a onClick={hide} style={{ color: 'blue', margin: 0, fontSize: '16px', }}>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Flood Risk Score</span> <span>{floodScore}</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Flood Zone</span> <span>AE</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Elevation Variance</span> <span>-1.1ft</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Property Elevation</span> <span>6ft</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Base Flood Risk Score</span> <span>16</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Structure Intersect</span> <span>YES</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Water Surface Elevation</span> <span>NA</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Risk Rating</span> <span>Very Low</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Base Risk Rating</span> <span>Low</span>
+                        </p>
+                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>MAP Date</span> <span>05-09-2007</span>
+                        </p>
+                        Close
+                      </a>
+                    </div>
+                  }
+                  trigger="click"
+                  open={open}
+                  onOpenChange={handleOpenChange}
+                  overlayStyle={{ width: '400px' }} // Set custom width here
+                >
+                  <Button type="primary"
+                    style={{
+                      width: '100%',
+                      height: '30px',
+                      backgroundColor: '#003f5c',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '4px',
+                      padding: '1px 0',
+                      marginTop: '10px',
+                    }}
+                  >View more</Button>
+                </Popover>
 
               </Col>
             </Row>
