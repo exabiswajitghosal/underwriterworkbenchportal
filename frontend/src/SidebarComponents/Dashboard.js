@@ -166,7 +166,7 @@ const Dashboard = () => {
   };
 
   const handleRowClick = (record) => {
-    navigate('/accountdashboard', { state: { account: record } });
+    navigate('/createsubmission', { state: { account: record } });
   };
 
   const handleChange = (pagination, filters, sorter) => {
@@ -175,6 +175,15 @@ const Dashboard = () => {
   };
 
   const columns = [
+    {
+      title: 'Submission Id',
+      dataIndex: 'id',
+      key: 'id',
+      ...getColumnSearchProps('id'),
+      filters: [...new Set(data.myteamscases.concat(data.myassignedcases, data.senttobroker, data.close).map(item => ({ text: item.id, value: item.id })))],
+      filteredValue: filteredInfo.id || null,
+      onFilter: (value, record) => record.id.includes(value),
+    },
     {
       title: 'Name',
       dataIndex: 'client',
@@ -205,24 +214,24 @@ const Dashboard = () => {
       filteredValue: filteredInfo.priority || null,
       onFilter: (value, record) => record.priority.includes(value),
     },
-    {
-      title: 'Action',
-      key: 'newSubmission',
-      render: (_, record) => (
-        <Button
-          type="primary"
-          onClick={(e) => {
-            e.stopPropagation();
-            console.log("Record data to be passed:", record); // Check if data is there
-            navigate('/createsubmission', { state: { record } });
-          }}
-        >
-          <div style={{ fontSize: '12px'}}>
-            Create Submission
-          </div>
-        </Button>
-      ),
-    }
+    // {
+    //   title: 'Action',
+    //   key: 'newSubmission',
+    //   render: (_, record) => (
+    //     <Button
+    //       type="primary"
+    //       onClick={(e) => {
+    //         e.stopPropagation();
+    //         console.log("Record data to be passed:", record); // Check if data is there
+    //         navigate('/createsubmission', { state: { record } });
+    //       }}
+    //     >
+    //       <div style={{ fontSize: '12px'}}>
+    //         Create Submission
+    //       </div>
+    //     </Button>
+    //   ),
+    // }
   ];
 
   const combinedData = [
@@ -300,7 +309,6 @@ const Dashboard = () => {
                 ></canvas>
               </div>
             </div>
-
             <Tabs defaultActiveKey="1">
               <TabPane tab="My Work" key="1">
                 <MyTableComponent
