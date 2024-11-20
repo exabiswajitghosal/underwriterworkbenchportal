@@ -78,13 +78,13 @@ const Documents = () => {
       >
         <h3>Documents</h3>
         <ul style={{ listStyleType: "disc", paddingLeft: "20px", fontSize: "18px" }}>
-          <li><span onClick={() => openDocument({fire_flood_print})} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Application.pdf</span></li>
-          <li><span onClick={() => openDocument({riskmeter_report})} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Loss_Runs.pdf</span></li>
-          <li><span onClick={() => openDocument({fire_flood_print})} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>SOVs.pdf</span></li>
-          <li><span onClick={() => openDocument({fire_flood_print})} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Riskmeter Corelogic Report.pdf</span></li>
-          <li><span onClick={() => openDocument({riskmeter_report})} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Hazard Hub Report.pdf</span></li>
-          <li><span onClick={() => openDocument({SampleInspectionReport})} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Inspection Report.pdf</span></li>
-          <li><span onClick={() => openDocument({riskmeter_report})} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Contractor's proof of insurance.pdf</span></li>
+          <li><span onClick={() => openDocument(fire_flood_print)} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Application.pdf</span></li>
+          <li><span onClick={() => openDocument(riskmeter_report)} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Loss_Runs.pdf</span></li>
+          <li><span onClick={() => openDocument(fire_flood_print)} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>SOVs.pdf</span></li>
+          <li><span onClick={() => openDocument(fire_flood_print)} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Riskmeter Corelogic Report.pdf</span></li>
+          <li><span onClick={() => openDocument(riskmeter_report)} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Hazard Hub Report.pdf</span></li>
+          <li><span onClick={() => openDocument(SampleInspectionReport)} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Inspection Report.pdf</span></li>
+          <li><span onClick={() => openDocument(riskmeter_report)} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Contractor's proof of insurance.pdf</span></li>
         </ul>
       </div>
 
