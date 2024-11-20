@@ -12,48 +12,40 @@ function  CreateSubmission({ onNext }) {
     const navigate = useNavigate();
     // Separate state for each widget section's form data and editing state
     const [basicInfo, setBasicInfo] = useState({
-    
-        orgName: "",
-
-        orgType: "",
-        dba: "",
-        fein: "",
-        tin: "",
-        businessActivity: "",
-        sicCode: "",
-        sicDescription: "",
-        naics: "",
-        naicsDescription: "",
-        yearsInBusiness: "",
-        status: "",
+        orgName: "Skyline Property Inc.",
+        orgType: "llp",
+        dba: "InnovateTech",
+        fein: "12-3456789",
+        tin: "987654321",
+        businessActivity: "Software Development",
+        sicCode: "7371",
+        sicDescription: "7371 sic description",
+        naics: "541511",
+        naicsDescription: "Custom Computer Programming Services",
+        yearsInBusiness: "5",
+        status: "active",
         isEditing: false,
     });
 
-
-
     const [locationInfo, setLocationInfo] = useState({
-        pinCode: "",
-        addressLine1: "",
+        pinCode: "11415",
+        addressLine1: "123-05 84th Avenue ",
         addressLine2: "",
-        county: "",
-        city: "",
-        state: "",
-        country: "",
-    
-
+        county: "NY",
+        city: "New York",
+        state: "NY State",
+        country: "USA",
         isEditing: false,
     });
 
     const [insuredInfo, setInsuredInfo] = useState({
-    
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        emailId: "",
-        countryCode: "",
-        phoneNumber: "",
-        website: "",
-
+        firstName: "John",
+        middleName: "Michael",
+        lastName: "Doe",
+        emailId: "john.doe@innovatech.com",
+        countryCode: "+1",
+        phoneNumber: "5551234567",
+        website: "https://www.innovatech.com",
         isEditing: false,
     });
 
@@ -75,7 +67,6 @@ function  CreateSubmission({ onNext }) {
     const handleCreateNewBasicInfo = () => {
         console.log("Edit icon clicked!"); // Log for debugging
         setBasicInfo({
-            
             insuredName: "",
             insuredType: "",
             firstName: "",
@@ -154,62 +145,62 @@ function  CreateSubmission({ onNext }) {
             });
         }
     };
-    useEffect(() => {
-        // Define the async function to make the API call
-        const fetchData = async () => {
-            try {
-                // Make the API request
-                const response = await axios.get(`https://underwriterportalbackend.onrender.com/api/v1/insured_data_by_id?submission_id=671b24567fec518a7d5f6807`);
+    // useEffect(() => {
+    //     // Define the async function to make the API call
+    //     const fetchData = async () => {
+    //         try {
+    //             // Make the API request
+    //             const response = await axios.get(`https://underwriterportalbackend.onrender.com/api/v1/insured_data_by_id?submission_id=671b24567fec518a7d5f6807`);
 
-                if (response.status === 200) {
-                    // setInferences(response.data); // Assuming data is a JSON object
-                    const insuredData = response.data;
-                    setBasicInfo({
+    //             if (response.status === 200) {
+    //                 // setInferences(response.data); // Assuming data is a JSON object
+    //                 const insuredData = response.data;
+    //                 setBasicInfo({
                         
-                        insuredName: insuredData.insuredInfo.orgName,
-                        orgType: insuredData.insuredInfo.orgType,
-                        dba: insuredData.insuredInfo.dba,
-                        fein: insuredData.insuredInfo.fein,
-                        tin: insuredData.insuredInfo.tin,
-                        businessActivity: insuredData.insuredInfo.businessActivity,
-                        sicCode: insuredData.insuredInfo.sicCode,
-                        sicDescription: insuredData.insuredInfo.sicDescription,
-                        naics: insuredData.insuredInfo.naics,
-                        naicsDescription: insuredData.insuredInfo.naicsDescription,
-                        yearsInBusiness: insuredData.insuredInfo.yearsInBusiness,
-                        status: insuredData.insuredInfo.partyStatus,
-                    })
-                    setLocationInfo({
-                        pinCode: insuredData.insuredMailingAddress[0].pinCode,
-                        addressLine1: insuredData.insuredMailingAddress[0].addressLine1,
-                        addressLine2: insuredData.insuredMailingAddress[0].addressLine2,
-                        county: insuredData.insuredMailingAddress[0].county,
-                        city: insuredData.insuredMailingAddress[0].city,
-                        state: insuredData.insuredMailingAddress[0].state,
-                        country: insuredData.insuredMailingAddress[0].country,
+    //                     insuredName: insuredData.insuredInfo.orgName,
+    //                     orgType: insuredData.insuredInfo.orgType,
+    //                     dba: insuredData.insuredInfo.dba,
+    //                     fein: insuredData.insuredInfo.fein,
+    //                     tin: insuredData.insuredInfo.tin,
+    //                     businessActivity: insuredData.insuredInfo.businessActivity,
+    //                     sicCode: insuredData.insuredInfo.sicCode,
+    //                     sicDescription: insuredData.insuredInfo.sicDescription,
+    //                     naics: insuredData.insuredInfo.naics,
+    //                     naicsDescription: insuredData.insuredInfo.naicsDescription,
+    //                     yearsInBusiness: insuredData.insuredInfo.yearsInBusiness,
+    //                     status: insuredData.insuredInfo.partyStatus,
+    //                 })
+    //                 setLocationInfo({
+    //                     pinCode: insuredData.insuredMailingAddress[0].pinCode,
+    //                     addressLine1: insuredData.insuredMailingAddress[0].addressLine1,
+    //                     addressLine2: insuredData.insuredMailingAddress[0].addressLine2,
+    //                     county: insuredData.insuredMailingAddress[0].county,
+    //                     city: insuredData.insuredMailingAddress[0].city,
+    //                     state: insuredData.insuredMailingAddress[0].state,
+    //                     country: insuredData.insuredMailingAddress[0].country,
                        
-                    })
-                    setInsuredInfo({
+    //                 })
+    //                 setInsuredInfo({
                         
-                        firstName: insuredData.insuredContactPerson.firstName,
-                        middleName: insuredData.insuredContactPerson.middleName,
-                        lastName: insuredData.insuredContactPerson.lastName,
-                        emailId: insuredData.insuredContactPerson.emailId,
-                        countryCode: insuredData.insuredContactPerson.countryCode,
-                        phoneNumber: insuredData.insuredContactPerson.phoneNumber,
-                        website: insuredData.insuredContactPerson.website,
-                    })
-                    console.log(response.data);
-                } else {
-                    //setErrorMessage("No Inferences available at this moment.");
-                }
-            } catch (err) {
-                // setErrorMessage("Unable to fetch Inferences: " + err.message);
-            }
-        };
-        // Call the function to fetch data
-        fetchData();
-    }, []);
+    //                     firstName: insuredData.insuredContactPerson.firstName,
+    //                     middleName: insuredData.insuredContactPerson.middleName,
+    //                     lastName: insuredData.insuredContactPerson.lastName,
+    //                     emailId: insuredData.insuredContactPerson.emailId,
+    //                     countryCode: insuredData.insuredContactPerson.countryCode,
+    //                     phoneNumber: insuredData.insuredContactPerson.phoneNumber,
+    //                     website: insuredData.insuredContactPerson.website,
+    //                 })
+    //                 console.log(response.data);
+    //             } else {
+    //                 //setErrorMessage("No Inferences available at this moment.");
+    //             }
+    //         } catch (err) {
+    //             // setErrorMessage("Unable to fetch Inferences: " + err.message);
+    //         }
+    //     };
+    //     // Call the function to fetch data
+    //     fetchData();
+    // }, []);
 
     return (
         <Row>
@@ -259,7 +250,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Insured Name</span>}
-                                            value= "Kew Gardens Property Inc."
+                                            value= {basicInfo.orgName}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "basicInfo", "insuredName")}
                                             readOnly={!basicInfo.isEditing} // Allow editing based on state
@@ -442,7 +433,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Postal Code</span>}
-                                            value="11415"
+                                            value={locationInfo.pinCode}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "pinCode")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -451,7 +442,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Addess Line 1</span>}
-                                            value="123-05 84th Avenue "
+                                            value={locationInfo.addressLine1}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "addressLine1")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -460,7 +451,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px" }}>Addess Line 2</span>}
-                                            // value={locationInfo.addressLine2}
+                                            value={locationInfo.addressLine2}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "addressLine2")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -469,7 +460,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>County</span>}
-                                            value="NY"
+                                            value={locationInfo.county}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "country")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -478,7 +469,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>City</span>}
-                                            value="New York"
+                                            value={locationInfo.city}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "city")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state
@@ -487,7 +478,7 @@ function  CreateSubmission({ onNext }) {
                                     <Col span={6}>
                                         <FormInput
                                             label={<span style={{ fontSize: "15px", marginRight: "40px" }}>State</span>}
-                                            value="NY State"
+                                            value={locationInfo.state}
                                             required={true}
                                             onChange={(e) => handleInputChange(e, "locationInfo", "state")}
                                             readOnly={!locationInfo.isEditing} // Allow editing based on state

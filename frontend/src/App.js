@@ -5,7 +5,7 @@ import Dashboard from './SidebarComponents/Dashboard';
 import DocumentScreen from './SidebarComponents/DocumentScreen';
 import ClearanceScreen from './SidebarComponents/ClearanceScreen';
 import SearchInsured from './SidebarComponents/SearchInsured';
-import { MenuFoldOutlined, MenuUnfoldOutlined, SettingFilled, HomeOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, SettingFilled, HomeOutlined, InfoCircleOutlined, EditFilled, FileTextOutlined } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import HeaderDesign from './layout/HeaderDesign';
 
@@ -40,10 +40,10 @@ const MyMenu = ({ collapsed }) => {
       <Menu.Item key="2" icon={<InfoCircleOutlined />}>
         {!collapsed ? <Link to="/accountdashboard" style={{ textDecoration: 'none' }}>Account Information</Link> : ''}
       </Menu.Item>
-      <Menu.Item key="3" icon={<InfoCircleOutlined />}>
+      <Menu.Item key="3" icon={<FileTextOutlined />}>
         {!collapsed ? <Link to="/accountinfo" style={{ textDecoration: 'none' }}>Account Details</Link> : ''}
       </Menu.Item>
-      <Menu.Item key="4" icon={<SettingFilled />}>
+      <Menu.Item key="4" icon={<EditFilled />}>
         {!collapsed ? <Link to="/createsubmission" style={{ textDecoration: 'none' }}>Create Submission</Link> : ''}
       </Menu.Item>
     </Menu>

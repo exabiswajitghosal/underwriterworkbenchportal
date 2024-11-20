@@ -55,7 +55,7 @@ const LossInfo = ({ onNext }) => {
       annualPremium: "$1,200",
       losses: 3,
       totalLosses: "$3,500"
-    }    
+    }
   ]);
   const [selectedPolicies, setSelectedPolicies] = useState([]);
   const [selectedClaim, setSelectedClaim] = useState(null);
@@ -727,10 +727,10 @@ const LossInfo = ({ onNext }) => {
                                   <p>Report Date: {note.reportedDate}</p>
                                   <p>Expenses Reserve: {note.expenseReserve}</p>
                                 </div>
-                                <FormInput
-                                  label="Note"
-                                  value={note.note}
+                                <textarea
+                                  className="notes"
                                   placeholder="Note"
+                                  value={note.note}
                                   readOnly
                                 />
                               </Panel>
