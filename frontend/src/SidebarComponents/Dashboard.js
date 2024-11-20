@@ -32,7 +32,7 @@ const data = {
   ],
   myassignedcases: [
     { id: '003', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Bound', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
-    { id: '004', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'Bound', limit: '$15,000,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
+    { id: '004', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'New Submission', limit: '$15,000,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
    
   ],
   senttobroker: [

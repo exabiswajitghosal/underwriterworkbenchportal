@@ -12,12 +12,12 @@ function  CreateSubmission({ onNext }) {
     const navigate = useNavigate();
     // Separate state for each widget section's form data and editing state
     const [basicInfo, setBasicInfo] = useState({
-        orgName: "Skyline Property Inc.",
+        orgName: "Kew Garden Property Inc.",
         orgType: "llp",
         dba: "InnovateTech",
         fein: "12-3456789",
         tin: "987654321",
-        businessActivity: "Software Development",
+        businessActivity: "Property",
         sicCode: "7371",
         sicDescription: "7371 sic description",
         naics: "541511",
