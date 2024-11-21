@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Col, Row, Popover, Button } from 'antd';
+import { Card, Col, Row, Modal } from 'antd';
+import riskmeter_report from '../../assets/documents/riskmeter_report.pdf'
 
 const LocationCard = () => {
   // Define threshold limits for each score
@@ -9,17 +10,34 @@ const LocationCard = () => {
   const stormSurgeScore = 70;
   const sinkholeScore = 20;
 
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [documentUrl, setDocumentUrl] = useState("");
+
   // Define a function to check if a score exceeds a threshold and apply the background color
   const getBackgroundColor = (score, limit = 50) => {
     return score > limit ? '#ffcccc' : '#e4f3f8';
   };
-  const [open, setOpen] = useState(false);
-  const hide = () => {
-    setOpen(false);
+
+  const openDocument = (url) => {
+    setDocumentUrl(url);
+    setIsModalVisible(true);
   };
-  const handleOpenChange = (newOpen) => {
-    setOpen(newOpen);
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+    setDocumentUrl("");
   };
+
+  // const [iframeSrc, setIframeSrc] = useState('');
+  // const[documentUrl,setdocumentUrl]=useState('');
+
+  const handleViewMore = (fileName,pageNo) => {
+    setDocumentUrl(`${fileName}#page=${pageNo}`); // Update with the actual path of your PDF file
+    setIsModalVisible(true);
+    
+  };
+
   return (
     <>
       <Row gutter={16}>
@@ -52,7 +70,8 @@ const LocationCard = () => {
 
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
-                {/* <button
+                <button
+                onClick={() => handleViewMore(riskmeter_report, 5)}
                   style={{
                     width: '100%',
                     height: '30px',
@@ -64,69 +83,15 @@ const LocationCard = () => {
                     marginTop: '10px',
                   }}
                 >
-                  <b style={{ fontSize: '12px' }}>View More</b>
-                </button> */}
-                <Popover
-                  content={
-                    <div > {/* Set the desired width */}
-                      <a onClick={hide} style={{ color: 'blue', margin: 0, fontSize: '16px', }}>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Flood Risk Score</span> <span>{floodScore}</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Flood Zone</span> <span>AE</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Elevation Variance</span> <span>-1.1ft</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Property Elevation</span> <span>6ft</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Base Flood Risk Score</span> <span>16</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Structure Intersect</span> <span>YES</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Water Surface Elevation</span> <span>NA</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Risk Rating</span> <span>Very Low</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Base Risk Rating</span> <span>Low</span>
-                        </p>
-                        <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-                          <span>MAP Date</span> <span>05-09-2007</span>
-                        </p>
-                        Close
-                      </a>
-                    </div>
-                  }
-                  trigger="click"
-                  open={open}
-                  onOpenChange={handleOpenChange}
-                  overlayStyle={{ width: '400px' }} // Set custom width here
-                >
-                  <Button type="primary"
-                    style={{
-                      width: '100%',
-                      height: '30px',
-                      backgroundColor: '#003f5c',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '4px',
-                      padding: '1px 0',
-                      marginTop: '10px',
-                    }}
-                  >View more</Button>
-                </Popover>
 
+                  <b style={{ fontSize: '12px' }}>View More</b>
+                </button>
               </Col>
             </Row>
           </Card>
         </Col>
+
+        {/* Additional cards remain unchanged */}
 
         <Col span={8}>
           <Card
@@ -154,6 +119,7 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
+                  onClick={() => handleViewMore(riskmeter_report, 4)}
                   style={{
                     width: '100%',
                     height: '30px',
@@ -192,6 +158,7 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
+                  onClick={() => handleViewMore(riskmeter_report, 3)}
                   style={{
                     width: '100%',
                     height: '30px',
@@ -242,6 +209,8 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
+                  onClick={() => handleViewMore(riskmeter_report, 2)}
+
                   style={{
                     width: '100%',
                     height: '30px',
@@ -285,6 +254,7 @@ const LocationCard = () => {
 
               <Col span={12}>
                 <button
+                  onClick={() => handleViewMore(riskmeter_report, 2)}
                   style={{
                     width: '100%',
                     height: "30px",
@@ -327,7 +297,9 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
 
               <Col span={12}>
+
                 <button
+                  oonClick={() => handleViewMore(riskmeter_report, 2)}
                   style={{
                     width: '100%',
                     height: "30px",
@@ -347,6 +319,24 @@ const LocationCard = () => {
           </Card>
         </Col>
       </Row>
+
+
+
+      {/* Iframe section */}
+      <Modal
+        title="Document Viewer"
+        visible={isModalVisible}
+        onCancel={closeModal}
+        footer={null}
+        width="80%"
+        style={{ top: 20 }}
+      >
+        <iframe
+          src={documentUrl}
+          title="Document Viewer"
+          style={{ width: "100%", height: "80vh", border: "none" }}
+        />
+      </Modal>
     </>
   );
 };

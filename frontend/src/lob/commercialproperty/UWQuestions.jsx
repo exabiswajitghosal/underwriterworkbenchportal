@@ -19,7 +19,7 @@ const uwquestionsData = [
 
 const UWQuestions = ({ onNext }) => {
   const [questions, setQuestions] = useState(uwquestionsData);
-  const [notes, setNotes] = useState("This is a uwquestions overall feedback.");
+  const [notes, setNotes] = useState(" ");
   const [uwnotes, setUWNotes] = useState("");
 
 
@@ -96,7 +96,7 @@ const UWQuestions = ({ onNext }) => {
 
          {/* Override Decision Section */}
           <div className="override-decision-container" style={{marginBottom:20}}>
-            <h4>Override Decision</h4>
+            <h4>Notes</h4>
             <textarea 
               className="notes" 
               placeholder="" 
