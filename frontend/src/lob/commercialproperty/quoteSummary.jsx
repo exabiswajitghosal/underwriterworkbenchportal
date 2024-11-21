@@ -39,7 +39,13 @@ const QuoteSummary = () => {
 
   // Define table data for each section
   const coverageData = [
-    { key: 1, location: '123-05 84th Avenue, Kew Gardens, NY 11415', coverage: '$4000,000', limit: '$4000,000', deductible: '$4000', premium: '$50000' },
+     { key: 1, label: 'Property Damage Coverage', coverageAmount: '$15,000,000', deductible: '$5,000', approvedCoverage: '$15,000,000', approvedDeductible: '$5,000' },
+      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$2,500', approvedCoverage: '$500,000', approvedDeductible: '$2,500' },
+      { key: 3, label: 'Business Income Coverage', coverageAmount: '$1,000,000', deductible: '$10,000', approvedCoverage: '$1,000,000', approvedDeductible: '$10,000' },
+      { key: 4, label: 'Flood Coverage', coverageAmount: '$500,000', deductible: '$25,000', approvedCoverage: '$500,000', approvedDeductible: '$25,000' },
+      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$1,000,000', deductible: '$50,000', approvedCoverage: '$1,000,000', approvedDeductible: '$50,000' },
+      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$250,000', deductible: '$1,000', approvedCoverage: '$250,000', approvedDeductible: '$1,000' },
+      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$100,000', deductible: '$5,000', approvedCoverage: '$100,000', approvedDeductible: '$5,000' }
     // { key: 2, location: '1234 Elm Street', coverage: '$5000,000', limit: '$5000,000', deductible: '$50000', premium: '$50000' },
     
   ];
@@ -58,12 +64,19 @@ const QuoteSummary = () => {
   ];
 
   // Define columns for each table
+  // const coverageColumns = [
+  //   { title: 'Location (address)/Building', dataIndex: 'location', key: 'location' },
+  //   { title: 'Coverage', dataIndex: 'coverage', key: 'coverage' },
+  //   { title: 'Coverage Limit', dataIndex: 'limit', key: 'limit' },
+  //   { title: 'Deductible', dataIndex: 'deductible', key: 'deductible' },
+  //   { title: 'Premium', dataIndex: 'premium', key: 'premium' },
+  // ];
   const coverageColumns = [
-    { title: 'Location (address)/Building', dataIndex: 'location', key: 'location' },
-    { title: 'Coverage', dataIndex: 'coverage', key: 'coverage' },
-    { title: 'Coverage Limit', dataIndex: 'limit', key: 'limit' },
+    { title: '', dataIndex: 'label', key: 'label' },
+    { title: 'Coverage Amount', dataIndex: 'coverageAmount', key: 'coverageAmount' },
     { title: 'Deductible', dataIndex: 'deductible', key: 'deductible' },
-    { title: 'Premium', dataIndex: 'premium', key: 'premium' },
+    { title: 'Approved Coverage', dataIndex: 'approvedCoverage', key: 'approvedCoverage' },
+    { title: 'Approved Deductible', dataIndex: 'approvedDeductible', key: 'approvedDeductible' },
   ];
 
   const formColumns = [
@@ -119,8 +132,9 @@ const QuoteSummary = () => {
         bordered
       />
 
-      <Collapse defaultActiveKey={['1']} style={{ marginTop: '20px' }}>
+      <Collapse defaultActiveKey={['1', '2', '3']} style={{ marginTop: '20px' }}>
         <Panel header="Coverage Summary" key="1">
+          <h6>Location- 123-05 84th Avenue, Kew Gardens, NY 11415</h6>
           <Table
             dataSource={coverageData}
             columns={coverageColumns}
@@ -181,11 +195,14 @@ const QuoteSummary = () => {
       </div>
 
       <Row gutter={16}>
-        <Col span={20}></Col>
-        <Col span={4}>
+        <Col span={16}></Col>
+        <Col span={8}>
           <div>
-            <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }}>
+            <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px" }}  onClick={() => alert("Sent to operation")}>
               <b>Create Quote</b>
+            </button>
+            <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }} onClick={() => alert("Bind request sent to operation")}>
+              <b>Bind Quote</b>
             </button>
           </div>
         </Col>

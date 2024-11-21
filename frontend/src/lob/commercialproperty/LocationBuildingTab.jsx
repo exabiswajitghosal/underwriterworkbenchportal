@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './LocationComponent.module.css';
 import { Col, Row, Select, Button, Radio, Checkbox } from "antd";
 import FormInput from "../../components/FormInput";
@@ -8,7 +8,7 @@ import Rpa from "./Rpa";
 const { Option } = Select;
 
 export function LocationBuildingTab() {
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("123-05 84th Avenue");
   const [activeTab, setActiveTab] = useState("Tab1");
   const [locationData, setLocationData] = useState({});
   const [formData, setFormData] = useState({
@@ -290,6 +290,10 @@ export function LocationBuildingTab() {
       [field]: !prevData[field],
     }));
   };
+  useEffect(() => {
+    // Trigger the button's functionality on component load
+    addOrUpdateBuilding();
+  }, [])
   return (
     <div className={styles.container} id="locationBuildingTab">
       <div style={{ display: "flex", alignItems: "center", marginBottom: "80px", marginTop: "30px", fontSize: "18px" }}>

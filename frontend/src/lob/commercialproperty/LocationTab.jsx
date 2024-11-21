@@ -40,12 +40,12 @@ const LocationTab = () => {
         >
           Buildings
         </Button>
-        <Button
+        {/* <Button
           className={`tablinks ${activeTab === "Tab3" ? "active" : ""}`}
           onClick={() => openMainTab("Tab3")}
         >
           AI Insights(Beta)
-        </Button>
+        </Button> */}
       </div>
 
       {/* Tab Content */}

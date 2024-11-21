@@ -6,9 +6,10 @@ const { Option } = Select;
 const { TextArea } = Input;
 const { Title } = Typography;
 const { Panel } = Collapse;
+
 const PremiumSummary = ({ onNext }) => {
   const [editing, setEditing] = useState(false); // Global editing state
-  const [selectedBuilding, setSelectedBuilding] = useState(null); // Selected building state
+  const [selectedBuilding, setSelectedBuilding] = useState("Location 1"); // Default to "Location 1"
 
   // Data for each building
   const buildingData = {
@@ -32,8 +33,8 @@ const PremiumSummary = ({ onNext }) => {
     ],
   };
 
-  // Display data for the selected building or an empty array if none is selected
-  const [data, setData] = useState([]);
+  // Initialize data for the default selected building
+  const [data, setData] = useState(buildingData["Location 1"]);
 
   // Toggles editing mode for the entire table
   const toggleEditing = () => setEditing(!editing);
@@ -98,16 +99,15 @@ const PremiumSummary = ({ onNext }) => {
     <div className="premium-summary" id="premiumSummary">
       <span style={{ marginRight: '10px', fontSize: '18px' }}>Select Location:</span>
       <Select
-        placeholder="Select Location"
+        value={selectedBuilding} // Default value set to "Location 1"
         onChange={handleBuildingChange}
         style={{ width: 200, height: 50, marginTop: 40 }}
       >
-                 <Option value="Location 1">123-05 84th Avenue, Kew Gardens, NY 11415</Option>
-                 {/* <Option value="Location 2">1234 Elm Street,Apt 101,California,90210,USA</Option> */}
+        <Option value="Location 1">123-05 84th Avenue, Kew Gardens, NY 11415</Option>
+        {/* <Option value="Location 2">1234 Elm Street, Apt 101, California, 90210, USA</Option> */}
       </Select>
 
       {/* Edit/Save button */}
-      {selectedBuilding && (
       <Row gutter={16}>
         <Col span={22}></Col>
         <Col span={2}>
@@ -128,61 +128,41 @@ const PremiumSummary = ({ onNext }) => {
             style={{ marginBottom: 10, marginLeft: 16, fontSize: 20, marginTop: 1 }}
           />
         </Col>
-      </Row>)}
+      </Row>
 
       {/* Table */}
-      {selectedBuilding && (
-        <Collapse defaultActiveKey={['1']} style={{ marginTop: '20px' }}>
-           <Panel header="Building No: 123-05" key="1">
-        <Table
-          dataSource={data}
-          columns={columns}
-          pagination={false}
-          size="small"
-          className="custom-table-header"
-          bordered
-          style={{ marginTop: 2 }}
-        />
+      <Collapse defaultActiveKey={['1']} style={{ marginTop: '20px' }}>
+        <Panel header="Building No: 123-05" key="1">
+          <Table
+            dataSource={data}
+            columns={columns}
+            pagination={false}
+            size="small"
+            className="custom-table-header"
+            bordered
+            style={{ marginTop: 2 }}
+          />
         </Panel>
-        {/* <Panel header="Building 2" key="2">
-        <Table
-          dataSource={data}
-          columns={columns}
-          pagination={false}
-          size="small"
-          className="custom-table-header"
-          bordered
-          style={{ marginTop: 2 }}
-        />
-        </Panel> */}
-        </Collapse>
-      
-      
-      
-      
-      
-      
-      
-      )}
-     
-     {selectedBuilding && (
+      </Collapse>
+
+      {/* Total Premiums */}
       <Table
-      dataSource={[
-        { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
-        { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
-        { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
-      ]}
+        dataSource={[
+          { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
+          { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
+          { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
+        ]}
         columns={[
           { title: '', dataIndex: 'label', key: 'label' },
           { title: '', dataIndex: 'value', key: 'value' },
         ]}
         pagination={false}
         size="small"
-        style={{marginTop: "30px"}}
+        style={{ marginTop: '30px' }}
         bordered
-      /> )}
+      />
 
-      {/* Underwriter Notes */}
+      {/* Notes Section */}
       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
         <Title level={4}>Notes:</Title>
         <TextArea
@@ -191,12 +171,25 @@ const PremiumSummary = ({ onNext }) => {
           style={{ marginTop: 10, width: '100%', border: '2px solid gray' }}
         />
       </div>
+
+      {/* Buttons */}
       <Row gutter={16}>
-        <Col span={20}></Col>
-        <Col span={4}>
+        <Col span={16}></Col>
+        <Col span={8}>
           <div>
             <button
-              
+              onClick={onNext}
+              type="submit"
+              style={{
+                width: '10rem',
+                marginBottom: '1rem',
+                marginTop: '1rem',
+                marginRight: '5px',
+              }}
+            >
+              <b>Recalculate</b>
+            </button>
+            <button
               onClick={onNext}
               type="submit"
               style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}

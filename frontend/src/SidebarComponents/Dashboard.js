@@ -27,21 +27,21 @@ const MyTableComponent = ({ columns, dataSource, handleRowClick, handleChange })
 
 const data = {
   myteamscases: [
-    { id: '001', client: 'Fleet Solutions', lob: 'Commercial Auto', status: 'Clearance UW', limit: '$500,000', date: '2024-08-20', underwriter: 'John Doe', priority: 'High' },
-    { id: '002', client: 'Skyline Residences', lob: 'Professional Liability', status: 'Clearance UW', limit: '$250,000', date: '2024-08-18', underwriter: 'Jane Smith', priority: 'Medium' }
+    { id: 'S001', client: 'Fleet Solutions', lob: 'Commercial Auto', status: 'Clearance UW', limit: '$500,000', date: '2024-08-20', broker: 'Marsh ', priority: 'High' },
+    { id: 'S002', client: 'Skyline Residences', lob: 'Professional Liability', status: 'Clearance UW', limit: '$250,000', date: '2024-08-18', broker: 'Marsh ', priority: 'Medium' }
   ],
   myassignedcases: [
-    { id: '003', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Bound', limit: '$900,000', date: '2024-08-16', underwriter: 'John Doe', priority: 'High' },
-    { id: '004', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'New Submission', limit: '$15,000,000', date: '2024-08-19', underwriter: 'John Doe', priority: 'Low' },
+    { id: 'S003', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Quote Sent to Client', limit: '$900,000', date: '2024-08-16', broker: 'Marsh ', priority: 'Low' },
+    { id: 'S004', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'New Submission', limit: '$15,000,000', date: '2024-08-19', broker: 'Marsh ', priority: 'High' },
    
   ],
   senttobroker: [
-    { id: '006', client: 'Uptown Commercial Spaces', lob: 'Professional Liability', status: 'Broker Review', limit: '$450,000', date: '2024-08-17', underwriter: 'Charlie Black', priority: 'Medium' },
-    { id: '007', client: 'Client F', lob: 'Commercial Auto', status: 'Broker Review', limit: '$100,000', date: '2024-08-09', underwriter: 'Charlie Black', priority: 'High' }
+    { id: 'S006', client: 'Uptown Commercial Spaces', lob: 'Professional Liability', status: 'Broker Review', limit: '$450,000', date: '2024-08-17', broker: 'Marsh ', priority: 'Medium' },
+    { id: 'S007', client: 'Client F', lob: 'Commercial Auto', status: 'Broker Review', limit: '$100,000', date: '2024-08-09', broker: 'Marsh ', priority: 'High' }
   ],
   close: [
-    { id: '009', client: 'Client F', lob: 'Professional Liability', status: 'Approved', limit: '$700,000', date: '2024-08-10', underwriter: 'Daisy White', priority: 'Low' },
-    { id: '010', client: 'Client I', lob: 'Commercial Auto', status: 'Rejected', limit: '$300,000', date: '2024-08-11', underwriter: 'Daisy White', priority: 'High' }
+    { id: 'S009', client: 'Client F', lob: 'Professional Liability', status: 'Approved', limit: '$700,000', date: '2024-08-10', broker: 'Marsh ', priority: 'Low' },
+    { id: 'S010', client: 'Client I', lob: 'Commercial Auto', status: 'Rejected', limit: '$300,000', date: '2024-08-11', broker: 'Marsh ', priority: 'High' }
   ]
 };
 
@@ -121,8 +121,8 @@ const Dashboard = () => {
   const donutChartRef = useRef(null);
 
   useEffect(() => {
-    createBarChart(policiesChartRef, 'Policies Issued', ['Commercial Auto', 'Commercial Property', 'Commercial Liability', 'Inland marine'], [30, 25, 40, 35]);
-    createBarChart(submissionsChartRef, 'Submission in Progress', ['Commercial Auto', 'Commercial Property', 'Commercial Liability', 'Inland marine'], [15, 18, 22, 20]);
+    createBarChart(policiesChartRef, 'Policies Issued', ['Commercial Property', 'Excess'], [30, 25, 40, 35]);
+    createBarChart(submissionsChartRef, 'Submission in Progress', ['Commercial Property', 'Excess'], [15, 18, 22, 20]);
     createDonutChart();
 
     return () => {
@@ -155,7 +155,7 @@ const Dashboard = () => {
       type: 'doughnut',
       data: {
         labels: ['New Business', 'Renewal Premium'],
-        datasets: [{ data: [700, 300], backgroundColor: ['#FF6384', '#FFCE56'] }],
+        datasets: [{ data: [7000, 3000], backgroundColor: ['#FF6384', '#FFCE56'] }],
       },
       options: {
         responsive: true,
@@ -205,7 +205,7 @@ const Dashboard = () => {
     { title: 'Limit', dataIndex: 'limit', key: 'limit' },
     { title: 'Status', dataIndex: 'status', key: 'status', ...getColumnSearchProps('status') },
     { title: 'Date Submitted', dataIndex: 'date', key: 'date', sorter: (a, b) => new Date(a.date) - new Date(b.date), sortOrder: sortedInfo.columnKey === 'date' ? sortedInfo.order : null },
-    { title: 'Underwriter', dataIndex: 'underwriter', key: 'underwriter', ...getColumnSearchProps('underwriter') },
+    { title: 'Broker', dataIndex: 'broker', key: 'broker', ...getColumnSearchProps('broker') },
     {
       title: 'Priority',
       dataIndex: 'priority',
@@ -237,8 +237,7 @@ const Dashboard = () => {
   const combinedData = [
     ...data.myteamscases,
     ...data.myassignedcases,
-    ...data.senttobroker,
-    ...data.close
+    ...data.senttobroker
   ];
 
   return (
@@ -301,7 +300,7 @@ const Dashboard = () => {
                     marginBottom: '5px',
                   }}
                 >
-                  New Business vs Renewal Premium $
+                  New Business vs Renewal Premium ($)
                 </div>
                 <canvas
                   ref={donutChartRef}
@@ -329,7 +328,7 @@ const Dashboard = () => {
             </Tabs>
           </div>
         </TabPane>
-        <TabPane tab="My Portfolio Insights" key="2">
+        <TabPane tab="My Portfolio" key="2">
         <PortfolioInsights />
         </TabPane>
       </Tabs>

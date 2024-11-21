@@ -8,7 +8,7 @@ const { Option } = Select;
 const { Panel } = Collapse;
 const Coverages = ({ onNext }) =>{
   const [editing, setEditing] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState("Location 1");
 
   // Define table data for each location
   const locationData = {
@@ -22,20 +22,20 @@ const Coverages = ({ onNext }) =>{
       { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$100,000', deductible: '$5,000', approvedCoverage: '$100,000', approvedDeductible: '$5,000' }
     ]
     ,
-    'Location 2': [
-      { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$3000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
-      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
+    // 'Location 2': [
+    //   { key: 1, label: 'Property Damage Coverage', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
+    //   { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+    //   { key: 3, label: 'Business Income Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+    //   { key: 4, label: 'Flood Coverage', coverageAmount: '$300,000', deductible: '$3000', approvedCoverage: '', approvedDeductible: '' },
+    //   { key: 5, label: 'Earthquake Coverage', coverageAmount: '$500,000', deductible: '$5000', approvedCoverage: '', approvedDeductible: '' },
+    //   { key: 6, label: 'Annual Rental and fees', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
+    //   { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$400,000', deductible: '$4000', approvedCoverage: '', approvedDeductible: '' },
      
-    ],
+    // ],
   };
 
   // State to hold current table data based on selected location
-  const [rowData, setRowData] = useState([]);
+  const [rowData, setRowData] = useState(locationData["Location 1"]);
 
   const toggleEditing = () => setEditing(!editing);
 
@@ -118,7 +118,7 @@ const Coverages = ({ onNext }) =>{
       {/* Location selection dropdown */}
       <span style={{ marginRight: "10px", fontSize: "18px" }}>Please select the location:</span>
       <Select
-        placeholder="Select Location"
+       value={selectedLocation} 
         onChange={handleLocationChange}
         style={{ width: 250, height: 50, marginTop: 40 }}
       >
