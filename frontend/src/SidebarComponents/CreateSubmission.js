@@ -13,27 +13,27 @@ function  CreateSubmission({ onNext }) {
     // Separate state for each widget section's form data and editing state
     const [basicInfo, setBasicInfo] = useState({
         orgName: "Kew Garden Property Inc.",
-        orgType: "llp",
+        orgType: "LLP",
         dba: "",
         fein: "12-3456789",
-        tin: "987654321",
-        businessActivity: "Property",
-        sicCode: "7371",
-        sicDescription: "7371 sic description",
+        tin: "901-23-5786",
+        businessActivity: "Property Management",
+        sicCode: "6513",
+        sicDescription: "Operators of Apartment Buildings",
         naics: "",
         naicsDescription: "",
-        yearsInBusiness: "5",
+        yearsInBusiness: "10",
         status: "active",
         isEditing: false,
     });
 
     const [locationInfo, setLocationInfo] = useState({
         pinCode: "11415",
-        addressLine1: "123-05 84th Avenue ",
+        addressLine1: "123-05 84th Avenue",
         addressLine2: "",
-        county: "NY",
+        county: "Queens",
         city: "New York",
-        state: "NY State",
+        state: "New York",
         country: "USA",
         isEditing: false,
     });
@@ -42,9 +42,9 @@ function  CreateSubmission({ onNext }) {
         firstName: "John",
         middleName: "Michael",
         lastName: "Doe",
-        emailId: "xyz@abc.com",
+        emailId: "john@KewGarden.com",
         countryCode: "+1",
-        phoneNumber: "5551234567",
+        phoneNumber: "555-12-34567",
         website: " ",
         isEditing: false,
     });
