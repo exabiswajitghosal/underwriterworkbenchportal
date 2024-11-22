@@ -14,7 +14,7 @@ const PortfolioInsights = () => {
       },
       background: "transparent",
     },
-    colors: ["#0066CC", "#E0E0E0"],
+    colors: ["#0066CC", "#FF69B4"],
     plotOptions: {
       bar: {
         horizontal: false,
@@ -63,7 +63,7 @@ const PortfolioInsights = () => {
     {
       name: "Written Premium",
       type: "bar",
-      data: [120000, 130000, 150000, 110000, 190000, 160000],
+      data: [12000000, 13000000, 15000000, 11000000, 19000000, 25000000],
     },
     {
       name: "Margin",
@@ -83,7 +83,7 @@ const PortfolioInsights = () => {
       type: "pie",
       background: "transparent",
     },
-    colors: ["#0066CC", "#66B2FF"],
+    colors: ["#0066CC", "#FF69B4"],
     labels: ["Commercial Property", "General Liability"],
     legend: {
       position: "bottom",
@@ -218,7 +218,7 @@ const PortfolioInsights = () => {
                 <p className="stat-label">Claim Amount</p>
               </div>
               <div className="stat-item">
-                <p className="stat-value negative">5</p>
+                <p className="stat-value">5</p>
                 <p className="stat-label">Claim Count</p>
               </div>
             </div>

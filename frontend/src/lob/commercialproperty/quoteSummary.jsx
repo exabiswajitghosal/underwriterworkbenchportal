@@ -198,10 +198,10 @@ const QuoteSummary = () => {
         <Col span={16}></Col>
         <Col span={8}>
           <div>
-            <Button type="primary" onClick={() => alert("Sent to operation")} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px", backgroundColor: "blue" }}>
+            <Button type="primary" onClick={() => alert("Create Quote request sent")} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px", backgroundColor: "blue" }}>
               Create Quote
             </Button>
-            <Button type="primary" onClick={() => alert("Bind request sent to operation")} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px", backgroundColor: "blue" }}>
+            <Button type="primary" onClick={() => alert("Bind Quote request sent")} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px", backgroundColor: "blue" }}>
               Bind Quote
             </Button>
 

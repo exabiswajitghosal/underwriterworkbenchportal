@@ -127,7 +127,7 @@ const Dashboard = () => {
         labels: ['New Business', 'Renewal Premium'],
         datasets: [{ 
           data: [3000000, 7000000], // Updated to millions
-          backgroundColor: ['#FF6384', '#FFCE56'] 
+          backgroundColor: ['#FF69B4', '#36a2eb'] 
         }],
       },
       options: {
