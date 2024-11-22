@@ -254,14 +254,9 @@ const  LocationTable = ({ nextTab }) => {
         <Col span={20}></Col>
         <Col span={4}>
           <div>
-            <button
-              
-              onClick={nextTab}
-              type="submit"
-              style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
-            >
-              <b>Next</b>
-            </button>
+          <Button type="primary" onClick={nextTab} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
+                      Next
+                    </Button>
           </div>
         </Col>
       </Row>

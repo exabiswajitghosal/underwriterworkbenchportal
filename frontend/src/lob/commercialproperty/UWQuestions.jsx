@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./UWQuestions.css";
-import { Col, Row } from 'antd';
+import { Col, Row, Button } from 'antd';
 // import Documents from "../../layout/RightSidebar";
 import ModalDesign from "../../layout/Modal";
 import FormInput from "../../components/FormInput";
@@ -20,14 +20,14 @@ const uwquestionsData = [
 const UWQuestions = ({ onNext }) => {
   const [questions, setQuestions] = useState(uwquestionsData);
   const [notes, setNotes] = useState(" ");
-  const [uwnotes, setUWNotes] = useState("");
+  // const [uwnotes, setUWNotes] = useState("");
 
 
-  const handleResponseChange = (index, newResponse) => {
-    const updatedQuestions = [...questions];
-    updatedQuestions[index].response = newResponse;
-    setQuestions(updatedQuestions);
-  };
+  // const handleResponseChange = (index, newResponse) => {
+  //   const updatedQuestions = [...questions];
+  //   updatedQuestions[index].response = newResponse;
+  //   setQuestions(updatedQuestions);
+  // };
 
   const handleCommentChange = (index, newComment) => {
     const updatedQuestions = [...questions];
@@ -76,7 +76,7 @@ const UWQuestions = ({ onNext }) => {
           </div>
 
            {/* System Recommended Decision */}
-           <h4 style={{ marginTop: '20px' }}></h4>
+          
           <div
             style={{
               fontSize:"21px",
@@ -111,14 +111,9 @@ const UWQuestions = ({ onNext }) => {
         <Col span={20}></Col>
         <Col span={4}>
           <div>
-            <button
-
-              onClick={onNext}
-              type="submit"
-              style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
-            >
-              <b>Next</b>
-            </button>
+          <Button type="primary" onClick={onNext} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
+                      Next
+                    </Button>
           </div>
         </Col>
       </Row>

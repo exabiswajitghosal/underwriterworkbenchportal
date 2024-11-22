@@ -39,21 +39,21 @@ const QuoteSummary = () => {
 
   // Define table data for each section
   const coverageData = [
-     { key: 1, label: 'Property Damage Coverage', coverageAmount: '$15,000,000', deductible: '$5,000', approvedCoverage: '$15,000,000', approvedDeductible: '$5,000' },
-      { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$2,500', approvedCoverage: '$500,000', approvedDeductible: '$2,500' },
-      { key: 3, label: 'Business Income Coverage', coverageAmount: '$1,000,000', deductible: '$10,000', approvedCoverage: '$1,000,000', approvedDeductible: '$10,000' },
-      { key: 4, label: 'Flood Coverage', coverageAmount: '$500,000', deductible: '$25,000', approvedCoverage: '$500,000', approvedDeductible: '$25,000' },
-      { key: 5, label: 'Earthquake Coverage', coverageAmount: '$1,000,000', deductible: '$50,000', approvedCoverage: '$1,000,000', approvedDeductible: '$50,000' },
-      { key: 6, label: 'Annual Rental and fees', coverageAmount: '$250,000', deductible: '$1,000', approvedCoverage: '$250,000', approvedDeductible: '$1,000' },
-      { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$100,000', deductible: '$5,000', approvedCoverage: '$100,000', approvedDeductible: '$5,000' }
+    { key: 1, label: 'Property Damage Coverage', coverageAmount: '$15,000,000', deductible: '$5,000', approvedCoverage: '$15,000,000', approvedDeductible: '$5,000' },
+    { key: 2, label: 'Business Personal Property', coverageAmount: '$500,000', deductible: '$2,500', approvedCoverage: '$500,000', approvedDeductible: '$2,500' },
+    { key: 3, label: 'Business Income Coverage', coverageAmount: '$1,000,000', deductible: '$10,000', approvedCoverage: '$1,000,000', approvedDeductible: '$10,000' },
+    { key: 4, label: 'Flood Coverage', coverageAmount: '$500,000', deductible: '$25,000', approvedCoverage: '$500,000', approvedDeductible: '$25,000' },
+    { key: 5, label: 'Earthquake Coverage', coverageAmount: '$1,000,000', deductible: '$50,000', approvedCoverage: '$1,000,000', approvedDeductible: '$50,000' },
+    { key: 6, label: 'Annual Rental and fees', coverageAmount: '$250,000', deductible: '$1,000', approvedCoverage: '$250,000', approvedDeductible: '$1,000' },
+    { key: 7, label: 'Ord/ Law Blanket Limits', coverageAmount: '$100,000', deductible: '$5,000', approvedCoverage: '$100,000', approvedDeductible: '$5,000' }
     // { key: 2, location: '1234 Elm Street', coverage: '$5000,000', limit: '$5000,000', deductible: '$50000', premium: '$50000' },
-    
+
   ];
 
   const formData = [
     { key: 1, formNumber: 'CP0010', formName: 'Building and Personal Property Coverage', description: 'Covers buildings, business personal property, and property of others.' },
     { key: 2, formNumber: 'CP1515', formName: 'Business Income Coverage Form', description: 'Covers income loss due to business suspension caused by a covered peril.' },
-   
+
   ];
 
   const invoiceData = [
@@ -96,19 +96,19 @@ const QuoteSummary = () => {
       <Row gutter={16}>
         <Col span={21}></Col>
         <Col span={3}>
-        <Button
-          type="primary"
-          icon={<FilePdfOutlined />}
-          onClick={generatePDF} // Call the PDF generation function on click
-          style={{
-            width: '100%',
-            color: '#1d4ed8',
-            backgroundColor: 'white',
-            borderRadius: '5px',
-          }}
-        >
-          Download PDF
-        </Button>
+          <Button
+            type="primary"
+            icon={<FilePdfOutlined />}
+            onClick={generatePDF} // Call the PDF generation function on click
+            style={{
+              width: '100%',
+              color: '#1d4ed8',
+              backgroundColor: 'white',
+              borderRadius: '5px',
+            }}
+          >
+            Download PDF
+          </Button>
         </Col>
       </Row>
 
@@ -142,23 +142,23 @@ const QuoteSummary = () => {
             size="small"
             className="custom-table-header"
             bordered
-            
+
           />
-            <Table
-        dataSource={[
-          { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
-          { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
-          { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
-        ]}
-        columns={[
-          { title: '', dataIndex: 'label', key: 'label' },
-          { title: '', dataIndex: 'value', key: 'value' },
-        ]}
-        pagination={false}
-        size="small"
-        style={{ marginTop: '30px' }}
-        bordered
-      />
+          <Table
+            dataSource={[
+              { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
+              { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
+              { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
+            ]}
+            columns={[
+              { title: '', dataIndex: 'label', key: 'label' },
+              { title: '', dataIndex: 'value', key: 'value' },
+            ]}
+            pagination={false}
+            size="small"
+            style={{ marginTop: '30px' }}
+            bordered
+          />
         </Panel>
 
         <Panel header="Forms" key="2">
@@ -198,12 +198,14 @@ const QuoteSummary = () => {
         <Col span={16}></Col>
         <Col span={8}>
           <div>
-            <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px" }}  onClick={() => alert("Sent to operation")}>
-              <b>Create Quote</b>
-            </button>
-            <button type="submit" style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }} onClick={() => alert("Bind request sent to operation")}>
-              <b>Bind Quote</b>
-            </button>
+            <Button type="primary" onClick={() => alert("Sent to operation")} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px", backgroundColor: "blue" }}>
+              Create Quote
+            </Button>
+            <Button type="primary" onClick={() => alert("Bind request sent to operation")} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px", backgroundColor: "blue" }}>
+              Bind Quote
+            </Button>
+
+
           </div>
         </Col>
       </Row>

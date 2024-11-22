@@ -614,7 +614,9 @@ function  CreateSubmission({ onNext }) {
                         <Col span={20}></Col>
                         <Col span={4}>
                             <div >
-                                <button type="submit"  onClick={onNext} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem" }}><b>Next</b></button></div></Col>
+                            <Button type="primary" onClick={onNext} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
+                      Next
+                    </Button></div></Col>
                         {/*} <Col span={4}>
             <div >
             <button type="account" style={{width: "10rem"}} onClick={() => handleClick()}><b>Go To Account</b></button>

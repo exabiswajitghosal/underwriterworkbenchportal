@@ -27,21 +27,21 @@ const MyTableComponent = ({ columns, dataSource, handleRowClick, handleChange })
 
 const data = {
   myteamscases: [
-    { id: 'S001', client: 'Fleet Solutions', lob: 'Commercial Auto', status: 'Clearance UW', limit: '$500,000', date: '2024-08-20', broker: 'Marsh ', priority: 'High' },
-    { id: 'S002', client: 'Skyline Residences', lob: 'Professional Liability', status: 'Clearance UW', limit: '$250,000', date: '2024-08-18', broker: 'Marsh ', priority: 'Medium' }
+    { id: 'CP1001', client: 'Fleet Solutions', lob: 'Commercial Property', status: 'Clearance UW', limit: '$500,000', date: '20-08-2024', broker: 'Marsh ', priority: 'High' },
+    { id: 'CP1002', client: 'Skyline Residences', lob: 'Commercial Property', status: 'Clearance UW', limit: '$250,000', date: '18-08-2024', broker: 'Marsh ', priority: 'Medium' }
   ],
   myassignedcases: [
-    { id: 'S003', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Quote Sent to Client', limit: '$900,000', date: '2024-08-16', broker: 'Marsh ', priority: 'Low' },
-    { id: 'S004', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'New Submission', limit: '$15,000,000', date: '2024-08-19', broker: 'Marsh ', priority: 'High' },
+    { id: 'CP1003', client: 'Skyline Property Inc.', lob: 'Commercial Property', status: 'Awaiting Client Response', limit: '$900,000', date: '10-15-2024', broker: 'Marsh ', priority: 'Medium' },
+    { id: 'CP1004', client: 'Kew Garden Property Inc.', lob: 'Commercial Property', status: 'New Submission', limit: '$15,000,000', date: '11-05-2024', broker: 'Marsh ', priority: 'High' },
    
   ],
   senttobroker: [
-    { id: 'S006', client: 'Uptown Commercial Spaces', lob: 'Professional Liability', status: 'Broker Review', limit: '$450,000', date: '2024-08-17', broker: 'Marsh ', priority: 'Medium' },
-    { id: 'S007', client: 'Client F', lob: 'Commercial Auto', status: 'Broker Review', limit: '$100,000', date: '2024-08-09', broker: 'Marsh ', priority: 'High' }
+    { id: 'CP1006', client: 'Uptown Commercial Spaces', lob: 'Commercial Property', status: 'Broker Review', limit: '$450,000', date: '17-08-2024', broker: 'Marsh ', priority: 'Medium' },
+    { id: 'CP1007', client: 'Client F', lob: 'Commercial Property', status: 'Broker Review', limit: '$100,000', date: '09-08-2024', broker: 'Marsh ', priority: 'High' }
   ],
   close: [
-    { id: 'S009', client: 'Client F', lob: 'Professional Liability', status: 'Approved', limit: '$700,000', date: '2024-08-10', broker: 'Marsh ', priority: 'Low' },
-    { id: 'S010', client: 'Client I', lob: 'Commercial Auto', status: 'Rejected', limit: '$300,000', date: '2024-08-11', broker: 'Marsh ', priority: 'High' }
+    { id: 'CP1009', client: 'Client F', lob: 'Commercial Property', status: 'Approved', limit: '$700,000', date: '10-08-2024', broker: 'Marsh ', priority: 'Low' },
+    { id: 'CP1010', client: 'Client I', lob: 'Commercial Property', status: 'Rejected', limit: '$300,000', date: '11-08-2024', broker: 'Marsh ', priority: 'High' }
   ]
 };
 
@@ -119,16 +119,52 @@ const Dashboard = () => {
   const policiesChartRef = useRef(null);
   const submissionsChartRef = useRef(null);
   const donutChartRef = useRef(null);
+  const createDonutChart = () => {
+    const ctx = donutChartRef.current.getContext('2d');
+    donutChartRef.current.chartInstance = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['New Business', 'Renewal Premium'],
+        datasets: [{ 
+          data: [3000000, 7000000], // Updated to millions
+          backgroundColor: ['#FF6384', '#FFCE56'] 
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { 
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                // Format the numbers with commas and 'M' suffix
+                const value = (context.raw / 1000000).toFixed(1) + 'M';
+                return `${context.label}: $${value}`;
+              }
+            }
+          }
+        },
+      },
+    });
+  };
 
   useEffect(() => {
-    createBarChart(policiesChartRef, 'Policies Issued', ['Commercial Property', 'Excess'], [30, 25, 40, 35]);
-    createBarChart(submissionsChartRef, 'Submission in Progress', ['Commercial Property', 'Excess'], [15, 18, 22, 20]);
-    createDonutChart();
+    createBarChart(policiesChartRef, 'Policies Issued', ['Commercial Property', 'General Liability'], [30, 25, 40, 35]);
+    createBarChart(submissionsChartRef, 'Submission in Progress', ['Commercial Property', 'General Liability'], [15, 18, 22, 20]);
 
     return () => {
       [policiesChartRef, submissionsChartRef, donutChartRef].forEach(ref => {
         if (ref.current) ref.current.chartInstance.destroy();
       });
+    };
+  }, []);
+  useEffect(() => {
+    createDonutChart();
+    return () => {
+      if (donutChartRef.current?.chartInstance) {
+        donutChartRef.current.chartInstance.destroy();
+      }
     };
   }, []);
 
@@ -149,21 +185,21 @@ const Dashboard = () => {
     });
   };
 
-  const createDonutChart = () => {
-    const ctx = donutChartRef.current.getContext('2d');
-    donutChartRef.current.chartInstance = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['New Business', 'Renewal Premium'],
-        datasets: [{ data: [7000, 3000], backgroundColor: ['#FF6384', '#FFCE56'] }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-      },
-    });
-  };
+  // const createDonutChart = () => {
+  //   const ctx = donutChartRef.current.getContext('2d');
+  //   donutChartRef.current.chartInstance = new Chart(ctx, {
+  //     type: 'doughnut',
+  //     data: {
+  //       labels: ['New Business', 'Renewal Premium'],
+  //       datasets: [{ data: [7000, 3000], backgroundColor: ['#FF6384', '#FFCE56'] }],
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: { legend: { display: false } },
+  //     },
+  //   });
+  // };
 
   const handleRowClick = (record) => {
     navigate('/createsubmission', { state: { account: record } });

@@ -84,7 +84,7 @@ const PortfolioInsights = () => {
       background: "transparent",
     },
     colors: ["#0066CC", "#66B2FF"],
-    labels: ["Commercial Property", "Excess"],
+    labels: ["Commercial Property", "General Liability"],
     legend: {
       position: "bottom",
     },
@@ -117,21 +117,46 @@ const PortfolioInsights = () => {
     colors: ["#0066CC", "#9966FF", "#FF6666"],
     plotOptions: {
       bar: {
-        horizontal: true,
-        barHeight: "50%",
+        horizontal: false,
+        barHeight: "45%",
       },
     },
     dataLabels: {
       enabled: false,
     },
     xaxis: {
-      categories: ["2024", "2023", "2022"],
+      categories: ["Marsh Brokers",
+        "New York Choice Brokerages",
+        "Ariston Brokerage Corp."],
+        labels: {
+          style: {
+            fontSize: '12px'
+          }
+        }
     },
+    yaxis: {
+      title: {
+        text: "Revenue ($M)",
+        style: {
+          fontSize: '12px'
+        }
+      },
+      labels: {
+        formatter: function(value) {
+          return value.toFixed(0);
+        }
+      }
+    },
+    grid: {
+      borderColor: '#E7E7E7',
+      strokeDashArray: 4
+    }
   };
 
   const policyCountSeries = [
     {
-      data: [800, 1700, 2500],
+      name: "Revenue",
+      data: [5, 10, 15]
     },
   ];
 
@@ -142,7 +167,7 @@ const PortfolioInsights = () => {
       background: "transparent",
     },
     colors: ["#0066CC", "#FF69B4"],
-    labels: ["Commercial Property", "Excess"],
+    labels: ["Commercial Property", "General Liability"],
     plotOptions: {
       pie: {
         donut: {
@@ -213,13 +238,13 @@ const PortfolioInsights = () => {
         </div>
 
         <div className="card policy-chart">
-          <h2 className="card-header">Policy Count By Year</h2>
+          <h2 className="card-header">Revenue by Brokerages (YTD)</h2>
           <div className="chart-container">
             <ReactApexChart
               options={policyCountOptions}
               series={policyCountSeries}
               type="bar"
-              height={250}
+              height={300}
             />
           </div>
         </div>

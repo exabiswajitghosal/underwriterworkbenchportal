@@ -177,25 +177,13 @@ const PremiumSummary = ({ onNext }) => {
         <Col span={16}></Col>
         <Col span={8}>
           <div>
-            <button
-              onClick={onNext}
-              type="submit"
-              style={{
-                width: '10rem',
-                marginBottom: '1rem',
-                marginTop: '1rem',
-                marginRight: '5px',
-              }}
-            >
-              <b>Recalculate</b>
-            </button>
-            <button
-              onClick={onNext}
-              type="submit"
-              style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
-            >
-              <b>Next</b>
-            </button>
+          <Button type="primary" onClick={onNext} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
+                     Recalculate
+                    </Button>
+            
+            <Button type="primary" onClick={onNext} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
+                      Next
+                    </Button>
           </div>
         </Col>
       </Row>

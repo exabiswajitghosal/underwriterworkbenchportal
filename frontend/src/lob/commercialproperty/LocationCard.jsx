@@ -4,7 +4,7 @@ import riskmeter_report from '../../assets/documents/riskmeter_report.pdf'
 
 const LocationCard = () => {
   // Define threshold limits for each score
-  const floodScore = 40;
+  const floodScore = 60;
   const wildfireScore = 60;
   const earthquakeScore = 5;
   const stormSurgeScore = 70;
@@ -65,7 +65,7 @@ const LocationCard = () => {
               <span>Elevation Variance</span> <span>-1.1ft</span>
             </p>
             <p style={{ color: 'black', margin: 0, fontSize: '16px', display: 'flex', justifyContent: 'space-between' }}>
-              <span>Property Elevation</span> <span>6ft</span>
+              <span>Property Elevation</span> <span>5.9ft</span>
             </p>
 
             <Row gutter={5} style={{ marginTop: 'auto' }}>

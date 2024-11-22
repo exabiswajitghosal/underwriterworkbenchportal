@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './LossInfo.css';  // Import the CSS file
-import FormInput from '../../components/FormInput'
-import { Button, Card, Col, Modal, Row, Input, DatePicker, Checkbox, Layout, Collapse } from 'antd';
+// import FormInput from '../../components/FormInput'
+import { Button, Card, Col, Modal, Row, Input, DatePicker, Layout, Collapse } from 'antd';
 import Documents from '../../layout/Documents'
 const { Panel } = Collapse;
 
@@ -195,9 +195,9 @@ const LossInfo = ({ onNext }) => {
   };
 
   // Loss Summary Modal Handlers
-  const showLossSummaryModal = () => {
-    setIsLossSummaryModalVisible(true);
-  };
+  // const showLossSummaryModal = () => {
+  //   setIsLossSummaryModalVisible(true);
+  // };
   const handleLossSummaryModalOk = () => {
     setLossSummaries([...lossSummaries, newLossSummary]);
     setNewLossSummary({
@@ -395,13 +395,9 @@ const LossInfo = ({ onNext }) => {
                   <Col span={20}></Col>
                   <Col span={4}>
                     <div>
-                      <button
-                        onClick={nextTab}
-                        type="submit"
-                        style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
-                      >
-                        <b>Next</b>
-                      </button>
+                    <Button type="primary" onClick={nextTab} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
+                      Next
+                    </Button>
                     </div>
                   </Col>
                 </Row>
@@ -773,13 +769,9 @@ const LossInfo = ({ onNext }) => {
                         <Col span={20}></Col>
                         <Col span={4}>
                           <div>
-                            <button
-                              onClick={onNext}
-                              type="submit"
-                              style={{ width: '10rem', marginBottom: '1rem', marginTop: '1rem' }}
-                            >
-                              <b>Next</b>
-                            </button>
+                          <Button type="primary" onClick={onNext} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
+                      Next
+                    </Button>
                           </div>
                         </Col>
                       </Row>

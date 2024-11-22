@@ -947,11 +947,11 @@ export function LocationBuildingTab() {
                   <Col span={8}>
                     <Button type="primary"
                       onClick={addOrUpdateBuilding}
-                      style={{ marginRight: "10px" }}
+                      style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px", backgroundColor: "blue" }}
                     >
                       {isEditing ? "OK" : "Add Building"}
                     </Button>
-                    <Button type="primary" onClick={nextTab}>
+                    <Button type="primary" onClick={nextTab} style={{ width: "10rem", marginBottom: "1rem", marginTop: "1rem", marginRight: "3px",  backgroundColor: "blue" }}>
                       Next
                     </Button>
                   </Col>
