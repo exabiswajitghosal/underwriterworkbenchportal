@@ -71,7 +71,7 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
-                onClick={() => handleViewMore(riskmeter_report, 5)}
+                onClick={() => handleViewMore(riskmeter_report, 10)}
                   style={{
                     width: '100%',
                     height: '30px',
@@ -119,7 +119,7 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
-                  onClick={() => handleViewMore(riskmeter_report, 4)}
+                  // onClick={() => handleViewMore(riskmeter_report, 4)}
                   style={{
                     width: '100%',
                     height: '30px',
@@ -158,7 +158,7 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
-                  onClick={() => handleViewMore(riskmeter_report, 3)}
+                  // onClick={() => handleViewMore(riskmeter_report, 3)}
                   style={{
                     width: '100%',
                     height: '30px',
@@ -209,7 +209,7 @@ const LocationCard = () => {
             <Row gutter={5} style={{ marginTop: 'auto' }}>
               <Col span={12}>
                 <button
-                  onClick={() => handleViewMore(riskmeter_report, 2)}
+                  // onClick={() => handleViewMore(riskmeter_report, 2)}
 
                   style={{
                     width: '100%',
@@ -254,7 +254,7 @@ const LocationCard = () => {
 
               <Col span={12}>
                 <button
-                  onClick={() => handleViewMore(riskmeter_report, 2)}
+                  // onClick={() => handleViewMore(riskmeter_report, 2)}
                   style={{
                     width: '100%',
                     height: "30px",
@@ -299,7 +299,7 @@ const LocationCard = () => {
               <Col span={12}>
 
                 <button
-                  oonClick={() => handleViewMore(riskmeter_report, 2)}
+                  // onClick={() => handleViewMore(riskmeter_report, 2)}
                   style={{
                     width: '100%',
                     height: "30px",
