@@ -48,14 +48,35 @@ const LossInfo = ({ onNext }) => {
 
   const [policies, setPolicies] = useState([
     {
+      uwyear: "2022",
       carrier: "AIG",
-      policyNumber: "POL123456789",
-      effectiveDate: "01/01/2024",
-      expirationDate: "12/31/2024",
-      annualPremium: "$50,000",
-      losses: 3,
-      totalLosses: "$34,000"
-    }
+      policyNumber: "CP89569001/R/22",
+      effectiveDate: "01-01-2022",
+      expirationDate: "12-31-2022",
+      annualPremium: "$28,000",
+      losses: 1,
+      totalLosses: "$64,000.00"
+    },
+    {
+      uwyear: "2023",
+      carrier: "AIG",
+      policyNumber: "CP23578022/R/23",
+      effectiveDate: "01-01-2023",
+      expirationDate: "12-31-2023",
+      annualPremium: "$35,000",
+      losses: 1,
+      totalLosses: "$32,000.00"
+    },
+    {
+      uwyear: "2024",
+      carrier: "AIG",
+      policyNumber: "CP23578022/R/24",
+      effectiveDate: "01-01-2024",
+      expirationDate: "12-31-2024",
+      annualPremium: "$41,000",
+      losses: 1,
+      totalLosses: "$25,000.00"
+    },
   ]);
   const [selectedPolicies, setSelectedPolicies] = useState([]);
   const [selectedClaim, setSelectedClaim] = useState(null);
@@ -64,74 +85,77 @@ const LossInfo = ({ onNext }) => {
 
   const claimsData = [
     {
-      claimNumber: "40051070-01",
-      effectiveDate: "01/01/2024",
-      expirationDate: "12/31/2024",
-      carrier: "AIG",
-      lob: "Property",
-      causeofLoss: "FIRE DAMAGE",
-      reportedDate: "06/22/2024",
-      status: "Closed",
-      // class: "0",
-      totalPaid: "$15000",
-      totalIncurred: "$30987",
+     
+                          uwyear: "2022",
+                          carrier: "AIG",
+                          claimNumber: "40051070-2022",
+                          effectiveDate: "01-01-2022",
+                          expirationDate: "12-31-2022",
+                          dateofLoss: "06-30-2022",
+                          causeofLoss: "Fire Damage",
+                          lob: "Commercial Property",
+                          lae: "$2,250.00",
+                          settlementAmount: "$61,750.00",
+                          totalIncurred: "$64,000.00",
+                          status: "Paid",
       notes: [
         {
-          noteDate: "06/22/2024",
-          accidentDate: "06/21/2024",
-          reportedDate: "06/22/2024",
+          noteDate: "07-01-2022",
+          accidentDate: "06-30-2022",
+          reportedDate: "07-01-2022",
           expenseReserve: "$20000.00",
           note: "The claimant was not responsible for the lossess"
         },
         {
-          noteDate: "06/16/2024",
-          accidentDate: "06/15/2024",
-          reportedDate: "06/16/2024",
+          noteDate: "06-23-2022",
+          accidentDate: "06-22-2022",
+          reportedDate: "06-23-2022",
           expenseReserve: "$5000.00",
           note: "",
         }
       ]
     },
     {
-      claimNumber: "40051071-02",
-      effectiveDate: "01/01/2024",
-      expirationDate: "12/31/2024",
+      uwyear: "2023",
       carrier: "AIG",
-      lob: "Property",
-      causeofLoss: "VEHICLE THEFT",
-      reportedDate: "05/15/2022",
-      status: "Closed",
-      // class: "1",
-      totalPaid: "$7000",
-      totalIncurred: "$15000",
+      claimNumber: "78345710-2023",
+      effectiveDate: "01-01-2023",
+      expirationDate: "12-31-2023",
+      dateofLoss: "02-27-2023",
+      causeofLoss: "Water Damage",
+      lob: "Commercial Property",
+      lae: "$750.00",
+      settlementAmount: "$14,250.00",
+      totalIncurred: "$15,000.00",
+      status: "Paid",
       notes: [
         {
-          noteDate: "05/09/2024",
-          accidentDate: "05/09/2022",
-          reportedDate: "05/15/2022",
+          noteDate: "02-28-2023",
+          accidentDate: "02-27-2023",
+          reportedDate: "02-28-2023",
           expenseReserve: "$10000.00",
           note: ""
         }
       ]
     },
     {
-      claimNumber: "40051072-03",
-      claimNumber: "40051071-02",
-      effectiveDate: "01/01/2024",
-      expirationDate: "12/31/2024",
+      uwyear: "2024",
       carrier: "AIG",
-      lob: "Property",
-      causeofLoss: "SLIP AND FALL - SEVERE",
-      reportedDate: "08/25/2021",
-      status: "Closed",
-      // class: "2",
-      totalPaid: "$12000",
-      totalIncurred: "$18000",
+      claimNumber: "86453201-2024",
+      effectiveDate: "01-01-2024",
+      expirationDate: "12-31-2024",
+      dateofLoss: "07-31-2024",
+      causeofLoss: "Fire Damage",
+      lob: "Commercial Property",
+      lae: "1,850.00",
+      settlementAmount: "$30,150.00",
+      totalIncurred: "$32,000.00",
+      status: "Paid",
       notes: [
         {
-          noteDate: "08/19/2024",
-          accidentDate: "08/19/2021",
-          reportedDate: "08/25/2021",
+          noteDate: "08-01-2024",
+          accidentDate: "07-31-2024",
+          reportedDate: "08-01-2024",
           expenseReserve: "$8000.00",
           note: ""
         }
@@ -326,13 +350,14 @@ const LossInfo = ({ onNext }) => {
                   <thead>
                     <tr>
                       <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>&nbsp;</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>UW Year</th>
                       <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Carrier</th>
                       <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Policy #</th>
-                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Effective Date*</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Effective Date</th>
                       <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Expiration Date</th>
                       <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Annual Premium</th>
                       <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}># Losses</th>
-                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Total Losses</th>
+                      <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Total Loss Amount</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -345,6 +370,7 @@ const LossInfo = ({ onNext }) => {
                             onChange={() => handleCheckboxChange(index)}
                           />
                         </td>
+                        <td>{policy.uwyear}</td>
                         <td>{policy.carrier}</td>
                         <td>{policy.policyNumber}</td>
                         <td>{policy.effectiveDate}</td>
@@ -357,9 +383,9 @@ const LossInfo = ({ onNext }) => {
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colSpan="7">Sum:</td>
+                      <td colSpan="8">Sum:</td>
                       <td>
-                        <input type="text" value="$34,000" readOnly />
+                        <input type="text" value="$1,21,000" readOnly />
                         {/* {`$${calculateTotalLossesSum()}`} */}
                       </td>
                     </tr>
@@ -541,56 +567,58 @@ const LossInfo = ({ onNext }) => {
                   </Modal>
                   {/* {selectedLossSummary && (
                     <> */}
-                      <h3>Loss Details</h3>
-                      <Button type="primary" onClick={showLossDetailModal} style={{ marginBottom: "10px" }}>
-                        Add Loss Detail
-                      </Button>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>
+                  <h3>Loss Details</h3>
+                  <Button type="primary" onClick={showLossDetailModal} style={{ marginBottom: "10px" }}>
+                    Add Loss Detail
+                  </Button>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>
 
-                            </th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Claim#</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Policy Eff Date</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Policy Exp Date</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Carrier</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>LOB</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Cause of Loss</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Reported Date</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Status</th>
-                            {/* <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Class</th> */}
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Total Paid</th>
-                            <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Total Incurred</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                        </th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>UW Year</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Carrier</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Claim#</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Policy Eff Date</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Policy Exp Date</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Date of Loss</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Cause of Loss</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>LOB</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>LAE</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Settlement Amount</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Total Incurred</th>
+                        <th style={{ backgroundColor: "#5d9de2", height: '10%', color: 'white', fontWeight: '500', }}>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
 
-                          {lossDetails.map((claim, index) => (
-                            <tr key={index}>
-                              <td>
-                                <input
-                                  type="checkbox"
-                                  onChange={() => handleCheckboxChangeclaim(claim)}
-                                  checked={selectedClaim?.claimNumber === claim.claimNumber}
-                                />
-                              </td>
-                              <td>{claim.claimNumber}</td>
-                              <td>{claim.effectiveDate}</td>
-                              <td>{claim.expirationDate}</td>
-                              <td>{claim.carrier}</td>
-                              <td>{claim.lob}</td>
-                              <td>{claim.causeofLoss}</td>
-                              <td>{claim.reportedDate}</td>
-                              <td>{claim.status}</td>
-                              {/* <td>{claim.class}</td> */}
-                              <td>{claim.totalPaid}</td>
-                              <td>{claim.totalIncurred}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    {/* </>
+                      {lossDetails.map((claim, index) => (
+                        <tr key={index}>
+                          <td>
+                            <input
+                              type="checkbox"
+                              onChange={() => handleCheckboxChangeclaim(claim)}
+                              checked={selectedClaim?.claimNumber === claim.claimNumber}
+                            />
+                          </td>
+                          <td>{claim.uwyear}</td>
+                          <td>{claim.carrier}</td>
+                          <td>{claim.claimNumber}</td>
+                          <td>{claim.effectiveDate}</td>
+                          <td>{claim.expirationDate}</td>
+                          <td>{claim.dateofLoss}</td>
+                          <td>{claim.causeofLoss}</td>
+                          <td>{claim.lob}</td>
+                          <td>{claim.lae}</td>
+                          <td>{claim.settlementAmount}</td>
+                          <td>{claim.totalIncurred}</td>
+                          <td>{claim.status}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {/* </>
                   )} */}
                   {/* Add Loss Detail Modal */}
                   <Modal

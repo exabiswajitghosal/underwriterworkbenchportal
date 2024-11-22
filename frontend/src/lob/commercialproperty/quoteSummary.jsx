@@ -51,8 +51,8 @@ const QuoteSummary = () => {
   ];
 
   const formData = [
-    { key: 1, formNumber: '1', formName: '', description: '' },
-    { key: 2, formNumber: '2', formName: '', description: '' },
+    { key: 1, formNumber: 'CP0010', formName: 'Building and Personal Property Coverage', description: 'Covers buildings, business personal property, and property of others.' },
+    { key: 2, formNumber: 'CP1515', formName: 'Business Income Coverage Form', description: 'Covers income loss due to business suspension caused by a covered peril.' },
    
   ];
 
@@ -142,23 +142,23 @@ const QuoteSummary = () => {
             size="small"
             className="custom-table-header"
             bordered
-            summary={() => (
-              <>
-                <Table.Summary.Row>
-                  <Table.Summary.Cell colSpan={4}>Total</Table.Summary.Cell>
-                  <Table.Summary.Cell>$50000</Table.Summary.Cell>
-                </Table.Summary.Row>
-                <Table.Summary.Row>
-                  <Table.Summary.Cell colSpan={4}>Fees & Taxes</Table.Summary.Cell>
-                  <Table.Summary.Cell>$10000</Table.Summary.Cell>
-                </Table.Summary.Row>
-                <Table.Summary.Row>
-                  <Table.Summary.Cell colSpan={4}>Total Payable</Table.Summary.Cell>
-                  <Table.Summary.Cell>$100000</Table.Summary.Cell>
-                </Table.Summary.Row>
-              </>
-            )}
+            
           />
+            <Table
+        dataSource={[
+          { key: 'totalPremium', label: 'Total Premium', value: '$47,000' },
+          { key: 'feeTaxes', label: 'Fees & Taxes', value: '$2,350,00' },
+          { key: 'totalPayable', label: 'Total Payable', value: '$49,350,00' },
+        ]}
+        columns={[
+          { title: '', dataIndex: 'label', key: 'label' },
+          { title: '', dataIndex: 'value', key: 'value' },
+        ]}
+        pagination={false}
+        size="small"
+        style={{ marginTop: '30px' }}
+        bordered
+      />
         </Panel>
 
         <Panel header="Forms" key="2">
