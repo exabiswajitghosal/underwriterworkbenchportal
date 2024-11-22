@@ -76,21 +76,21 @@ const UWQuestions = ({ onNext }) => {
           </div>
 
            {/* System Recommended Decision */}
-           <h4 style={{ marginTop: '20px' }}>System recommended decision:</h4>
+           <h4 style={{ marginTop: '20px' }}></h4>
           <div
             style={{
-              fontSize:"18px",
+              fontSize:"21px",
               padding: '15px',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-              fontWeight: 500,
+              fontWeight: 620,
               borderRadius: '5px',
               backgroundColor: '#e6ffe6', // Light green background for highlight
-              color: 'green',
+              color: 'orange',
               
               
             }}
           >
-            Approved- Insured passed all the underwriting criteria.
+           Risk Score - Medium
           </div>
 
 

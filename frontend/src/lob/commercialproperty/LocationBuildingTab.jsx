@@ -335,13 +335,13 @@ export function LocationBuildingTab() {
                 <table className="table" style={{ marginBottom: 90 }}>
                   <thead >
                     <tr>
-                      <th style={{ backgroundColor: "#5d9de2" }}>Select</th>
-                      <th style={{ backgroundColor: "#5d9de2" }}>SL.</th>
-                      <th style={{ backgroundColor: "#5d9de2" }}>Location Details</th>
-                      <th style={{ backgroundColor: "#5d9de2" }}>Year Built</th>
-                      <th style={{ backgroundColor: "#5d9de2" }}>Square Footage</th>
-                      <th style={{ backgroundColor: "#5d9de2" }}>Roof Type</th>
-                      <th style={{ backgroundColor: "#5d9de2" }}>Action</th>
+                      <th style={{ backgroundColor: "#5d9de2", color: "white" }}>Select</th>
+                      <th style={{ backgroundColor: "#5d9de2", color: "white" }}>SL.</th>
+                      <th style={{ backgroundColor: "#5d9de2", color: "white" }}>Location Details</th>
+                      <th style={{ backgroundColor: "#5d9de2", color: "white" }}>Year Built</th>
+                      <th style={{ backgroundColor: "#5d9de2", color: "white" }}>Square Footage</th>
+                      <th style={{ backgroundColor: "#5d9de2", color: "white" }}>Roof Type</th>
+                      <th style={{ backgroundColor: "#5d9de2", color: "white" }}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
