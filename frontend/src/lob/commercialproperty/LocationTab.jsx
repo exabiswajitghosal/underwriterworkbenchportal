@@ -6,6 +6,7 @@ import '../../layout/Tab.css';
 import LocationTable from './LocationTable';
 import LocationBuildingTab from "./LocationBuildingTab";
 import OverallInsights from "./OverallInsights";
+import DocumentExtraction from "./DocumentExtraction";
 
 const LocationTab = () => {
   const [activeTab, setActiveTab] = useState("Tab1");
@@ -40,12 +41,12 @@ const LocationTab = () => {
         >
           Buildings
         </Button>
-        {/* <Button
+        <Button
           className={`tablinks ${activeTab === "Tab3" ? "active" : ""}`}
           onClick={() => openMainTab("Tab3")}
         >
           AI Insights(Beta)
-        </Button> */}
+        </Button>
       </div>
 
       {/* Tab Content */}
@@ -63,7 +64,8 @@ const LocationTab = () => {
 
       {activeTab === "Tab3" && (
         <div id="Tab3" className="tabcontent">
-          <OverallInsights />
+          {/* <OverallInsights /> */}
+          <DocumentExtraction />
         </div>
       )}
     </div>

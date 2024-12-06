@@ -19,6 +19,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.4",
+    "dotenv": "^16.4.6",
     "google-map-react": "^2.2.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
