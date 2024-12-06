@@ -17,7 +17,13 @@ function DocumentExtraction() {
   const [query, setQuery] = useState(null);
 
   const payload = {
-    query: "give me " + query +" in bullet points.",
+    query: `for the ${query} of the building give me: \n` +
+      `Summary:\n` +
+      `• Point 1\n• Point 2\n• Point 3\n\n` +
+      `Inspection highlights:\n` +
+      `• Point 1\n• Point 2\n• Point 3\n\n` +
+      `Risks (if any):\n` +
+      `• Point 1\n• Point 2\n• Point 3\n`,
     model: "gpt-4o",
   };
 
@@ -29,7 +35,6 @@ function DocumentExtraction() {
       try {
         const response = await axios.post(`${API_BASE_URL}/query`, payload);
         if (response.status === 200 && response.data.result) {
-          console.log(response.data.result)
           const imageBase64 = `data:image/png;base64,${response.data.result}`;
           setRefImage(imageBase64);
         }
@@ -48,7 +53,7 @@ function DocumentExtraction() {
               ],
             }
             ],
-            max_tokens: 100,
+            max_tokens: 1000,
           },
           {
             headers: {
@@ -59,6 +64,7 @@ function DocumentExtraction() {
         );
 
         if (aiResponse.status === 200) {
+          // console.log(aiResponse.data.choices[0].message.content)
           setInsights(aiResponse.data.choices[0].message.content);
         } else {
           setErrorMessage("No insights available at this moment.");
@@ -74,17 +80,20 @@ function DocumentExtraction() {
   }, [query]);  // Dependency on `query` only, not `payload`
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px' }}>
-      {/* <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title> */}
+    <div style={{ padding: '20px' }}>
+      <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title>
       <Select
         placeholder="Select an option"
         style={{ width: '100%', marginBottom: '20px' }}
         value={query}
         onChange={(value) => setQuery(value)}
       >
-        <Option value="overall summary">Overall Summary</Option>
-        <Option value="front side">Front Side</Option>
+        <Option value="overall-summary">Overall Summary</Option>
+        <Option value="front-side">Front Side</Option>
         <Option value="sidewalk">Sidewalk</Option>
+        <Option value="roof">Roof</Option>
+        <Option value="electric-panel">Electric Panel</Option>
+        <Option value="neighborhood">Neighborhood</Option>
       </Select>
       {loading ? (
         <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
@@ -100,9 +109,15 @@ function DocumentExtraction() {
           }}
 
         >
-          <div style={{display:'flex'}}>
-          {refImage && <Image src={refImage} />}
-          <Paragraph>{insights || 'No insights available'}</Paragraph>
+          <div style={{ display: 'flex', width: '100%' }}>
+            {refImage && (
+              <div style={{ flex: '1', width: '50%' }}>
+                <Image src={refImage} alt="Reference" style={{ width: '100%', height: 'auto' }} />
+              </div>
+            )}
+            <div style={{ flex: '1', width: '50%', padding: '0 10px' }}>
+              {insights || 'No insights available'}
+            </div>
           </div>
         </Card>
       )}
