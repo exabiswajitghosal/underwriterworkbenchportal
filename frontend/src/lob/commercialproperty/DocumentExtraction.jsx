@@ -116,7 +116,15 @@ function DocumentExtraction() {
               </div>
             )}
             <div style={{ flex: '1', width: '50%', padding: '0 10px' }}>
-              {insights || 'No insights available'}
+              {insights
+                ? insights.split("\n\n").map((paragraph, index) => (
+                  <Card key={index}>
+                      {paragraph.split("\n").map((point, pointIndex) => (
+                        <p key={pointIndex}>{point}</p>
+                      ))}
+                  </Card>
+                ))
+                : 'No insights available'}
             </div>
           </div>
         </Card>
