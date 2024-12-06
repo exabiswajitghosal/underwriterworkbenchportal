@@ -17,12 +17,12 @@ function DocumentExtraction() {
   const [query, setQuery] = useState(null);
 
   const payload = {
-    query: `for the ${query} of the building give me: \n` +
+    query: `for the ${query} of the building give me (In the given format only): \n` +
       `Summary:\n` +
       `• Point 1\n• Point 2\n• Point 3\n\n` +
       `Inspection highlights:\n` +
       `• Point 1\n• Point 2\n• Point 3\n\n` +
-      `Risks (if any):\n` +
+      `Underwriting risk (if any):\n` +
       `• Point 1\n• Point 2\n• Point 3\n`,
     model: "gpt-4o",
   };
@@ -119,9 +119,15 @@ function DocumentExtraction() {
               {insights
                 ? insights.split("\n\n").map((paragraph, index) => (
                   <Card key={index}>
+<<<<<<< HEAD
                       {paragraph.split("\n").map((point, pointIndex) => (
                         <p key={pointIndex}>{point}</p>
                       ))}
+=======
+                    {paragraph.split("\n").map((point, pointIndex) => (
+                      <p key={pointIndex}>{point}</p>
+                    ))}
+>>>>>>> 92ff49b (bug fix)
                   </Card>
                 ))
                 : 'No insights available'}
