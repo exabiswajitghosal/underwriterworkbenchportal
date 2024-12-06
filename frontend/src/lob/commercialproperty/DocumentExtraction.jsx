@@ -17,13 +17,24 @@ function DocumentExtraction() {
   const [query, setQuery] = useState(null);
 
   const payload = {
-    query: `for the ${query} of the building give me (In the given format only): \n` +
-      `Summary:\n` +
-      `• Point 1\n• Point 2\n• Point 3\n\n` +
-      `Inspection highlights:\n` +
-      `• Point 1\n• Point 2\n• Point 3\n\n` +
-      `Underwriting risk (if any):\n` +
-      `• Point 1\n• Point 2\n• Point 3\n`,
+    query: `
+      Provide a detailed assessment for the ${query} of the building in the following format:
+
+      **Summary**:
+      - <Bullet 1>
+      - <Bullet 2>
+      - <Bullet 3>
+
+      **Inspection Highlights**:
+      - <Bullet 1>
+      - <Bullet 2>
+      - <Bullet 3>
+
+      **Underwriting Risks (if applicable)**:
+      - <Bullet 1>
+      - <Bullet 2>
+      - <Bullet 3>
+    `,
     model: "gpt-4o",
   };
 
