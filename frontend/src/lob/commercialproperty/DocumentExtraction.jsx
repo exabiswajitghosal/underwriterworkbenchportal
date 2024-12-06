@@ -130,15 +130,9 @@ function DocumentExtraction() {
               {insights
                 ? insights.split("\n\n").map((paragraph, index) => (
                   <Card key={index}>
-<<<<<<< HEAD
                       {paragraph.split("\n").map((point, pointIndex) => (
                         <p key={pointIndex}>{point}</p>
                       ))}
-=======
-                    {paragraph.split("\n").map((point, pointIndex) => (
-                      <p key={pointIndex}>{point}</p>
-                    ))}
->>>>>>> 92ff49b (bug fix)
                   </Card>
                 ))
                 : 'No insights available'}
