@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Typography, Alert, Spin, Select, Image } from 'antd';
+
+import { Card, Typography, Alert, Spin, Select, Image, Radio } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import inspectionReport from '../../assets/documents/Sample Inspection Report.pdf'
+import riskmeterReport from '../../assets/documents/riskmeter_report.pdf'
 
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
@@ -15,6 +18,8 @@ function DocumentExtraction() {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(null);
+  const [doc, setDoc] = useState(null);
+  const [uploadStatus,setUploadStatu] = useState(false);
 
   const payload = {
     query: `
@@ -37,6 +42,43 @@ function DocumentExtraction() {
     `,
     model: "gpt-4o",
   };
+  const handleUploadFile = async (selectedDoc) => {
+    try {
+      // Determine which file to upload
+      const doc_url = selectedDoc === "inspectionReport" 
+        ? inspectionReport 
+        : riskmeterReport;
+  
+      if (!doc_url) {
+        setErrorMessage("Invalid document selected");
+        return;
+      }
+  
+      setLoading(true);
+      setErrorMessage('');
+  
+      // Fetch the file as a blob
+      const response = await fetch(doc_url);
+      const blob = await response.blob();
+      const file = new File([blob], `${selectedDoc}.pdf`, { type: 'application/pdf' });
+  
+      // Create FormData and append the file
+      const data = new FormData();
+      data.append('file', file);
+  
+      // Upload the file
+      const uploadResponse = await axios.post(`${API_BASE_URL}/upload`, data);
+      
+      console.log("File uploaded successfully:", uploadResponse.data);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setErrorMessage("File upload failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  
 
   useEffect(() => {
     if (!query) return; // Avoid API call if query is null or undefined.
@@ -92,12 +134,27 @@ function DocumentExtraction() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title>
+      {/* <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title> */}
+      <label htmlFor="docs">Select Document</label>
+      <Radio.Group 
+      style={{padding:"20px"}} 
+      id='docs'
+      value={doc}
+      onChange={(e) => {
+        setDoc(e.target.value);
+        handleUploadFile(e.target.value); // Call the function inside onChange
+      }}
+      disabled={uploadStatus}
+      >
+        <Radio value="inspectionReport">Inspection Report</Radio>
+        <Radio value="corelogicReport">Risk Meter Corelogic Report</Radio>
+      </Radio.Group>
       <Select
         placeholder="Select an option"
         style={{ width: '100%', marginBottom: '20px' }}
         value={query}
         onChange={(value) => setQuery(value)}
+        disabled={!uploadStatus}
       >
         <Option value="overall-summary">Overall Summary</Option>
         <Option value="front-side">Front Side</Option>
@@ -130,12 +187,12 @@ function DocumentExtraction() {
               {insights
                 ? insights.split("\n\n").map((paragraph, index) => (
                   <Card key={index}>
-                      {paragraph.split("\n").map((point, pointIndex) => (
-                        <p key={pointIndex}>{point}</p>
-                      ))}
+                    {paragraph.split("\n").map((point, pointIndex) => (
+                      <p key={pointIndex}>{point}</p>
+                    ))}
                   </Card>
                 ))
-                : 'No insights available'}
+                : 'Select the document to generate Insights'}
             </div>
           </div>
         </Card>
