@@ -19,18 +19,39 @@ function DocumentExtraction() {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(null);
   const [doc, setDoc] = useState(null);
-  const [uploadStatus,setUploadStatu] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState(false);
+
+
+  const inspectionOptions = [
+    { value: 'overall-summary', label: 'Overall Summary' },
+    { value: 'front-side', label: 'Front Side' },
+    { value: 'sidewalk', label: 'Sidewalk' },
+    { value: 'roof', label: 'Roof' },
+    { value: 'electric-panel', label: 'Electric Panel' },
+    { value: 'neighborhood', label: 'Neighborhood' },
+  ];
+
+  const corelogicOptions = [
+    { value: 'overall-summary', label: 'Overall Summary' },
+    { value: 'storm', label: 'Storm' },
+    { value: 'earthquake', label: 'Earthquake' },
+    { value: 'hail', label: 'Hail' },
+    { value: 'tornado', label: 'Tornado' },
+    { value: 'wind', label: 'Wind' },
+    { value: 'flood', label: 'Flood' },
+    { value: 'distance-to-shore', label: 'Distance to Shore' },
+  ];
 
   const payload = {
     query: `
-      Provide a detailed assessment for the ${query} of the building in the following format:
+      Provide a detailed assessment for the ${query} of the location in the following format:
 
       **Summary**:
       - <Bullet 1>
       - <Bullet 2>
       - <Bullet 3>
 
-      **Inspection Highlights**:
+      ** Highlights**:
       - <Bullet 1>
       - <Bullet 2>
       - <Bullet 3>
@@ -45,31 +66,32 @@ function DocumentExtraction() {
   const handleUploadFile = async (selectedDoc) => {
     try {
       // Determine which file to upload
-      const doc_url = selectedDoc === "inspectionReport" 
-        ? inspectionReport 
+      const doc_url = selectedDoc === "inspectionReport"
+        ? inspectionReport
         : riskmeterReport;
-  
+
       if (!doc_url) {
         setErrorMessage("Invalid document selected");
         return;
       }
-  
+
       setLoading(true);
       setErrorMessage('');
-  
+
       // Fetch the file as a blob
       const response = await fetch(doc_url);
       const blob = await response.blob();
       const file = new File([blob], `${selectedDoc}.pdf`, { type: 'application/pdf' });
-  
+
       // Create FormData and append the file
       const data = new FormData();
       data.append('file', file);
-  
+
       // Upload the file
       const uploadResponse = await axios.post(`${API_BASE_URL}/upload`, data);
-      
+
       console.log("File uploaded successfully:", uploadResponse.data);
+      setUploadStatus(true)
     } catch (error) {
       console.error("Error uploading file:", error);
       setErrorMessage("File upload failed. Please try again.");
@@ -77,14 +99,15 @@ function DocumentExtraction() {
       setLoading(false);
     }
   };
-  
-  
+
+
 
   useEffect(() => {
     if (!query) return; // Avoid API call if query is null or undefined.
 
     const fetchData = async () => {
       setLoading(true);
+      console.log(payload)
       try {
         const response = await axios.post(`${API_BASE_URL}/query`, payload);
         if (response.status === 200 && response.data.result) {
@@ -136,15 +159,15 @@ function DocumentExtraction() {
     <div style={{ padding: '20px' }}>
       {/* <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title> */}
       <label htmlFor="docs">Select Document</label>
-      <Radio.Group 
-      style={{padding:"20px"}} 
-      id='docs'
-      value={doc}
-      onChange={(e) => {
-        setDoc(e.target.value);
-        handleUploadFile(e.target.value); // Call the function inside onChange
-      }}
-      disabled={uploadStatus}
+      <Radio.Group
+        style={{ padding: "20px" }}
+        id='docs'
+        value={doc}
+        onChange={(e) => {
+          setDoc(e.target.value);
+          handleUploadFile(e.target.value); // Call the function inside onChange
+        }}
+        disabled={uploadStatus}
       >
         <Radio value="inspectionReport">Inspection Report</Radio>
         <Radio value="corelogicReport">Risk Meter Corelogic Report</Radio>
@@ -156,12 +179,11 @@ function DocumentExtraction() {
         onChange={(value) => setQuery(value)}
         disabled={!uploadStatus}
       >
-        <Option value="overall-summary">Overall Summary</Option>
-        <Option value="front-side">Front Side</Option>
-        <Option value="sidewalk">Sidewalk</Option>
-        <Option value="roof">Roof</Option>
-        <Option value="electric-panel">Electric Panel</Option>
-        <Option value="neighborhood">Neighborhood</Option>
+        {(doc === 'inspectionReport' ? inspectionOptions : corelogicOptions).map((option) => (
+          <Option key={option.value} value={option.value}>
+            {option.label}
+          </Option>
+        ))}
       </Select>
       {loading ? (
         <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
