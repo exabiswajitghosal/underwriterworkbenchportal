@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
-import { Card, Typography, Alert, Spin, Select, Image, Radio } from 'antd';
+import '../../layout/Tab.css';
+import { Card, Typography, Alert, Spin, Select, Image, Radio, Button } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import inspectionReport from '../../assets/documents/Sample Inspection Report.pdf'
-import riskmeterReport from '../../assets/documents/riskmeter_report.pdf'
+import corelogicReport from '../../assets/documents/riskmeter_report.pdf'
 
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
@@ -19,7 +19,7 @@ function DocumentExtraction() {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(null);
   const [doc, setDoc] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState(true);
 
 
   const inspectionOptions = [
@@ -68,7 +68,7 @@ function DocumentExtraction() {
       // Determine which file to upload
       const doc_url = selectedDoc === "inspectionReport"
         ? inspectionReport
-        : riskmeterReport;
+        : corelogicReport;
 
       if (!doc_url) {
         setErrorMessage("Invalid document selected");
@@ -161,20 +161,34 @@ function DocumentExtraction() {
   return (
     <div style={{ padding: '20px' }}>
       {/* <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title> */}
-      <label htmlFor="docs">Select Document</label>
-      <Radio.Group
-        style={{ padding: "20px" }}
-        id='docs'
-        value={doc}
-        onChange={(e) => {
-          setDoc(e.target.value);
-          handleUploadFile(e.target.value); // Call the function inside onChange
-        }}
-        disabled={uploadStatus}
-      >
-        <Radio value="inspectionReport">Inspection Report</Radio>
-        <Radio value="corelogicReport">Risk Meter Corelogic Report</Radio>
-      </Radio.Group>
+      <Button 
+      type="primary" 
+      className={"tablinks"}
+      onClick={() => setUploadStatus(false)}
+      style={{
+        borderRadius: '8px', 
+        fontSize: '16px', 
+        padding: '8px 16px'
+      }}
+    >
+      Reset
+    </Button>
+      <div>
+        <label htmlFor="docs">Select Document</label>
+        <Radio.Group
+          style={{ padding: "20px" }}
+          id='docs'
+          value={doc}
+          onChange={(e) => {
+            setDoc(e.target.value);
+            handleUploadFile(e.target.value); // Call the function inside onChange
+          }}
+          disabled={uploadStatus}
+        >
+          <Radio value="inspectionReport">Inspection Report</Radio>
+          <Radio value="corelogicReport">Corelogic Report</Radio>
+        </Radio.Group>
+      </div>
       <Select
         placeholder="Select an option"
         style={{ width: '100%', marginBottom: '20px' }}
