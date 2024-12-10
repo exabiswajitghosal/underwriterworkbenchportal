@@ -19,7 +19,7 @@ function DocumentExtraction() {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(null);
   const [doc, setDoc] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState(true);
+  const [uploadStatus, setUploadStatus] = useState(false);
 
 
   const inspectionOptions = [
