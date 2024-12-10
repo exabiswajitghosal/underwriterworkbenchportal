@@ -107,9 +107,12 @@ function DocumentExtraction() {
 
     const fetchData = async () => {
       setLoading(true);
-      console.log(payload)
       try {
-        const response = await axios.post(`${API_BASE_URL}/query`, payload);
+        const response = await axios.post(`${API_BASE_URL}/query`,
+          {
+            query: 'Give me the image of ' + query + ' from the document.',
+            model: "gpt-4o",
+          });
         if (response.status === 200 && response.data.result) {
           const imageBase64 = `data:image/png;base64,${response.data.result}`;
           setRefImage(imageBase64);
@@ -129,7 +132,7 @@ function DocumentExtraction() {
               ],
             }
             ],
-            max_tokens: 1000,
+            max_tokens: 2000,
           },
           {
             headers: {
