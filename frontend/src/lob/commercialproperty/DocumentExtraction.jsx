@@ -14,7 +14,7 @@ const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 function DocumentExtraction() {
   const [insights, setInsights] = useState(null);
-  const [refImage, setRefImage] = useState('');
+  const [refImage, setRefImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(null);
@@ -164,7 +164,15 @@ function DocumentExtraction() {
       <Button 
       type="primary" 
       className={"tablinks"}
-      onClick={() => setUploadStatus(false)}
+      onClick={() => {
+        setUploadStatus(false);
+        setInsights(null);
+        setRefImage(null);
+        setLoading(false);
+        setErrorMessage("");
+        setDoc(null);
+        setQuery(null);
+      }}
       style={{
         borderRadius: '8px', 
         fontSize: '16px', 
@@ -214,7 +222,7 @@ function DocumentExtraction() {
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
             borderRadius: '8px',
           }}
-
+          disabled={!uploadStatus}
         >
           <div style={{ display: 'flex', width: '100%' }}>
             {refImage && (
@@ -231,7 +239,7 @@ function DocumentExtraction() {
                     ))}
                   </Card>
                 ))
-                : 'Select the document to generate Insights'}
+                : 'Select the document and then query from dropdown to generate Insights'}
             </div>
           </div>
         </Card>
