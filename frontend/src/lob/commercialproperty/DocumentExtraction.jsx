@@ -14,7 +14,7 @@ const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 function DocumentExtraction() {
   const [insights, setInsights] = useState(null);
-  const [refImage, setRefImage] = useState(null);
+  const [refImages, setRefImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState(null);
@@ -24,11 +24,11 @@ function DocumentExtraction() {
 
   const inspectionOptions = [
     { value: 'overall-summary', label: 'Overall Summary' },
-    { value: 'front-side', label: 'Front Side' },
-    { value: 'sidewalk', label: 'Sidewalk' },
-    { value: 'roof', label: 'Roof' },
-    { value: 'electric-panel', label: 'Electric Panel' },
-    { value: 'neighborhood', label: 'Neighborhood' },
+    { value: 'construction-information such as roof material, floor construction', label: 'Construction Information' },
+    { value: 'protection-information', label: 'Protection Information' },
+    { value: 'heating-system-information', label: 'Heating System' },
+    { value: 'electrical-information such as electrical panel', label: 'Electrical' },
+    { value: 'plumbing-information', label: 'Plumbing' },
   ];
 
   const corelogicOptions = [
@@ -44,7 +44,7 @@ function DocumentExtraction() {
 
   const payload = {
     query: `
-      Provide a detailed assessment for the ${query} of the location in the following format:
+      Provide a detailed assessment for ${query} from the document in the following format:
 
       **Summary**:
       - <Bullet 1>
@@ -108,32 +108,57 @@ function DocumentExtraction() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.post(`${API_BASE_URL}/query`,
-          {
-            query: 'Give me the image of ' + query + ' from the document.',
-            model: "gpt-4o",
-          });
-        if (response.status === 200 && response.data.result) {
-          const imageBase64 = `data:image/png;base64,${response.data.result}`;
-          setRefImage(imageBase64);
+        // Fetch images from the custom API
+        const response = await axios.post(`${API_BASE_URL}/query`, {
+          query: 'Give me the images of ' + query + ' along with the overall summary mentioned in the non image text about the '+query+' from the document.',
+          // query: 'Give me the images that has ' + query +
+          //  'from the building and utilities use in the building to get risk and underwriting insights.',
+            // and include the images that have the narrative section from the document.',
+          model: "gpt-4o",
+        });
+
+        let images = [];
+        if (response.status === 200) {
+          // Assuming `response.data.results` contains an array of Base64 images
+          images = response.data.results.map((imageBase64) =>
+            `data:image/png;base64,${imageBase64}`
+          );
+
+          // console.log("Images received:", images);
+          setRefImages(images); // Set the array of images in the state
         }
+
+        // Construct the OpenAI payload
+        const messages = [
+          {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: payload.query, // Add the query as the first part of the payload
+              },
+            ],
+          },
+        ];
+
+        // Loop through images and add them to the payload
+        images.forEach((imageBase64, index) => {
+          messages[0].content.push({
+            type: "image_url",
+            image_url: { url: imageBase64 },
+          });
+        });
+
+        const data = {
+          model: payload.model,
+          messages,
+          max_tokens: 2000,
+          temperature:0,
+        };
 
         const aiResponse = await axios.post(
           'https://api.openai.com/v1/chat/completions',
-          {
-            model: payload.model,
-            messages: [{
-              role: "user", content: [
-                { "type": "text", "text": payload.query },
-                {
-                  "type": "image_url",
-                  "image_url": { "url": `data:image/png;base64,${response.data.result}` }
-                },
-              ],
-            }
-            ],
-            max_tokens: 2000,
-          },
+          data,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -145,6 +170,7 @@ function DocumentExtraction() {
         if (aiResponse.status === 200) {
           // console.log(aiResponse.data.choices[0].message.content)
           setInsights(aiResponse.data.choices[0].message.content);
+          // console.log(insights)
         } else {
           setErrorMessage("No insights available at this moment.");
         }
@@ -161,55 +187,55 @@ function DocumentExtraction() {
   return (
     <div style={{ padding: '20px' }}>
       {/* <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title> */}
-      <Button 
-      type="primary" 
-      className={"tablinks"}
-      onClick={() => {
-        setUploadStatus(false);
-        setInsights(null);
-        setRefImage(null);
-        setLoading(false);
-        setErrorMessage("");
-        setDoc(null);
-        setQuery(null);
-      }}
-      style={{
-        borderRadius: '8px', 
-        fontSize: '16px', 
-        padding: '8px 16px'
-      }}
-    >
-      Reset
-    </Button>
-      <div>
-        <label htmlFor="docs">Select Document</label>
-        <Radio.Group
-          style={{ padding: "20px" }}
-          id='docs'
+      <Button
+        type="primary"
+        className={"tablinks"}
+        onClick={() => {
+          setUploadStatus(false);
+          setInsights(null);
+          setRefImages(null);
+          setLoading(false);
+          setErrorMessage("");
+          setDoc(null);
+          setQuery(null);
+        }}
+        style={{
+          borderRadius: '8px',
+          fontSize: '16px',
+          padding: '8px 16px',
+          marginBottom: '20px'
+        }}
+      >
+        Reset
+      </Button>
+      <div style={{ display: "flex" }}>
+        <Select
+          placeholder="Select Document"
+          style={{ width: '100%', marginBottom: '20px' }}
           value={doc}
-          onChange={(e) => {
-            setDoc(e.target.value);
-            handleUploadFile(e.target.value); // Call the function inside onChange
+          onChange={(value) => {
+            setDoc(value);
+            handleUploadFile(value); // Call the function inside onChange
           }}
           disabled={uploadStatus}
         >
-          <Radio value="inspectionReport">Inspection Report</Radio>
-          <Radio value="corelogicReport">Corelogic Report</Radio>
-        </Radio.Group>
+          <Option value="inspectionReport">Inspection Report</Option>
+          <Option value="corelogicReport">Corelogic Report</Option>
+        </Select>
+        <Select
+          placeholder="Select an option"
+          style={{ width: '100%', marginBottom: '20px' }}
+          value={query}
+          onChange={(value) => setQuery(value)}
+          disabled={!uploadStatus}
+        >
+          {(doc === 'inspectionReport' ? inspectionOptions : corelogicOptions).map((option) => (
+            <Option key={option.value} value={option.value}>
+              {option.label}
+            </Option>
+          ))}
+        </Select>
       </div>
-      <Select
-        placeholder="Select an option"
-        style={{ width: '100%', marginBottom: '20px' }}
-        value={query}
-        onChange={(value) => setQuery(value)}
-        disabled={!uploadStatus}
-      >
-        {(doc === 'inspectionReport' ? inspectionOptions : corelogicOptions).map((option) => (
-          <Option key={option.value} value={option.value}>
-            {option.label}
-          </Option>
-        ))}
-      </Select>
       {loading ? (
         <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
       ) : errorMessage ? (
@@ -225,9 +251,16 @@ function DocumentExtraction() {
           disabled={!uploadStatus}
         >
           <div style={{ display: 'flex', width: '100%' }}>
-            {refImage && (
-              <div style={{ flex: '1', width: '50%' }}>
-                <Image src={refImage} alt="Reference" style={{ width: '100%', height: 'auto' }} />
+            {refImages && (
+              <div style={{ flex: '1', width: '50%', maxHeight: '400px', overflowY: 'scroll' }}>
+                {refImages.map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image}
+                    alt={`Reference ${index + 1}`}
+                    style={{ width: '100%', height: 'auto', marginBottom: '10px' }} // Add margin for spacing
+                  />
+                ))}
               </div>
             )}
             <div style={{ flex: '1', width: '50%', padding: '0 10px' }}>
