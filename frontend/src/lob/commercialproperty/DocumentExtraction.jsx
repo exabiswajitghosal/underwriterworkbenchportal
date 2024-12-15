@@ -17,18 +17,24 @@ function DocumentExtraction() {
   const [refImages, setRefImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [query, setQuery] = useState(null);
+  const [query, setQuery] = useState({
+    value: null,
+    label: null
+  });
   const [doc, setDoc] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(false);
 
 
   const inspectionOptions = [
-    { value: 'overall-summary', label: 'Overall Summary' },
-    { value: 'construction-information such as roof material, floor construction', label: 'Construction Information' },
+    { value: 'overall-summary such as building details, inspection summary and risks', label: 'Inspection Details' },
+    { value: 'construction-information such as roof material, floor construction, interior walls, exterior walls, sidewalk, stairs', label: 'Construction Information' },
     { value: 'protection-information', label: 'Protection Information' },
     { value: 'heating-system-information', label: 'Heating System' },
     { value: 'electrical-information such as electrical panel', label: 'Electrical' },
     { value: 'plumbing-information', label: 'Plumbing' },
+    { value: 'roof', label: 'Roof' },
+    { value: 'stairs', label: 'Stairs' },
+    { value: 'neighborhood', label: 'Neighborhood' },
   ];
 
   const corelogicOptions = [
@@ -44,22 +50,26 @@ function DocumentExtraction() {
 
   const payload = {
     query: `
-      Provide a detailed assessment for ${query} from the document in the following format:
-
-      **Summary**:
+      You are a {Commercial Property} Insurance Underwriter's Assistant that can quickly find potential risks and issues with the building based on the inspection report.
+      Please Provide Summary, Highlights, Underwriting Risks of ${query.value} of the building that would be helpful in underwriting a {Commercial Property} in the following format:
+      **Summary of ${query.label}**:
       - <Bullet 1>
       - <Bullet 2>
       - <Bullet 3>
-
-      ** Highlights**:
+      - <Bullet 4>
+      - <Bullet 5>
+      ** Highlights of ${query.label}**:
       - <Bullet 1>
       - <Bullet 2>
       - <Bullet 3>
-
-      **Underwriting Risks (if applicable)**:
+      - <Bullet 4>
+      - <Bullet 5>
+      **Underwriting Risks of ${query.label}**:
       - <Bullet 1>
       - <Bullet 2>
-      - <Bullet 3>
+      - <Bullet 3> 
+      - <Bullet 4>
+      - <Bullet 5>
     `,
     model: "gpt-4o",
   };
@@ -103,17 +113,14 @@ function DocumentExtraction() {
 
 
   useEffect(() => {
-    if (!query) return; // Avoid API call if query is null or undefined.
+    if (!query.value) return; // Avoid API call if query is null or undefined.
 
     const fetchData = async () => {
       setLoading(true);
       try {
         // Fetch images from the custom API
         const response = await axios.post(`${API_BASE_URL}/query`, {
-          query: 'Give me the images of ' + query + ' along with the overall summary mentioned in the non image text about the '+query+' from the document.',
-          // query: 'Give me the images that has ' + query +
-          //  'from the building and utilities use in the building to get risk and underwriting insights.',
-            // and include the images that have the narrative section from the document.',
+          query: 'Give me the images of ' + query.value + ' along with the overall summary mentioned in the non image text about the ' + query.value + ' from the document.',
           model: "gpt-4o",
         });
 
@@ -153,7 +160,7 @@ function DocumentExtraction() {
           model: payload.model,
           messages,
           max_tokens: 2000,
-          temperature:0,
+          temperature: 0,
         };
 
         const aiResponse = await axios.post(
@@ -182,7 +189,7 @@ function DocumentExtraction() {
     };
 
     fetchData();
-  }, [query]);  // Dependency on `query` only, not `payload`
+  }, [query.value]);  // Dependency on `query` only, not `payload`
 
   return (
     <div style={{ padding: '20px' }}>
@@ -197,7 +204,10 @@ function DocumentExtraction() {
           setLoading(false);
           setErrorMessage("");
           setDoc(null);
-          setQuery(null);
+          setQuery({
+            value:null,
+            label:null
+          });
         }}
         style={{
           borderRadius: '8px',
@@ -220,13 +230,20 @@ function DocumentExtraction() {
           disabled={uploadStatus}
         >
           <Option value="inspectionReport">Inspection Report</Option>
-          <Option value="corelogicReport">Corelogic Report</Option>
+          <Option value="corelogicReport" disabled>Corelogic Report</Option>
         </Select>
         <Select
           placeholder="Select an option"
           style={{ width: '100%', marginBottom: '20px' }}
-          value={query}
-          onChange={(value) => setQuery(value)}
+          value={query.value}
+          onChange={(value) => {
+            const options = doc === 'inspectionReport' ? inspectionOptions : corelogicOptions;
+            const selectedOption = options.find(option => option.value === value);
+            setQuery({
+              value: value,
+              label: selectedOption ? selectedOption.label : "",
+            });
+          }}
           disabled={!uploadStatus}
         >
           {(doc === 'inspectionReport' ? inspectionOptions : corelogicOptions).map((option) => (
@@ -250,20 +267,20 @@ function DocumentExtraction() {
           }}
           disabled={!uploadStatus}
         >
-          <div style={{ display: 'flex', width: '100%' }}>
+          <div style={{ display: 'flex', width: '100%' }} >
             {refImages && (
-              <div style={{ flex: '1', width: '50%', maxHeight: '400px', overflowY: 'scroll' }}>
+              <div style={{ flex: '1', width: '50%', maxHeight: '600px', overflowY: 'scroll' }}>
                 {refImages.map((image, index) => (
                   <Image
                     key={index}
                     src={image}
                     alt={`Reference ${index + 1}`}
-                    style={{ width: '100%', height: 'auto', marginBottom: '10px' }} // Add margin for spacing
+                    style={{ width: '100%', height: 'auto', marginBottom: '10px' }}
                   />
                 ))}
               </div>
             )}
-            <div style={{ flex: '1', width: '50%', padding: '0 10px' }}>
+            <div style={{ flex: '1', width: '50%', maxHeight: '600px', overflowY: 'scroll', padding: '0 10px' }}>
               {insights
                 ? insights.split("\n\n").map((paragraph, index) => (
                   <Card key={index}>
