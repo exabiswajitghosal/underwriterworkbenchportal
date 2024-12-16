@@ -230,7 +230,7 @@ function DocumentExtraction() {
           disabled={uploadStatus}
         >
           <Option value="inspectionReport">Inspection Report</Option>
-          <Option value="corelogicReport" disabled>Corelogic Report</Option>
+          <Option value="corelogicReport">Corelogic Report</Option>
         </Select>
         <Select
           placeholder="Select an option"
