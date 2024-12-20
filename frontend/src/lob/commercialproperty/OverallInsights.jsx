@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Alert, Spin, Select, Image, Button } from 'antd';
+import { Card, Alert, Spin, Select, Image, Button, Switch } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import inspectionReport from '../../assets/documents/Sample Inspection Report.pdf'
 import corelogicReport from '../../assets/documents/riskmeter_report.pdf'
@@ -21,7 +21,7 @@ function OverallInsights() {
   });
   const [doc, setDoc] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(false);
-
+  const [publicData, setPublicData] = useState(false);
 
   const inspectionOptions = [
     { value: 'overall-summary such as building details, inspection summary and risks', label: 'Inspection Details' },
@@ -47,6 +47,37 @@ function OverallInsights() {
   ];
 
   const payload = {
+    publicDataQuery: `
+    You are a {Commercial Property} Insurance Underwriter's Assistant that can quickly find potential risks and issues with the building based on the inspection report.
+      Please Provide Summary, Highlights, Underwriting Risks of ${query.value} of the building, refer the public data which is given as  charts and graphs provided in the image and corelate the inspection
+      report with it specific data points and highlight in case anything that's not inspected with respect to underwriting a {Commercial Property} in the following format:
+      **Summary of ${query.label}**:
+      - <Bullet 1>
+      - <Bullet 2>
+      - <Bullet 3>
+      - <Bullet 4>
+      - <Bullet 5>
+      ** Highlights of ${query.label}**:
+      - <Bullet 1>
+      - <Bullet 2>
+      - <Bullet 3>
+      - <Bullet 4>
+      - <Bullet 5>
+      **Underwriting Risks of ${query.label}**:
+      - <Bullet 1>
+      - <Bullet 2>
+      - <Bullet 3> 
+      - <Bullet 4>
+      - <Bullet 5>
+      **Comparison of ${query.label} with public risk data(top 10 causes of fire)**:
+      - <Risk 1> < e.g. % of fire caused by risk 1 (refer chart) for that particular location(borough)> <inspected/not inspected> 
+      - <Risk 2> < e.g. % of fire caused by risk 2 (refer chart) for that particular location(borough)> <inspected/not inspected> 
+      - <Risk 4> < e.g. % of fire caused by risk 3 (refer chart) for that particular location(borough)> <inspected/not inspected>
+      - <Risk 5> < e.g. % of fire caused by risk 4 (refer chart) for that particular location(borough)> <inspected/not inspected>
+      - <Risk 6> < e.g. % of fire caused by risk 5 (refer chart) for that particular location(borough)> <inspected/not inspected>
+      - <Risk 3> < e.g. % of fire caused by risk 6 (refer chart) for that particular location(borough)> <inspected/not inspected>
+      - <Risk 7> < e.g. % of fire caused by risk 7 (refer chart) for that particular location(borough)> <inspected/not inspected>
+    `,
     query: `
       You are a {Commercial Property} Insurance Underwriter's Assistant that can quickly find potential risks and issues with the building based on the inspection report.
       Please Provide Summary, Highlights, Underwriting Risks of ${query.value} of the building that would be helpful in underwriting a {Commercial Property} in the following format:
@@ -148,23 +179,43 @@ function OverallInsights() {
           images = response.data.results.map((imageBase64) =>
             `data:image/png;base64,${imageBase64}`
           );
-
+          if (publicData) {
+            // Fetch images from the localStorage
+            const capturedVisualizations = JSON.parse(localStorage.getItem('capturedVisualizations') || '[]');
+            const publicDataImages = capturedVisualizations.map((data) => data.image);
+            images = [...images, ...publicDataImages];
+          }
           // console.log("Images received:", images);
           setRefImages(images); // Set the array of images in the state
         }
 
         // Construct the OpenAI payload
-        const messages = [
-          {
-            role: "user",
-            content: [
-              {
-                type: "text",
-                text: payload.query, // Add the query as the first part of the payload
-              },
-            ],
-          },
-        ];
+        let messages = [];
+        if (publicData) {
+          messages = [
+            {
+              role: "user",
+              content: [
+                {
+                  type: "text",
+                  text: payload.publicDataQuery, // Add the query as the first part of the payload
+                },
+              ],
+            },
+          ];
+        } else {
+          messages = [
+            {
+              role: "user",
+              content: [
+                {
+                  type: "text",
+                  text: payload.query, // Add the query as the first part of the payload
+                },
+              ],
+            },
+          ];
+        }
 
         // Loop through images and add them to the payload
         images.forEach((imageBase64, index) => {
@@ -207,11 +258,17 @@ function OverallInsights() {
     };
 
     fetchData();
-  }, [query.value]);  // Dependency on `query` only, not `payload`
+  }, [query.value, publicData]);  // Dependency on `query` only, not `payload`
 
   return (
     <div style={{ padding: '20px' }}>
-      {/* <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title> */}
+      <Switch
+        checked={publicData}
+        onChange={() => setPublicData(!publicData)}
+        style={{ width: '1%', marginBottom: '20px' }}
+      />
+      <span style={{ marginLeft: '10px' }}>Include Public Data</span>
+      <br />
       <Button
         type="primary"
         className={"tablinks"}
@@ -226,6 +283,7 @@ function OverallInsights() {
             value: null,
             label: null
           });
+          setPublicData(false);
         }}
         style={{
           borderRadius: '8px',
