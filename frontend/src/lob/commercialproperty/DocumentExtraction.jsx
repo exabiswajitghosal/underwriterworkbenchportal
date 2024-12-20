@@ -1,300 +1,166 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../../layout/Tab.css';
-import { Card, Typography, Alert, Spin, Select, Image, Radio, Button } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
-import inspectionReport from '../../assets/documents/Sample Inspection Report.pdf'
-import corelogicReport from '../../assets/documents/riskmeter_report.pdf'
+import { Card, Typography, Alert, Spin, List, Button } from 'antd';
+import { CiCircleFilled } from '@ant-design/icons';
 
-const { Title, Paragraph } = Typography;
-const { Option } = Select;
+const { Title, Text } = Typography;
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
-
-function DocumentExtraction() {
+function  DocumentExtraction({ id = "980d35d0-5f48-467b-54e5-90fb5bd3fb7d" }) {
   const [insights, setInsights] = useState(null);
-  const [refImages, setRefImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [query, setQuery] = useState({
-    value: null,
-    label: null
-  });
-  const [doc, setDoc] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState(false);
-
-
-  const inspectionOptions = [
-    { value: 'overall-summary such as building details, inspection summary and risks', label: 'Inspection Details' },
-    { value: 'construction-information such as roof material, floor construction, interior walls, exterior walls, sidewalk, stairs', label: 'Construction Information' },
-    { value: 'protection-information', label: 'Protection Information' },
-    { value: 'heating-system-information', label: 'Heating System' },
-    { value: 'electrical-information such as electrical panel', label: 'Electrical' },
-    { value: 'plumbing-information', label: 'Plumbing' },
-    { value: 'roof', label: 'Roof' },
-    { value: 'stairs', label: 'Stairs' },
-    { value: 'neighborhood', label: 'Neighborhood' },
-  ];
-
-  const corelogicOptions = [
-    { value: 'overall-summary', label: 'Overall Summary' },
-    { value: 'storm', label: 'Storm' },
-    { value: 'earthquake', label: 'Earthquake' },
-    { value: 'hail', label: 'Hail' },
-    { value: 'tornado', label: 'Tornado' },
-    { value: 'wind', label: 'Wind' },
-    { value: 'flood', label: 'Flood' },
-    { value: 'distance-to-shore', label: 'Distance to Shore' },
-  ];
-
-  const payload = {
-    query: `
-      You are a {Commercial Property} Insurance Underwriter's Assistant that can quickly find potential risks and issues with the building based on the inspection report.
-      Please Provide Summary, Highlights, Underwriting Risks of ${query.value} of the building that would be helpful in underwriting a {Commercial Property} in the following format:
-      **Summary of ${query.label}**:
-      - <Bullet 1>
-      - <Bullet 2>
-      - <Bullet 3>
-      - <Bullet 4>
-      - <Bullet 5>
-      ** Highlights of ${query.label}**:
-      - <Bullet 1>
-      - <Bullet 2>
-      - <Bullet 3>
-      - <Bullet 4>
-      - <Bullet 5>
-      **Underwriting Risks of ${query.label}**:
-      - <Bullet 1>
-      - <Bullet 2>
-      - <Bullet 3> 
-      - <Bullet 4>
-      - <Bullet 5>
-    `,
-    model: "gpt-4o",
-  };
-  const handleUploadFile = async (selectedDoc) => {
-    try {
-      // Determine which file to upload
-      const doc_url = selectedDoc === "inspectionReport"
-        ? inspectionReport
-        : corelogicReport;
-
-      if (!doc_url) {
-        setErrorMessage("Invalid document selected");
-        return;
-      }
-
-      setLoading(true);
-      setErrorMessage('');
-
-      // Fetch the file as a blob
-      const response = await fetch(doc_url);
-      const blob = await response.blob();
-      const file = new File([blob], `${selectedDoc}.pdf`, { type: 'application/pdf' });
-
-      // Create FormData and append the file
-      const data = new FormData();
-      data.append('file', file);
-
-      // Upload the file
-      const uploadResponse = await axios.post(`${API_BASE_URL}/upload`, data);
-
-      console.log("File uploaded successfully:", uploadResponse.data);
-      setUploadStatus(true)
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      setErrorMessage("File upload failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
+  const [loading, setLoading] = useState(true);
+  const [showAllHigh, setShowAllHigh] = useState(false);
+  const [showAllMedium, setShowAllMedium] = useState(false);
+  const [showAllLow, setShowAllLow] = useState(false);
 
   useEffect(() => {
-    if (!query.value) return; // Avoid API call if query is null or undefined.
-
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Fetch images from the custom API
-        const response = await axios.post(`${API_BASE_URL}/query`, {
-          query: 'Give me the images of ' + query.value + ' along with the overall summary mentioned in the non image text about the ' + query.value + ' from the document.',
-          model: "gpt-4o",
-        });
+        const response = await axios.get(`https://underwriting-assessment.onrender.com/api/v1/insights?submission_id=${id}`);
 
-        let images = [];
         if (response.status === 200) {
-          // Assuming `response.data.results` contains an array of Base64 images
-          images = response.data.results.map((imageBase64) =>
-            `data:image/png;base64,${imageBase64}`
-          );
-
-          // console.log("Images received:", images);
-          setRefImages(images); // Set the array of images in the state
-        }
-
-        // Construct the OpenAI payload
-        const messages = [
-          {
-            role: "user",
-            content: [
-              {
-                type: "text",
-                text: payload.query, // Add the query as the first part of the payload
-              },
-            ],
-          },
-        ];
-
-        // Loop through images and add them to the payload
-        images.forEach((imageBase64, index) => {
-          messages[0].content.push({
-            type: "image_url",
-            image_url: { url: imageBase64 },
-          });
-        });
-
-        const data = {
-          model: payload.model,
-          messages,
-          max_tokens: 2000,
-          temperature: 0,
-        };
-
-        const aiResponse = await axios.post(
-          'https://api.openai.com/v1/chat/completions',
-          data,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${openAiApiKey}`,
-            },
-          }
-        );
-
-        if (aiResponse.status === 200) {
-          // console.log(aiResponse.data.choices[0].message.content)
-          setInsights(aiResponse.data.choices[0].message.content);
-          // console.log(insights)
+          setInsights(response.data);
         } else {
           setErrorMessage("No insights available at this moment.");
         }
-      } catch (error) {
-        setErrorMessage("Error fetching data: " + error.message);
+      } catch (err) {
+        setErrorMessage("Unable to fetch insights: " + err.message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [query.value]);  // Dependency on `query` only, not `payload`
+  }, [id]);
+
+  // Prepare data for each priority
+  const highPriorityData = insights
+    ? insights.flatMap(insight =>
+      insight.key_insights
+        .filter(keyInsight => keyInsight.priority.toLowerCase() === 'high')
+        .map(keyInsight => keyInsight.insight)
+    )
+    : [];
+
+  const mediumPriorityData = insights
+    ? insights.flatMap(insight =>
+      insight.key_insights
+        .filter(keyInsight => keyInsight.priority.toLowerCase() === 'medium')
+        .map(keyInsight => keyInsight.insight)
+    )
+    : [];
+
+  const lowPriorityData = insights
+    ? insights.flatMap(insight =>
+      insight.key_insights
+        .filter(keyInsight => keyInsight.priority.toLowerCase() === 'low')
+        .map(keyInsight => keyInsight.insight)
+    )
+    : [];
+
+  // Limit data shown per priority and add "See More" button if needed
+  const limitedHighPriorityData = showAllHigh ? highPriorityData : highPriorityData.slice(0, 5);
+  const limitedMediumPriorityData = showAllMedium ? mediumPriorityData : mediumPriorityData.slice(0, 5);
+  const limitedLowPriorityData = showAllLow ? lowPriorityData : lowPriorityData.slice(0, 5);
 
   return (
-    <div style={{ padding: '20px' }}>
-      {/* <Title level={3} style={{ textAlign: 'left', marginBottom: '20px' }}>Document Extraction</Title> */}
-      <Button
-        type="primary"
-        className={"tablinks"}
-        onClick={() => {
-          setUploadStatus(false);
-          setInsights(null);
-          setRefImages(null);
-          setLoading(false);
-          setErrorMessage("");
-          setDoc(null);
-          setQuery({
-            value:null,
-            label:null
-          });
-        }}
-        style={{
-          borderRadius: '8px',
-          fontSize: '16px',
-          padding: '8px 16px',
-          marginBottom: '20px'
-        }}
-      >
-        Reset
-      </Button>
-      <div style={{ display: "flex" }}>
-        <Select
-          placeholder="Select Document"
-          style={{ width: '100%', marginBottom: '20px' }}
-          value={doc}
-          onChange={(value) => {
-            setDoc(value);
-            handleUploadFile(value); // Call the function inside onChange
-          }}
-          disabled={uploadStatus}
-        >
-          <Option value="inspectionReport">Inspection Report</Option>
-          <Option value="corelogicReport">Corelogic Report</Option>
-        </Select>
-        <Select
-          placeholder="Select an option"
-          style={{ width: '100%', marginBottom: '20px' }}
-          value={query.value}
-          onChange={(value) => {
-            const options = doc === 'inspectionReport' ? inspectionOptions : corelogicOptions;
-            const selectedOption = options.find(option => option.value === value);
-            setQuery({
-              value: value,
-              label: selectedOption ? selectedOption.label : "",
-            });
-          }}
-          disabled={!uploadStatus}
-        >
-          {(doc === 'inspectionReport' ? inspectionOptions : corelogicOptions).map((option) => (
-            <Option key={option.value} value={option.value}>
-              {option.label}
-            </Option>
-          ))}
-        </Select>
-      </div>
+    <Card className="max-w-screen-lg mx-auto" title={<Title level={2}>Insights</Title>} bordered>
       {loading ? (
-        <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
-      ) : errorMessage ? (
-        <Alert message={errorMessage} type="error" showIcon />
+        <Spin tip="Loading insights..." />
       ) : (
-        <Card
-          title="Document Insights"
-          bordered
-          style={{
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-            borderRadius: '8px',
-          }}
-          disabled={!uploadStatus}
-        >
-          <div style={{ display: 'flex', width: '100%' }} >
-            {refImages && (
-              <div style={{ flex: '1', width: '50%', maxHeight: '600px', overflowY: 'scroll' }}>
-                {refImages.map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image}
-                    alt={`Reference ${index + 1}`}
-                    style={{ width: '100%', height: 'auto', marginBottom: '10px' }}
-                  />
-                ))}
-              </div>
+        <>
+          {errorMessage && (
+            <Alert message={errorMessage} type="error" showIcon className="mb-4" />
+          )}
+
+          {/* High Priority Section */}
+          <Card
+            title={<Title level={3} style={{ color: 'red' }}>High Priority</Title>}
+            bordered={false}
+            style={{ backgroundColor: 'transparent', marginBottom: '16px' }}
+          >
+            {limitedHighPriorityData.length > 0 ? (
+              <>
+                <List
+                  dataSource={limitedHighPriorityData}
+                  renderItem={item =>
+                    <List.Item>
+                      <Text>
+                        <CiCircleFilled style={{ color: 'red', marginRight: '8px' }} />{item}</Text>
+                    </List.Item>}
+                />
+                {highPriorityData.length > 5 && (
+                  <Button
+                    type="link"
+                    onClick={() => setShowAllHigh(!showAllHigh)}
+                    style={{ color: 'red' }}
+                  >
+                    {showAllHigh ? 'Show Less' : 'See More'}
+                  </Button>
+                )}
+              </>
+            ) : (
+              <Text type="secondary">No high priority insights available.</Text>
             )}
-            <div style={{ flex: '1', width: '50%', maxHeight: '600px', overflowY: 'scroll', padding: '0 10px' }}>
-              {insights
-                ? insights.split("\n\n").map((paragraph, index) => (
-                  <Card key={index}>
-                    {paragraph.split("\n").map((point, pointIndex) => (
-                      <p key={pointIndex}>{point}</p>
-                    ))}
-                  </Card>
-                ))
-                : 'Select the document and then query from dropdown to generate Insights'}
-            </div>
-          </div>
-        </Card>
+          </Card>
+
+          {/* Medium Priority Section */}
+          <Card
+            title={<Title level={3} style={{ color: 'orange' }}>Medium Priority</Title>}
+            bordered={false}
+            style={{ backgroundColor: 'transparent', marginBottom: '16px' }}
+          >
+            {limitedMediumPriorityData.length > 0 ? (
+              <>
+                <List
+                  dataSource={limitedMediumPriorityData}
+                  renderItem={item => <List.Item><Text><CiCircleFilled style={{ color: 'orange', marginRight: '8px' }} />{item}</Text></List.Item>}
+                />
+                {mediumPriorityData.length > 5 && (
+                  <Button
+                    type="link"
+                    onClick={() => setShowAllMedium(!showAllMedium)}
+                    style={{ color: 'orange' }}
+                  >
+                    {showAllMedium ? 'Show Less' : 'See More'}
+                  </Button>
+                )}
+              </>
+            ) : (
+              <Text type="secondary">No medium priority insights available.</Text>
+            )}
+          </Card>
+
+          {/* Low Priority Section */}
+          <Card
+            title={<Title level={3} style={{ color: 'green' }}>Low Priority</Title>}
+            bordered={false}
+            style={{ backgroundColor: 'transparent' }}
+          >
+            {limitedLowPriorityData.length > 0 ? (
+              <>
+                <List
+                  dataSource={limitedLowPriorityData}
+                  renderItem={item => <List.Item><Text><CiCircleFilled style={{ color: 'green', marginRight: '8px' }} />{item}</Text></List.Item>}
+                />
+                {lowPriorityData.length > 5 && (
+                  <Button
+                    type="link"
+                    onClick={() => setShowAllLow(!showAllLow)}
+                    style={{ color: 'green' }}
+                  >
+                    {showAllLow ? 'Show Less' : 'See More'}
+                  </Button>
+                )}
+              </>
+            ) : (
+              <Text type="secondary" style={{ color: 'black' }}>No low priority insights available.</Text>
+            )}
+          </Card>
+        </>
       )}
-    </div>
+    </Card>
   );
 }
 
