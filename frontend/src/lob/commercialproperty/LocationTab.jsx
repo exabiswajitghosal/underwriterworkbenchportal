@@ -6,7 +6,7 @@ import '../../layout/Tab.css';
 import LocationTable from './LocationTable';
 import LocationBuildingTab from "./LocationBuildingTab";
 import OverallInsights from "./OverallInsights";
-import DocumentExtraction from "./DocumentExtraction";
+import PublicData from './PublicData';
 
 const LocationTab = () => {
   const [activeTab, setActiveTab] = useState("Tab1");
@@ -22,6 +22,8 @@ const LocationTab = () => {
       setActiveTab("Tab2");
     } else if (activeTab === "Tab2") {
       setActiveTab("Tab3");
+    } else if (activeTab === "Tab3") {
+      setActiveTab("Tab4");
     }
   };
 
@@ -47,6 +49,12 @@ const LocationTab = () => {
         >
           AI Insights(Beta)
         </Button>
+        <Button
+          className={`tablinks ${activeTab === "Tab4" ? "active" : ""}`}
+          onClick={() => openMainTab("Tab4")}
+        >
+          Public Data
+        </Button>
       </div>
 
       {/* Tab Content */}
@@ -64,8 +72,13 @@ const LocationTab = () => {
 
       {activeTab === "Tab3" && (
         <div id="Tab3" className="tabcontent">
-          {/* <OverallInsights /> */}
-          <DocumentExtraction />
+          <OverallInsights />
+        </div>
+      )}
+
+      {activeTab === "Tab4" && (
+        <div id="Tab4" className="tabcontent">
+          <PublicData />
         </div>
       )}
     </div>
