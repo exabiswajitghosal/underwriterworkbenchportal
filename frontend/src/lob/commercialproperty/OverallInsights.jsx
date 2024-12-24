@@ -70,13 +70,18 @@ function OverallInsights() {
       - <Bullet 4>
       - <Bullet 5>
       **Comparison of ${query.label} with public risk data(top 10 causes of fire)**:
-      - <Risk 1> < e.g. % of fire caused by risk 1 (refer chart) for that particular location(borough)> <inspected/not inspected> 
-      - <Risk 2> < e.g. % of fire caused by risk 2 (refer chart) for that particular location(borough)> <inspected/not inspected> 
-      - <Risk 4> < e.g. % of fire caused by risk 3 (refer chart) for that particular location(borough)> <inspected/not inspected>
-      - <Risk 5> < e.g. % of fire caused by risk 4 (refer chart) for that particular location(borough)> <inspected/not inspected>
-      - <Risk 6> < e.g. % of fire caused by risk 5 (refer chart) for that particular location(borough)> <inspected/not inspected>
-      - <Risk 3> < e.g. % of fire caused by risk 6 (refer chart) for that particular location(borough)> <inspected/not inspected>
-      - <Risk 7> < e.g. % of fire caused by risk 7 (refer chart) for that particular location(borough)> <inspected/not inspected>
+        For each of the 5 risks, provide the following details:
+      * <Risk>
+        - <What % is the risk Number in this location (borough)>
+          -- <Answer with % of risk>
+        - <Mitigation steps to reduce this risk Number>
+          -- <Answer>
+        - <How does the building mitigate the Risks>
+          -- <Answer>
+        - <Does the Inspection document capture the mitigation steps>
+          -- <Answer How it captures>
+        - <Was the building inspected for the mitigation of risk Number>
+          -- <Answer>
     `,
     query: `
       You are a {Commercial Property} Insurance Underwriter's Assistant that can quickly find potential risks and issues with the building based on the inspection report.
@@ -139,29 +144,8 @@ function OverallInsights() {
     }
   };
 
-  // const llama3Api = async () => {
-  //   const response = await fetch(
-  //     'https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-3B-Instruct',
-  //     {
-  //       method: 'POST',
-  //       headers: {
-  //         Authorization: `Bearer ${process.env.REACT_APP_HF_TOKEN}`,
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         inputs: 'What is the capital of France?',
-  //         parameters: { max_length: 2000, temperature: 0.7 },
-  //       }),
-  //     }
-  //   );
-
-  //   const result = await response.json();
-  //   console.log("llama api call: " + result);
-  // }
-
 
   useEffect(() => {
-    // llama3Api()
     if (!query.value) return; // Avoid API call if query is null or undefined.
 
     const fetchData = async () => {
@@ -176,9 +160,11 @@ function OverallInsights() {
         let images = [];
         if (response.status === 200) {
           // Assuming `response.data.results` contains an array of Base64 images
-          images = response.data.results.map((imageBase64) =>
-            `data:image/png;base64,${imageBase64}`
-          );
+          images = Array.from(
+            new Set(response.data.results.map((imageBase64) => 
+              `data:image/png;base64,${imageBase64}`
+            ))
+          );          
           if (publicData) {
             // Fetch images from the localStorage
             const capturedVisualizations = JSON.parse(localStorage.getItem('capturedVisualizations') || '[]');
@@ -244,6 +230,7 @@ function OverallInsights() {
         );
 
         if (aiResponse.status === 200) {
+          console.log(data)
           // console.log(aiResponse.data.choices[0].message.content)
           setInsights(aiResponse.data.choices[0].message.content);
           // console.log(insights)
